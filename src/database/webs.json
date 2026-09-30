@@ -1,0 +1,102 @@
+[
+  {
+    "category": "电脑软件",
+    "children": [
+      {
+        "title": "腾讯会议",
+        "url": "https://meeting.tencent.com/download",
+        "icon": "https://cdn.meeting.tencent.com/assets/next-website/logo128.png",
+        "description": "腾讯会议高清流畅、便捷易用、安全可靠的多人音视频会议软件，支持多端下载安装。"
+      },
+      {
+        "title": "雷神模拟器",
+        "url": "https://www.lsplayer.com",
+        "icon": "https://res.ldmnq.com/gw/assets/images/05/ls/ls-icon.png",
+        "description": "领先内核打造的安卓模拟器，运行快速稳定，为大屏游戏带来流畅操控体验。"
+      },
+      {
+        "title": "Steam",
+        "url": "https://store.steampowered.com",
+        "icon": "https://store.steampowered.com/favicon.ico",
+        "description": "全球知名的游戏发行平台，提供游戏购买下载、社区创意工坊与成就系统。"
+      },
+      {
+        "title": "爱思助手",
+        "url": "https://www.i4.cn/pros/pc.html",
+        "icon": "https://d-image.i4.cn/i4web/static2025/images/logo.png?v=131",
+        "description": "专业的苹果设备管理工具，支持一键刷机、数据备份还原、换机搬家与应用下载。"
+      },
+      {
+        "title": "百分浏览器",
+        "url": "https://www.centbrowser.cn",
+        "icon": "https://www.centbrowser.cn/favicon.ico",
+        "description": "Chrome 增强版浏览器，紧跟最新内核，主打快速简约，优化办公娱乐上网体验。"
+      },
+      {
+        "title": "火绒安全",
+        "url": "https://www.huorong.cn",
+        "icon": "https://www.huorong.cn/favicon.png",
+        "description": "专注终端安全的国产安全软件，个人版免费使用，企业版提供终端安全统一管理。"
+      }
+    ]
+  },
+  {
+    "category": "教育学习",
+    "children": [
+      {
+        "title": "绿叶学习网",
+        "url": "https://www.lvyenet.com",
+        "icon": "https://www.lvyenet.com/imgs/sites/share/apple-touch-icon.png",
+        "description": "专注优质编程教程，涵盖网络与开发技术，并提供在线编译器助力边学边练。"
+      },
+      {
+        "title": "我要自学网",
+        "url": "https://www.51zxw.net",
+        "icon": "https://www.51zxw.net/favicon.ico",
+        "description": "涵盖办公、3D、平面、影视动画等软件领域的免费视频教程自学网站。"
+      },
+      {
+        "title": "考试酷",
+        "url": "https://www.examcoo.com/index/ku",
+        "icon": "https://www.examcoo.com/favicon.ico",
+        "description": "永久免费的在线考试与电子作业平台，提供海量公共题库、自测练习与智能组卷服务。"
+      },
+      {
+        "title": "电子课本网",
+        "url": "http://www.dzkbw.com",
+        "icon": "http://www.dzkbw.com/favicon.ico",
+        "description": "提供人教、苏教、北师大等各版本中小学电子课本的在线阅读与下载导航。"
+      },
+      {
+        "title": "终身教育平台",
+        "url": "https://le.ouchn.cn/home",
+        "icon": "https://le.ouchn.cn/assets/logo.8894ec3b.ico",
+        "description": "国家开放大学终身教育平台，免费提供学历教育、职业培训等海量在线课程。"
+      },
+      {
+        "title": "智慧教育平台",
+        "url": "https://www.smartedu.cn",
+        "icon": "https://www.smartedu.cn/favicon.ico?1",
+        "description": "国家智慧教育公共服务平台，汇聚优质课程资源，面向师生和社会学习者免费开放。"
+      },
+      {
+        "title": "中国大学慕课",
+        "url": "https://www.icourse163.org",
+        "icon": "https://edu-image.nosdn.127.net/32a8dd2a-b9aa-4ec9-abd5-66cd8751befb.png?imageView&quality=100",
+        "description": "汇集名校名师的中文慕课平台，提供优质大学课程在线学习，学完可获得认证证书。"
+      },
+      {
+        "title": "公考真题库",
+        "url": "https://gwy.gkzhenti.cn",
+        "icon": "https://gwy.gkzhenti.cn/favicon.ico",
+        "description": "收录公务员、事业单位等考试真题，支持行测申论试卷整套在线下载打印。"
+      },
+      {
+        "title": "全历史",
+        "url": "https://www.allhistory.com",
+        "icon": "https://www.allhistory.com/favicon.ico",
+        "description": "以AI知识图谱呈现时空关联的历史人文内容，构建数字化的知识探索平台。"
+      }
+    ]
+  }
+]
