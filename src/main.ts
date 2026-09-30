@@ -1,6 +1,7 @@
 import App from '@/App.vue'
 import { setupStore } from '@/store'
 import { setupRouter } from '@/router'
+import './styles/index.scss'
 import 'virtual:uno.css'
 
 async function bootstrap() {
