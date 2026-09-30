@@ -21,6 +21,7 @@ defineOptions({ name: 'AppMain' })
   width: 100%;
   // min-height: calc(100vh - var(--el-navbar-height));
   min-height: 100vh;
-  overflow: hidden;
+  // 用 clip 代替 hidden：既裁剪横向溢出，又不产生滚动容器，否则内部 sticky 会失效
+  overflow-x: clip;
 }
 </style>

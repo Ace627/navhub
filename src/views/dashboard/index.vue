@@ -1,17 +1,28 @@
 <template>
   <div class="app-content dashboard">
-    <section v-for="group in webGroups" :key="group.category" class="category">
-      <h2 class="category-title">{{ group.category }}</h2>
-      <div class="card-grid">
-        <a v-for="item in group.children" :key="item.url" :href="item.url" target="_blank" rel="noopener noreferrer" class="site-card">
-          <div class="card-header">
-            <img class="site-icon" :src="getIcon(item)" :alt="item.title" loading="lazy" draggable="false" @error="onIconError(item)" />
-            <span class="site-title">{{ item.title }}</span>
-          </div>
-          <p class="site-desc" :title="item.description">{{ item.description }}</p>
-        </a>
-      </div>
-    </section>
+    <CategorySidebar v-if="appStore.isDesktop" />
+
+    <div class="dashboard__main">
+      <CategoryDrawer v-if="appStore.isMobile" />
+
+      <section
+        v-for="group in webGroups"
+        :id="getCategorySectionId(group.category)"
+        :key="group.category"
+        class="category"
+      >
+        <h2 class="category-title">{{ group.category }}</h2>
+        <div class="card-grid">
+          <a v-for="item in group.children" :key="item.url" :href="item.url" target="_blank" rel="noopener noreferrer" class="site-card">
+            <div class="card-header">
+              <img class="site-icon" :src="getIcon(item)" :alt="item.title" loading="lazy" draggable="false" @error="onIconError(item)" />
+              <span class="site-title">{{ item.title }}</span>
+            </div>
+            <p class="site-desc" :title="item.description">{{ item.description }}</p>
+          </a>
+        </div>
+      </section>
+    </div>
   </div>
 </template>
 
@@ -20,7 +31,11 @@ defineOptions({ name: RouterConstant.HOME_PAGE_NAME })
 import { reactive } from 'vue'
 import { RouterConstant } from '@/router/router.constant'
 import webs from '@/database/webs.json'
+import CategorySidebar from './components/CategorySidebar.vue'
+import CategoryDrawer from './components/CategoryDrawer.vue'
+import { getCategorySectionId } from './composables/useCategoryNav'
 
+const appStore = useAppStore()
 const webGroups = webs
 
 const failedIcons = reactive(new Set<string>())
@@ -40,8 +55,17 @@ function onIconError(item: (typeof webs)[number]['children'][number]) {
 <style lang="scss" scoped>
 .dashboard {
   display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.dashboard__main {
+  display: flex;
+  flex: 1;
   flex-direction: column;
   gap: 24px;
+  /* 防止网格内容撑破 flex 子项 */
+  min-width: 0;
 }
 
 .category-title {
@@ -60,7 +84,7 @@ function onIconError(item: (typeof webs)[number]['children'][number]) {
     width: 4px;
     height: 18px;
     border-radius: 2px;
-    background-color: var(--el-color-primary, #409eff);
+    background-color: var(--n-color-primary);
   }
 }
 
@@ -120,6 +144,15 @@ function onIconError(item: (typeof webs)[number]['children'][number]) {
 }
 
 html[data-device='mobile'] {
+  /* 顶栏为 fixed，去掉上内边距，让等高占位元素独占顶部空间 */
+  .dashboard {
+    padding-top: 0;
+  }
+
+  .dashboard__main {
+    gap: 16px;
+  }
+
   .card-grid {
     grid-template-columns: repeat(4, 1fr);
     gap: 8px;

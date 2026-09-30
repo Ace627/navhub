@@ -10,18 +10,23 @@ export function useResize() {
     return rect.width - 1 < MAX_MOBILE_WIDTH
   }
 
-  /** 用于处理窗口大小变化事件 */
-  function _resizeHandler() {
-    if (document.hidden) return
+  /** 依据视口宽度写入设备类型 */
+  function _updateDevice() {
     appStore.device = _isMobile() ? 'mobile' : 'desktop'
     document.documentElement.dataset['device'] = appStore.device
   }
 
+  /** 用于处理窗口大小变化事件 */
+  function _resizeHandler() {
+    if (document.hidden) return
+    _updateDevice()
+  }
+
+  // 挂载前先同步判定一次，避免移动端首帧按桌面布局渲染后再回弹
+  _updateDevice()
+
   /** 在组件挂载前添加窗口大小变化事件监听器 */
   onBeforeMount(() => window.addEventListener('resize', _resizeHandler))
-
-  /** 在组件挂载后根据窗口大小判断设备类型并调整布局 */
-  onMounted(() => _resizeHandler())
 
   /** 在组件卸载前移除窗口大小变化事件监听器 */
   onBeforeUnmount(() => window.removeEventListener('resize', _resizeHandler))

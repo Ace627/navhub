@@ -110,6 +110,12 @@
         "description": "老牌知名压缩解压软件，支持多种压缩格式，个人版免费，装机必备工具之一。"
       },
       {
+        "title": "PotPlayer",
+        "url": "https://423down.lanzouo.com/b0f1k59qh",
+        "icon": "https://potplayer.info/wp-content/uploads/2023/07/favicon.svg",
+        "description": "PotPlayer 全能多媒体播放器，支持主流音视频格式与字幕播放。"
+      },
+      {
         "title": "分流抢票",
         "url": "https://www.bypass.cn",
         "icon": "https://static.bypass.cn/0419/favicon.ico",
@@ -215,6 +221,12 @@
         "url": "https://www.allhistory.com",
         "icon": "https://www.allhistory.com/favicon.ico",
         "description": "以AI知识图谱呈现时空关联的历史人文内容，构建数字化的知识探索平台。"
+      },
+      {
+        "title": "故宫全景",
+        "url": "https://webapp.vizen.cn/gugong_pano/index.html",
+        "icon": "https://www.dpm.org.cn/favicon.ico",
+        "description": "故宫博物院全景漫游，足不出户欣赏紫禁城各大宫殿的高清全景影像。"
       },
       {
         "title": "中国妖怪百科",
