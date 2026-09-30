@@ -1,5 +1,76 @@
 [
   {
+    "category": "影视资源",
+    "children": [
+      {
+        "title": "网飞猫",
+        "url": "https://www.ncat1.app",
+        "icon": "https://vf.esadj.com/vod_pc_static_ncat/images/favicon.ico?ver=123456666",
+        "description": "影视资源在线观看导航站，聚合热门电影、电视剧与动漫资源，免费在线播放。"
+      },
+      {
+        "title": "低端影视",
+        "url": "https://ddys.io",
+        "icon": "https://www.xetp.cn/ee25c0fbb723.png",
+        "description": "低端影视官方站，提供海量美剧、韩剧、日剧与热门电影的在线观看与字幕更新。"
+      },
+      {
+        "title": "电影猫",
+        "url": "https://dym11.bond",
+        "icon": "https://dym11.bond/mxtheme/images/favicon.png",
+        "description": "汇集高清电影、电视剧、短剧与动漫资源，海量影视内容实时更新的在线观影站。"
+      },
+      {
+        "title": "蘑菇影视",
+        "url": "https://www.5o5k.com",
+        "icon": "https://www.5o5k.com/upload/mxprocms/20250107-1/63369a4a88627d80070e08951fd5424a.png",
+        "description": "汇聚海内外热门电影、电视剧、综艺与动漫，更新及时，支持高清流畅在线观看。"
+      },
+      {
+        "title": "360影院",
+        "url": "https://360yy.cc",
+        "icon": "https://360yy.cc/statics/img/favicon.ico",
+        "description": "提供最新高清免费电影、电视剧、综艺、动漫与短剧的在线观看影视平台。"
+      },
+      {
+        "title": "4k影视",
+        "url": "https://4kvm.site",
+        "icon": "https://4kvm.staticimgjs.org/uploads/2026/03/e8bbe2c53e4567.png",
+        "description": "综合性影视站，持续更新热门电影、最新美剧与韩剧，提供高清在线与影视推荐。"
+      },
+      {
+        "title": "高清点播",
+        "url": "https://www.hqvod.com",
+        "icon": "https://www.hqvod.com/favicon.ico",
+        "description": "海量高清电影与最新电视剧免费在线观看，每日更新，支持追剧与多端播放。"
+      },
+      {
+        "title": "好好看",
+        "url": "https://www.hhkan0.com",
+        "icon": "https://vf.esadj.com/vod_pc_static_hkan/images/favicon.ico",
+        "description": "好好看影视站，每日更新奈飞新剧与欧美日韩电影，免费在线观看。"
+      },
+      {
+        "title": "动漫巴士",
+        "url": "https://dmbus.cc",
+        "icon": "https://dmbus.cc/favicon.ico",
+        "description": "动漫巴士提供最新热门动漫在线观看，覆盖国产、日本、欧美动漫，播放流畅无广告。"
+      },
+      {
+        "title": "央视频",
+        "url": "https://www.yangshipin.cn",
+        "icon": "https://sapi.yangshipin.cn/assets/2022/pcicon/favicon.ico",
+        "description": "中央广播电视总台旗下视频平台，汇聚新闻、影视、体育、综艺等正版内容。"
+      },
+      {
+        "title": "央视直播",
+        "url": "https://tv.cctv.com/live/index.shtml",
+        "icon": "https://tv.cctv.com/favicon.ico",
+        "description": "央视网官方直播入口，提供 CCTV 各频道在线直播与节目表预告等服务。"
+      }
+    ]
+  },
+  {
     "category": "电脑软件",
     "children": [
       {
@@ -21,16 +92,46 @@
         "description": "全球知名的游戏发行平台，提供游戏购买下载、社区创意工坊与成就系统。"
       },
       {
+        "title": "Clash Verge",
+        "url": "https://www.clashverge.dev",
+        "icon": "https://www.clashverge.dev/assets/favicon.ico",
+        "description": "基于 Tauri 的跨平台代理客户端，界面简洁，支持多内核与规则配置。"
+      },
+      {
         "title": "爱思助手",
         "url": "https://www.i4.cn/pros/pc.html",
         "icon": "https://d-image.i4.cn/i4web/static2025/images/logo.png?v=131",
         "description": "专业的苹果设备管理工具，支持一键刷机、数据备份还原、换机搬家与应用下载。"
       },
       {
+        "title": "WinRAR",
+        "url": "https://423down.lanzouo.com/b105455",
+        "icon": "https://www.winrar.com.cn/favicon.ico",
+        "description": "老牌知名压缩解压软件，支持多种压缩格式，个人版免费，装机必备工具之一。"
+      },
+      {
+        "title": "分流抢票",
+        "url": "https://www.bypass.cn",
+        "icon": "https://static.bypass.cn/0419/favicon.ico",
+        "description": "免费自动抢票工具，支持自动抢候补、识别验证码、多线程秒单与捡漏。"
+      },
+      {
+        "title": "云萌激活工具",
+        "url": "https://cmwtat.cloudmoe.com/cn.html",
+        "icon": "https://q1.qlogo.cn/g?b=qq&nk=1207588603&s=640",
+        "description": "开源免费的 Windows 数字权利激活工具，一键终身激活并自动续期。"
+      },
+      {
         "title": "百分浏览器",
         "url": "https://www.centbrowser.cn",
         "icon": "https://www.centbrowser.cn/favicon.ico",
         "description": "Chrome 增强版浏览器，紧跟最新内核，主打快速简约，优化办公娱乐上网体验。"
+      },
+      {
+        "title": "谷歌浏览器",
+        "url": "https://www.google.cn/chrome",
+        "icon": "https://www.google.cn/chrome/static/images/favicons/apple-icon-57x57.png",
+        "description": "谷歌官方网络浏览器，以快捷、安全、易用著称，支持丰富扩展插件生态。"
       },
       {
         "title": "火绒安全",
@@ -92,10 +193,34 @@
         "description": "收录公务员、事业单位等考试真题，支持行测申论试卷整套在线下载打印。"
       },
       {
+        "title": "裁判文书网",
+        "url": "https://wenshu.court.gov.cn",
+        "icon": "https://wenshu.court.gov.cn/website/wenshu/images/favicon.ico",
+        "description": "最高人民法院官方裁判文书公开平台，可在线检索查阅各类案件裁判文书。"
+      },
+      {
+        "title": "中国知网",
+        "url": "https://www.cnki.net",
+        "icon": "https://www.cnki.net/favicon.ico",
+        "description": "提供学术期刊、学位论文、会议文献等资源的统一检索、在线阅读与下载服务。"
+      },
+      {
+        "title": "汉典",
+        "url": "https://zdic.net",
+        "icon": "https://zdic.net/apple-touch-icon.png",
+        "description": "在线汉语字典词典工具，涵盖康熙字典、说文解字、音韵方言与字源字形查询。"
+      },
+      {
         "title": "全历史",
         "url": "https://www.allhistory.com",
         "icon": "https://www.allhistory.com/favicon.ico",
         "description": "以AI知识图谱呈现时空关联的历史人文内容，构建数字化的知识探索平台。"
+      },
+      {
+        "title": "中国妖怪百科",
+        "url": "https://www.cbaigui.com",
+        "icon": "https://www.cbaigui.com/favicon.ico",
+        "description": "中国古典妖怪文献资料库，收录鬼怪、精怪、神兽等神话传说与民俗文化条目。"
       }
     ]
   }
