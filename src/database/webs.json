@@ -57,6 +57,36 @@
         "description": "动漫巴士提供最新热门动漫在线观看，覆盖国产、日本、欧美动漫，播放流畅无广告。"
       },
       {
+        "title": "茶杯狐",
+        "url": "https://cupfox.app",
+        "icon": "https://picx.zhimg.com/80/v2-5393cb76a824b11d7771ecdce592c87d.png",
+        "description": "茶杯狐影视资源搜索引擎，聚合全网电影、剧集与动漫资源链接，支持快速查找。"
+      },
+      {
+        "title": "NO视频",
+        "url": "https://findno.tv",
+        "icon": "https://www.novipnoad.net/favicon.ico",
+        "description": "NO视频影视站，聚合电影、电视剧与综艺资源，免注册在线观看，界面简洁体验佳。"
+      },
+      {
+        "title": "1905电影网",
+        "url": "https://www.1905.com",
+        "icon": "https://static.m1905.cn/57x57.png",
+        "description": "电影频道节目中心旗下电影门户，提供电影资讯、影评、预告片、在线观影及票务服务。"
+      },
+      {
+        "title": "68影院",
+        "url": "https://www.sxzxc.com",
+        "icon": "https://www.sxzxc.com/upload/site/20250115-1/7e9ae486e232f072ee98a8f6485a5748.png",
+        "description": "提供最新影视大全免费在线观看，每日第一时间更新，无需VIP即可观看高清影视。"
+      },
+      {
+        "title": "播剧网",
+        "url": "https://bojucc.github.io",
+        "icon": "https://ysxq.cc/template/dsn2/static/img/ico.png",
+        "description": "提供最新电视剧、电影、短剧、动漫、综艺在线观看，支持按类型、地区、年份和演员快速查找。"
+      },
+      {
         "title": "央视频",
         "url": "https://www.yangshipin.cn",
         "icon": "https://sapi.yangshipin.cn/assets/2022/pcicon/favicon.ico",
@@ -67,12 +97,42 @@
         "url": "https://tv.cctv.com/live/index.shtml",
         "icon": "https://tv.cctv.com/favicon.ico",
         "description": "央视网官方直播入口，提供 CCTV 各频道在线直播与节目表预告等服务。"
+      },
+      {
+        "title": "哔哩哔哩",
+        "url": "https://www.bilibili.com",
+        "icon": "assets/images/icons/哔哩哔哩.png",
+        "description": "哔哩哔哩视频弹幕站，汇聚动漫新番、影视综艺与UP主创作视频，互动氛围活跃。"
+      },
+      {
+        "title": "爱奇艺",
+        "url": "https://www.iqiyi.com",
+        "icon": "https://www.iqiyi.com/favicon.ico",
+        "description": "国内领先在线视频平台，提供海量正版剧集、电影、综艺与动漫，独播内容持续更新。"
+      },
+      {
+        "title": "视频在线解析",
+        "url": "https://www.svlik.com/t/movie",
+        "icon": "https://www.svlik.com/favicon.ico",
+        "description": "VIP 视频在线解析工具，支持优酷、爱奇艺、腾讯等平台会员视频免费观看。"
       }
     ]
   },
   {
     "category": "电脑软件",
     "children": [
+      {
+        "title": "微信",
+        "url": "https://pc.weixin.qq.com",
+        "icon": "https://res.wx.qq.com/a/wx_fed/assets/res/OTE0YTAw.png",
+        "description": "腾讯官方即时通讯软件，支持聊天、语音视频通话与文件传输，电脑版官方下载。"
+      },
+      {
+        "title": "微信防撤回",
+        "url": "https://github.com/huiyadanli/RevokeMsgPatcher",
+        "icon": "assets/images/icons/微信防撤回.png",
+        "description": "开源的微信、QQ、TIM 防撤回补丁工具，一键修改客户端拦截撤回消息。"
+      },
       {
         "title": "腾讯会议",
         "url": "https://meeting.tencent.com/download",

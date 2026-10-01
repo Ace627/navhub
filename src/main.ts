@@ -1,12 +1,17 @@
 import App from '@/App.vue'
 import { setupStore } from '@/store'
 import { setupRouter } from '@/router'
+import { setupPlugins } from '@/plugins'
 import './styles/index.scss'
 import 'virtual:uno.css'
+import 'virtual:svg-icons-register'
 
 async function bootstrap() {
   // 创建 Vue 应用实例
   const app = createApp(App)
+
+  // 配置插件
+  setupPlugins(app)
 
   // 配置 Store 状态管理 https://pinia.web3doc.top
   setupStore(app)

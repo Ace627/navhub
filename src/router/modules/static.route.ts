@@ -8,7 +8,17 @@ export const STATIC_ROUTE_LIST: RouteRecordRaw[] = [
     path: '',
     component: Layout,
     redirect: RouterConstant.HOME_PAGE_URL,
-    children: [{ name: RouterConstant.HOME_PAGE_NAME, path: 'dashboard', component: () => import('@/views/dashboard/index.vue'), meta: { title: '首页', icon: 'Home', affix: true } }],
+    children: [
+      {
+        name: RouterConstant.HOME_PAGE_NAME,
+        path: 'dashboard',
+        component: () => import('@/views/dashboard/index.vue'),
+        meta: { title: '首页', icon: 'Home', affix: true },
+      },
+    ],
+    // {
+    //   path:""
+    // },
   },
 
   {

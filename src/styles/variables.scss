@@ -2,12 +2,18 @@ html {
   /** 主题色 */
   --n-color-primary: #409eff;
 
-  /** 分类侧栏宽度 */
-  --n-category-sidebar-width: 200px;
+  --n-sidebar-width: 220px;
+  --n-sidebar-hide-width: 64px;
+  --n-sidebar-item-height: 42px;
+  --n-sidebar-text-color: #fff;
+  --n-sidebar-bg-color: #262935;
+  --n-sidebar-index: 1001;
+  --n-sidebar-box-shadow: 1px 0 4px rgba(0, 0, 0, 0.6);
 
-  /** 移动端分类顶栏高度 */
-  --n-category-bar-height: 44px;
+  --n-navbar-height: 50px;
+  --n-navbar-bg-color: #fff;
+  --n-navbar-box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 
-  /** 分类列表项高度 */
-  --n-category-item-height: 42px;
+  --n-transition-duration: 0.32s;
+  --n-transition-duration-fast: 0.16s;
 }

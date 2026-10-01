@@ -5,7 +5,6 @@ saveExact: true
 engineStrict: false
 enablePrePostScripts: true
 shamefullyHoist: true
-packageManagerStrict: false
 
 allowBuilds:
   '@parcel/watcher': true

@@ -19,9 +19,15 @@ defineOptions({ name: 'AppMain' })
 .app-main {
   position: relative;
   width: 100%;
-  // min-height: calc(100vh - var(--el-navbar-height));
-  min-height: 100vh;
-  // 用 clip 代替 hidden：既裁剪横向溢出，又不产生滚动容器，否则内部 sticky 会失效
-  overflow-x: clip;
+  min-height: calc(100vh - var(--n-navbar-height));
+  overflow-x: clip; // 用 clip 代替 hidden：既裁剪横向溢出，又不产生滚动容器，否则内部 sticky 会失效
+}
+
+.fixed-header + .app-main {
+  height: calc(100vh - var(--n-navbar-height));
+  min-height: 0px;
+  margin-top: var(--n-navbar-height);
+  overflow-y: auto;
+  scrollbar-gutter: auto;
 }
 </style>

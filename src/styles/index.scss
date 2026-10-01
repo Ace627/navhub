@@ -1,4 +1,5 @@
 @use './variables.scss';
+@use './transition.scss';
 
 html {
   /** 锚点定位时让开吸顶元素的偏移量 */
