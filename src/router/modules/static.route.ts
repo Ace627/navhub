@@ -15,10 +15,13 @@ export const STATIC_ROUTE_LIST: RouteRecordRaw[] = [
         component: () => import('@/views/dashboard/index.vue'),
         meta: { title: '首页', icon: 'Home', affix: true },
       },
+      {
+        name: 'About',
+        path: 'about',
+        component: () => import('@/views/about/index.vue'),
+        meta: { title: '关于我们', icon: 'About' },
+      },
     ],
-    // {
-    //   path:""
-    // },
   },
 
   {

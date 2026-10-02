@@ -21,7 +21,7 @@ const appStore = useAppStore()
 
 const sidebarRoutes = ref([
   { title: '全部导航', url: '/dashboard', icon: 'Home' },
-  // {title:"全部导航",url:"/dashboard",icon:"Home"},
+  { title: '关于我们', url: '/about', icon: 'About' },
 ])
 
 /** 判断导航项是否为当前路由对应项 */
