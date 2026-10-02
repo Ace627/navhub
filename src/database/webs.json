@@ -77,7 +77,7 @@
       {
         "title": "68影院",
         "url": "https://www.sxzxc.com",
-        "icon": "https://www.sxzxc.com/upload/site/20250115-1/7e9ae486e232f072ee98a8f6485a5748.png",
+        "icon": "assets/images/icons/68影院.png",
         "description": "提供最新影视大全免费在线观看，每日第一时间更新，无需VIP即可观看高清影视。"
       },
       {
@@ -85,6 +85,30 @@
         "url": "https://bojucc.github.io",
         "icon": "https://ysxq.cc/template/dsn2/static/img/ico.png",
         "description": "提供最新电视剧、电影、短剧、动漫、综艺在线观看，支持按类型、地区、年份和演员快速查找。"
+      },
+      {
+        "title": "视频在线解析",
+        "url": "https://www.svlik.com/t/movie",
+        "icon": "https://www.svlik.com/favicon.ico",
+        "description": "VIP 视频在线解析工具，支持优酷、爱奇艺、腾讯等平台会员视频免费观看。"
+      },
+      {
+        "title": "磁力熊",
+        "url": "https://www.cilixiong.cc",
+        "icon": "https://www.cilixiong.cc/apple-touch-icon.png",
+        "description": "影视资源聚合搜索站点，可在线查找热播剧集与电影资源，助你快速追剧。"
+      },
+      {
+        "title": "高清Mp4吧",
+        "url": "https://www.mp4ba.vip",
+        "icon": "https://www.mp4ba.vip/wp-content/themes/Loostrive/images/favicon.ico",
+        "description": "提供1080P、4K高清电影剧集mp4/mkv下载，资源更新及时适合追剧。"
+      },
+      {
+        "title": "6v电影",
+        "url": "https://www.6v520.cc",
+        "icon": "https://www.6v520.cc/favicon.ico",
+        "description": "每日搜集互联网最新电影与电视剧，提供高清免费下载，资源更新快。"
       },
       {
         "title": "央视频",
@@ -99,10 +123,22 @@
         "description": "央视网官方直播入口，提供 CCTV 各频道在线直播与节目表预告等服务。"
       },
       {
+        "title": "AcFun",
+        "url": "https://www.acfun.cn",
+        "icon": "https://cdn.aixifan.com/ico/favicon.ico",
+        "description": "国内老牌弹幕视频网站，汇聚独家动漫新番与UP主创作，弹幕氛围友好活跃。"
+      },
+      {
         "title": "哔哩哔哩",
         "url": "https://www.bilibili.com",
         "icon": "assets/images/icons/哔哩哔哩.png",
         "description": "哔哩哔哩视频弹幕站，汇聚动漫新番、影视综艺与UP主创作视频，互动氛围活跃。"
+      },
+      {
+        "title": "腾讯视频",
+        "url": "https://v.qq.com",
+        "icon": "https://vfiles.gtimg.cn/wuji_dashboard/xy/starter/4ea79867.png",
+        "description": "腾讯官方在线视频平台，提供海量正版剧集、电影、综艺与动漫，独播内容持续更新。"
       },
       {
         "title": "爱奇艺",
@@ -111,10 +147,10 @@
         "description": "国内领先在线视频平台，提供海量正版剧集、电影、综艺与动漫，独播内容持续更新。"
       },
       {
-        "title": "视频在线解析",
-        "url": "https://www.svlik.com/t/movie",
-        "icon": "https://www.svlik.com/favicon.ico",
-        "description": "VIP 视频在线解析工具，支持优酷、爱奇艺、腾讯等平台会员视频免费观看。"
+        "title": "优酷",
+        "url": "https://www.youku.com/ku/webhome",
+        "icon": "https://img.alicdn.com/imgextra/i2/O1CN01BeAcgL1ywY0G5nSn8_!!6000000006643-2-tps-195-195.png",
+        "description": "阿里旗下在线视频平台，提供正版剧集、电影、综艺与动漫，独播内容持续更新。"
       }
     ]
   },
@@ -204,6 +240,12 @@
         "url": "https://www.huorong.cn",
         "icon": "https://www.huorong.cn/favicon.png",
         "description": "专注终端安全的国产安全软件，个人版免费使用，企业版提供终端安全统一管理。"
+      },
+      {
+        "title": "酷安桌面版",
+        "url": "https://coolapk.123741.xyz",
+        "icon": "https://coolapk.123741.xyz/assets/logo.png",
+        "description": "非官方酷安桌面客户端，轻量纯净的大屏社区浏览体验，全平台覆盖。"
       }
     ]
   },
@@ -249,7 +291,7 @@
       {
         "title": "中国大学慕课",
         "url": "https://www.icourse163.org",
-        "icon": "https://edu-image.nosdn.127.net/32a8dd2a-b9aa-4ec9-abd5-66cd8751befb.png?imageView&quality=100",
+        "icon": "assets/images/icons/中国大学慕课.png",
         "description": "汇集名校名师的中文慕课平台，提供优质大学课程在线学习，学完可获得认证证书。"
       },
       {
@@ -293,6 +335,18 @@
         "url": "https://www.cbaigui.com",
         "icon": "https://www.cbaigui.com/favicon.ico",
         "description": "中国古典妖怪文献资料库，收录鬼怪、精怪、神兽等神话传说与民俗文化条目。"
+      },
+      {
+        "title": "网易公开课",
+        "url": "https://open.163.com",
+        "icon": "https://c.open.163.com/favicon.ico",
+        "description": "汇聚国内外名校公开课程，覆盖科学、经济、人文等领域，免费开拓视野学习知识。"
+      },
+      {
+        "title": "第一试卷网",
+        "url": "https://www.shijuan1.com",
+        "icon": "https://www.shijuan1.com/favicon.ico",
+        "description": "免费提供中小学各科试卷资源下载，涵盖单元卷、月考卷与期末期中试题。"
       }
     ]
   }

@@ -1,6 +1,9 @@
 dist
 node_modules
 
+# playwright-cli 验证产物
+.playwright-cli
+
 # AI 协作数据，不开源
 .trae
 .qwen

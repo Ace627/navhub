@@ -1,18 +1,10 @@
 @use './variables.scss';
 @use './transition.scss';
-
-html {
-  /** 锚点定位时让开吸顶元素的偏移量 */
-  scroll-padding-top: 16px;
-}
-
-/** 移动端需让开分类顶栏 */
-html[data-device='mobile'] {
-  scroll-padding-top: var(--n-category-bar-height);
-}
+@use 'element-plus/theme-chalk/src/dark/css-vars.scss';
 
 body {
-  background-color: #f5f5f5;
+  font-family: var(--el-font-family);
+  background-color: var(--el-bg-color-page);
 }
 
 .app-content {

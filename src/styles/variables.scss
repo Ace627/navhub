@@ -1,6 +1,6 @@
 html {
   /** 主题色 */
-  --n-color-primary: #409eff;
+  --n-color-primary: var(--el-color-primary);
 
   --n-sidebar-width: 220px;
   --n-sidebar-hide-width: 64px;

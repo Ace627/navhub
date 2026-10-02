@@ -1,7 +1,7 @@
-import AutoImport from 'unplugin-auto-import/vite'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-import AutoComponents from 'unplugin-vue-components/vite'
 import type { PluginOption } from 'vite'
+import AutoImport from 'unplugin-auto-import/vite'
+import AutoComponents from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 /** 自带 API 的自动化导入（Vue / Pinia） */
 export function registerAutoImport(): PluginOption {
