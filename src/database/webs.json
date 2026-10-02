@@ -83,7 +83,7 @@
       {
         "title": "播剧网",
         "url": "https://bojucc.github.io",
-        "icon": "https://ysxq.cc/template/dsn2/static/img/ico.png",
+        "icon": "assets/images/icons/播剧网.png",
         "description": "提供最新电视剧、电影、短剧、动漫、综艺在线观看，支持按类型、地区、年份和演员快速查找。"
       },
       {
@@ -95,7 +95,7 @@
       {
         "title": "磁力熊",
         "url": "https://www.cilixiong.cc",
-        "icon": "https://www.cilixiong.cc/apple-touch-icon.png",
+        "icon": "assets/images/icons/磁力熊.png",
         "description": "影视资源聚合搜索站点，可在线查找热播剧集与电影资源，助你快速追剧。"
       },
       {
@@ -347,6 +347,155 @@
         "url": "https://www.shijuan1.com",
         "icon": "https://www.shijuan1.com/favicon.ico",
         "description": "免费提供中小学各科试卷资源下载，涵盖单元卷、月考卷与期末期中试题。"
+      }
+    ]
+  },
+  {
+    "category": "蓝奏云合集",
+    "children": [
+      {
+        "title": "极客软件库",
+        "url": "https://wwt.lanzouj.com/s/jkrj",
+        "icon": "https://jikeruanjk.com.cn/images/04ad1b05_hu_12b7626e992709af.webp",
+        "description": "汇聚优质软件、游戏与工具，安全检测保障下载，支持版本更新与断点续传。"
+      },
+      {
+        "title": "大肥精品软件",
+        "url": "https://pan.lanzoup.com/u/qianxun8",
+        "icon": "https://up.woozooo.com/favicon.ico",
+        "description": "佚名收集的各种破解软件资源"
+      },
+      {
+        "title": "最先软件库",
+        "url": "https://lanzoup.com/b032bt3j3c",
+        "icon": "https://up.woozooo.com/favicon.ico",
+        "description": "佚名收集的各种破解软件资源"
+      },
+      {
+        "title": "千城游戏合集",
+        "url": "https://qcrjk.lanzoul.com/b05w0777e",
+        "icon": "https://up.woozooo.com/favicon.ico",
+        "description": "佚名收集的各种破解软件资源"
+      },
+      {
+        "title": "FuckApp",
+        "url": "https://app.lanzouv.com/s/fuckapp",
+        "icon": "https://up.woozooo.com/favicon.ico",
+        "description": "佚名收集的各种破解软件资源"
+      },
+      {
+        "title": "兜兜软件库",
+        "url": "https://www.lanzoui.com/b133841",
+        "icon": "https://up.woozooo.com/favicon.ico",
+        "description": "佚名收集的各种破解软件资源"
+      },
+      {
+        "title": "旧人软件阁",
+        "url": "https://jiuren.lanzoul.com/s/ruanjiange",
+        "icon": "https://up.woozooo.com/favicon.ico",
+        "description": "佚名收集的各种破解软件资源"
+      },
+      {
+        "title": "欢子黑科技",
+        "url": "https://huanziapp.lanzout.com/b0fq2clwj",
+        "icon": "https://up.woozooo.com/favicon.ico",
+        "description": "佚名收集的各种破解软件资源"
+      },
+      {
+        "title": "滚哥网盘资源",
+        "url": "https://www.lanzoui.com/b838976",
+        "icon": "https://up.woozooo.com/favicon.ico",
+        "description": "佚名收集的各种破解软件资源"
+      },
+      {
+        "title": "优质软件合集",
+        "url": "https://yoyodadada.lanzouw.com/u/yoyodadada",
+        "icon": "https://up.woozooo.com/favicon.ico",
+        "description": "佚名收集的各种破解软件资源"
+      },
+      {
+        "title": "未分类软件合集",
+        "url": "https://www.lanzoui.com/b01b01h9a",
+        "icon": "https://up.woozooo.com/favicon.ico",
+        "description": "佚名收集的各种破解软件资源"
+      },
+      {
+        "title": "精选软件推荐",
+        "url": "https://pan.lanzoui.com/b221497",
+        "icon": "https://up.woozooo.com/favicon.ico",
+        "description": "佚名收集的各种破解软件资源"
+      },
+      {
+        "title": "乐分享软件合集",
+        "url": "https://pan.lanzoui.com/b215476",
+        "icon": "https://up.woozooo.com/favicon.ico",
+        "description": "佚名收集的各种破解软件资源"
+      },
+      {
+        "title": "安卓破解软件",
+        "url": "https://pan.lanzoui.com/b828085",
+        "icon": "https://up.woozooo.com/favicon.ico",
+        "description": "佚名收集的各种破解软件资源"
+      },
+      {
+        "title": "精选破解游戏合集",
+        "url": "https://pan.lanzoui.com/b888887",
+        "icon": "https://up.woozooo.com/favicon.ico",
+        "description": "佚名收集的各种破解软件资源"
+      },
+      {
+        "title": "允晨软件库",
+        "url": "https://pan.lanzoui.com/b54212",
+        "icon": "https://up.woozooo.com/favicon.ico",
+        "description": "佚名收集的各种破解软件资源"
+      },
+      {
+        "title": "软件实验室",
+        "url": "https://pan.lanzoui.com/u/ygtq",
+        "icon": "https://up.woozooo.com/favicon.ico",
+        "description": "佚名收集的各种破解软件资源"
+      },
+      {
+        "title": "清风软件集",
+        "url": "https://pan.lanzoui.com/b60564",
+        "icon": "https://up.woozooo.com/favicon.ico",
+        "description": "佚名收集的各种破解软件资源"
+      },
+      {
+        "title": "小说软件合集",
+        "url": "https://pan.lanzoui.com/b158157",
+        "icon": "https://up.woozooo.com/favicon.ico",
+        "description": "佚名收集的各种破解软件资源"
+      },
+      {
+        "title": "阿友软件合集",
+        "url": "https://pan.lanzoui.com/u/aybaba",
+        "icon": "https://up.woozooo.com/favicon.ico",
+        "description": "佚名收集的各种破解软件资源"
+      },
+      {
+        "title": "小鹏软件合集",
+        "url": "https://www.lanzoui.com/u/xiaopengi",
+        "icon": "https://up.woozooo.com/favicon.ico",
+        "description": "佚名收集的各种破解软件资源"
+      },
+      {
+        "title": "星辰软件合集",
+        "url": "https://www.lanzoui.com/u/azsoft",
+        "icon": "https://up.woozooo.com/favicon.ico",
+        "description": "佚名收集的各种破解软件资源"
+      },
+      {
+        "title": "新起点软件库",
+        "url": "https://www.lanzoui.com/u/xinqidian",
+        "icon": "https://up.woozooo.com/favicon.ico",
+        "description": "佚名收集的各种破解软件资源"
+      },
+      {
+        "title": "软件窝合集",
+        "url": "https://pan.lanzoup.com/b059sp2j",
+        "icon": "https://up.woozooo.com/favicon.ico",
+        "description": "佚名收集的各种破解软件资源"
       }
     ]
   }

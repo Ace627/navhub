@@ -2,6 +2,13 @@
   <div class="navbar">
     <!-- 侧栏折叠控制 -->
     <Hamburger class="navbar-item hover-effect" @toggleClick="appStore.toggleSidebar" />
+
+    <div class="navbar__right h-full ml-auto flex-center">
+      <!-- 设置入口 -->
+      <el-tooltip content="系统帧率" effect="dark" placement="bottom">
+        <span class="navbar-item hover-effect navbar-item__fps"> {{ fps }} </span>
+      </el-tooltip>
+    </div>
   </div>
 </template>
 
@@ -10,6 +17,7 @@ defineOptions({ name: 'Navbar' })
 import Hamburger from './Hamburger.vue'
 
 const appStore = useAppStore()
+const fps = useFps()
 </script>
 
 <style lang="scss" scoped>
@@ -31,5 +39,10 @@ const appStore = useAppStore()
 }
 .hover-effect:hover {
   background-color: rgba(0, 0, 0, 0.05);
+}
+
+.navbar-item__fps {
+  font-weight: bold;
+  color: var(--el-color-danger);
 }
 </style>
