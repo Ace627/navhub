@@ -5,7 +5,7 @@
     <ul class="nav-list">
       <li v-for="(item, index) in sidebarRoutes" :key="index" class="nav-item" :class="{ active: isActive(item.url) }" @click="handleClickItem(item)">
         <SvgIcon :name="item.icon" />
-        <span v-if="!appStore.isCollapse">{{ item.title }}</span>
+        <span v-if="!appStore.isCollapse"> {{ item.title }} </span>
       </li>
     </ul>
   </aside>

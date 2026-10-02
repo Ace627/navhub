@@ -8,7 +8,7 @@
         <p class="hero-desc">一个干净、无广告的个人上网导航，收录日常高频使用的影视、软件、学习与网盘资源站点，让好网站一眼就能找到。</p>
         <button type="button" class="qq-btn" @click="copyQQ">
           <SvgIcon name="About" :size="16" />
-          <span>QQ 交流群：{{ qqGroup }}</span>
+          <span>QQ 交流群：{{ qqGroup }} </span>
           <em>点击复制</em>
         </button>
       </div>
