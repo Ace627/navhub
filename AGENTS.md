@@ -11,3 +11,4 @@
 - `vue` 的 API（`ref`、`computed`、`reactive`、`onMounted` 等）由 `unplugin-auto-import` 自动导入（声明见 `src/types/auto-generate/auto-import.d.ts`），源码中不写 `import { xxx } from 'vue'`；非 vue 的模块（json、常量等）仍需显式导入
 - `src/components` 下的组件为全局组件，在 `src/plugins/modules/global-component.ts` 中 `app.component()` 注册，并在 `src/types/global/global-component.d.ts` 中同步类型声明；模板中直接使用，不写显式导入
 - 图标只允许使用 `SvgIcon` 组件；若所需图标不存在，提醒开发者先添加对应 SVG 资源，禁止自行用其他方式（图标库、内联 SVG、图片等）实现
+- 需要类型判断、链接校验等通用逻辑时，必须先查 `src/utils` 是否已有现成方法（如 `validate.ts` 的 `isExternal`、`isString`），禁止自写正则或重复实现；从 `src/utils` 导入一律走导出桶 `src/utils/index.ts`（`import { xxx } from '@/utils'`），不写 `@/utils/xxx` 深路径

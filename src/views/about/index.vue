@@ -25,12 +25,12 @@
     <!-- 分类分布 -->
     <section class="panel">
       <h3 class="panel-title">分类分布</h3>
-      <div class="category-row" v-for="group in webs" :key="group.category">
-        <span class="category-name">{{ group.category }}</span>
+      <div class="category-row" v-for="group in categoryStats" :key="group.name">
+        <span class="category-name">{{ group.name }}</span>
         <div class="category-bar">
-          <i :style="{ width: `${(group.children.length / siteCount) * 100}%` }"></i>
+          <i :style="{ width: `${(group.count / siteCount) * 100}%` }"></i>
         </div>
-        <em class="category-count">{{ group.children.length }} 个</em>
+        <em class="category-count">{{ group.count }} 个</em>
       </div>
     </section>
 
@@ -49,6 +49,8 @@
 <script setup lang="ts">
 defineOptions({ name: 'About' })
 import webs from '@/database/webs.json'
+import { TOOL_LIST } from '@/views/tool/tool.config'
+import { isExternal } from '@/utils'
 
 /** 站点名称，取自环境变量，与侧栏 logo 处一致 */
 const siteTitle = import.meta.env.VITE_APP_TITLE
@@ -56,12 +58,21 @@ const siteTitle = import.meta.env.VITE_APP_TITLE
 /** QQ 交流群号 */
 const qqGroup = '486011286'
 
-/** 收录站点总数，由数据源直接推导 */
-const siteCount = webs.reduce((total, group) => total + group.children.length, 0)
+/** 实用工具页收录的外部站点数（自有工具不计入，名称与路由/侧栏标题一致） */
+const toolCount = TOOL_LIST.filter((tool) => isExternal(tool.key)).length
+
+/** 收录站点总数，由数据源直接推导：导航站点加上实用工具页的外部站点 */
+const siteCount = webs.reduce((total, group) => total + group.children.length, 0) + toolCount
+
+/** 分类分布数据：导航各分类加上「实用工具」一行，占比合计 100% */
+const categoryStats = computed(() => [
+  ...webs.map((group) => ({ name: group.category, count: group.children.length })),
+  { name: '实用工具', count: toolCount },
+])
 
 /** 统计卡片数据 */
 const statList = computed(() => [
-  { label: '站点分类', value: webs.length },
+  { label: '站点分类', value: webs.length + 1 },
   { label: '收录站点', value: siteCount },
   { label: '交流群号', value: qqGroup },
 ])
