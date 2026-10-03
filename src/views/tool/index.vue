@@ -136,6 +136,11 @@ function handleClickTool(item: ToolItem) {
 }
 
 html[data-device='mobile'] {
+  .card-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
   .tool-card {
     padding: 8px 4px;
     text-align: center;
