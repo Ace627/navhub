@@ -362,13 +362,13 @@
       {
         "title": "大肥精品软件",
         "url": "https://pan.lanzoup.com/u/qianxun8",
-       "icon": "assets/images/icons/大肥精品软件.png",
+        "icon": "assets/images/icons/大肥精品软件.png",
         "description": "大肥爱分享的精品软件合集，免费分享各类福利软件资源，每日持续更新。"
       },
       {
         "title": "最先软件库",
         "url": "https://lanzoup.com/b032bt3j3c",
-        "icon": "https://up.woozooo.com/favicon.ico",
+        "icon": "assets/images/icons/最先软件库.png",
         "description": "永久免费分享的各类软件资源合集，更新频繁，部分资源可能失效，仅供学习交流请勿商用。"
       },
       {
@@ -392,7 +392,7 @@
       {
         "title": "旧人软件阁",
         "url": "https://jiuren.lanzoul.com/s/ruanjiange",
-      "icon": "assets/images/icons/旧人软件阁.png",
+        "icon": "assets/images/icons/旧人软件阁.png",
         "description": "旧人软件阁的软件合集，软件基于官方接口制作，若失效多为官方已修复所致。"
       },
       {
@@ -496,6 +496,119 @@
         "url": "https://pan.lanzoup.com/b059sp2j",
         "icon": "https://up.woozooo.com/favicon.ico",
         "description": "软件窝福利软件合集，不定时更新各类资源，内容源于互联网仅供学习参考。"
+      }
+    ]
+  },
+  {
+    "category": "精美壁纸",
+    "children": [
+      {
+        "title": "彼岸图网",
+        "url": "https://pic.netbian.com",
+        "icon": "https://pic.netbian.com/favicon.ico",
+        "description": "彼岸图网，4K 高清壁纸下载站，涵盖风景、动漫、游戏等海量分类，每日更新。"
+      },
+      {
+        "title": "拾光壁纸",
+        "url": "https://gallery.timeline.ink",
+        "icon": "https://gallery.timeline.ink/favicon.ico",
+        "description": "拾光壁纸，精选高质量壁纸在线预览与下载，界面清爽，分类丰富。"
+      },
+      {
+        "title": "桌面壁纸",
+        "url": "https://wallpaperscraft.com",
+        "icon": "https://wallpaperscraft.com/public/img/general/favicon.ico?v=9f57a44a",
+        "description": "海外高清桌面壁纸站，收录近十万张壁纸，支持按分辨率适配电脑与手机下载。"
+      },
+      {
+        "title": "Wallroom",
+        "url": "https://wallroom.io",
+        "icon": "https://wallroom.io/img/favicon.ico",
+        "description": "极简风格壁纸站，提供 4K 高清桌面与手机壁纸，按分辨率筛选，免费下载。"
+      },
+      {
+        "title": "Wallhaven",
+        "url": "https://wallhaven.clbug.com",
+        "icon": "https://wallhaven.clbug.com/favicon.ico",
+        "description": "海外精选壁纸站 Wallhaven 镜像，动漫、风景等海量高清壁纸，支持分类检索。"
+      },
+      {
+        "title": "全面屏壁纸",
+        "url": "https://bizhi.wpcoder.cn",
+        "icon": "https://bizhi.wpcoder.cn/wp-content/themes/new_wallpaper/favicon.ico",
+        "description": "专为全面屏手机适配的免费超清壁纸站，兼容安卓 iOS，涵盖 4K 与曲面屏机型壁纸。"
+      },
+      {
+        "title": "亿图全景图库",
+        "url": "https://www.yeitu.com",
+        "icon": "https://statics.yeitu.com/images/favicon.ico",
+        "description": "亿图全景图库，提供电脑手机壁纸、动漫摄影、头像表情等图片分享与免费下载。"
+      },
+      {
+        "title": "壁纸爱好者",
+        "url": "https://www.bizhi66.com",
+        "icon": "https://www.bizhi66.com/favicon.ico",
+        "description": "壁纸爱好者，4K 高清壁纸下载站，涵盖游戏动漫卡通等分类，每日更新精选壁纸。"
+      },
+      {
+        "title": "哲风壁纸",
+        "url": "https://haowallpaper.com",
+        "icon": "https://haowallpaper.com/favicon.ico",
+        "description": "哲风壁纸，提供 4K 至 8K 高清桌面与手机壁纸，支持图搜、裁剪等特色功能，免费下载。"
+      },
+      {
+        "title": "HDQWalls",
+        "url": "https://hdqwalls.com",
+        "icon": "https://hdqwalls.com/icons/favicon.ico",
+        "description": "高清壁纸资源站，提供 4K 至 8K 桌面、手机与宽屏壁纸下载，画质精选，更新及时。"
+      },
+      {
+        "title": "10wallpaper",
+        "url": "https://10wallpaper.com",
+        "icon": "https://10wallpaper.com/favicon.ico",
+        "description": "海外高清壁纸站，提供 4K、5K 桌面与移动端壁纸，支持多分辨率免费下载。"
+      },
+      {
+        "title": "3G壁纸",
+        "url": "https://desk.3gbizhi.com",
+        "icon": "https://desk.3gbizhi.com/assets/mobile/images/favicon.ico",
+        "description": "3G壁纸桌面频道，提供高清电脑壁纸与 4K 桌面图片，涵盖风景、动漫、游戏主题。"
+      },
+      {
+        "title": "WallHere",
+        "url": "https://wallhere.com",
+        "icon": "assets/images/icons/WallHere.png",
+        "description": "免费下载超 173 万张高清桌面壁纸，世界知名的壁纸库，支持多语言与搜索。"
+      },
+      {
+        "title": "Cosplay联盟",
+        "url": "https://www.pandadiu.com",
+        "icon": "https://www.pandadiu.com/favicon.ico",
+        "description": "Cosplay 资源分享站，非商业运营，实时收录优秀作品与热门讯息，传递快乐。"
+      },
+      {
+        "title": "壁纸汇",
+        "url": "https://www.bizhihui.com",
+        "icon": "https://s.panlai.com/images/favicon.ico",
+        "description": "壁纸汇，免费提供手机、动漫、电脑等 4K 高清壁纸下载，支持多尺寸自定义。"
+      },
+      {
+        "title": "游戏主题壁纸",
+        "url": "https://www.gamewallpapers.com",
+        "icon": "https://www.gamewallpapers.com/images/favicon/gw_favicon_152_apple.png",
+        "description": "游戏主题壁纸站，提供 Xbox、PS 等平台游戏高清壁纸，支持 1080p 至 4K。"
+      },
+      {
+        "title": "WallpaperHub",
+        "url": "https://www.wallpaperhub.app",
+        "icon": "https://www.wallpaperhub.app/favicon.ico",
+        "description": "海外免费壁纸站，提供 Surface 官方壁纸与 Bing 每日图，支持 4K 下载。"
+      },
+      {
+        "title": "必应壁纸",
+        "url": "https://bing.ioliu.cn",
+        "icon": "https://bing.ioliu.cn/icons/apple-touch-icon.png",
+        "description": "必应每日壁纸聚合站，纵览全球各地区精选壁纸，支持按日期浏览下载。"
       }
     ]
   }

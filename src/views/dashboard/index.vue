@@ -1,7 +1,10 @@
 <template>
   <div class="app-content flex flex-col gap-16px">
     <section v-for="(group, index) in webGroups" :id="`category-${index}`" :key="group.category" class="category">
-      <h2 class="category-title">{{ group.category }}</h2>
+      <h2 class="category-title">
+        <span>{{ group.category }}</span>
+        <el-tag size="small">x{{ group.children.length }}</el-tag>
+      </h2>
       <div class="card-grid">
         <SiteCard v-for="item in group.children" :key="item.url" :item="item" />
       </div>
@@ -142,6 +145,9 @@ onUnmounted(() => {
 
 .category-title {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin: 0 0 12px;
   padding-left: 10px;
   font-size: 18px;

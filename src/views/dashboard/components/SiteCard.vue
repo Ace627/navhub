@@ -1,5 +1,5 @@
 <template>
-  <a :href="getHref(item)" target="_blank" rel="noopener noreferrer" class="site-card">
+  <a :href="item.url" target="_blank" rel="noopener noreferrer" class="site-card">
     <div class="card-header">
       <img class="site-icon" :src="getIcon(item)" :alt="item.title" loading="lazy" draggable="false" @error="onIconError(item)" />
       <span class="site-title">{{ item.title }}</span>
@@ -24,23 +24,6 @@ const failedIcons = reactive(new Set<string>())
 const localIconMap: Record<string, string> = {}
 for (const [path, url] of Object.entries(import.meta.glob<string>('/src/assets/images/icons/*.{png,ico,svg,jpg,jpeg,webp}', { eager: true, import: 'default' }))) {
   localIconMap[path.split('/').pop() || ''] = url
-}
-
-/**
- * 拼接带来源参数的跳转链接
- *
- * @param item 站点条目
- * @returns 追加 from 参数后的完整链接；已有查询串的用 & 追加，含 hash 的插在 hash 之前
- */
-function getHref(item: WebItem) {
-  const from = `from=${window.location.href}`
-  const hashIndex = item.url.indexOf('#')
-  if (hashIndex !== -1) {
-    const base = item.url.slice(0, hashIndex)
-    const hash = item.url.slice(hashIndex)
-    return `${base}${base.includes('?') ? '&' : '?'}${from}${hash}`
-  }
-  return `${item.url}${item.url.includes('?') ? '&' : '?'}${from}`
 }
 
 /**
