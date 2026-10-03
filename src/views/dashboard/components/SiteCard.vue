@@ -58,7 +58,7 @@ function onIconError(item: WebItem) {
 <style lang="scss" scoped>
 .site-card {
   display: block;
-  padding: 16px;
+  padding: 8px 16px;
   background-color: #fff;
   border: 1px solid #e4e7ed;
   border-radius: 8px;
