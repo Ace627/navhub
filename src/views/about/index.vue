@@ -25,13 +25,7 @@
     <!-- 分类分布 -->
     <section class="panel">
       <h3 class="panel-title">分类分布</h3>
-      <div class="category-row" v-for="group in categoryStats" :key="group.name">
-        <span class="category-name">{{ group.name }}</span>
-        <div class="category-bar">
-          <i :style="{ width: `${(group.count / siteCount) * 100}%` }"></i>
-        </div>
-        <em class="category-count">{{ group.count }} 个</em>
-      </div>
+      <ProChart custom-class="chart-box" :options="categoryOption" />
     </section>
 
     <!-- 免责声明 -->
@@ -49,8 +43,8 @@
 <script setup lang="ts">
 defineOptions({ name: 'About' })
 import webs from '@/database/webs.json'
-import { TOOL_LIST } from '@/views/tool/tool.config'
-import { isExternal } from '@/utils'
+import { EXTERNAL_TOOL_COUNT } from '@/views/tool/tool.config'
+import type { EChartsOption } from 'echarts'
 
 /** 站点名称，取自环境变量，与侧栏 logo 处一致 */
 const siteTitle = import.meta.env.VITE_APP_TITLE
@@ -58,17 +52,55 @@ const siteTitle = import.meta.env.VITE_APP_TITLE
 /** QQ 交流群号 */
 const qqGroup = '486011286'
 
-/** 实用工具页收录的外部站点数（自有工具不计入，名称与路由/侧栏标题一致） */
-const toolCount = TOOL_LIST.filter((tool) => isExternal(tool.key)).length
-
 /** 收录站点总数，由数据源直接推导：导航站点加上实用工具页的外部站点 */
-const siteCount = webs.reduce((total, group) => total + group.children.length, 0) + toolCount
+const siteCount = webs.reduce((total, group) => total + group.children.length, 0) + EXTERNAL_TOOL_COUNT
 
 /** 分类分布数据：导航各分类加上「实用工具」一行，占比合计 100% */
 const categoryStats = computed(() => [
-  ...webs.map((group) => ({ name: group.category, count: group.children.length })),
-  { name: '实用工具', count: toolCount },
+  ...webs.map((group) => ({ name: group.category, value: group.children.length })),
+  { name: '实用工具', value: EXTERNAL_TOOL_COUNT },
 ])
+
+/**
+ * 分类分布环形图配置
+ *
+ * 半径与圆心均按百分比设置，容器缩放时由 ProChart 的 ResizeObserver 联动自适应；
+ * 图例使用 scroll 类型，移动端小屏分类过多时自动翻页
+ */
+const categoryOption = computed<EChartsOption>(() => ({
+  color: ['#409eff', '#36cfc9', '#722ed1', '#eb2f96', '#faad14', '#52c41a', '#fa8c16', '#f5222d', '#2f54eb', '#13c2c2'],
+  tooltip: { trigger: 'item', formatter: '{b}：{c} 个（{d}%）' },
+  title: {
+    text: `${siteCount}`,
+    subtext: '收录站点',
+    left: 'center',
+    top: '32%',
+    itemGap: 6,
+    textStyle: { fontSize: 28, fontWeight: 600, color: '#303133' },
+    subtextStyle: { fontSize: 12, color: '#909399' },
+  },
+  legend: {
+    type: 'scroll',
+    bottom: 0,
+    icon: 'circle',
+    itemWidth: 8,
+    itemHeight: 8,
+    itemGap: 16,
+    textStyle: { fontSize: 12, color: '#606266' },
+  },
+  series: [
+    {
+      type: 'pie',
+      radius: ['48%', '72%'],
+      center: ['50%', '40%'],
+      padAngle: 3,
+      itemStyle: { borderRadius: 8 },
+      label: { show: false },
+      emphasis: { scaleSize: 6 },
+      data: categoryStats.value,
+    },
+  ],
+}))
 
 /** 统计卡片数据 */
 const statList = computed(() => [
@@ -216,43 +248,9 @@ async function copyQQ() {
   }
 }
 
-/* 分类分布行 */
-.category-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 6px 0;
-
-  .category-name {
-    width: 88px;
-    flex-shrink: 0;
-    font-size: 14px;
-    text-align: right;
-  }
-
-  .category-bar {
-    flex: 1;
-    height: 10px;
-    border-radius: 5px;
-    background-color: var(--el-fill-color);
-    overflow: hidden;
-
-    i {
-      display: block;
-      height: 100%;
-      border-radius: 5px;
-      background-color: var(--n-color-primary);
-      transition: width var(--n-transition-duration);
-    }
-  }
-
-  .category-count {
-    width: 48px;
-    flex-shrink: 0;
-    font-style: normal;
-    font-size: 13px;
-    color: var(--el-text-color-secondary);
-  }
+/* 分类分布图表容器 */
+.chart-box {
+  height: 320px;
 }
 
 /* 免责声明 */
@@ -291,15 +289,8 @@ html[data-device='mobile'] {
     padding: 16px;
   }
 
-  .category-row {
-    .category-name {
-      width: 64px;
-      font-size: 13px;
-    }
-
-    .category-count {
-      width: 40px;
-    }
+  .chart-box {
+    height: 260px;
   }
 }
 </style>

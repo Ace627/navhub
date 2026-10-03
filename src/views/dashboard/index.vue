@@ -31,28 +31,39 @@
 defineOptions({ name: RouterConstant.HOME_PAGE_NAME })
 import webs from '@/database/webs.json'
 import { RouterConstant } from '@/router/router.constant'
+import { EXTERNAL_TOOL_COUNT } from '@/views/tool/tool.config'
 import SiteCard from './components/SiteCard.vue'
 
 /** 分类锚点项 */
 interface AnchorItem {
-  /** 锚点 id，对应分区元素的 DOM id */
+  /** 锚点 id，对应分区元素的 DOM id；跨页面入口无对应分区 */
   id: string
   /** 分类名 */
   label: string
   /** 该分类下的站点数 */
   count: number
+  /** 跳转路由路径：有值时点击为路由跳转，无值时为页内锚点滚动 */
+  path?: string
 }
 
 const webGroups = webs
 
-/** 分类锚点列表，由分类数据直接推导 */
-const anchors = computed<AnchorItem[]>(() =>
-  webs.map((group, index) => ({
+const router = useRouter()
+
+/** 分类锚点列表，由分类数据直接推导，末尾追加实用工具页入口 */
+const anchors = computed<AnchorItem[]>(() => [
+  ...webs.map((group, index) => ({
     id: `category-${index}`,
     label: group.category,
     count: group.children.length,
   })),
-)
+  {
+    id: 'tool',
+    label: '实用工具',
+    count: EXTERNAL_TOOL_COUNT,
+    path: '/tool',
+  },
+])
 
 /** 当前高亮的分类锚点 id */
 const activeId = ref(anchors.value[0]?.id ?? '')
@@ -78,12 +89,16 @@ function scrollTo(item: AnchorItem) {
 }
 
 /**
- * 分类面板选中分类：收起面板后跳转
+ * 分类面板选中分类：收起面板后跳转，跨页面入口走路由跳转
  *
  * @param item 目标分类锚点项
  */
 function onAnchorSelect(item: AnchorItem) {
   panelVisible.value = false
+  if (item.path) {
+    router.push(item.path)
+    return
+  }
   scrollTo(item)
 }
 

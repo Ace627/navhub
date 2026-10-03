@@ -1,3 +1,5 @@
+import { isExternal } from '@/utils'
+
 /** 工具条目定义 */
 export interface ToolItem {
   /** 工具唯一标识：自有工具填组件目录名（与详情页组件目录一致，同时用作子路由参数）；外部工具填完整 URL（http/https 等协议开头，点击新窗口打开） */
@@ -163,3 +165,6 @@ export const TOOL_LIST: ToolItem[] = [
     description: '提供JSON解析、密码生成、哈希计算、时间转换等开发者实用小工具。',
   },
 ]
+
+/** 外部工具站点数量：自有工具不计入，供统计场景复用 */
+export const EXTERNAL_TOOL_COUNT = TOOL_LIST.filter((tool) => isExternal(tool.key)).length

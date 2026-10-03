@@ -1,3 +1,5 @@
+export { isEmpty } from 'lodash-es'
+
 /**
  * 判断值是否为布尔类型
  * @param value 待校验的值
