@@ -496,6 +496,12 @@
         "url": "https://pan.lanzoup.com/b059sp2j",
         "icon": "https://up.woozooo.com/favicon.ico",
         "description": "软件窝福利软件合集，不定时更新各类资源，内容源于互联网仅供学习参考。"
+      },
+      {
+        "title": "晨钟网络科技",
+        "url": "https://jamcz.com",
+        "icon": "https://jamcz.com/favicon.ico",
+        "description": "专注开发小众实用的安卓与 Windows 软件，解决数码爱好者的使用痛点。"
       }
     ]
   },
@@ -505,7 +511,7 @@
       {
         "title": "彼岸图网",
         "url": "https://pic.netbian.com",
-        "icon": "https://pic.netbian.com/favicon.ico",
+        "icon": "assets/images/icons/彼岸图网.ico",
         "description": "彼岸图网，4K 高清壁纸下载站，涵盖风景、动漫、游戏等海量分类，每日更新。"
       },
       {
@@ -577,7 +583,7 @@
       {
         "title": "WallHere",
         "url": "https://wallhere.com",
-        "icon": "assets/images/icons/WallHere.png",
+        "icon": "assets/images/icons/Wallhere.png",
         "description": "免费下载超 173 万张高清桌面壁纸，世界知名的壁纸库，支持多语言与搜索。"
       },
       {

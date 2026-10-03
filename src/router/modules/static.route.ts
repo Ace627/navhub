@@ -1,6 +1,7 @@
 import Layout from '@/layout/index.vue'
 import type { RouteRecordRaw } from 'vue-router'
 import { RouterConstant } from '../router.constant'
+import { TOOL_ROUTES } from './tool.route'
 
 export const STATIC_ROUTE_LIST: RouteRecordRaw[] = [
   {
@@ -15,6 +16,9 @@ export const STATIC_ROUTE_LIST: RouteRecordRaw[] = [
         component: () => import('@/views/dashboard/index.vue'),
         meta: { title: '首页', icon: 'Home', affix: true },
       },
+
+      ...TOOL_ROUTES,
+
       {
         name: 'About',
         path: 'about',

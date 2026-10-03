@@ -2,7 +2,7 @@
   <main class="app-main">
     <!-- key 采用 route.path 和 route.fullPath 有着不同的效果，大多数时候 path 更通用 -->
     <RouterView v-slot="{ Component, route }">
-      <Transition mode="out-in">
+      <Transition mode="out-in" name="fade-transform">
         <KeepAlive :include="[]">
           <component :is="Component" :key="route.path" />
         </KeepAlive>

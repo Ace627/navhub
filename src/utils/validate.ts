@@ -15,3 +15,15 @@ export function isBoolean(value: any): value is boolean {
 export function isString(value: any): value is string {
   return typeof value === 'string' || value instanceof String
 }
+
+/**
+ * 判断链接是否为外部链接
+ * @param value - 待判断的链接/路径
+ * @returns boolean
+ */
+export function isExternal(value: unknown): boolean {
+  if (typeof value !== 'string') return false
+  const trimmedValue = value.trim()
+  if (trimmedValue === '') return false
+  return /^(https?:|mailto:|tel:)/.test(trimmedValue)
+}
