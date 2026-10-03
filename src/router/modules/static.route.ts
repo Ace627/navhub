@@ -2,6 +2,7 @@ import Layout from '@/layout/index.vue'
 import type { RouteRecordRaw } from 'vue-router'
 import { RouterConstant } from '../router.constant'
 import { TOOL_ROUTES } from './tool.route'
+import { FRONTEND_ROUTES } from './frontend.route'
 
 export const STATIC_ROUTE_LIST: RouteRecordRaw[] = [
   {
@@ -18,6 +19,8 @@ export const STATIC_ROUTE_LIST: RouteRecordRaw[] = [
       },
 
       ...TOOL_ROUTES,
+
+      ...FRONTEND_ROUTES,
 
       {
         name: 'About',

@@ -2,7 +2,7 @@
   <div class="app-content flex flex-col gap-16px">
     <!-- 站点介绍 -->
     <section class="hero">
-      <img class="hero-logo" src="/favicon.svg" alt="logo" draggable="false" />
+      <img class="hero-logo" src="/favicon.svg" alt="logo" draggable="false" referrerpolicy="no-referrer" />
       <div class="hero-info">
         <h2 class="hero-title">{{ siteTitle }}</h2>
         <p class="hero-desc">一个干净、无广告的个人上网导航，收录日常高频使用的影视、软件、学习与网盘资源站点，让好网站一眼就能找到。</p>
@@ -44,6 +44,7 @@
 defineOptions({ name: 'About' })
 import webs from '@/database/webs.json'
 import { EXTERNAL_TOOL_COUNT } from '@/views/tool/tool.config'
+import { EXTERNAL_FRONTEND_COUNT } from '@/views/frontend/frontend.config'
 import type { EChartsOption } from 'echarts'
 
 /** 站点名称，取自环境变量，与侧栏 logo 处一致 */
@@ -52,12 +53,13 @@ const siteTitle = import.meta.env.VITE_APP_TITLE
 /** QQ 交流群号 */
 const qqGroup = '486011286'
 
-/** 收录站点总数，由数据源直接推导：导航站点加上实用工具页的外部站点 */
-const siteCount = webs.reduce((total, group) => total + group.children.length, 0) + EXTERNAL_TOOL_COUNT
+/** 收录站点总数，由数据源直接推导：导航站点加上前端专家页与实用工具页的外部站点 */
+const siteCount = webs.reduce((total, group) => total + group.children.length, 0) + EXTERNAL_FRONTEND_COUNT + EXTERNAL_TOOL_COUNT
 
-/** 分类分布数据：导航各分类加上「实用工具」一行，占比合计 100% */
+/** 分类分布数据：导航各分类加上「前端专家」「实用工具」两行，占比合计 100% */
 const categoryStats = computed(() => [
   ...webs.map((group) => ({ name: group.category, value: group.children.length })),
+  { name: '前端专家', value: EXTERNAL_FRONTEND_COUNT },
   { name: '实用工具', value: EXTERNAL_TOOL_COUNT },
 ])
 
@@ -104,7 +106,7 @@ const categoryOption = computed<EChartsOption>(() => ({
 
 /** 统计卡片数据 */
 const statList = computed(() => [
-  { label: '站点分类', value: webs.length + 1 },
+  { label: '站点分类', value: webs.length + 2 },
   { label: '收录站点', value: siteCount },
   { label: '交流群号', value: qqGroup },
 ])

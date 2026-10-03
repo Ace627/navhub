@@ -1,7 +1,7 @@
 <template>
   <a :href="item.url" target="_blank" rel="noopener noreferrer" class="site-card">
     <div class="card-header">
-      <img class="site-icon" :src="getIcon(item)" :alt="item.title" loading="lazy" draggable="false" @error="onIconError(item)" />
+      <img class="site-icon" :src="getIcon(item)" :alt="item.title" loading="lazy" draggable="false" referrerpolicy="no-referrer" @error="onIconError(item)" />
       <span class="site-title">{{ item.title }}</span>
     </div>
     <ProTooltip :content="item.description">

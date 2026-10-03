@@ -21,6 +21,7 @@ const appStore = useAppStore()
 
 const sidebarRoutes = ref([
   { title: '全部导航', url: '/dashboard', icon: 'Home' },
+  { title: '前端专家', url: '/frontend', icon: 'Frontend' },
   { title: '实用工具', url: '/tool', icon: 'Tool' },
   { title: '关于我们', url: '/about', icon: 'About' },
 ])

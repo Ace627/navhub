@@ -3,7 +3,7 @@
     <div class="card-grid">
       <div v-for="(item, index) in TOOL_LIST" :key="index" class="tool-card" :title="isExternal(item.key) ? '将在新窗口打开' : undefined" @click="handleClickTool(item)">
         <div class="card-header">
-          <img class="tool-icon" :src="getIcon(item)" :alt="item.title" loading="lazy" draggable="false" @error="onIconError(item)" />
+          <img class="tool-icon" :src="getIcon(item)" :alt="item.title" loading="lazy" draggable="false" referrerpolicy="no-referrer" @error="onIconError(item)" />
           <span class="tool-title">{{ item.title }}</span>
           <SvgIcon v-if="isExternal(item.key)" name="External" :size="12" class="tool-external" />
         </div>

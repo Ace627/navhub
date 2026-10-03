@@ -1,46 +1,5 @@
 [
   {
-    "category": "程序技术",
-    "children": [
-      {
-        "title": "Gitee",
-        "url": "https://gitee.com",
-        "icon": "https://gitee.com/favicon.ico",
-        "description": "国内主流代码托管平台，提供 Git 代码管理、项目协作与持续集成等研发服务。"
-      },
-      {
-        "title": "GitHub",
-        "url": "https://github.com",
-        "icon": "https://github.githubassets.com/assets/pinned-octocat-093da3e6fa40.svg",
-        "description": "全球最大开源代码托管平台，汇聚海量开源项目，支持代码协作与版本管理。"
-      },
-      {
-        "title": "NestJS Admin",
-        "url": "https://github.com/Ace627/nestjs-admin-template",
-        "icon": "https://q1.qlogo.cn/g?b=qq&nk=1207588603&s=640",
-        "description": "基于 NestJS 的后台管理系统模板，集成鉴权、权限与常用模块，开箱即用。"
-      },
-      {
-        "title": "RuoYi-Vue3",
-        "url": "https://github.com/yangzongzhuan/RuoYi-Vue3",
-        "icon": "https://vue.ruoyi.vip/favicon.ico",
-        "description": "基于 Vue3 的前后端分离后台管理前端框架，集成权限、动态路由等核心能力。"
-      },
-      {
-        "title": "Element Plus",
-        "url": "https://element-plus.org/zh-CN/component/overview",
-        "icon": "https://element-plus.org/images/element-plus-logo-small.svg",
-        "description": "基于 Vue 3 的开源组件库，文档完善、示例丰富，助力开发者高效构建界面。"
-      },
-      {
-        "title": "阿里图标库",
-        "url": "https://www.iconfont.cn",
-        "icon": "https://img.alicdn.com/imgextra/i4/O1CN01XZe8pH1USpiUNT1QN_!!6000000002517-2-tps-114-114.png",
-        "description": "阿里旗下矢量图标库，提供图标下载、在线存储与格式转换等便捷服务。"
-      }
-    ]
-  },
-  {
     "category": "影视资源",
     "children": [
       {
