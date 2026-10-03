@@ -229,7 +229,8 @@ onMounted(() => {
 /* 移动端：缩小球体并占满宽度 */
 html[data-device='mobile'] {
   .app-content {
-    --ball-size: 42px;
+    --ball-size: 36px;
+    padding: 12px;
   }
   .tool-container {
     width: 100%;

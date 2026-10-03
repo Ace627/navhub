@@ -63,7 +63,25 @@ export const TOOL_LIST: ToolItem[] = [
   {
     key: 'https://www.rcuts.com',
     title: '快捷指令库',
-    icon: 'https://www.rcuts.com/favicon.ico',
+    icon: '@/assets/images/icons/快捷指令库.png',
     description: '分享苹果 iOS 快捷指令大全，提供捷径下载与教程，一款实用的效率工具。',
+  },
+  {
+    key: 'https://tool.browser.qq.com',
+    title: '帮小忙',
+    icon: 'https://m4.publicimg.browser.qq.com/publicimg/nav/qbtool/home/qb_search.png',
+    description: '腾讯QQ浏览器在线工具箱，提供证件照、PDF转换、照片修复等实用小工具。',
+  },
+  {
+    key: 'https://ol.woobx.cn',
+    title: '一个木函',
+    icon: 'https://ol.woobx.cn/static/icons/apple-touch-icon.png',
+    description: '一个木函在线工具箱，集合文字处理、图片处理、单位换算等实用小工具。',
+  },
+  {
+    key: 'https://bigjpg.com',
+    title: '图片无损放大',
+    icon: 'https://bigjpg.com/static/img/apple-touch-icon.png',
+    description: '基于 AI 深度卷积神经网络无损放大图片，支持插画与照片，放大后依然清晰。',
   },
 ]

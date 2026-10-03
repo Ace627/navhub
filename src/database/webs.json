@@ -1,5 +1,34 @@
 [
   {
+    "category": "程序技术",
+    "children": [
+      {
+        "title": "Gitee",
+        "url": "https://gitee.com",
+        "icon": "https://gitee.com/favicon.ico",
+        "description": "国内主流代码托管平台，提供 Git 代码管理、项目协作与持续集成等研发服务。"
+      },
+      {
+        "title": "GitHub",
+        "url": "https://github.com",
+        "icon": "https://github.githubassets.com/assets/pinned-octocat-093da3e6fa40.svg",
+        "description": "全球最大开源代码托管平台，汇聚海量开源项目，支持代码协作与版本管理。"
+      },
+      {
+        "title": "阿里图标库",
+        "url": "https://www.iconfont.cn",
+        "icon": "https://img.alicdn.com/imgextra/i4/O1CN01XZe8pH1USpiUNT1QN_!!6000000002517-2-tps-114-114.png",
+        "description": "阿里旗下矢量图标库，提供图标下载、在线存储与格式转换等便捷服务。"
+      },
+      {
+        "title": "Element Plus",
+        "url": "https://element-plus.org/zh-CN/component/overview",
+        "icon": "https://element-plus.org/images/element-plus-logo-small.svg",
+        "description": "基于 Vue 3 的开源组件库，文档完善、示例丰富，助力开发者高效构建界面。"
+      }
+    ]
+  },
+  {
     "category": "影视资源",
     "children": [
       {
@@ -502,6 +531,12 @@
         "url": "https://jamcz.com",
         "icon": "https://jamcz.com/favicon.ico",
         "description": "专注开发小众实用的安卓与 Windows 软件，解决数码爱好者的使用痛点。"
+      },
+      {
+        "title": "精品软件区",
+        "url": "https://www.52pojie.cn/forum-16-1.html",
+        "icon": "assets/images/icons/精品软件区.webp",
+        "description": "吾爱破解精品软件区，会员每日分享推荐 PC 与安卓手机软件，交流氛围活跃。"
       }
     ]
   },
