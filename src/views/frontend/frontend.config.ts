@@ -78,6 +78,54 @@ export const FRONTEND_GROUPS: FrontendGroup[] = [
         icon: 'https://v2.element-plus-x.com/favicon.ico',
         description: '基于 Vue3 与 Element Plus 的 AI 体验组件库，开箱即用。',
       },
+      {
+        key: 'https://vant.pro/vant',
+        title: 'Vant',
+        icon: 'https://fastly.jsdelivr.net/npm/@vant/assets/logo.png',
+        description: '轻量可定制的移动端 Vue 组件库，提供 70+ 高质量组件，助力移动应用高效开发。',
+      },
+      {
+        key: 'https://www.naiveui.com/zh-CN/os-theme',
+        title: 'Naive UI',
+        icon: 'https://www.naiveui.com/assets/naivelogo-BdDVTUmz.svg',
+        description: '基于 Vue 3 的组件库，TypeScript 编写，主题可调，内置暗黑模式与丰富组件。',
+      },
+      {
+        key: 'https://antdv.com/components/overview-cn',
+        title: 'Ant Design Vue',
+        icon: 'https://www.antdv.com/favicon.ico',
+        description: '基于 Ant Design 设计规范与 Vue 的企业级组件库，提供丰富的高质量组件。',
+      },
+      {
+        key: 'https://arco.design/vue/docs/start',
+        title: 'Arco Design',
+        icon: 'https://unpkg.byted-static.com/latest/byted/arco-config/assets/favicon.ico',
+        description: '字节跳动出品的企业级设计系统 Vue 版组件库，风格简洁，组件丰富，开箱即用。',
+      },
+      {
+        key: 'https://tdesign.tencent.com/vue-next/overview',
+        title: 'TDesign',
+        icon: 'https://static.tdesign.tencent.com/vue-next/apple-touch-icon.png',
+        description: '腾讯开源的企业级设计体系 Vue 3 组件库，组件丰富，配套设计指南与资源。',
+      },
+      {
+        key: 'https://vue-devui.github.io/quick-start',
+        title: 'DevUI',
+        icon: 'https://vue-devui.github.io/assets/logo.svg',
+        description: '华为开源的 Vue 3 组件库，基于 DevUI 设计体系，提供企业级中后台场景组件。',
+      },
+      {
+        key: 'https://nutui.jd.com/h5/vue/4x',
+        title: 'NutUI',
+        icon: 'https://img14.360buyimg.com/imagetools/jfs/t1/167902/2/8762/791358/603742d7E9b4275e3/e09d8f9a8bf4c0ef.png',
+        description: '京东风格的轻量级移动端 Vue 组件库，支持 H5 与小程序多端开发，组件丰富。',
+      },
+      {
+        key: 'https://maomentai817.github.io/pixel-ui',
+        title: 'Pixel UI',
+        icon: 'https://maomentai817.github.io/pixel-ui/images/favicon.ico',
+        description: '基于 CSS Houdini 实现的像素风组件库，组件自带复古像素质感，适合个性界面。',
+      },
     ],
   },
   {
@@ -148,6 +196,12 @@ export const FRONTEND_GROUPS: FrontendGroup[] = [
         icon: 'https://electron.nodejs.cn/assets/img/favicon.ico',
         description: '使用 JavaScript、HTML 和 CSS 构建跨平台桌面应用。',
       },
+      {
+        key: 'https://flutter.cn',
+        title: 'Flutter',
+        icon: 'https://docs.flutter.cn/assets/images/cn/flutter-320px.png',
+        description: 'Flutter 官方文档中文版，包含 SDK 下载、最新特性、代码示例与中文社区等内容。',
+      },
     ],
   },
   {
@@ -215,7 +269,7 @@ export const FRONTEND_GROUPS: FrontendGroup[] = [
       {
         key: 'https://www.canvasapi.cn',
         title: 'Canvas',
-        icon: 'https://q1.qlogo.cn/g?b=qq&nk=1207588603&s=640',
+        icon: 'https://www.canvasapi.cn/favicon.ico',
         description: 'Canvas API 中文文档站，提供画布绘图接口的属性、方法与示例讲解。',
       },
       {
@@ -264,7 +318,4 @@ export const FRONTEND_GROUPS: FrontendGroup[] = [
 ]
 
 /** 外部站点数量：自有页面不计入，供统计场景复用 */
-export const EXTERNAL_FRONTEND_COUNT = FRONTEND_GROUPS.reduce(
-  (total, group) => total + group.children.filter((item) => isExternal(item.key)).length,
-  0,
-)
+export const EXTERNAL_FRONTEND_COUNT = FRONTEND_GROUPS.reduce((total, group) => total + group.children.filter((item) => isExternal(item.key)).length, 0)

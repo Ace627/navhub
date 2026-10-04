@@ -177,6 +177,7 @@ declare global {
   const useDocumentVisibility: typeof import('@vueuse/core').useDocumentVisibility
   const useDraggable: typeof import('@vueuse/core').useDraggable
   const useDropZone: typeof import('@vueuse/core').useDropZone
+  const useDynamicTitle: typeof import('../../hooks/useDynamicTitle').useDynamicTitle
   const useElementBounding: typeof import('@vueuse/core').useElementBounding
   const useElementByPoint: typeof import('@vueuse/core').useElementByPoint
   const useElementHover: typeof import('@vueuse/core').useElementHover
@@ -255,6 +256,7 @@ declare global {
   const useScroll: typeof import('@vueuse/core').useScroll
   const useScrollLock: typeof import('@vueuse/core').useScrollLock
   const useSessionStorage: typeof import('@vueuse/core').useSessionStorage
+  const useSettingStore: typeof import('../../store/modules/setting').useSettingStore
   const useShare: typeof import('@vueuse/core').useShare
   const useSlots: typeof import('vue').useSlots
   const useSorted: typeof import('@vueuse/core').useSorted
