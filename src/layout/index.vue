@@ -56,7 +56,8 @@ const classes = computed(() => [{ 'hide-sidebar': appStore.isCollapse }, { 'open
 
 .main-container {
   position: relative;
-  display: flow-root;
+  display: flex;
+  flex-direction: column;
   height: 100%;
   margin-left: var(--n-sidebar-width);
   transition: margin-left var(--n-transition-duration);
@@ -97,9 +98,6 @@ html[data-device='mobile'] .hide-sidebar .sidebar-container {
   inset: 0;
   z-index: var(--n-drawer-bg-index); // 比 sidebar 低
   background-color: rgba(0, 0, 0, 0.32);
-  overflow: hidden;
-}
-:global(body:has(.drawer-bg)) {
   overflow: hidden;
 }
 
