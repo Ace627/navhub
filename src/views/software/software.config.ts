@@ -12,7 +12,7 @@ export interface SoftwareItem {
   description: string
 }
 
-/** 电脑软件站点列表：均为外部站点，卡片以纯外链模式渲染 */
+/** 好软推荐站点列表：均为外部站点，卡片以纯外链模式渲染 */
 export const SOFTWARE_LIST: SoftwareItem[] = [
   {
     key: 'https://pc.weixin.qq.com',
@@ -103,6 +103,186 @@ export const SOFTWARE_LIST: SoftwareItem[] = [
     title: '酷安桌面版',
     icon: 'https://coolapk.123741.xyz/assets/logo.png',
     description: '非官方酷安桌面客户端，轻量纯净的大屏社区浏览体验，全平台覆盖。',
+  },
+  {
+    key: 'https://www.52pojie.cn/forum-16-1.html',
+    title: '精品软件区',
+    icon: 'assets/images/icons/精品软件区.webp',
+    description: '吾爱破解精品软件区，会员每日分享推荐 PC 与安卓手机软件，交流氛围活跃。',
+  },
+  {
+    key: 'https://www.423down.com',
+    title: '423Down',
+    icon: 'https://www.423down.com/wp-content/themes/D7/img/favicon.ico',
+    description: '始于2014的绿色软件下载站，超千款净化便携软件，三重检测，纯净安全。',
+  },
+  {
+    key: 'https://www.ipapark.com',
+    title: 'iPA资源站',
+    icon: 'https://www.ipapark.com/wp-content/uploads/2022/12/icon.png',
+    description: 'iPA资源下载站，收录iPhone/iPad软件，附砸壳规则与免费证书。',
+  },
+  {
+    key: 'https://www.xiaoheiw.com',
+    title: '小黑资源网',
+    icon: 'https://www.xiaoheiw.com/favicon.ico',
+    description: '每日更新技术教程、活动线报与软件工具分享，内容实用，持续更新。',
+  },
+  {
+    key: 'https://www.x6d.com',
+    title: '小刀娱乐网',
+    icon: 'https://www.x6d.com/favicon.ico',
+    description: '专注活动线报、绿色软件与教程分享，分类清晰，持续更新网络实用内容。',
+  },
+  {
+    key: 'https://wwt.lanzouj.com/s/jkrj',
+    title: '极客软件库',
+    icon: 'https://jikeruanjk.com.cn/images/04ad1b05_hu_12b7626e992709af.webp',
+    description: '汇聚优质软件、游戏与工具，安全检测保障下载，支持版本更新与断点续传。',
+  },
+  {
+    key: 'https://pan.lanzoup.com/u/qianxun8',
+    title: '大肥精品软件',
+    icon: 'assets/images/icons/大肥精品软件.png',
+    description: '大肥爱分享的精品软件合集，免费分享各类福利软件资源，每日持续更新。',
+  },
+  {
+    key: 'https://lanzoup.com/b032bt3j3c',
+    title: '最先软件库',
+    icon: 'assets/images/icons/最先软件库.png',
+    description: '永久免费分享的各类软件资源合集，更新频繁，部分资源可能失效，仅供学习交流请勿商用。',
+  },
+  {
+    key: 'https://qcrjk.lanzoul.com/b05w0777e',
+    title: '千城游戏合集',
+    icon: 'https://up.woozooo.com/favicon.ico',
+    description: '不定时更新各类好玩破解的安卓游戏资源，收录丰富，喜欢玩游戏的小伙伴不容错过。',
+  },
+  {
+    key: 'https://app.lanzouv.com/s/fuckapp',
+    title: 'FuckApp',
+    icon: 'https://up.woozooo.com/favicon.ico',
+    description: '破解类安卓应用合集，附安装指南：被拦截可断网安装，报毒为破解应用误报，仅供学习研究。',
+  },
+  {
+    key: 'https://www.lanzoui.com/b133841',
+    title: '兜兜软件库',
+    icon: 'https://up.woozooo.com/favicon.ico',
+    description: '兜兜软件库合集，不定时更新各类福利软件，收录丰富，欢迎收藏备用。',
+  },
+  {
+    key: 'https://jiuren.lanzoul.com/s/ruanjiange',
+    title: '旧人软件阁',
+    icon: 'assets/images/icons/旧人软件阁.png',
+    description: '旧人软件阁的软件合集，软件基于官方接口制作，若失效多为官方已修复所致。',
+  },
+  {
+    key: 'https://huanziapp.lanzout.com/b0fq2clwj',
+    title: '欢子黑科技',
+    icon: 'https://up.woozooo.com/favicon.ico',
+    description: '佚名收集的各种破解软件资源。',
+  },
+  {
+    key: 'https://www.lanzoui.com/b838976',
+    title: '滚哥网盘资源',
+    icon: 'https://up.woozooo.com/favicon.ico',
+    description: '滚哥网盘资源合集，每日动态更新各类软件，失效多为版本更新，仅供测试请勿他用。',
+  },
+  {
+    key: 'https://yoyodadada.lanzouw.com/u/yoyodadada',
+    title: '优质软件合集',
+    icon: 'https://up.woozooo.com/favicon.ico',
+    description: '佚名收集的各种破解软件资源。',
+  },
+  {
+    key: 'https://www.lanzoui.com/b01b01h9a',
+    title: '未分类软件集',
+    icon: 'https://up.woozooo.com/favicon.ico',
+    description: '佚名收集的各种破解软件资源。',
+  },
+  {
+    key: 'https://pan.lanzoui.com/b221497',
+    title: '精选软件推荐',
+    icon: 'https://up.woozooo.com/favicon.ico',
+    description: '人工精选的热门娱乐实用软件合集，每天更新，持续上新，欢迎收藏使用。',
+  },
+  {
+    key: 'https://pan.lanzoui.com/b215476',
+    title: '乐分享软件',
+    icon: 'https://up.woozooo.com/favicon.ico',
+    description: '佚名收集的各种破解软件资源。',
+  },
+  {
+    key: 'https://pan.lanzoui.com/b828085',
+    title: '安卓破解软件',
+    icon: 'https://up.woozooo.com/favicon.ico',
+    description: '常用软件破解版合集，涵盖影视会员、音乐、下载工具等热门安卓应用的破解版本。',
+  },
+  {
+    key: 'https://pan.lanzoui.com/b888887',
+    title: '破解游戏合集',
+    icon: 'https://up.woozooo.com/favicon.ico',
+    description: '佚名收集的各种破解软件资源。',
+  },
+  {
+    key: 'https://pan.lanzoui.com/b54212',
+    title: '允晨软件库',
+    icon: 'https://up.woozooo.com/favicon.ico',
+    description: '佚名收集的各种破解软件资源。',
+  },
+  {
+    key: 'https://pan.lanzoui.com/u/ygtq',
+    title: '软件实验室',
+    icon: 'https://up.woozooo.com/favicon.ico',
+    description: '佚名收集的各种破解软件资源。',
+  },
+  {
+    key: 'https://pan.lanzoui.com/b60564',
+    title: '清风软件集',
+    icon: 'https://up.woozooo.com/favicon.ico',
+    description: '清风软件集，全部软件免费使用，基于官方接口改写，若失效多为官方已修复。',
+  },
+  {
+    key: 'https://pan.lanzoui.com/b158157',
+    title: '小说软件合集',
+    icon: 'https://up.woozooo.com/favicon.ico',
+    description: '佚名收集的各种破解软件资源。',
+  },
+  {
+    key: 'https://pan.lanzoui.com/u/aybaba',
+    title: '阿友软件合集',
+    icon: 'https://up.woozooo.com/favicon.ico',
+    description: '阿友软件合集，软件基于官方接口制作，全部免费使用，若失效多为官方已修复。',
+  },
+  {
+    key: 'https://www.lanzoui.com/u/xiaopengi',
+    title: '小鹏软件合集',
+    icon: 'https://up.woozooo.com/favicon.ico',
+    description: '小鹏团队出品的软件合集，不保证长久可用，失效即停更，仅供学习参考请勿非法使用。',
+  },
+  {
+    key: 'https://www.lanzoui.com/u/azsoft',
+    title: '星辰软件合集',
+    icon: 'https://up.woozooo.com/favicon.ico',
+    description: '星辰软件合集，收录好玩有趣的各类软件资源，持续更新，欢迎体验收藏。',
+  },
+  {
+    key: 'https://www.lanzoui.com/u/xinqidian',
+    title: '新起点软件库',
+    icon: 'https://up.woozooo.com/favicon.ico',
+    description: '良心出品的各类实用软件，多为活动或接口类应用，失效属正常情况望理解。',
+  },
+  {
+    key: 'https://pan.lanzoup.com/b059sp2j',
+    title: '软件窝合集',
+    icon: 'https://up.woozooo.com/favicon.ico',
+    description: '软件窝福利软件合集，不定时更新各类资源，内容源于互联网仅供学习参考。',
+  },
+  {
+    key: 'https://jamcz.com',
+    title: '晨钟网络科技',
+    icon: 'https://jamcz.com/favicon.ico',
+    description: '专注开发小众实用的安卓与 Windows 软件，解决数码爱好者的使用痛点。',
   },
 ]
 
