@@ -164,6 +164,18 @@ export const TOOL_LIST: ToolItem[] = [
     icon: 'https://tools.yuanfen.net/img/favicon/apple-touch-icon.png',
     description: '提供JSON解析、密码生成、哈希计算、时间转换等开发者实用小工具。',
   },
+  {
+    key: 'https://greasyfork.org/zh-CN/scripts',
+    title: '油猴脚本',
+    icon: 'https://greasyfork.org/vite/assets/blacklogo16-DftkYuVe.png',
+    description: '针对所访问网站添加功能或解决问题漏洞的用户脚本平台，可免费安装使用。',
+  },
+  {
+    key: 'https://www.youxiaohou.com',
+    title: '油小猴',
+    icon: 'https://www.youxiaohou.com/favicon.ico',
+    description: '汇聚各类黑科技工具的小站，提供网盘直链下载、智能识别等实用助手脚本。',
+  },
 ]
 
 /** 外部工具站点数量：自有工具不计入，供统计场景复用 */

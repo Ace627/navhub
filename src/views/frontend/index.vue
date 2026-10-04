@@ -8,23 +8,16 @@
 
 <script setup lang="ts">
 defineOptions({ name: 'Frontend' })
-import { isExternal } from '@/utils'
 import { FRONTEND_LIST } from './frontend.config'
 import type { FrontendItem } from './frontend.config'
 
-const router = useRouter()
-
 /**
- * 点击条目卡片，自有页面跳转详情页，外部站点新窗口打开
+ * 点击条目卡片，外部站点新窗口打开
  *
  * @param item 被点击的前端条目
  */
 function handleClickItem(item: FrontendItem) {
-  if (isExternal(item.key)) {
-    window.open(item.key, '_blank')
-  } else {
-    router.push(`/frontend/${item.key}`)
-  }
+  window.open(item.key, '_blank')
 }
 </script>
 

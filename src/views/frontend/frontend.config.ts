@@ -2,17 +2,17 @@ import { isExternal } from '@/utils'
 
 /** 前端条目定义 */
 export interface FrontendItem {
-  /** 条目唯一标识：自有页面填组件目录名（与详情页组件目录一致，同时用作子路由参数）；外部站点填完整 URL（http/https 等协议开头，点击新窗口打开） */
+  /** 条目唯一标识：完整 URL（http/https 等协议开头，点击新窗口打开） */
   key: string
   /** 条目名称 */
   title: string
-  /** 图标地址：自有页面填本地资源路径（@/ 别名指向 src/assets/ 下图标文件）；外部站点填站点图标 URL */
+  /** 图标地址：站点图标 URL */
   icon: string
   /** 描述文案：卡片上展示的简短说明，约 32 字 */
   description: string
 }
 
-/** 前端站点列表：自有页面登记组件目录名并在本目录下建同名组件目录（内含 index.vue）；外部站点直接登记完整 URL */
+/** 前端站点列表：均为外部站点，卡片点击后新窗口打开 */
 export const FRONTEND_LIST: FrontendItem[] = [
   {
     key: 'https://gitee.com',

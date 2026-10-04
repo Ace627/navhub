@@ -136,7 +136,7 @@ export const WALLPAPER_LIST: WallpaperItem[] = [
   },
   {
     key: 'https://simpledesktops.com',
-    title: 'Simple Desktops',
+    title: '简约壁纸',
     icon: 'https://static.simpledesktops.com/static/favicon.ico',
     description: '极简风格壁纸站，专注低干扰桌面美化，支持用户投稿，另提供多平台客户端。',
   },
