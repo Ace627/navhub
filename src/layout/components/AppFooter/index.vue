@@ -1,5 +1,8 @@
 <template>
-  <div>AppFooter</div>
+  <div>
+    AppFooter
+    <span id="LA-DATA-WIDGET"></span>
+  </div>
 </template>
 
 <script setup lang="ts">
