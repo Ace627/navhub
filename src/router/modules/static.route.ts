@@ -2,6 +2,7 @@ import Layout from '@/layout/index.vue'
 import type { RouteRecordRaw } from 'vue-router'
 import { RouterConstant } from '../router.constant'
 import { TOOL_ROUTES } from './tool.route'
+import { API_ROUTES } from './api.route'
 import { STUDY_ROUTES } from './study.route'
 import { SOFTWARE_ROUTES } from './software.route'
 import { WALLPAPER_ROUTES } from './wallpaper.route'
@@ -29,6 +30,8 @@ export const STATIC_ROUTE_LIST: RouteRecordRaw[] = [
       ...SOFTWARE_ROUTES,
 
       ...TOOL_ROUTES,
+
+      ...API_ROUTES,
 
       ...STUDY_ROUTES,
 

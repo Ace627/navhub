@@ -22,6 +22,7 @@ import { EXTERNAL_FRONTEND_COUNT } from '@/views/frontend/frontend.config'
 import { EXTERNAL_AI_COUNT } from '@/views/ai/ai.config'
 import { EXTERNAL_SOFTWARE_COUNT } from '@/views/software/software.config'
 import { EXTERNAL_TOOL_COUNT } from '@/views/tool/tool.config'
+import { EXTERNAL_API_COUNT } from '@/views/api/api.config'
 import { EXTERNAL_STUDY_COUNT } from '@/views/study/study.config'
 import { EXTERNAL_WALLPAPER_COUNT } from '@/views/wallpaper/wallpaper.config'
 
@@ -45,6 +46,7 @@ const NAV_ENTRIES: NavEntry[] = [
   { label: '前端专家', path: '/frontend', count: EXTERNAL_FRONTEND_COUNT },
   { label: '好软推荐', path: '/software', count: EXTERNAL_SOFTWARE_COUNT },
   { label: '实用工具', path: '/tool', count: EXTERNAL_TOOL_COUNT },
+  { label: '公益接口', path: '/api', count: EXTERNAL_API_COUNT },
   { label: '自我提升', path: '/study', count: EXTERNAL_STUDY_COUNT },
   { label: '精美壁纸', path: '/wallpaper', count: EXTERNAL_WALLPAPER_COUNT },
   { label: '关于我们', path: '/about' },
