@@ -26,7 +26,7 @@ export interface SystemSetting {
 export const defaultSettings: SystemSetting = {
   theme: 'light',
   size: 'default',
-  transition: 'fade-transform',
+  transition: 'el-zoom-in-center',
   uniqueOpened: true,
   showDynamicTitle: true,
   showWatermark: true,

@@ -10,6 +10,7 @@
         <Navbar />
       </header>
       <AppMain />
+      <AppFooter />
     </div>
 
     <!-- 移动端悬浮页面导航 -->
@@ -22,6 +23,7 @@ defineOptions({ name: 'Layout' })
 import Navbar from './components/Navbar/index.vue'
 import Sidebar from './components/Sidebar/index.vue'
 import AppMain from './components/AppMain/index.vue'
+import AppFooter from './components/AppFooter/index.vue'
 import FloatNav from './components/FloatNav/index.vue'
 
 const appStore = useAppStore()

@@ -1,6 +1,6 @@
+import { merge } from 'lodash-es'
 import { defaultSettings, type SystemSetting } from '@/defaultSettings'
 import { getSystemSetting, removeSystemSetting, setSystemSetting, TipModal } from '@/utils'
-import { merge } from 'lodash-es'
 
 export const useSettingStore = defineStore('setting', () => {
   const state = reactive<SystemSetting>(merge({}, defaultSettings, getSystemSetting()))
