@@ -57,12 +57,9 @@ const classes = computed(() => [{ 'hide-sidebar': appStore.isCollapse }, { 'open
 }
 
 .fixed-header {
-  position: fixed;
+  position: sticky;
   top: 0;
-  right: 0;
   z-index: var(--n-fixed-header-index);
-  width: calc(100% - var(--n-sidebar-width));
-  transition: width var(--n-transition-duration);
 }
 
 /* 桌面模式 侧栏折叠 */
@@ -73,18 +70,12 @@ const classes = computed(() => [{ 'hide-sidebar': appStore.isCollapse }, { 'open
   .main-container {
     margin-left: var(--n-sidebar-hide-width);
   }
-  .fixed-header {
-    width: calc(100% - var(--n-sidebar-hide-width));
-  }
 }
 
 html[data-device='mobile'] {
   /* 移动端 侧边栏展开 */
   .main-container {
     margin-left: 0;
-  }
-  .fixed-header {
-    width: 100%;
   }
 }
 
@@ -96,10 +87,13 @@ html[data-device='mobile'] .hide-sidebar .sidebar-container {
 
 /* 移动端用来关闭左侧边栏抽屉的背景遮罩层 */
 .drawer-bg {
-  position: absolute;
+  position: fixed;
   inset: 0;
   z-index: var(--n-drawer-bg-index); // 比 sidebar 低
   background-color: rgba(0, 0, 0, 0.32);
+  overflow: hidden;
+}
+:global(body:has(.drawer-bg)) {
   overflow: hidden;
 }
 

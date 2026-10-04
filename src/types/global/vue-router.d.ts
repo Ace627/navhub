@@ -5,7 +5,7 @@ declare module 'vue-router' {
     /** 是否固定在 tags-view */
     affix?: boolean
     /** 路由标题，用于显示在侧边栏和面包屑中 */
-    title?: string
+    title: string
     /** 路由图标 */
     icon?: string
     /** 是否在侧边栏隐藏 */

@@ -14,17 +14,21 @@
 <script setup lang="ts">
 defineOptions({ name: 'Sidebar' })
 import AppLogo from '../AppLogo/index.vue'
+import { RouterConstant } from '@/router/router.constant'
 
 const route = useRoute()
 const router = useRouter()
 const appStore = useAppStore()
 
-const sidebarRoutes = ref([
-  { title: '全部导航', url: '/dashboard', icon: 'Home' },
-  { title: '前端专家', url: '/frontend', icon: 'Frontend' },
-  { title: '实用工具', url: '/tool', icon: 'Tool' },
-  { title: '关于我们', url: '/about', icon: 'About' },
-])
+/** 布局路由的子路由即全部导航页，过滤隐藏项后生成侧边栏导航数据 */
+function getSidebarRoutes() {
+  const layoutRoute = router.options.routes.find(item => item.name === RouterConstant.LAYOUT_NAME)
+  return (layoutRoute?.children ?? [])
+    .filter(item => !item.meta?.hidden && item.meta?.icon)
+    .map(item => ({ title: item.meta!.title, url: `/${item.path.replace(/^\//, '')}`, icon: item.meta!.icon! }))
+}
+
+const sidebarRoutes = ref(getSidebarRoutes())
 
 /** 判断导航项是否为当前路由对应项 */
 function isActive(url: string): boolean {

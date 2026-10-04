@@ -2,6 +2,9 @@ import Layout from '@/layout/index.vue'
 import type { RouteRecordRaw } from 'vue-router'
 import { RouterConstant } from '../router.constant'
 import { TOOL_ROUTES } from './tool.route'
+import { STUDY_ROUTES } from './study.route'
+import { SOFTWARE_ROUTES } from './software.route'
+import { WALLPAPER_ROUTES } from './wallpaper.route'
 import { FRONTEND_ROUTES } from './frontend.route'
 
 export const STATIC_ROUTE_LIST: RouteRecordRaw[] = [
@@ -15,12 +18,18 @@ export const STATIC_ROUTE_LIST: RouteRecordRaw[] = [
         name: RouterConstant.HOME_PAGE_NAME,
         path: 'dashboard',
         component: () => import('@/views/dashboard/index.vue'),
-        meta: { title: '首页', icon: 'Home', affix: true },
+        meta: { title: '数据总览', icon: 'Home', affix: true },
       },
+
+      ...FRONTEND_ROUTES,
+
+      ...SOFTWARE_ROUTES,
 
       ...TOOL_ROUTES,
 
-      ...FRONTEND_ROUTES,
+      ...STUDY_ROUTES,
+
+      ...WALLPAPER_ROUTES,
 
       {
         name: 'About',
@@ -34,6 +43,6 @@ export const STATIC_ROUTE_LIST: RouteRecordRaw[] = [
   {
     path: '/:pathMatch(.*)*', // 404页面（必须放在最后）
     component: () => import('@/views/core/404.vue'),
-    meta: { hidden: true },
+    meta: { hidden: true, title: '页面不存在' },
   },
 ]

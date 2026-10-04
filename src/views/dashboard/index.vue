@@ -32,6 +32,9 @@ defineOptions({ name: RouterConstant.HOME_PAGE_NAME })
 import webs from '@/database/webs.json'
 import { RouterConstant } from '@/router/router.constant'
 import { EXTERNAL_TOOL_COUNT } from '@/views/tool/tool.config'
+import { EXTERNAL_STUDY_COUNT } from '@/views/study/study.config'
+import { EXTERNAL_SOFTWARE_COUNT } from '@/views/software/software.config'
+import { EXTERNAL_WALLPAPER_COUNT } from '@/views/wallpaper/wallpaper.config'
 
 /** 分类锚点项 */
 interface AnchorItem {
@@ -55,7 +58,7 @@ const webGroups = computed(() =>
 
 const router = useRouter()
 
-/** 分类锚点列表，由分类数据直接推导，末尾追加实用工具页入口 */
+/** 分类锚点列表，由分类数据直接推导，末尾追加实用工具、自我提升、电脑软件与精美壁纸页入口 */
 const anchors = computed<AnchorItem[]>(() => [
   ...webs.map((group, index) => ({
     id: `category-${index}`,
@@ -67,6 +70,24 @@ const anchors = computed<AnchorItem[]>(() => [
     label: '实用工具',
     count: EXTERNAL_TOOL_COUNT,
     path: '/tool',
+  },
+  {
+    id: 'study',
+    label: '自我提升',
+    count: EXTERNAL_STUDY_COUNT,
+    path: '/study',
+  },
+  {
+    id: 'software',
+    label: '电脑软件',
+    count: EXTERNAL_SOFTWARE_COUNT,
+    path: '/software',
+  },
+  {
+    id: 'wallpaper',
+    label: '精美壁纸',
+    count: EXTERNAL_WALLPAPER_COUNT,
+    path: '/wallpaper',
   },
 ])
 
