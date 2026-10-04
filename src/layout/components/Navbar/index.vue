@@ -4,6 +4,9 @@
     <Hamburger class="navbar-item hover-effect" @toggleClick="appStore.toggleSidebar" />
 
     <div class="navbar__right h-full ml-auto flex-center">
+      <!-- 站点模糊搜索 -->
+      <HeaderSearch />
+
       <!-- 设置入口 -->
       <el-tooltip content="系统帧率" effect="dark" placement="bottom">
         <span class="navbar-item hover-effect navbar-item__fps"> {{ fps }} </span>
@@ -15,6 +18,7 @@
 <script setup lang="ts">
 defineOptions({ name: 'Navbar' })
 import Hamburger from './Hamburger.vue'
+import HeaderSearch from './HeaderSearch.vue'
 
 const appStore = useAppStore()
 const fps = useFps()
