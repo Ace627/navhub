@@ -19,6 +19,7 @@ defineOptions({ name: 'FloatNav' })
 import { RouterConstant } from '@/router/router.constant'
 import { EXTERNAL_DASHBOARD_COUNT } from '@/views/dashboard/dashboard.config'
 import { EXTERNAL_FRONTEND_COUNT } from '@/views/frontend/frontend.config'
+import { EXTERNAL_AI_COUNT } from '@/views/ai/ai.config'
 import { EXTERNAL_SOFTWARE_COUNT } from '@/views/software/software.config'
 import { EXTERNAL_TOOL_COUNT } from '@/views/tool/tool.config'
 import { EXTERNAL_STUDY_COUNT } from '@/views/study/study.config'
@@ -40,6 +41,7 @@ const HOME_COUNT = EXTERNAL_DASHBOARD_COUNT
 /** 导航入口列表：与侧栏一致的顶级路由，供移动端快速切换页面 */
 const NAV_ENTRIES: NavEntry[] = [
   { label: '免费追剧', path: RouterConstant.HOME_PAGE_URL, count: HOME_COUNT },
+  { label: '人工智能', path: '/ai', count: EXTERNAL_AI_COUNT },
   { label: '前端专家', path: '/frontend', count: EXTERNAL_FRONTEND_COUNT },
   { label: '好软推荐', path: '/software', count: EXTERNAL_SOFTWARE_COUNT },
   { label: '实用工具', path: '/tool', count: EXTERNAL_TOOL_COUNT },

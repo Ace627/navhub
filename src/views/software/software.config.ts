@@ -117,6 +117,24 @@ export const SOFTWARE_LIST: SoftwareItem[] = [
     description: '始于2014的绿色软件下载站，超千款净化便携软件，三重检测，纯净安全。',
   },
   {
+    key: 'https://www.gndown.net',
+    title: '绿软驿站',
+    icon: 'https://www.gndown.net/favicon.ico',
+    description: '安全纯净的绿色软件下载站，无广告免安装，全部软件经人工检测，纯净无捆绑。',
+  },
+  {
+    key: 'https://www.wycad.com',
+    title: '无忧软件网',
+    icon: 'https://www.wycad.com/favicon.ico',
+    description: '分享互联网优质资源，收录绿色软件与破解工具，覆盖多端，每日持续更新。',
+  },
+  {
+    key: 'https://www.ghxi.com',
+    title: '果核剥壳',
+    icon: 'https://www.ghxi.com/favicon.ico',
+    description: '长期更新的科技网站，涵盖绿色软件、系统工具与科技资讯，分享实用资源。',
+  },
+  {
     key: 'https://www.ipapark.com',
     title: 'iPA资源站',
     icon: 'https://www.ipapark.com/wp-content/uploads/2022/12/icon.png',

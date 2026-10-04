@@ -6,6 +6,7 @@ import { STUDY_ROUTES } from './study.route'
 import { SOFTWARE_ROUTES } from './software.route'
 import { WALLPAPER_ROUTES } from './wallpaper.route'
 import { FRONTEND_ROUTES } from './frontend.route'
+import { AI_ROUTES } from './ai.route'
 
 export const STATIC_ROUTE_LIST: RouteRecordRaw[] = [
   {
@@ -20,6 +21,8 @@ export const STATIC_ROUTE_LIST: RouteRecordRaw[] = [
         component: () => import('@/views/dashboard/index.vue'),
         meta: { title: '免费追剧', icon: 'Home', affix: true },
       },
+
+      ...AI_ROUTES,
 
       ...FRONTEND_ROUTES,
 

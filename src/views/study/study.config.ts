@@ -236,6 +236,24 @@ export const STUDY_LIST: StudyItem[] = [
     icon: 'https://reader.jojokanbao.cn/brand/app-icon-180.png',
     description: '在线看报工具，聚合各类报纸资源，手机端可便捷浏览，随时畅享读报体验。',
   },
+  {
+    key: 'http://www.ngotcmszh.com',
+    title: '民间中医网',
+    icon: 'http://www.ngotcmszh.com/favicon.ico',
+    description: '民间中医交流论坛，涵盖经典研习、经方方药、针灸推拿与养生保健等板块。',
+  },
+  {
+    key: 'http://www.qihuang.net.cn',
+    title: '岐黄书院',
+    icon: 'http://www.qihuang.net.cn/favicon.ico',
+    description: '以中医为主题的阅读交流空间，提供图书借阅、技法推广与中医文化体验。',
+  },
+  {
+    key: 'https://wapp.nishi001.com/forum.php',
+    title: '倪师之家',
+    icon: 'https://wapp.nishi001.com/favicon.ico',
+    description: '学习倪海厦学术思想的中医社区，提供医案资源、文章专栏与自学交流板块。',
+  },
 ]
 
 /** 外部站点数量：当前全部为外链站点，供统计场景复用 */
