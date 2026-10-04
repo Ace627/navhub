@@ -1,5 +1,5 @@
 <template>
-  <div class="px-16px py-8px">
+  <div class="px-16px py-8px flex-center">
     <span v-for="(item, index) in stats" :key="item.label" class="stat-item">
       <span class="stat-item__label">{{ item.label }}</span>
       <span class="stat-item__value">{{ item.value }}</span>
@@ -21,6 +21,17 @@ const stats = ref<VisitorStat[]>([])
 
 /** la-widget 数据容器选择器 */
 const WIDGET_SELECTOR = '.la-widget.la-data-widget__container'
+
+/** 开发环境默认统计数据，widget 不可用时便于本地调试 */
+const DEV_DEFAULT_STATS: VisitorStat[] = [
+  { label: '最近活跃访客', value: '5' },
+  { label: '今日访问人数', value: '16' },
+  { label: '今日访问量', value: '94' },
+  { label: '昨日访问人数', value: '63' },
+  { label: '昨日访问量', value: '367' },
+  { label: '本月访问量', value: '713' },
+  { label: '总访问量', value: '713' },
+]
 
 /** 监听 widget 注入的观察器，取到数据或组件卸载后置空 */
 let observer: MutationObserver | null = null
@@ -62,6 +73,11 @@ onMounted(() => {
     return
   }
 
+  // 开发环境下 widget 不可用时先用默认数据展示，若 widget 随后注入仍会被真实数据覆盖
+  if (import.meta.env.DEV) {
+    stats.value = DEV_DEFAULT_STATS
+  }
+
   // widget 由第三方脚本异步注入，监听 DOM 变化等待其出现
   observer = new MutationObserver((mutations) => {
     for (const mutation of mutations) {
@@ -87,6 +103,7 @@ onUnmounted(() => {
 
 <style lang="scss" scoped>
 .stat-item {
+  font-size: 12px;
   &__label {
     color: var(--el-text-color-secondary);
   }
