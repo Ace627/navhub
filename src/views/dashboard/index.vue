@@ -6,7 +6,7 @@
         <el-tag size="small">x{{ group.children.length }}</el-tag>
       </h2>
       <div class="card-grid">
-        <SiteCard v-for="item in group.children" :key="item.url" :item="item" />
+        <LinkCard v-for="item in group.children" :key="item.key" :item="item" plain-link />
       </div>
     </section>
 
@@ -32,7 +32,6 @@ defineOptions({ name: RouterConstant.HOME_PAGE_NAME })
 import webs from '@/database/webs.json'
 import { RouterConstant } from '@/router/router.constant'
 import { EXTERNAL_TOOL_COUNT } from '@/views/tool/tool.config'
-import SiteCard from './components/SiteCard.vue'
 
 /** 分类锚点项 */
 interface AnchorItem {
@@ -46,7 +45,13 @@ interface AnchorItem {
   path?: string
 }
 
-const webGroups = webs
+/** 站点分组数据：webs.json 的 url 字段映射为 key，对齐 LinkCard 的 LinkItem 结构 */
+const webGroups = computed(() =>
+  webs.map((group) => ({
+    category: group.category,
+    children: group.children.map(({ url, title, icon, description }) => ({ key: url, title, icon, description })),
+  })),
+)
 
 const router = useRouter()
 

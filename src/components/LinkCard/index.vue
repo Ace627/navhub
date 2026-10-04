@@ -1,23 +1,23 @@
 <template>
-  <a :href="item.url" target="_blank" rel="noopener noreferrer" class="site-card">
+  <component :is="plainLink ? 'a' : 'div'" class="link-card" :href="plainLink ? item.key : undefined" :target="plainLink ? '_blank' : undefined" :rel="plainLink ? 'noopener noreferrer' : undefined" @click="onCardClick">
     <div class="card-header">
-      <img class="site-icon" :src="getIcon(item)" :alt="item.title" loading="lazy" draggable="false" referrerpolicy="no-referrer" @error="onIconError(item)" />
-      <span class="site-title">{{ item.title }}</span>
+      <img class="link-icon" :src="getIcon(item)" :alt="item.title" loading="lazy" draggable="false" referrerpolicy="no-referrer" @error="onIconError(item)" />
+      <span class="link-title">{{ item.title }}</span>
     </div>
     <ProTooltip :content="item.description">
-      <span class="site-desc">{{ item.description }}</span>
+      <span class="link-desc">{{ item.description }}</span>
     </ProTooltip>
-  </a>
+  </component>
 </template>
 
 <script setup lang="ts">
-import type webs from '@/database/webs.json'
+import type { LinkCardProps, LinkItem } from './types'
 
-type WebItem = (typeof webs)[number]['children'][number]
+const props = defineProps<LinkCardProps>()
 
-defineProps<{ item: WebItem }>()
+const emit = defineEmits<{ (e: 'click', item: LinkItem): void }>()
 
-/** 当前卡片图标已加载失败的站点 url 集合（组件内私有，命中即降级为首字占位图） */
+/** 当前卡片图标已加载失败的条目 key 集合（组件内私有，命中即降级为首字占位图） */
 const failedIcons = reactive(new Set<string>())
 
 // 收集 src/assets/images/icons 下的本地图标，按文件名索引（key 为构建后资源地址）
@@ -27,18 +27,18 @@ for (const [path, url] of Object.entries(import.meta.glob<string>('/src/assets/i
 }
 
 /**
- * 解析站点图标地址
+ * 解析条目图标地址
  *
- * @param item 站点条目
- * @returns 失败降级为首字 SVG 占位；本地图标按文件名映射资源地址；其余原样返回
+ * @param item 链接条目
+ * @returns 加载失败降级为首字 SVG 占位；本地图标按文件名映射资源地址；其余原样返回
  */
-function getIcon(item: WebItem) {
-  if (failedIcons.has(item.url)) {
+function getIcon(item: LinkItem) {
+  if (failedIcons.has(item.key)) {
     const ch = item.title.trim().charAt(0) || '?'
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64"><rect width="64" height="64" rx="12" fill="#409eff"/><text x="32" y="43" font-size="32" text-anchor="middle" fill="#fff" font-family="sans-serif">${ch}</text></svg>`
     return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`
   }
-  // 本地图标路径（如 assets/images/icons/xx.png）：按文件名匹配 src/assets/images/icons 下的资源
+  // 本地图标路径（如 @/assets/images/icons/xx.png）：按文件名匹配 src/assets/images/icons 下的资源
   if (!/^(https?:|data:)/.test(item.icon)) {
     return localIconMap[item.icon.split('/').pop() || ''] || item.icon
   }
@@ -48,22 +48,32 @@ function getIcon(item: WebItem) {
 /**
  * 图标加载失败回调：记录失败标记，触发降级占位图
  *
- * @param item 站点条目
+ * @param item 链接条目
  */
-function onIconError(item: WebItem) {
-  failedIcons.add(item.url)
+function onIconError(item: LinkItem) {
+  failedIcons.add(item.key)
+}
+
+/**
+ * 卡片点击回调：纯外链模式交给 a 标签默认导航，其余抛出 click 事件由父级决定跳转
+ */
+function onCardClick() {
+  if (props.plainLink) return
+  emit('click', props.item)
 }
 </script>
 
 <style lang="scss" scoped>
-.site-card {
+.link-card {
+  --el-link-card-icon-size: 32px;
   display: block;
   padding: 8px 16px;
   background-color: #fff;
-  border: 1px solid #e4e7ed;
+  border: 1px solid var(--el-border-color);
   border-radius: 8px;
   color: inherit;
   text-decoration: none;
+  cursor: pointer;
   transition:
     box-shadow 0.2s,
     transform 0.2s;
@@ -80,33 +90,32 @@ function onIconError(item: WebItem) {
   gap: 10px;
 }
 
-.site-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
+.link-icon {
+  width: var(--el-link-card-icon-size);
+  height: var(--el-link-card-icon-size);
   object-fit: contain;
   flex-shrink: 0;
 }
 
-.site-title {
+.link-title {
   font-size: 15px;
   font-weight: 600;
 }
 
-.site-desc {
-  margin: 10px 0 0;
+.link-desc {
+  display: -webkit-box;
+  margin-top: 8px;
+  overflow: hidden;
   font-size: 13px;
   line-height: 1.6;
-  color: #909399;
-  display: -webkit-box;
+  color: var(--el-color-info);
+  -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 
 html[data-device='mobile'] {
-  .site-card {
+  .link-card {
     padding: 8px 4px;
     text-align: center;
     background-color: transparent;
@@ -124,21 +133,21 @@ html[data-device='mobile'] {
     gap: 8px;
   }
 
-  .site-icon {
+  .link-icon {
     width: 48px;
     height: 48px;
   }
 
-  .site-title {
-    font-size: 12px;
-    font-weight: 400;
+  .link-title {
     max-width: 100%;
     overflow: hidden;
+    font-size: 12px;
+    font-weight: 400;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
 
-  .site-desc {
+  .link-desc {
     display: none;
   }
 }
