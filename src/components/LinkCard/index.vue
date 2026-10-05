@@ -68,10 +68,10 @@ function onCardClick() {
   --el-link-card-icon-size: 32px;
   display: block;
   padding: 8px 16px;
-  background-color: #fff;
+  background-color: var(--el-bg-color);
   border: 1px solid var(--el-border-color);
   border-radius: 8px;
-  color: inherit;
+  color: var(--el-text-color-regular);
   text-decoration: none;
   cursor: pointer;
   transition:
@@ -79,7 +79,7 @@ function onCardClick() {
     transform 0.2s;
 
   &:hover {
-    box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
+    box-shadow: var(--el-box-shadow-light);
     transform: translateY(-2px);
   }
 }
@@ -100,6 +100,7 @@ function onCardClick() {
 .link-title {
   font-size: 15px;
   font-weight: 600;
+  color: var(--el-text-color-primary);
 }
 
 .link-desc {

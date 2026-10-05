@@ -33,8 +33,8 @@ const classes = computed(() => [{ 'hide-sidebar': appStore.isCollapse }, { 'open
 
 <style lang="scss" scoped>
 .app-container {
-  --n-drawer-bg-index: calc(var(--n-sidebar-index) - 1);
-  --n-fixed-header-index: calc(var(--n-sidebar-index) - 2);
+  --el-drawer-bg-index: calc(var(--el-sidebar-index) - 1);
+  --el-fixed-header-index: calc(var(--el-sidebar-index) - 2);
   position: relative;
   width: 100%;
   height: 100%;
@@ -44,13 +44,13 @@ const classes = computed(() => [{ 'hide-sidebar': appStore.isCollapse }, { 'open
   position: fixed;
   left: 0;
   top: 0;
-  z-index: var(--n-sidebar-index);
-  width: var(--n-sidebar-width);
+  z-index: var(--el-sidebar-index);
+  width: var(--el-sidebar-width);
   height: 100%;
-  color: var(--n-sidebar-text-color);
-  background-color: var(--n-sidebar-bg-color);
-  box-shadow: var(--n-sidebar-box-shadow);
-  transition: width var(--n-transition-duration);
+  color: var(--el-sidebar-text-color);
+  background-color: var(--el-sidebar-bg-color);
+  box-shadow: var(--el-sidebar-box-shadow);
+  transition: width var(--el-transition-duration);
   overflow: hidden;
 }
 
@@ -59,23 +59,23 @@ const classes = computed(() => [{ 'hide-sidebar': appStore.isCollapse }, { 'open
   display: flex;
   flex-direction: column;
   height: 100%;
-  margin-left: var(--n-sidebar-width);
-  transition: margin-left var(--n-transition-duration);
+  margin-left: var(--el-sidebar-width);
+  transition: margin-left var(--el-transition-duration);
 }
 
 .fixed-header {
   position: sticky;
   top: 0;
-  z-index: var(--n-fixed-header-index);
+  z-index: var(--el-fixed-header-index);
 }
 
 /* 桌面模式 侧栏折叠 */
 .hide-sidebar {
   .sidebar-container {
-    width: var(--n-sidebar-hide-width);
+    width: var(--el-sidebar-hide-width);
   }
   .main-container {
-    margin-left: var(--n-sidebar-hide-width);
+    margin-left: var(--el-sidebar-hide-width);
   }
 }
 
@@ -96,7 +96,7 @@ html[data-device='mobile'] .hide-sidebar .sidebar-container {
 .drawer-bg {
   position: fixed;
   inset: 0;
-  z-index: var(--n-drawer-bg-index); // 比 sidebar 低
+  z-index: var(--el-drawer-bg-index); // 比 sidebar 低
   background-color: rgba(0, 0, 0, 0.32);
   overflow: hidden;
 }

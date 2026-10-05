@@ -102,7 +102,7 @@ html[data-device='mobile'] {
     border: none;
     border-radius: 50%;
     color: var(--el-color-white);
-    background-color: var(--n-color-primary);
+    background-color: var(--el-color-primary);
     box-shadow: var(--el-box-shadow-light);
     cursor: pointer;
   }
@@ -141,7 +141,7 @@ html[data-device='mobile'] {
       }
 
       &.active {
-        color: var(--n-color-primary);
+        color: var(--el-color-primary);
       }
 
       em {
@@ -155,7 +155,7 @@ html[data-device='mobile'] {
 
 .float-nav-fade-enter-active,
 .float-nav-fade-leave-active {
-  transition: opacity var(--n-transition-duration-fast);
+  transition: opacity var(--el-transition-duration-fast);
 }
 
 .float-nav-fade-enter-from,

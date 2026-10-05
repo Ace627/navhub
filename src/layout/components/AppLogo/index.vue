@@ -28,12 +28,12 @@ const props = withDefaults(defineProps<AppLogoProps>(), {
 
 <style lang="scss" scoped>
 .app-logo {
-  --n-app-logo-size: 28px;
+  --el-app-logo-size: 28px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  height: var(--n-navbar-height);
+  height: var(--el-navbar-height);
   margin: 0;
   padding: 0;
   font-weight: 500;
@@ -43,8 +43,8 @@ const props = withDefaults(defineProps<AppLogoProps>(), {
   white-space: nowrap;
   overflow: hidden;
   img {
-    width: var(--n-app-logo-size);
-    height: var(--n-app-logo-size);
+    width: var(--el-app-logo-size);
+    height: var(--el-app-logo-size);
   }
   span {
     font-size: 16px;

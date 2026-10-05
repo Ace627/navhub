@@ -22,7 +22,7 @@ description: 本项目图表开发与排查规范。**强制触发**：凡新增
 
 2. **移动端只改 CSS 高度**：视口判定统一走 `html[data-device='mobile']`（阈值 750px），禁止媒体查询；options 内**不得**写死像素级的半径/圆心/间距，一律用百分比，靠组件内置 ResizeObserver 自适应。
 
-3. **canvas 不解析 CSS 变量**：options 中一切颜色（`textStyle.color`、`itemStyle`、调色板等）必须写具体色值，写 `var(--el-xxx)` 会静默失效。当前应用无暗色切换（ProChart 的 `isDark` 恒为 false），按浅色取值即可。
+3. **canvas 不解析 CSS 变量**：options 中一切颜色（`textStyle.color`、`itemStyle`、调色板等）必须写具体色值，写 `var(--el-xxx)` 会静默失效。应用有明暗主题切换（`settingStore.isDark`）：ProChart 切主题时会按对应主题重建实例，**文字色一律省略不写**，交给 ECharts 明暗主题默认值自动适配；仅当确需自定义颜色时才写具体色值，且若该色值需随主题变化，必须由依赖 `settingStore.isDark` 的 `computed` 提供（ProChart 深度 watch options 会联动更新），禁止写死单一主题取值。
 
 4. **只用已注册的模块**：按需注册清单见 `src/utils/libs/echarts.ts`（图表：Bar/Line/Pie/Radar/Gauge/Scatter/Candlestick/Boxplot/Map/EffectScatter/Lines；组件：Title/Tooltip/Legend/LegendScroll/Grid/Polar/Graphic/Geo）。使用未注册的图（如 Funnel、Sunburst、Sankey）**静默渲染空白不报错**——写之前先核对该文件，缺了先补注册再使用。
 
@@ -46,7 +46,7 @@ description: 本项目图表开发与排查规范。**强制触发**：凡新增
     itemWidth: 8,
     itemHeight: 8,
     itemGap: 16,
-    textStyle: { fontSize: 12, color: '#606266' },
+    textStyle: { fontSize: 12 },  // color 省略，随明暗主题默认值自动适配
   }
   ```
 

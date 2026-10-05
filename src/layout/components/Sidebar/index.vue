@@ -22,10 +22,8 @@ const appStore = useAppStore()
 
 /** 布局路由的子路由即全部导航页，过滤隐藏项后生成侧边栏导航数据 */
 function getSidebarRoutes() {
-  const layoutRoute = router.options.routes.find(item => item.name === RouterConstant.LAYOUT_NAME)
-  return (layoutRoute?.children ?? [])
-    .filter(item => !item.meta?.hidden && item.meta?.icon)
-    .map(item => ({ title: item.meta!.title, url: `/${item.path.replace(/^\//, '')}`, icon: item.meta!.icon! }))
+  const layoutRoute = router.options.routes.find((item) => item.name === RouterConstant.LAYOUT_NAME)
+  return (layoutRoute?.children ?? []).filter((item) => !item.meta?.hidden && item.meta?.icon).map((item) => ({ title: item.meta!.title, url: `/${item.path.replace(/^\//, '')}`, icon: item.meta!.icon! }))
 }
 
 const sidebarRoutes = ref(getSidebarRoutes())
@@ -50,21 +48,21 @@ function handleClickItem(record: (typeof sidebarRoutes.value)[0]) {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  height: var(--n-sidebar-item-height);
+  height: var(--el-sidebar-item-height);
   margin: 4px 8px;
   padding: 0 12px;
   border-radius: 4px;
-  color: var(--n-sidebar-text-color);
+  color: var(--el-sidebar-text-color);
   cursor: pointer;
   white-space: nowrap;
-  transition: background-color var(--n-transition-duration-fast);
+  transition: background-color var(--el-transition-duration-fast);
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.08);
   }
 
   &.active {
-    background-color: var(--n-color-primary);
+    background-color: var(--el-color-primary);
   }
 }
 </style>

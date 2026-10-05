@@ -91,8 +91,8 @@ const categoryOption = computed<EChartsOption>(() => ({
     left: 'center',
     top: '32%',
     itemGap: 6,
-    textStyle: { fontSize: 28, fontWeight: 600, color: '#303133' },
-    subtextStyle: { fontSize: 12, color: '#909399' },
+    textStyle: { fontSize: 28, fontWeight: 600 },
+    subtextStyle: { fontSize: 12 },
   },
   legend: {
     type: 'scroll',
@@ -101,7 +101,7 @@ const categoryOption = computed<EChartsOption>(() => ({
     itemWidth: 8,
     itemHeight: 8,
     itemGap: 16,
-    textStyle: { fontSize: 12, color: '#606266' },
+    textStyle: { fontSize: 12 },
   },
   series: [
     {
@@ -188,12 +188,12 @@ async function copyQQ() {
   border: 1px solid var(--el-color-primary);
   border-radius: 6px;
   font-size: 14px;
-  color: var(--n-color-primary);
+  color: var(--el-color-primary);
   background-color: transparent;
   cursor: pointer;
   transition:
-    background-color var(--n-transition-duration-fast),
-    box-shadow var(--n-transition-duration-fast);
+    background-color var(--el-transition-duration-fast),
+    box-shadow var(--el-transition-duration-fast);
 
   &:hover {
     background-color: var(--el-color-primary-light-9);
@@ -227,7 +227,7 @@ async function copyQQ() {
   strong {
     font-size: 26px;
     font-weight: 600;
-    color: var(--n-color-primary);
+    color: var(--el-color-primary);
   }
 
   span {
@@ -260,7 +260,7 @@ async function copyQQ() {
     width: 4px;
     height: 16px;
     border-radius: 2px;
-    background-color: var(--n-color-primary);
+    background-color: var(--el-color-primary);
   }
 }
 

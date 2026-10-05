@@ -16,8 +16,7 @@ const props = defineProps({
   options: { type: Object as PropType<EChartsOption>, default: () => ({}) },
 })
 
-// const settingStore = useSettingStore()
-const isDark = ref(false)
+const settingStore = useSettingStore()
 
 /** 获取图表 DOM 元素的引用 */
 const chartDOM = useTemplateRef('proChartRef')
@@ -39,7 +38,7 @@ function init() {
   }
   // if (chartDOM.value.clientWidth === 0 || chartDOM.value.clientHeight === 0) return
   // 初始化 ECharts 实例（绑定到指定 DOM 容器）
-  chartInstance = echarts.init(chartDOM.value, isDark.value ? 'dark' : 'light') as unknown as EChartsType
+  chartInstance = echarts.init(chartDOM.value, settingStore.isDark ? 'dark' : 'light') as unknown as EChartsType
   // 若传入的 options 非空，则立即更新图表配置（渲染初始图表）
   if (!isEmpty(props.options)) updateChart()
 }
@@ -102,10 +101,8 @@ watch(
 
 // 切换主题时 → 自动重新初始化图表
 watch(
-  () => isDark.value,
-  () => {
-    init()
-  },
+  () => settingStore.isDark,
+  () => init(),
 )
 
 onMounted(async () => {

@@ -1,19 +1,23 @@
 html {
   /** 主题色 */
-  --n-color-primary: var(--el-color-primary);
+  --el-color-primary: var(--el-color-primary);
 
-  --n-sidebar-width: 160px;
-  --n-sidebar-hide-width: 64px;
-  --n-sidebar-item-height: 42px;
-  --n-sidebar-text-color: #fff;
-  --n-sidebar-bg-color: #262935;
-  --n-sidebar-index: 1001;
-  --n-sidebar-box-shadow: 1px 0 4px rgba(0, 0, 0, 0.6);
+  --el-sidebar-width: 160px;
+  --el-sidebar-hide-width: 64px;
+  --el-sidebar-item-height: 42px;
+  --el-sidebar-text-color: #fff;
+  --el-sidebar-bg-color: #262935;
+  --el-sidebar-index: 1001;
+  --el-sidebar-box-shadow: 1px 0 4px rgba(0, 0, 0, 0.6);
 
-  --n-navbar-height: 50px;
-  --n-navbar-bg-color: #fff;
-  --n-navbar-box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  --el-navbar-height: 50px;
+  --el-navbar-bg-color: var(--el-bg-color);
+  --el-navbar-box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 
-  --n-transition-duration: 0.32s;
-  --n-transition-duration-fast: 0.16s;
+  --el-transition-duration: 0.32s;
+  --el-transition-duration-fast: 0.16s;
+}
+
+html.dark {
+  --el-navbar-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }

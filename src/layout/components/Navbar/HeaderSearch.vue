@@ -3,15 +3,7 @@
     <!-- 桌面端常驻搜索框 -->
     <div class="search-input-wrap">
       <SvgIcon name="Search" :size="14" class="search-input-icon" />
-      <input
-        ref="inputRef"
-        v-model="keyword"
-        class="search-input"
-        type="text"
-        placeholder="搜索站点名称或描述"
-        @focus="inputFocused = true"
-        @keydown="onInputKeydown"
-      />
+      <input ref="inputRef" v-model="keyword" class="search-input" type="text" placeholder="搜索站点名称或描述" @focus="inputFocused = true" @keydown="onInputKeydown" />
       <kbd v-if="!keyword" class="search-kbd">Ctrl K</kbd>
       <SvgIcon v-else name="Plus" :size="12" class="search-clear" @click="clearKeyword" />
     </div>
@@ -19,14 +11,7 @@
     <!-- 搜索结果下拉 -->
     <transition name="search-fade">
       <div v-if="dropdownVisible" class="search-dropdown">
-        <div
-          v-for="(item, index) in results"
-          :key="item.key"
-          class="search-option"
-          :class="{ active: index === activeIndex }"
-          @mousedown.prevent="openItem(item)"
-          @mouseenter="activeIndex = index"
-        >
+        <div v-for="(item, index) in results" :key="item.key" class="search-option" :class="{ active: index === activeIndex }" @mousedown.prevent="openItem(item)" @mouseenter="activeIndex = index">
           <img class="search-option-icon" :src="getIcon(item)" :alt="item.title" loading="lazy" referrerpolicy="no-referrer" @error="onIconError(item)" />
           <div class="search-option-body">
             <div class="search-option-head">
@@ -55,12 +40,7 @@
             <button type="button" class="search-mobile-close" aria-label="关闭搜索" @click="mobilePanelVisible = false">取消</button>
           </div>
           <div class="search-mobile-results">
-            <div
-              v-for="item in results"
-              :key="item.key"
-              class="search-option"
-              @click="openItem(item)"
-            >
+            <div v-for="item in results" :key="item.key" class="search-option" @click="openItem(item)">
               <img class="search-option-icon" :src="getIcon(item)" :alt="item.title" loading="lazy" referrerpolicy="no-referrer" @error="onIconError(item)" />
               <div class="search-option-body">
                 <div class="search-option-head">
@@ -332,7 +312,7 @@ onBeforeUnmount(() => {
   padding: 0 10px;
   background-color: var(--el-fill-color-light);
   border-radius: 16px;
-  transition: box-shadow var(--n-transition-duration-fast);
+  transition: box-shadow var(--el-transition-duration-fast);
 
   &:focus-within {
     box-shadow: 0 0 0 1px var(--el-color-primary) inset;
@@ -384,7 +364,7 @@ onBeforeUnmount(() => {
   position: absolute;
   top: calc(100% + 8px);
   right: 0;
-  z-index: calc(var(--n-fixed-header-index) + 1);
+  z-index: calc(var(--el-fixed-header-index) + 1);
   width: 380px;
   max-height: 420px;
   padding: 6px;
@@ -544,7 +524,7 @@ html[data-device='mobile'] {
 
 .search-fade-enter-active,
 .search-fade-leave-active {
-  transition: opacity var(--n-transition-duration-fast);
+  transition: opacity var(--el-transition-duration-fast);
 }
 
 .search-fade-enter-from,
