@@ -254,6 +254,12 @@ export const STUDY_LIST: StudyItem[] = [
     icon: 'https://wapp.nishi001.com/favicon.ico',
     description: '学习倪海厦学术思想的中医社区，提供医案资源、文章专栏与自学交流板块。',
   },
+  {
+    key: 'https://www.zt8.cn',
+    title: '字帖吧',
+    icon: 'https://www.zt8.cn/favicon.ico',
+    description: '免费在线生成汉字、拼音、字母与数字等字帖，输入内容即可实时预览打印。',
+  },
 ]
 
 /** 外部站点数量：当前全部为外链站点，供统计场景复用 */

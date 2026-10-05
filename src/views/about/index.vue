@@ -55,6 +55,9 @@ import type { EChartsOption } from 'echarts'
 /** 站点名称，取自环境变量，与侧栏 logo 处一致 */
 const siteTitle = import.meta.env.VITE_APP_TITLE
 
+/** 系统帧率，由 requestAnimationFrame 采样，原右上角展示迁移至此 */
+const fps = useFps()
+
 /** QQ 交流群号 */
 const qqGroup = '486011286'
 
@@ -119,6 +122,7 @@ const statList = computed(() => [
   { label: '站点分类', value: categoryStats.value.length },
   { label: '收录站点', value: siteCount },
   { label: '交流群号', value: qqGroup },
+  { label: '系统帧率', value: fps.value },
 ])
 
 /**
@@ -206,7 +210,7 @@ async function copyQQ() {
 /* 统计卡片区 */
 .stat-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 16px;
 }
 
@@ -286,6 +290,7 @@ html[data-device='mobile'] {
   }
 
   .stat-grid {
+    grid-template-columns: repeat(2, 1fr);
     gap: 8px;
   }
 
