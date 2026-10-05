@@ -111,12 +111,6 @@ export const API_LIST: ApiItem[] = [
     description: '免费接口大全站点，收集互联网各类免费 API 服务，做接口的搬运工。',
   },
   {
-    key: 'https://api.tangdouz.com',
-    title: '糖豆子API',
-    icon: 'https://api.tangdouz.com/favicon.ico',
-    description: '收录 200 余款免费接口，覆盖生活查询、文本、图像处理等，无需注册调用。',
-  },
-  {
     key: 'https://yunzhiapi.cn',
     title: '云智API',
     icon: 'https://yunzhiapi.cn/favicon.ico',
@@ -325,6 +319,18 @@ export const API_LIST: ApiItem[] = [
     title: '小鸟的API',
     icon: 'https://q1.qlogo.cn/g?b=qq&nk=1207588603&s=640',
     description: '小鸟的免费接口站点，提供多种常用公益 API，供开发者免费调用。',
+  },
+  {
+    key: 'https://api.tangdouz.com',
+    title: '糖豆子API',
+    icon: 'https://api.tangdouz.com/favicon.ico',
+    description: '收录 200 余款免费接口，覆盖生活查询、文本、图像处理等，无需注册调用。',
+  },
+  {
+    key: 'https://api.ovo1.cc/apilist',
+    title: '小虫Api',
+    icon: 'https://api.ovo1.cc/upload/image/favicon.ico',
+    description: '免费稳定API接口平台，提供多种数据接口与在线调试，助力开发者快速集成。',
   },
 ]
 

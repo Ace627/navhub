@@ -27,7 +27,7 @@
 
     <!-- 移动端搜索入口 -->
     <button type="button" class="search-mobile-btn" aria-label="搜索" @click="mobilePanelVisible = true">
-      <SvgIcon name="Search" :size="18" />
+      <SvgIcon name="Search" size="1.16em" />
     </button>
 
     <!-- 移动端全屏搜索面板 -->
@@ -301,7 +301,6 @@ onBeforeUnmount(() => {
 <style lang="scss" scoped>
 .header-search {
   position: relative;
-  margin-left: 16px;
 }
 
 .search-input-wrap {
@@ -470,15 +469,15 @@ html[data-device='mobile'] {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    height: 100%;
+    /* 抵消根节点 navbar-item 的内边距并自行补齐，使占位与悬停热区和 ThemeSwitch 一致 */
+    margin: 0 -8px;
+    padding: 0 8px;
     border: none;
-    border-radius: 50%;
     background: none;
-    color: var(--el-text-color-regular);
     cursor: pointer;
 
-    &:active {
+    &:hover {
       background-color: var(--el-fill-color-light);
     }
   }

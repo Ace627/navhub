@@ -4,7 +4,7 @@
     <Hamburger class="navbar-item hover-effect" @toggleClick="appStore.toggleSidebar" />
 
     <!-- 站点模糊搜索 -->
-    <HeaderSearch class="navbar-item hover-effect" />
+    <HeaderSearch class="navbar-item" />
 
     <div class="navbar__right h-full ml-auto flex-center">
       <!-- 主题切换 -->

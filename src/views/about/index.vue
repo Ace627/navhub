@@ -2,7 +2,9 @@
   <div class="app-content flex flex-col gap-16px">
     <!-- 站点介绍 -->
     <section class="hero">
-      <img class="hero-logo" src="/favicon.svg" alt="logo" draggable="false" referrerpolicy="no-referrer" />
+      <div class="hero-logo-wrap">
+        <img class="hero-logo" src="/favicon.svg" alt="logo" draggable="false" referrerpolicy="no-referrer" />
+      </div>
       <div class="hero-info">
         <h2 class="hero-title">{{ siteTitle }}</h2>
         <p class="hero-desc">一个干净、无广告的个人上网导航，收录日常高频使用的影视、软件、学习与网盘资源站点，让好网站一眼就能找到。</p>
@@ -25,7 +27,47 @@
     <!-- 分类分布 -->
     <section class="panel">
       <h3 class="panel-title">分类分布</h3>
-      <ProChart custom-class="chart-box" :options="categoryOption" />
+      <div class="category-wrap">
+        <ProChart custom-class="chart-box" :options="categoryOption" />
+        <ul class="category-list">
+          <li v-for="(item, index) in categoryStats" :key="item.name">
+            <i class="cat-dot" :style="{ backgroundColor: CHART_COLORS[index] }" />
+            <span class="cat-name">{{ item.name }}</span>
+            <span class="cat-value">{{ item.value }} 个</span>
+            <em class="cat-percent">{{ getCategoryPercent(item.value) }}</em>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 功能特性 -->
+    <section class="panel">
+      <h3 class="panel-title">功能特性</h3>
+      <div class="feature-grid">
+        <div v-for="feature in featureList" :key="feature.title" class="feature-card">
+          <div class="feature-icon">
+            <SvgIcon :name="feature.icon" :size="18" />
+          </div>
+          <div class="feature-body">
+            <strong>{{ feature.title }}</strong>
+            <p>{{ feature.desc }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section class="panel">
+      <h3 class="panel-title">技术栈</h3>
+      <div class="tech-grid">
+        <div v-for="tech in techList" :key="tech.name" class="tech-card">
+          <div class="tech-head">
+            <strong>{{ tech.name }}</strong>
+            <span>{{ tech.version }}</span>
+          </div>
+          <p>{{ tech.desc }}</p>
+        </div>
+      </div>
     </section>
 
     <!-- 免责声明 -->
@@ -61,6 +103,9 @@ const fps = useFps()
 /** QQ 交流群号 */
 const qqGroup = '486011286'
 
+/** 图表调色板：canvas 内无法解析 CSS 变量，统一写具体色值，饼图与分类明细列表共用 */
+const CHART_COLORS = ['#409eff', '#36cfc9', '#722ed1', '#eb2f96', '#faad14', '#52c41a', '#fa8c16', '#f5222d', '#2f54eb', '#13c2c2']
+
 /** 收录站点总数，由数据源直接推导：首页站点加上人工智能页、前端专家页、实用工具页、公益接口页、自我提升页、好软推荐页与精美壁纸页的外部站点 */
 const siteCount = EXTERNAL_DASHBOARD_COUNT + EXTERNAL_AI_COUNT + EXTERNAL_FRONTEND_COUNT + EXTERNAL_TOOL_COUNT + EXTERNAL_API_COUNT + EXTERNAL_STUDY_COUNT + EXTERNAL_SOFTWARE_COUNT + EXTERNAL_WALLPAPER_COUNT
 
@@ -77,13 +122,22 @@ const categoryStats = computed(() => [
 ])
 
 /**
+ * 计算单个分类的收录占比，保留一位小数
+ *
+ * 供分类明细列表展示，与饼图 tooltip 的百分比口径一致
+ */
+function getCategoryPercent(value: number) {
+  return `${((value / siteCount) * 100).toFixed(1)}%`
+}
+
+/**
  * 分类分布环形图配置
  *
  * 半径与圆心均按百分比设置，容器缩放时由 ProChart 的 ResizeObserver 联动自适应；
  * 图例使用 scroll 类型，移动端小屏分类过多时自动翻页
  */
 const categoryOption = computed<EChartsOption>(() => ({
-  color: ['#409eff', '#36cfc9', '#722ed1', '#eb2f96', '#faad14', '#52c41a', '#fa8c16', '#f5222d', '#2f54eb', '#13c2c2'],
+  color: CHART_COLORS,
   tooltip: { trigger: 'item', formatter: '{b}：{c} 个（{d}%）' },
   title: {
     text: `${siteCount}`,
@@ -125,6 +179,25 @@ const statList = computed(() => [
   { label: '系统帧率', value: fps.value },
 ])
 
+/** 功能特性数据：均为站内已实现的真实能力 */
+const featureList = [
+  { icon: 'Moon', title: '暗色模式', desc: '明暗主题一键切换，图表配色自动适配' },
+  { icon: 'Search', title: '快捷搜索', desc: 'Ctrl K 唤起全站搜索，按名称或描述定位站点' },
+  { icon: 'Expand', title: '移动适配', desc: '小屏自动切换布局，移动端独立优化交互' },
+  { icon: 'Sunny', title: '帧率监测', desc: 'requestAnimationFrame 实时采样渲染帧率' },
+]
+
+/** 技术栈数据：与 package.json 实际依赖保持一致 */
+const techList = [
+  { name: 'Vue', version: '3.5', desc: '渐进式前端框架' },
+  { name: 'TypeScript', version: '6.0', desc: '类型安全的 JavaScript' },
+  { name: 'Vite', version: '8.3', desc: '下一代前端构建工具' },
+  { name: 'Element Plus', version: '2.14', desc: '桌面端 UI 组件库' },
+  { name: 'ECharts', version: '6.1', desc: '数据可视化图表库' },
+  { name: 'Pinia', version: '4.0', desc: '直观的类型安全状态管理' },
+  { name: 'UnoCSS', version: '66.10', desc: '即时按需原子化 CSS 引擎' },
+]
+
 /**
  * 复制 QQ 群号到剪贴板，并弹出结果提示
  *
@@ -156,15 +229,26 @@ async function copyQQ() {
   align-items: center;
   gap: 20px;
   padding: 24px;
-  background-color: var(--el-bg-color);
+  background: linear-gradient(135deg, var(--el-color-primary-light-9) 0%, var(--el-bg-color) 60%);
   border: 1px solid var(--el-border-color-lighter);
   border-radius: 8px;
 }
 
-.hero-logo {
-  width: 72px;
-  height: 72px;
+.hero-logo-wrap {
+  display: grid;
   flex-shrink: 0;
+  place-items: center;
+  width: 80px;
+  height: 80px;
+  background-color: var(--el-bg-color);
+  border: 1px solid var(--el-border-color-lighter);
+  border-radius: 20px;
+  box-shadow: 0 6px 18px rgb(0 0 0 / 10%);
+}
+
+.hero-logo {
+  width: 52px;
+  height: 52px;
 }
 
 .hero-title {
@@ -189,15 +273,20 @@ async function copyQQ() {
   border-radius: 6px;
   font-size: 14px;
   color: var(--el-color-primary);
-  background-color: transparent;
+  background-color: var(--el-bg-color);
   cursor: pointer;
   transition:
     background-color var(--el-transition-duration-fast),
-    box-shadow var(--el-transition-duration-fast);
+    box-shadow var(--el-transition-duration-fast),
+    transform var(--el-transition-duration-fast);
 
   &:hover {
     background-color: var(--el-color-primary-light-9);
     box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
+  }
+
+  &:active {
+    transform: scale(0.97);
   }
 
   em {
@@ -218,16 +307,26 @@ async function copyQQ() {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   padding: 20px 16px;
   background-color: var(--el-bg-color);
   border: 1px solid var(--el-border-color-lighter);
   border-radius: 8px;
+  transition:
+    transform var(--el-transition-duration-fast),
+    box-shadow var(--el-transition-duration-fast),
+    border-color var(--el-transition-duration-fast);
+
+  &:hover {
+    border-color: var(--el-color-primary-light-5);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 8%);
+    transform: translateY(-2px);
+  }
 
   strong {
     font-size: 26px;
     font-weight: 600;
-    color: var(--el-color-primary);
+    color: var(--el-text-color-primary);
   }
 
   span {
@@ -264,9 +363,159 @@ async function copyQQ() {
   }
 }
 
+/* 分类分布区：桌面端左侧饼图 + 右侧明细列表 */
+.category-wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: center;
+}
+
+.category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    font-size: 13px;
+    border-radius: 6px;
+    transition: background-color var(--el-transition-duration-fast);
+
+    &:hover {
+      background-color: var(--el-fill-color-light);
+    }
+  }
+
+  .cat-dot {
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  .cat-name {
+    flex: 1;
+    color: var(--el-text-color-primary);
+  }
+
+  .cat-value {
+    color: var(--el-text-color-secondary);
+  }
+
+  .cat-percent {
+    min-width: 52px;
+    font-style: normal;
+    color: var(--el-text-color-secondary);
+    text-align: right;
+  }
+}
+
 /* 分类分布图表容器 */
 .chart-box {
   height: 320px;
+}
+
+/* 功能特性区 */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.feature-card {
+  display: flex;
+  gap: 12px;
+  padding: 14px;
+  background-color: var(--el-fill-color-light);
+  border-radius: 8px;
+  transition:
+    background-color var(--el-transition-duration-fast),
+    transform var(--el-transition-duration-fast);
+
+  &:hover {
+    background-color: var(--el-color-primary-light-9);
+    transform: translateY(-2px);
+  }
+
+  .feature-icon {
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    color: var(--el-color-primary);
+    background-color: var(--el-bg-color);
+    border-radius: 10px;
+  }
+
+  .feature-body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    strong {
+      font-size: 14px;
+      color: var(--el-text-color-primary);
+    }
+
+    p {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--el-text-color-secondary);
+    }
+  }
+}
+
+/* 技术栈区 */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.tech-card {
+  padding: 12px 14px;
+  background-color: var(--el-fill-color-light);
+  border-radius: 8px;
+  transition:
+    background-color var(--el-transition-duration-fast),
+    transform var(--el-transition-duration-fast);
+
+  &:hover {
+    background-color: var(--el-color-primary-light-9);
+    transform: translateY(-2px);
+  }
+
+  .tech-head {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+
+    strong {
+      font-size: 14px;
+      color: var(--el-text-color-primary);
+    }
+
+    span {
+      font-size: 12px;
+      color: var(--el-color-primary);
+    }
+  }
+
+  p {
+    margin: 4px 0 0;
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--el-text-color-secondary);
+  }
 }
 
 /* 免责声明 */
@@ -281,8 +530,8 @@ async function copyQQ() {
 html[data-device='mobile'] {
   .hero {
     flex-direction: column;
-    text-align: center;
     padding: 20px 16px;
+    text-align: center;
   }
 
   .hero-desc {
@@ -306,8 +555,23 @@ html[data-device='mobile'] {
     padding: 16px;
   }
 
+  .category-wrap {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
   .chart-box {
     height: 260px;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .tech-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
   }
 }
 </style>

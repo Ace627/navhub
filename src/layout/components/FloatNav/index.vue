@@ -1,5 +1,5 @@
 <template>
-  <div class="float-nav">
+  <div ref="rootRef" class="float-nav">
     <transition name="float-nav-fade">
       <div v-show="panelVisible" class="float-nav-panel">
         <button v-for="item in NAV_ENTRIES" :key="item.path" type="button" :class="{ active: isActive(item) }" @click="handleSelect(item)">
@@ -55,6 +55,8 @@ const NAV_ENTRIES: NavEntry[] = [
 const route = useRoute()
 const router = useRouter()
 
+const rootRef = ref<HTMLElement>()
+
 /** 导航面板是否展开 */
 const panelVisible = ref(false)
 
@@ -76,6 +78,25 @@ function handleSelect(item: NavEntry) {
   panelVisible.value = false
   router.push(item.path)
 }
+
+/**
+ * 文档点击监听：点击组件外部时收起导航面板
+ *
+ * @param event 鼠标事件对象
+ */
+function onDocumentMousedown(event: MouseEvent) {
+  if (panelVisible.value && rootRef.value && !rootRef.value.contains(event.target as Node)) {
+    panelVisible.value = false
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('mousedown', onDocumentMousedown)
+})
+
+onBeforeUnmount(() => {
+  document.removeEventListener('mousedown', onDocumentMousedown)
+})
 </script>
 
 <style lang="scss" scoped>
