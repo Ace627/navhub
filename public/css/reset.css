@@ -5,8 +5,7 @@
 }
 
 /* 取消默认的内外边距 margin padding */
-html, body, h1, h2, h3, h4, h5, h6, dl, dt, dd, ol, ul , li, p, fieldset, legend, header, footer, hgroup, menu, nav, section, figcaption, figure, mark, form,
-time, td, th, label, hr {
+html, body, h1, h2, h3, h4, h5, h6, dl, dt, dd, ol, ul, li, p, fieldset, legend, header, footer, hgroup, menu, nav, section, figcaption, figure, mark, form, time, td, th, label, hr {
   margin: 0;
   padding: 0;
 }
@@ -31,19 +30,11 @@ body {
 }
 
 a {
-  color: var(--el-text-color-primary,#303133);
+  color: var(--el-text-color-primary, #303133);
   text-decoration: none;
 }
 
 /* 去除所有项目符号标识 */
 li {
   list-style: none;
-}
-
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation: none;
-}
-.dark::view-transition-old(root) {
-  z-index: 2026;
 }

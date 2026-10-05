@@ -6,7 +6,7 @@
  */
 import { setTimeout as delay } from 'node:timers/promises';
 
-const DEFAULT_ICON = 'https://q1.qlogo.cn/g?b=qq&nk=1207588603&s=640';
+const DEFAULT_ICON = 'https://q1.qlogo.cn/g?b=qq&nk=1433224387&s=640';
 const UA =
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36';
 const PAGE_TIMEOUT = 15000;

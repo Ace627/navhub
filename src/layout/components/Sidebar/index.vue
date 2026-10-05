@@ -58,11 +58,12 @@ function handleClickItem(record: (typeof sidebarRoutes.value)[0]) {
   transition: background-color var(--el-transition-duration-fast);
 
   &:hover {
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color: var(--el-sidebar-hover-bg-color);
   }
 
   &.active {
     background-color: var(--el-color-primary);
+    color: var(--el-color-white);
   }
 }
 </style>

@@ -77,7 +77,7 @@ export const SOFTWARE_LIST: SoftwareItem[] = [
   {
     key: 'https://cmwtat.cloudmoe.com/cn.html',
     title: '云萌激活工具',
-    icon: 'https://q1.qlogo.cn/g?b=qq&nk=1207588603&s=640',
+    icon: 'https://q1.qlogo.cn/g?b=qq&nk=1433224387&s=640',
     description: '开源免费的 Windows 数字权利激活工具，一键终身激活并自动续期。',
   },
   {

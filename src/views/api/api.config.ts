@@ -119,7 +119,7 @@ export const API_LIST: ApiItem[] = [
   {
     key: 'https://api.shanhe.kim',
     title: '山河云API',
-    icon: 'https://q1.qlogo.cn/g?b=qq&nk=1207588603&s=640',
+    icon: 'https://q1.qlogo.cn/g?b=qq&nk=1433224387&s=640',
     description: '山河云免费接口平台，提供多种公益 API 数据接口，供开发者免费调用。',
   },
   {
@@ -191,7 +191,7 @@ export const API_LIST: ApiItem[] = [
   {
     key: 'https://apis.whyta.cn',
     title: 'WhyApi',
-    icon: 'https://q1.qlogo.cn/g?b=qq&nk=1207588603&s=640',
+    icon: 'https://q1.qlogo.cn/g?b=qq&nk=1433224387&s=640',
     description: 'WhyApi 免费接口大全，聚合多种常用公益接口，供开发者快速接入。',
   },
   {
@@ -299,7 +299,7 @@ export const API_LIST: ApiItem[] = [
   {
     key: 'https://api.zlxh.top',
     title: '小黑API',
-    icon: 'https://q1.qlogo.cn/g?b=qq&nk=1207588603&s=640',
+    icon: 'https://q1.qlogo.cn/g?b=qq&nk=1433224387&s=640',
     description: '小黑免费接口平台，主打稳定、快速、易用，提供高质量公益接口。',
   },
   {
@@ -317,7 +317,7 @@ export const API_LIST: ApiItem[] = [
   {
     key: 'http://api.xn--yet605m.xyz',
     title: '小鸟的API',
-    icon: 'https://q1.qlogo.cn/g?b=qq&nk=1207588603&s=640',
+    icon: 'https://q1.qlogo.cn/g?b=qq&nk=1433224387&s=640',
     description: '小鸟的免费接口站点，提供多种常用公益 API，供开发者免费调用。',
   },
   {

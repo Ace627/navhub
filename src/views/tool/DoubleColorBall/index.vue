@@ -230,7 +230,7 @@ onMounted(() => {
 html[data-device='mobile'] {
   .app-content {
     --ball-size: 36px;
-    padding: 12px;
+    padding: 8px;
   }
   .tool-container {
     width: 100%;

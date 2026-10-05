@@ -49,7 +49,7 @@ const props = withDefaults(defineProps<AppLogoProps>(), {
   span {
     font-size: 16px;
     margin-left: 6px;
-    color: #fff;
+    color: inherit;
     letter-spacing: 2px;
   }
 }
