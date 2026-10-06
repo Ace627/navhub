@@ -4,6 +4,12 @@ import { isExternal } from '@/utils'
 /** 好软推荐站点列表：均为外部站点，卡片以纯外链模式渲染 */
 export const SOFTWARE_LIST: SiteItem[] = [
   {
+    key: 'https://www.aixiansheng.top/software/hongguopc',
+    title: '红果短剧',
+    icon: 'https://lf-fe.fqnovelstatic.com/obj/novel-fanqie-fe/growth/incentive-h5-monorepo/apps/hongguo/app-logo.png',
+    description: '红果短剧官方电脑版，免费观看海量短剧，支持自动连播、收藏与历史记录。',
+  },
+  {
     key: 'https://pc.weixin.qq.com',
     title: '微信',
     icon: 'https://res.wx.qq.com/a/wx_fed/assets/res/OTE0YTAw.png',
