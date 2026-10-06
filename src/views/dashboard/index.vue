@@ -2,9 +2,11 @@
   <div class="app-content">
     <!-- 搜索区：引擎切换标签 + 关键词搜索框 -->
     <div class="search-section">
-      <div class="engine-tabs">
-        <button v-for="engine in ENGINE_LIST" :key="engine.name" type="button" class="engine-tab" :class="{ 'is-active': engine.name === activeEngine }" @click="switchEngine(engine.name)">{{ engine.name }}搜索</button>
-      </div>
+      <el-scrollbar class="engine-scrollbar">
+        <div class="engine-tabs">
+          <button v-for="engine in ENGINE_LIST" :key="engine.name" type="button" class="engine-tab" :class="{ 'is-active': engine.name === activeEngine }" @click="switchEngine(engine.name)">{{ engine.name }}搜索</button>
+        </div>
+      </el-scrollbar>
       <el-input v-model="keyword" class="search-input" size="large" clearable :placeholder="`在${activeEngine}搜索，输入关键词后回车`" @keyup.enter="handleSearch">
         <template #prefix>
           <SvgIcon name="Search" :size="16" />
@@ -54,6 +56,8 @@ const ENGINE_LIST: SearchEngine[] = [
   { name: '谷歌', url: 'https://www.google.com/search?q=' },
   { name: '搜狗', url: 'https://www.sogou.com/web?query=' },
   { name: '必应', url: 'https://www.bing.com/search?q=' },
+  { name: '抖音', url: 'https://www.douyin.com/search/' },
+  { name: '小红书', url: 'https://www.xiaohongshu.com/search_result?keyword=' },
 ]
 
 /** 全站条目定义：链接条目 + 所属分类路由路径（站内条目跳转时拼接使用） */
@@ -151,6 +155,10 @@ onActivated(refreshRecentSites)
   margin-bottom: 32px;
 }
 
+.engine-scrollbar {
+  width: 100%;
+}
+
 .engine-tabs {
   display: flex;
   flex-wrap: wrap;
@@ -166,6 +174,7 @@ onActivated(refreshRecentSites)
   border: 1px solid var(--el-border-color);
   border-radius: 999px;
   cursor: pointer;
+  white-space: nowrap;
   transition:
     color 0.2s,
     background-color 0.2s,
@@ -219,6 +228,15 @@ html[data-device='mobile'] {
   .search-section {
     gap: 12px;
     margin-bottom: 16px;
+  }
+
+  .engine-tabs {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+
+  .engine-tab {
+    flex-shrink: 0;
   }
 
   .search-input {

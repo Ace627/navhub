@@ -29,7 +29,7 @@ export const AI_LIST: AiItem[] = [
   {
     key: 'https://chatgpt.com',
     title: 'ChatGPT',
-    icon: 'https://chatgpt.com/unauth-mweb/favicon.ico',
+    icon: '@/assets/images/icons/ChatGPT.png',
     description: 'OpenAI 旗下 AI 对话助手，支持问答写作与代码编程，可上传文件解析内容。',
   },
   {
