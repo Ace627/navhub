@@ -1,19 +1,8 @@
+import type { SiteItem } from './types'
 import { isExternal } from '@/utils'
 
-/** 壁纸条目定义 */
-export interface WallpaperItem {
-  /** 站点唯一标识：完整 URL（http/https 等协议开头），点击新窗口打开 */
-  key: string
-  /** 站点名称 */
-  title: string
-  /** 图标地址：站点图标 URL 或本地资源路径（src/assets/images/icons/ 下按文件名匹配） */
-  icon: string
-  /** 描述文案：站点卡片上展示的简短说明，约 32 字 */
-  description: string
-}
-
 /** 精美壁纸站点列表：均为外部站点，卡片以纯外链模式渲染 */
-export const WALLPAPER_LIST: WallpaperItem[] = [
+export const WALLPAPER_LIST: SiteItem[] = [
   {
     key: 'https://pic.netbian.com',
     title: '彼岸图网',

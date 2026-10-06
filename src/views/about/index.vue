@@ -84,14 +84,14 @@
 
 <script setup lang="ts">
 defineOptions({ name: 'About' })
-import { EXTERNAL_DASHBOARD_COUNT } from '@/views/movie/movie.config'
-import { EXTERNAL_TOOL_COUNT } from '@/views/tool/tool.config'
-import { EXTERNAL_API_COUNT } from '@/views/api/api.config'
-import { EXTERNAL_STUDY_COUNT } from '@/views/study/study.config'
-import { EXTERNAL_SOFTWARE_COUNT } from '@/views/software/software.config'
-import { EXTERNAL_WALLPAPER_COUNT } from '@/views/wallpaper/wallpaper.config'
-import { EXTERNAL_FRONTEND_COUNT } from '@/views/frontend/frontend.config'
-import { EXTERNAL_AI_COUNT } from '@/views/ai/ai.config'
+import { EXTERNAL_MOVIE_COUNT } from '@/database/movie'
+import { EXTERNAL_TOOL_COUNT } from '@/database/tool'
+import { EXTERNAL_API_COUNT } from '@/database/api'
+import { EXTERNAL_STUDY_COUNT } from '@/database/study'
+import { EXTERNAL_SOFTWARE_COUNT } from '@/database/software'
+import { EXTERNAL_WALLPAPER_COUNT } from '@/database/wallpaper'
+import { EXTERNAL_FRONTEND_COUNT } from '@/database/frontend'
+import { EXTERNAL_AI_COUNT } from '@/database/ai'
 import type { EChartsOption } from 'echarts'
 
 /** 站点名称，取自环境变量，与侧栏 logo 处一致 */
@@ -107,11 +107,11 @@ const qqGroup = '486011286'
 const CHART_COLORS = ['#409eff', '#36cfc9', '#722ed1', '#eb2f96', '#faad14', '#52c41a', '#fa8c16', '#f5222d', '#2f54eb', '#13c2c2']
 
 /** 收录站点总数，由数据源直接推导：首页站点加上人工智能页、前端专家页、实用工具页、公益接口页、自我提升页、好软推荐页与精美壁纸页的外部站点 */
-const siteCount = EXTERNAL_DASHBOARD_COUNT + EXTERNAL_AI_COUNT + EXTERNAL_FRONTEND_COUNT + EXTERNAL_TOOL_COUNT + EXTERNAL_API_COUNT + EXTERNAL_STUDY_COUNT + EXTERNAL_SOFTWARE_COUNT + EXTERNAL_WALLPAPER_COUNT
+const siteCount = EXTERNAL_MOVIE_COUNT + EXTERNAL_AI_COUNT + EXTERNAL_FRONTEND_COUNT + EXTERNAL_TOOL_COUNT + EXTERNAL_API_COUNT + EXTERNAL_STUDY_COUNT + EXTERNAL_SOFTWARE_COUNT + EXTERNAL_WALLPAPER_COUNT
 
 /** 分类分布数据：首页「影视资源」分类加上「人工智能」「前端专家」「实用工具」「公益接口」「自我提升」「好软推荐」「精美壁纸」各行，占比合计 100% */
 const categoryStats = computed(() => [
-  { name: '影视资源', value: EXTERNAL_DASHBOARD_COUNT },
+  { name: '影视资源', value: EXTERNAL_MOVIE_COUNT },
   { name: '人工智能', value: EXTERNAL_AI_COUNT },
   { name: '前端专家', value: EXTERNAL_FRONTEND_COUNT },
   { name: '实用工具', value: EXTERNAL_TOOL_COUNT },

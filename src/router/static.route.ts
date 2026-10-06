@@ -1,13 +1,7 @@
 import Layout from '@/layout/index.vue'
 import type { RouteRecordRaw } from 'vue-router'
-import { RouterConstant } from '../router.constant'
-import { TOOL_ROUTES } from './tool.route'
-import { API_ROUTES } from './api.route'
-import { STUDY_ROUTES } from './study.route'
-import { SOFTWARE_ROUTES } from './software.route'
-import { WALLPAPER_ROUTES } from './wallpaper.route'
-import { FRONTEND_ROUTES } from './frontend.route'
-import { AI_ROUTES } from './ai.route'
+import { RouterConstant } from './router.constant'
+import { buildCategoryRoutes } from './category.registry'
 
 export const STATIC_ROUTE_LIST: RouteRecordRaw[] = [
   {
@@ -23,26 +17,8 @@ export const STATIC_ROUTE_LIST: RouteRecordRaw[] = [
         meta: { title: '最近使用', icon: 'Home', affix: true },
       },
 
-      {
-        name: 'Movie',
-        path: 'movie',
-        component: () => import('@/views/movie/index.vue'),
-        meta: { title: '免费追剧', icon: 'Movie' },
-      },
-
-      ...AI_ROUTES,
-
-      ...FRONTEND_ROUTES,
-
-      ...SOFTWARE_ROUTES,
-
-      ...TOOL_ROUTES,
-
-      ...API_ROUTES,
-
-      ...STUDY_ROUTES,
-
-      ...WALLPAPER_ROUTES,
+      // 分类页路由：由分类注册表生成（detail 模式分类自动附带详情子路由），全部指向通用列表页/详情页
+      ...buildCategoryRoutes(),
 
       {
         name: 'About',

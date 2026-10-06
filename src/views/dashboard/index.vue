@@ -33,14 +33,14 @@ defineOptions({ name: RouterConstant.HOME_PAGE_NAME })
 import { RouterConstant } from '@/router/router.constant'
 import type { LinkItem } from '@/components/LinkCard/types'
 import { getSiteClickCounts, isExternal, pruneSiteClickCounts } from '@/utils'
-import { AI_LIST } from '@/views/ai/ai.config'
-import { API_LIST } from '@/views/api/api.config'
-import { DASHBOARD_LIST } from '@/views/movie/movie.config'
-import { FRONTEND_LIST } from '@/views/frontend/frontend.config'
-import { SOFTWARE_LIST } from '@/views/software/software.config'
-import { STUDY_LIST } from '@/views/study/study.config'
-import { TOOL_LIST } from '@/views/tool/tool.config'
-import { WALLPAPER_LIST } from '@/views/wallpaper/wallpaper.config'
+import { AI_LIST } from '@/database/ai'
+import { API_LIST } from '@/database/api'
+import { MOVIE_LIST } from '@/database/movie'
+import { FRONTEND_LIST } from '@/database/frontend'
+import { SOFTWARE_LIST } from '@/database/software'
+import { STUDY_LIST } from '@/database/study'
+import { TOOL_LIST } from '@/database/tool'
+import { WALLPAPER_LIST } from '@/database/wallpaper'
 
 /** 搜索引擎定义 */
 interface SearchEngine {
@@ -82,7 +82,7 @@ const router = useRouter()
 
 /** 分类数据源清单：分类路由路径 + 该分类下的站点列表 */
 const CATEGORY_SOURCES: { categoryPath: string; list: LinkItem[] }[] = [
-  { categoryPath: '/movie', list: DASHBOARD_LIST },
+  { categoryPath: '/movie', list: MOVIE_LIST },
   { categoryPath: '/ai', list: AI_LIST },
   { categoryPath: '/api', list: API_LIST },
   { categoryPath: '/frontend', list: FRONTEND_LIST },

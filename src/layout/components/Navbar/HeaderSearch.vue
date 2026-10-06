@@ -62,14 +62,14 @@
 defineOptions({ name: 'HeaderSearch' })
 import type { LinkItem } from '@/components/LinkCard/types'
 import { isExternal } from '@/utils'
-import { AI_LIST } from '@/views/ai/ai.config'
-import { API_LIST } from '@/views/api/api.config'
-import { DASHBOARD_LIST } from '@/views/movie/movie.config'
-import { FRONTEND_LIST } from '@/views/frontend/frontend.config'
-import { SOFTWARE_LIST } from '@/views/software/software.config'
-import { STUDY_LIST } from '@/views/study/study.config'
-import { TOOL_LIST } from '@/views/tool/tool.config'
-import { WALLPAPER_LIST } from '@/views/wallpaper/wallpaper.config'
+import { AI_LIST } from '@/database/ai'
+import { API_LIST } from '@/database/api'
+import { MOVIE_LIST } from '@/database/movie'
+import { FRONTEND_LIST } from '@/database/frontend'
+import { SOFTWARE_LIST } from '@/database/software'
+import { STUDY_LIST } from '@/database/study'
+import { TOOL_LIST } from '@/database/tool'
+import { WALLPAPER_LIST } from '@/database/wallpaper'
 
 /** 搜索索引条目：链接条目附加所属分类信息 */
 interface SearchEntry extends LinkItem {
@@ -95,7 +95,7 @@ const MAX_RESULTS = 20
 /** 全量搜索索引：聚合 8 份分类 config，模块加载时构建一次 */
 const SEARCH_INDEX: SearchEntry[] = (
   [
-    { categoryName: '免费追剧', categoryPath: '/movie', list: DASHBOARD_LIST },
+    { categoryName: '免费追剧', categoryPath: '/movie', list: MOVIE_LIST },
     { categoryName: '人工智能', categoryPath: '/ai', list: AI_LIST },
     { categoryName: '前端专家', categoryPath: '/frontend', list: FRONTEND_LIST },
     { categoryName: '好软推荐', categoryPath: '/software', list: SOFTWARE_LIST },

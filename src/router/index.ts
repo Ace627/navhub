@@ -1,5 +1,5 @@
 import type { App } from 'vue'
-import { STATIC_ROUTE_LIST } from './modules/static.route'
+import { STATIC_ROUTE_LIST } from './static.route'
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 
 const { VITE_ROUTER_MODE, VITE_PUBLIC_PATH } = import.meta.env

@@ -1,19 +1,8 @@
+import type { SiteItem } from './types'
 import { isExternal } from '@/utils'
 
-/** 软件条目定义 */
-export interface SoftwareItem {
-  /** 站点唯一标识：完整 URL（http/https 等协议开头），点击新窗口打开 */
-  key: string
-  /** 软件名称 */
-  title: string
-  /** 图标地址：站点图标 URL 或本地资源路径（src/assets/images/icons/ 下按文件名匹配） */
-  icon: string
-  /** 描述文案：软件卡片上展示的简短说明，约 32 字 */
-  description: string
-}
-
 /** 好软推荐站点列表：均为外部站点，卡片以纯外链模式渲染 */
-export const SOFTWARE_LIST: SoftwareItem[] = [
+export const SOFTWARE_LIST: SiteItem[] = [
   {
     key: 'https://pc.weixin.qq.com',
     title: '微信',

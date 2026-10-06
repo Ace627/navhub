@@ -1,19 +1,8 @@
+import type { SiteItem } from './types'
 import { isExternal } from '@/utils'
 
-/** 工具条目定义 */
-export interface ToolItem {
-  /** 工具唯一标识：自有工具填组件目录名（与详情页组件目录一致，同时用作子路由参数）；外部工具填完整 URL（http/https 等协议开头，点击新窗口打开） */
-  key: string
-  /** 工具名称 */
-  title: string
-  /** 图标地址：自有工具填本地资源路径（@/ 别名指向 src/assets/ 下图标文件）；外部工具填站点图标 URL */
-  icon: string
-  /** 描述文案：工具卡片上展示的简短说明，约 32 字 */
-  description: string
-}
-
-/** 工具注册表：自有工具登记组件目录名并在本目录下建同名组件目录（内含 index.vue）；外部工具直接登记完整 URL */
-export const TOOL_LIST: ToolItem[] = [
+/** 工具注册表：自有工具登记组件目录名并在 src/views/category/widgets/ 下建同名组件目录（内含 index.vue）；外部工具直接登记完整 URL */
+export const TOOL_LIST: SiteItem[] = [
   {
     key: 'DoubleColorBall',
     title: '双色球模拟器',

@@ -17,14 +17,14 @@
 <script setup lang="ts">
 defineOptions({ name: 'FloatNav' })
 import { RouterConstant } from '@/router/router.constant'
-import { EXTERNAL_DASHBOARD_COUNT } from '@/views/movie/movie.config'
-import { EXTERNAL_FRONTEND_COUNT } from '@/views/frontend/frontend.config'
-import { EXTERNAL_AI_COUNT } from '@/views/ai/ai.config'
-import { EXTERNAL_SOFTWARE_COUNT } from '@/views/software/software.config'
-import { EXTERNAL_TOOL_COUNT } from '@/views/tool/tool.config'
-import { EXTERNAL_API_COUNT } from '@/views/api/api.config'
-import { EXTERNAL_STUDY_COUNT } from '@/views/study/study.config'
-import { EXTERNAL_WALLPAPER_COUNT } from '@/views/wallpaper/wallpaper.config'
+import { EXTERNAL_MOVIE_COUNT } from '@/database/movie'
+import { EXTERNAL_FRONTEND_COUNT } from '@/database/frontend'
+import { EXTERNAL_AI_COUNT } from '@/database/ai'
+import { EXTERNAL_SOFTWARE_COUNT } from '@/database/software'
+import { EXTERNAL_TOOL_COUNT } from '@/database/tool'
+import { EXTERNAL_API_COUNT } from '@/database/api'
+import { EXTERNAL_STUDY_COUNT } from '@/database/study'
+import { EXTERNAL_WALLPAPER_COUNT } from '@/database/wallpaper'
 
 /** 导航入口项 */
 interface NavEntry {
@@ -37,7 +37,7 @@ interface NavEntry {
 }
 
 /** 免费追剧站点数量，由数据源直接推导 */
-const HOME_COUNT = EXTERNAL_DASHBOARD_COUNT
+const HOME_COUNT = EXTERNAL_MOVIE_COUNT
 
 /** 导航入口列表：与侧栏一致的顶级路由，供移动端快速切换页面 */
 const NAV_ENTRIES: NavEntry[] = [

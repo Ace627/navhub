@@ -1,19 +1,8 @@
+import type { SiteItem } from './types'
 import { isExternal } from '@/utils'
 
-/** 人工智能条目定义 */
-export interface AiItem {
-  /** 条目唯一标识：完整 URL（http/https 等协议开头，点击新窗口打开） */
-  key: string
-  /** 条目名称 */
-  title: string
-  /** 图标地址：站点图标 URL */
-  icon: string
-  /** 描述文案：卡片上展示的简短说明，约 32 字 */
-  description: string
-}
-
 /** 人工智能站点列表：均为外部站点，卡片点击后新窗口打开；网页聊天类站点集中排在最前 */
-export const AI_LIST: AiItem[] = [
+export const AI_LIST: SiteItem[] = [
   {
     key: 'https://chat.deepseek.com',
     title: 'DeepSeek',

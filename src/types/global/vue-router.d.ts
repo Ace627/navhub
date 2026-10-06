@@ -1,11 +1,12 @@
+import type { RouteLocationNormalizedLoaded } from 'vue-router'
 import 'vue-router'
 
 declare module 'vue-router' {
   interface RouteMeta {
     /** 是否固定在 tags-view */
     affix?: boolean
-    /** 路由标题，用于显示在侧边栏和面包屑中 */
-    title: string
+    /** 路由标题，用于显示在侧边栏和面包屑中；传函数时按当前路由动态解析（如详情页按条目参数取标题） */
+    title: string | ((route: RouteLocationNormalizedLoaded) => string)
     /** 路由图标 */
     icon?: string
     /** 是否在侧边栏隐藏 */
