@@ -1,7 +1,4 @@
 html {
-  /** 主题色 */
-  --el-color-primary: var(--el-color-primary);
-
   --el-sidebar-width: 180px;
   --el-sidebar-hide-width: 64px;
   --el-sidebar-item-height: 36px;
@@ -14,9 +11,6 @@ html {
   --el-navbar-height: 50px;
   --el-navbar-bg-color: var(--el-bg-color);
   --el-navbar-box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
-
-  --el-transition-duration: 0.32s;
-  --el-transition-duration-fast: 0.16s;
 
   /** 主题切换圆形扩散动效 */
   --el-theme-transition-duration: 400ms;

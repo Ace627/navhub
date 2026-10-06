@@ -12,6 +12,7 @@
 
 <script setup lang="ts">
 import type { LinkCardProps, LinkItem } from './types'
+import { recordSiteClick } from '@/utils'
 
 const props = defineProps<LinkCardProps>()
 
@@ -55,9 +56,12 @@ function onIconError(item: LinkItem) {
 }
 
 /**
- * 卡片点击回调：纯外链模式交给 a 标签默认导航，其余抛出 click 事件由父级决定跳转
+ * 卡片点击回调：记录一次导航点击统计，纯外链模式交给 a 标签默认导航，其余抛出 click 事件由父级决定跳转
+ *
+ * 纯外链模式不调用 preventDefault/stopPropagation，保留 target="_blank" 默认新标签跳转
  */
-function onCardClick() {
+function onCardClick(): void {
+  recordSiteClick(props.item.key)
   if (props.plainLink) return
   emit('click', props.item)
 }
@@ -67,7 +71,7 @@ function onCardClick() {
 .link-card {
   --el-link-card-icon-size: 32px;
   display: block;
-  padding: 8px 16px;
+  padding: 8px 12px;
   background-color: var(--el-bg-color);
   border: 1px solid var(--el-border-color);
   border-radius: 8px;

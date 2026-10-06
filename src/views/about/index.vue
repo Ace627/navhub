@@ -84,7 +84,7 @@
 
 <script setup lang="ts">
 defineOptions({ name: 'About' })
-import { EXTERNAL_DASHBOARD_COUNT } from '@/views/dashboard/dashboard.config'
+import { EXTERNAL_DASHBOARD_COUNT } from '@/views/movie/movie.config'
 import { EXTERNAL_TOOL_COUNT } from '@/views/tool/tool.config'
 import { EXTERNAL_API_COUNT } from '@/views/api/api.config'
 import { EXTERNAL_STUDY_COUNT } from '@/views/study/study.config'

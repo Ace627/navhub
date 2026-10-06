@@ -20,7 +20,14 @@ export const STATIC_ROUTE_LIST: RouteRecordRaw[] = [
         name: RouterConstant.HOME_PAGE_NAME,
         path: 'dashboard',
         component: () => import('@/views/dashboard/index.vue'),
-        meta: { title: '免费追剧', icon: 'Home', affix: true },
+        meta: { title: '最近使用', icon: 'Home', affix: true },
+      },
+
+      {
+        name: 'Movie',
+        path: 'movie',
+        component: () => import('@/views/movie/index.vue'),
+        meta: { title: '免费追剧', icon: 'Movie' },
       },
 
       ...AI_ROUTES,

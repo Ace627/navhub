@@ -1,6 +1,6 @@
 import { isExternal } from '@/utils'
 
-/** 首页条目定义 */
+/** 免费追剧页条目定义 */
 export interface DashboardItem {
   /** 站点唯一标识：完整 URL（http/https 等协议开头），点击新窗口打开 */
   key: string
@@ -31,12 +31,6 @@ export const DASHBOARD_LIST: DashboardItem[] = [
     title: '电影猫',
     icon: 'https://dym11.bond/mxtheme/images/favicon.png',
     description: '汇集高清电影、电视剧、短剧与动漫资源，海量影视内容实时更新的在线观影站。',
-  },
-  {
-    key: 'https://www.5o5k.com',
-    title: '蘑菇影视',
-    icon: 'https://www.5o5k.com/upload/mxprocms/20250107-1/63369a4a88627d80070e08951fd5424a.png',
-    description: '汇聚海内外热门电影、电视剧、综艺与动漫，更新及时，支持高清流畅在线观看。',
   },
   {
     key: 'https://360yy.cc',
