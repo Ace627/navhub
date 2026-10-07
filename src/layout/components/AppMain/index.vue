@@ -23,5 +23,6 @@ const settingStore = useSettingStore()
   width: 100%;
   flex-grow: 1;
   overflow-x: clip; // 用 clip 代替 hidden：既裁剪横向溢出，又不产生滚动容器，否则内部 sticky 会失效
+  overflow-y: auto;
 }
 </style>
