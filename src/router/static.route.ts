@@ -23,7 +23,7 @@ export const STATIC_ROUTE_LIST: RouteRecordRaw[] = [
       {
         name: 'About',
         path: 'about',
-        component: () => import('@/views/about/index.vue'),
+        component: () => import('@/views/core/about.vue'),
         meta: { title: '关于我们', icon: 'About' },
       },
     ],

@@ -12,16 +12,24 @@ html {
   --el-navbar-bg-color: var(--el-bg-color);
   --el-navbar-box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 
+  --el-hitokoto-height: 34px;
+  --el-hitokoto-bg-color: var(--el-bg-color);
+  --el-hitokoto-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 0 3px 0 rgba(0, 0, 0, 0.04);
+  --el-hitokoto-border-color: #d8dce5;
+
   /** 主题切换圆形扩散动效 */
   --el-theme-transition-duration: 400ms;
   --el-theme-transition-easing: ease-out;
 }
 
 html.dark {
-  --el-navbar-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
-
   --el-sidebar-text-color: #fff;
   --el-sidebar-bg-color: #262935;
   --el-sidebar-hover-bg-color: rgba(255, 255, 255, 0.08);
   --el-sidebar-box-shadow: 1px 0 4px rgba(0, 0, 0, 0.6);
+
+  --el-navbar-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+
+  --el-hitokoto-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5), 0 0 3px 0 rgba(0, 0, 0, 0.3);
+  --el-hitokoto-border-color: rgba(255, 255, 255, 0.12);
 }

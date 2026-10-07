@@ -11,10 +11,8 @@ export interface SystemSetting {
   showWatermark: boolean
   /** 是否显示项目名称及 Logo */
   showLogo: boolean
-  /** 是否显示多标签模式 */
-  showTagsView: boolean
-  /** 显示页签图标 */
-  showTagsViewIcon: boolean
+  /** 是否显示一言栏 */
+  showHitokoto: boolean
   /** 是否显示面包屑导航 */
   showBreadcrumb: boolean
   /** 是否显示面包屑导航的图标 */
@@ -26,13 +24,12 @@ export interface SystemSetting {
 export const defaultSettings: SystemSetting = {
   theme: 'light',
   size: 'default',
-  transition: 'el-zoom-in-center',
+  transition: 'fade-transform',
   uniqueOpened: true,
   showDynamicTitle: true,
   showWatermark: true,
   showLogo: true,
-  showTagsView: true,
-  showTagsViewIcon: true,
+  showHitokoto: true,
   showBreadcrumb: true,
   showBreadcrumbIcon: true,
 }

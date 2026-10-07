@@ -8,6 +8,7 @@
     <div class="main-container">
       <header class="fixed-header">
         <Navbar />
+        <Hitokoto v-if="settingStore.showHitokoto" />
       </header>
       <AppMain />
       <AppFooter />
@@ -23,10 +24,12 @@ defineOptions({ name: 'Layout' })
 import Navbar from './components/Navbar/index.vue'
 import Sidebar from './components/Sidebar/index.vue'
 import AppMain from './components/AppMain/index.vue'
-import AppFooter from './components/AppFooter/index.vue'
+import Hitokoto from './components/Hitokoto/index.vue'
 import FloatNav from './components/FloatNav/index.vue'
+import AppFooter from './components/AppFooter/index.vue'
 
 const appStore = useAppStore()
+const settingStore = useSettingStore()
 
 const classes = computed(() => [{ 'hide-sidebar': appStore.isCollapse }, { 'open-sidebar': !appStore.isCollapse }, { withoutAnimation: appStore.withoutAnimation }])
 </script>

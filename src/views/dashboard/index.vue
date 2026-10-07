@@ -14,7 +14,7 @@
       </el-input>
     </div>
 
-    <!-- 最近使用：按全站卡片点击次数取前 8 -->
+    <!-- 最近使用：按全站卡片点击次数取前 15 -->
     <div v-if="recentSites.length" class="card-grid">
       <template v-for="entry in recentSites" :key="entry.item.key">
         <LinkCard v-if="isExternal(entry.item.key)" :item="entry.item" plain-link />
