@@ -74,8 +74,8 @@ html[data-device='mobile'] {
 
   .float-nav-fab {
     position: fixed;
-    right: 16px;
-    bottom: 16px;
+    right: 8px;
+    bottom: 32px;
     z-index: 900;
     display: flex;
     align-items: center;

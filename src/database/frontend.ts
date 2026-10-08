@@ -10,7 +10,7 @@ export const FRONTEND_LIST: SiteItem[] = [
     description: '国内主流代码托管平台，提供 Git 代码管理、项目协作与持续集成等研发服务。',
   },
   {
-    key: 'https://github.com',
+    key: 'https://github.com/feed',
     title: 'GitHub',
     icon: 'https://github.githubassets.com/assets/pinned-octocat-093da3e6fa40.svg',
     description: '全球最大开源代码托管平台，汇聚海量开源项目，支持代码协作与版本管理。',
