@@ -19,6 +19,7 @@ export default defineConfig(({ mode }) => {
     },
 
     server: {
+      host: true,
       port: parseInt(runtimeConfig.VITE_SERVER_PORT),
     },
 

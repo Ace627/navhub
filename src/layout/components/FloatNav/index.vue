@@ -2,10 +2,8 @@
   <div ref="rootRef" class="float-nav">
     <transition name="float-nav-fade">
       <div v-show="panelVisible" class="float-nav-panel">
-        <button v-for="item in NAV_ENTRIES" :key="item.path" type="button" :class="{ active: isActive(item) }" @click="handleSelect(item)">
-          <span>{{ item.label }}</span>
-          <em v-if="item.count">{{ item.count }}</em>
-        </button>
+        <button type="button" @click="openSidebar">分类导航</button>
+        <button type="button" @click="openSearch">全站搜索</button>
       </div>
     </transition>
     <button type="button" class="float-nav-fab" aria-label="页面导航" @click="panelVisible = !panelVisible">
@@ -16,68 +14,31 @@
 
 <script setup lang="ts">
 defineOptions({ name: 'FloatNav' })
-import { RouterConstant } from '@/router/router.constant'
-import { EXTERNAL_MOVIE_COUNT } from '@/database/movie'
-import { EXTERNAL_FRONTEND_COUNT } from '@/database/frontend'
-import { EXTERNAL_AI_COUNT } from '@/database/ai'
-import { EXTERNAL_SOFTWARE_COUNT } from '@/database/software'
-import { EXTERNAL_TOOL_COUNT } from '@/database/tool'
-import { EXTERNAL_API_COUNT } from '@/database/api'
-import { EXTERNAL_STUDY_COUNT } from '@/database/study'
-import { EXTERNAL_WALLPAPER_COUNT } from '@/database/wallpaper'
 
-/** 导航入口项 */
-interface NavEntry {
-  /** 展示名称 */
-  label: string
-  /** 跳转路由路径 */
-  path: string
-  /** 对应页面的外部站点数，缺省不展示 */
-  count?: number
-}
-
-/** 免费追剧站点数量，由数据源直接推导 */
-const HOME_COUNT = EXTERNAL_MOVIE_COUNT
-
-/** 导航入口列表：与侧栏一致的顶级路由，供移动端快速切换页面 */
-const NAV_ENTRIES: NavEntry[] = [
-  { label: '最近使用', path: RouterConstant.HOME_PAGE_URL },
-  { label: '免费追剧', path: '/movie', count: HOME_COUNT },
-  { label: '人工智能', path: '/ai', count: EXTERNAL_AI_COUNT },
-  { label: '前端专家', path: '/frontend', count: EXTERNAL_FRONTEND_COUNT },
-  { label: '好软推荐', path: '/software', count: EXTERNAL_SOFTWARE_COUNT },
-  { label: '实用工具', path: '/tool', count: EXTERNAL_TOOL_COUNT },
-  { label: '公益接口', path: '/api', count: EXTERNAL_API_COUNT },
-  { label: '自我提升', path: '/study', count: EXTERNAL_STUDY_COUNT },
-  { label: '精美壁纸', path: '/wallpaper', count: EXTERNAL_WALLPAPER_COUNT },
-  { label: '关于我们', path: '/about' },
-]
-
-const route = useRoute()
-const router = useRouter()
+const appStore = useAppStore()
 
 const rootRef = ref<HTMLElement>()
 
 /** 导航面板是否展开 */
 const panelVisible = ref(false)
 
+/** 移动端搜索面板共享开关 */
+const mobileSearchVisible = useMobileSearch()
+
 /**
- * 判断入口是否为当前页面：顶级路径精确匹配，详情子路由按前缀归属上级页面
- *
- * @param item 待判断的导航入口项
+ * 打开侧栏菜单：移动端抽屉收起时展开，已展开时保持不动
  */
-function isActive(item: NavEntry) {
-  return item.path === RouterConstant.HOME_PAGE_URL ? route.path === item.path : route.path.startsWith(item.path)
+function openSidebar() {
+  panelVisible.value = false
+  if (appStore.isCollapse) appStore.toggleSidebar()
 }
 
 /**
- * 导航面板选中入口：收起面板后路由跳转
- *
- * @param item 目标导航入口项
+ * 打开移动端搜索面板
  */
-function handleSelect(item: NavEntry) {
+function openSearch() {
   panelVisible.value = false
-  router.push(item.path)
+  mobileSearchVisible.value = true
 }
 
 /**
@@ -137,7 +98,6 @@ html[data-device='mobile'] {
     display: flex;
     flex-direction: column;
     gap: 2px;
-    min-width: 140px;
     padding: 8px;
     background-color: var(--el-bg-color-overlay);
     border: 1px solid var(--el-border-color-light);

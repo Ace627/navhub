@@ -4,6 +4,12 @@ import { isExternal } from '@/utils'
 /** 自我提升站点列表：均为外部站点，卡片以纯外链模式渲染 */
 export const STUDY_LIST: SiteItem[] = [
   {
+    key: 'https://eternity4719.github.io/HowToLiveBetter',
+    title: '高性价比人生',
+    icon: 'https://q1.qlogo.cn/g?b=qq&nk=1433224387&s=640',
+    description: '按性价比排序的人生指南，672 条建议覆盖长寿防病、省钱理财与防骗法律。',
+  },
+  {
     key: 'https://www.lvyenet.com',
     title: '绿叶学习网',
     icon: 'https://www.lvyenet.com/imgs/sites/share/apple-touch-icon.png',

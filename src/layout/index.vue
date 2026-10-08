@@ -72,6 +72,12 @@ const classes = computed(() => [{ 'hide-sidebar': appStore.isCollapse }, { 'open
   z-index: var(--el-fixed-header-index);
 }
 
+/* 桌面端侧栏与主内容并排不重叠，头部抬到侧栏之上，使搜索下拉可浮于侧栏上方；
+   移动端维持原层级，保证抽屉遮罩仍能盖住头部 */
+html:not([data-device='mobile']) .fixed-header {
+  z-index: calc(var(--el-sidebar-index) + 1);
+}
+
 /* 桌面模式 侧栏折叠 */
 .hide-sidebar {
   .sidebar-container {

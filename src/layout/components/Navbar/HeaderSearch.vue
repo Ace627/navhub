@@ -30,27 +30,33 @@
       <SvgIcon name="Search" size="1.16em" />
     </button>
 
-    <!-- 移动端全屏搜索面板 -->
+    <!-- 移动端底部抽屉搜索面板 -->
     <Teleport to="body">
-      <transition name="search-fade">
-        <div v-if="mobilePanelVisible" class="search-mobile-panel">
-          <div class="search-mobile-bar">
-            <SvgIcon name="Search" :size="16" class="search-input-icon" />
-            <input ref="mobileInputRef" v-model="keyword" class="search-input" type="text" placeholder="搜索站点名称或描述" @keydown="onInputKeydown" />
-            <button type="button" class="search-mobile-close" aria-label="关闭搜索" @click="mobilePanelVisible = false">取消</button>
-          </div>
-          <div class="search-mobile-results">
-            <div v-for="item in results" :key="item.key" class="search-option" @click="openItem(item)">
-              <img class="search-option-icon" :src="getIcon(item)" :alt="item.title" loading="lazy" referrerpolicy="no-referrer" @error="onIconError(item)" />
-              <div class="search-option-body">
-                <div class="search-option-head">
-                  <span class="search-option-title" v-html="highlight(item.title)"></span>
-                  <em class="search-option-category">{{ item.categoryName }}</em>
+      <transition name="search-sheet">
+        <div v-if="mobilePanelVisible" class="search-mobile-mask" @click="mobilePanelVisible = false">
+          <div class="search-mobile-panel" @click.stop>
+            <div class="search-mobile-results">
+              <div v-for="item in results" :key="item.key" class="search-option" @click="openItem(item)">
+                <img class="search-option-icon" :src="getIcon(item)" :alt="item.title" loading="lazy" referrerpolicy="no-referrer" @error="onIconError(item)" />
+                <div class="search-option-body">
+                  <div class="search-option-head">
+                    <span class="search-option-title" v-html="highlight(item.title)"></span>
+                    <em class="search-option-category">{{ item.categoryName }}</em>
+                  </div>
+                  <p class="search-option-desc" v-html="highlight(item.description)"></p>
                 </div>
-                <p class="search-option-desc" v-html="highlight(item.description)"></p>
+              </div>
+              <div v-if="keyword.trim() && !results.length" class="search-empty">未找到相关站点</div>
+              <div v-if="!keyword.trim()" class="search-mobile-guide">
+                <SvgIcon name="Search" :size="28" class="search-mobile-guide-icon" />
+                <p>输入关键词，搜索全站站点</p>
               </div>
             </div>
-            <div v-if="keyword.trim() && !results.length" class="search-empty">未找到相关站点</div>
+            <div class="search-mobile-bar">
+              <SvgIcon name="Search" :size="16" class="search-input-icon" />
+              <input ref="mobileInputRef" v-model="keyword" class="search-input" type="text" placeholder="搜索站点名称或描述" @keydown="onInputKeydown" />
+              <el-button text type="primary" @click="mobilePanelVisible = false">取消</el-button>
+            </div>
           </div>
         </div>
       </transition>
@@ -122,8 +128,8 @@ const mobileInputRef = ref<HTMLInputElement>()
 const keyword = ref('')
 /** 桌面端输入框聚焦状态 */
 const inputFocused = ref(false)
-/** 移动端搜索面板可见性 */
-const mobilePanelVisible = ref(false)
+/** 移动端搜索面板可见性：与 FloatNav 共享的开关，见 useMobileSearch */
+const mobilePanelVisible = useMobileSearch()
 /** 键盘导航的当前选中下标 */
 const activeIndex = ref(0)
 /** 图标加载失败的条目 key 集合（命中即降级为首字占位图） */
@@ -361,7 +367,7 @@ onBeforeUnmount(() => {
 .search-dropdown {
   position: absolute;
   top: calc(100% + 8px);
-  right: 0;
+  left: 0;
   z-index: calc(var(--el-fixed-header-index) + 1);
   width: 380px;
   max-height: 420px;
@@ -482,13 +488,51 @@ html[data-device='mobile'] {
   }
 }
 
-.search-mobile-panel {
+.search-mobile-mask {
   position: fixed;
   inset: 0;
   z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.32);
+}
+
+/* 底部抽屉：锚定屏幕底部，输入框贴软键盘上方落在拇指热区 */
+.search-mobile-panel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   flex-direction: column;
+  min-height: 220px;
+  max-height: 72dvh;
   background-color: var(--el-bg-color);
+  border-radius: 16px 16px 0 0;
+  box-shadow: var(--el-box-shadow-light);
+}
+
+.search-mobile-results {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.search-mobile-guide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 40px 0;
+
+  p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--el-text-color-placeholder);
+  }
+}
+
+.search-mobile-guide-icon {
+  color: var(--el-text-color-placeholder);
 }
 
 .search-mobile-bar {
@@ -497,27 +541,12 @@ html[data-device='mobile'] {
   gap: 8px;
   flex-shrink: 0;
   padding: 8px 12px;
-  border-bottom: 1px solid var(--el-border-color-light);
+  padding-bottom: calc(8px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--el-border-color-light);
 
   .search-input {
     height: 34px;
   }
-}
-
-.search-mobile-close {
-  flex-shrink: 0;
-  padding: 4px 8px;
-  border: none;
-  background: none;
-  font-size: 14px;
-  color: var(--el-color-primary);
-  cursor: pointer;
-}
-
-.search-mobile-results {
-  flex: 1;
-  overflow-y: auto;
-  padding: 8px;
 }
 
 .search-fade-enter-active,
@@ -528,5 +557,24 @@ html[data-device='mobile'] {
 .search-fade-enter-from,
 .search-fade-leave-to {
   opacity: 0;
+}
+
+/* 移动端底部抽屉：遮罩淡入淡出，面板上滑/下滑 */
+.search-sheet-enter-active,
+.search-sheet-leave-active {
+  transition: opacity var(--el-transition-duration);
+
+  .search-mobile-panel {
+    transition: transform var(--el-transition-duration);
+  }
+}
+
+.search-sheet-enter-from,
+.search-sheet-leave-to {
+  opacity: 0;
+
+  .search-mobile-panel {
+    transform: translateY(100%);
+  }
 }
 </style>

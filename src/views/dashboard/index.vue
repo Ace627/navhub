@@ -24,6 +24,7 @@
     <div v-else class="empty-state">
       <SvgIcon name="Link" :size="48" class="empty-icon" />
       <p class="empty-text">暂无使用记录，去逛逛各分类导航吧</p>
+      <el-text v-if="appStore.isCollapse" type="primary" class="empty-link" @click="handleExplore">探索一下吧</el-text>
     </div>
   </div>
 </template>
@@ -33,6 +34,7 @@ defineOptions({ name: RouterConstant.HOME_PAGE_NAME })
 import { RouterConstant } from '@/router/router.constant'
 import type { LinkItem } from '@/components/LinkCard/types'
 import { getSiteClickCounts, isExternal, pruneSiteClickCounts } from '@/utils'
+import { useAppStore } from '@/store/modules/app'
 import { AI_LIST } from '@/database/ai'
 import { API_LIST } from '@/database/api'
 import { MOVIE_LIST } from '@/database/movie'
@@ -80,6 +82,9 @@ const recentSites = ref<SiteEntry[]>([])
 /** 路由实例：站内条目点击时跳转详情页 */
 const router = useRouter()
 
+/** 应用状态实例：空状态引导时用于展开侧栏菜单 */
+const appStore = useAppStore()
+
 /** 分类数据源清单：分类路由路径 + 该分类下的站点列表 */
 const CATEGORY_SOURCES: { categoryPath: string; list: LinkItem[] }[] = [
   { categoryPath: '/movie', list: MOVIE_LIST },
@@ -123,6 +128,13 @@ function handleSearch(): void {
  */
 function handleInternalClick(entry: SiteEntry): void {
   router.push(`${entry.categoryPath}/${entry.item.key}`)
+}
+
+/**
+ * 空状态引导点击：展开折叠的侧栏菜单
+ */
+function handleExplore(): void {
+  appStore.toggleSidebar()
 }
 
 /**
@@ -221,6 +233,10 @@ onActivated(refreshRecentSites)
   .empty-text {
     margin: 0;
     font-size: var(--el-font-size-base);
+  }
+
+  .empty-link {
+    cursor: pointer;
   }
 }
 
