@@ -2,6 +2,7 @@
   <div ref="rootRef" class="float-nav">
     <transition name="float-nav-fade">
       <div v-show="panelVisible" class="float-nav-panel">
+        <button type="button" @click="goHome">最近使用</button>
         <button type="button" @click="openSidebar">分类导航</button>
         <button type="button" @click="openSearch">全站搜索</button>
       </div>
@@ -14,8 +15,10 @@
 
 <script setup lang="ts">
 defineOptions({ name: 'FloatNav' })
+import { RouterConstant } from '@/router/router.constant'
 
 const appStore = useAppStore()
+const router = useRouter()
 
 const rootRef = ref<HTMLElement>()
 
@@ -24,6 +27,14 @@ const panelVisible = ref(false)
 
 /** 移动端搜索面板共享开关 */
 const mobileSearchVisible = useMobileSearch()
+
+/**
+ * 返回最近使用页（主页）：收起面板后跳回首页
+ */
+function goHome() {
+  panelVisible.value = false
+  router.push(RouterConstant.HOME_PAGE_URL)
+}
 
 /**
  * 打开侧栏菜单：移动端抽屉收起时展开，已展开时保持不动
@@ -74,7 +85,7 @@ html[data-device='mobile'] {
 
   .float-nav-fab {
     position: fixed;
-    right: 8px;
+    right: 16px;
     bottom: 32px;
     z-index: 900;
     display: flex;
@@ -85,7 +96,8 @@ html[data-device='mobile'] {
     border: none;
     border-radius: 50%;
     color: var(--el-color-white);
-    background-color: var(--el-color-primary);
+    background-color: color-mix(in srgb, var(--el-color-primary) 64%, transparent);
+    // opacity: 0.72;
     box-shadow: var(--el-box-shadow-light);
     cursor: pointer;
   }
