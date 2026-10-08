@@ -7,6 +7,10 @@
     <HeaderSearch class="navbar-item" />
 
     <div class="navbar__right h-full ml-auto flex-center">
+      <div class="navbar-item">
+        <el-text type="primary">{{ formatTime }}</el-text>
+      </div>
+
       <!-- 主题切换 -->
       <el-tooltip :content="settingStore.isDark ? '浅色主题' : '深色主题'" effect="dark" placement="bottom">
         <ThemeSwitch class="navbar-item hover-effect" />
@@ -23,6 +27,8 @@ import HeaderSearch from './HeaderSearch.vue'
 
 const appStore = useAppStore()
 const settingStore = useSettingStore()
+
+const formatTime = useDateFormat(useNow(), 'YYYY-MM-DD HH:mm:ss')
 </script>
 
 <style lang="scss" scoped>

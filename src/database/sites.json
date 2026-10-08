@@ -1,5 +1,13 @@
 [
   {
+    "id": "8f4a1d2c-63b7-4e59-9a30-c2e8b7d51f46",
+    "categoryId": "0ff92260-b310-4228-bfc5-674dfe708272",
+    "key": "https://tv.n103.top",
+    "title": "Ntv",
+    "icon": "https://images.icon-icons.com/38/PNG/512/retrotv_5520.png",
+    "description": "Ntv免费在线影视搜索站，聚合多源内容，无广告免注册，追剧观影更轻松。"
+  },
+  {
     "id": "81d8ee45-7180-4d39-a83e-38d003409ed3",
     "categoryId": "0ff92260-b310-4228-bfc5-674dfe708272",
     "key": "https://www.ncat1.app",
@@ -1150,6 +1158,14 @@
     "title": "晨钟网络科技",
     "icon": "https://jamcz.com/favicon.ico",
     "description": "专注开发小众实用的安卓与 Windows 软件，解决数码爱好者的使用痛点。"
+  },
+  {
+    "id": "b2e7c9a4-5d18-4f63-8e07-a9c4d1f63b85",
+    "categoryId": "9492cfd4-724b-4828-b98e-2f25a6245261",
+    "key": "https://www.bandisoft.com/bandizip",
+    "title": "Bandizip",
+    "icon": "https://www.bandisoft.com/favicon.ico",
+    "description": "免费压缩解压软件，支持ZIP、RAR、7Z等多种格式，高速压缩与解压。"
   },
   {
     "id": "c7967949-706a-4da7-aa55-c9d1fffb19f9",
