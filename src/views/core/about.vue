@@ -3,7 +3,7 @@
     <!-- 站点介绍 -->
     <section class="hero">
       <div class="hero-logo-wrap">
-        <img class="hero-logo" src="/favicon.svg" alt="logo" draggable="false" referrerpolicy="no-referrer" />
+        <img class="hero-logo" src="/favicon.png" alt="logo" draggable="false" referrerpolicy="no-referrer" />
       </div>
       <div class="hero-info">
         <h2 class="hero-title">{{ siteTitle }}</h2>
