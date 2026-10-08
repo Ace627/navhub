@@ -1,6 +1,6 @@
 ---
 name: site-info-parser
-description: 解析网站链接，提取站点信息（标题、规范化的 url、icon、描述）。**强制触发**：凡向站点数据文件（如 src/database/webs.json）新增、修改、批量收录任何网站条目，或用户提供网址要求生成导航条目/书签/站点卡片数据时，必须先调用此技能按其规范产出数据，禁止凭已有条目手写绕过。返回不超过 6 字的标题、去尾斜杠的 url、icon 地址，以及润色为 32 字左右的中文描述，字段顺序固定为 title → url → icon → description。
+description: 解析网站链接，提取站点信息（标题、规范化的 url、icon、描述）。**强制触发**：凡向站点数据表（src/database/sites.json）新增、修改、批量收录任何网站条目，或用户提供网址要求生成导航条目/书签/站点卡片数据时，必须先调用此技能按其规范产出数据，禁止凭已有条目手写绕过。返回不超过 6 字的标题、去尾斜杠的 url、icon 地址，以及润色为 32 字左右的中文描述，字段顺序固定为 title → url → icon → description。
 ---
 
 # 站点信息解析
@@ -53,6 +53,8 @@ node <skill目录>/scripts/fetch-site-info.mjs <url1> [url2 ...]
 3. **icon 缺省**：脚本已内置回退逻辑，icon 拿不到时自动使用默认图标 `https://q1.qlogo.cn/g?b=qq&nk=1433224387&s=640`，无需再处理。
 
 ## 注意事项
+
+- **写入目标与表结构**：站点条目写入 `src/database/sites.json`（站点表），每条在四字段之外还需补两个字段：`id`（uuid 主键，v4 格式，不得与表内现有 id 重复）、`categoryId`（外键，取自 `src/database/categories.json` 中目标分类的 `id`）；`key` 填 url（外部站点无路由参数场景时）。分类归属不确定时先向用户确认，不得凭名称臆断。
 
 - 产出前**逐条自检**（必须执行，任一不达标先修正再输出）：
   1. 结果中**只有 title、url、icon、description 四个字段**，无多余字段，顺序为 title → url → icon → description；

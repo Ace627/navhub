@@ -16,7 +16,7 @@
 defineOptions({ name: 'CategoryDetail' })
 import type { Component } from 'vue'
 import { RouterConstant } from '@/router/router.constant'
-import { CATEGORY_REGISTRY } from '@/router/category.registry'
+import { getCategoryRegistry } from '@/router/category.registry'
 
 const route = useRoute()
 const router = useRouter()
@@ -25,7 +25,7 @@ const router = useRouter()
 const widgetModules = import.meta.glob('./widgets/*/index.vue')
 
 /** 当前路由命中的详情型分类注册表条目：按路由路径前缀匹配（非法 key 时也能定位分类以正确兜底） */
-const entry = computed(() => CATEGORY_REGISTRY.find((category) => category.mode === 'detail' && route.path.startsWith(`/${category.path}/`)))
+const entry = computed(() => getCategoryRegistry().find((category) => category.mode === 'detail' && route.path.startsWith(`/${category.path}/`)))
 
 /** 根据路由参数匹配到的分类条目 */
 const item = computed(() => entry.value?.data.find((entryItem) => entryItem.key === route.params.key))

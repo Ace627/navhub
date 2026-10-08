@@ -35,14 +35,7 @@ import { RouterConstant } from '@/router/router.constant'
 import type { LinkItem } from '@/components/LinkCard/types'
 import { getSiteClickCounts, isExternal, pruneSiteClickCounts } from '@/utils'
 import { useAppStore } from '@/store/modules/app'
-import { AI_LIST } from '@/database/ai'
-import { API_LIST } from '@/database/api'
-import { MOVIE_LIST } from '@/database/movie'
-import { FRONTEND_LIST } from '@/database/frontend'
-import { SOFTWARE_LIST } from '@/database/software'
-import { STUDY_LIST } from '@/database/study'
-import { TOOL_LIST } from '@/database/tool'
-import { WALLPAPER_LIST } from '@/database/wallpaper'
+import { getCategoryRegistry } from '@/router/category.registry'
 
 /** 搜索引擎定义 */
 interface SearchEngine {
@@ -85,17 +78,8 @@ const router = useRouter()
 /** 应用状态实例：空状态引导时用于展开侧栏菜单 */
 const appStore = useAppStore()
 
-/** 分类数据源清单：分类路由路径 + 该分类下的站点列表 */
-const CATEGORY_SOURCES: { categoryPath: string; list: LinkItem[] }[] = [
-  { categoryPath: '/movie', list: MOVIE_LIST },
-  { categoryPath: '/ai', list: AI_LIST },
-  { categoryPath: '/api', list: API_LIST },
-  { categoryPath: '/frontend', list: FRONTEND_LIST },
-  { categoryPath: '/software', list: SOFTWARE_LIST },
-  { categoryPath: '/study', list: STUDY_LIST },
-  { categoryPath: '/tool', list: TOOL_LIST },
-  { categoryPath: '/wallpaper', list: WALLPAPER_LIST },
-]
+/** 分类数据源清单：分类路由路径 + 该分类下的站点列表（注册表在引导阶段已装配完成） */
+const CATEGORY_SOURCES: { categoryPath: string; list: LinkItem[] }[] = getCategoryRegistry().map((entry) => ({ categoryPath: `/${entry.path}`, list: entry.data }))
 
 /** 全站条目索引：以条目 key（外链为 URL，站内为路由参数）为键，模块加载时构建一次 */
 const SITE_INDEX: Record<string, SiteEntry> = Object.fromEntries(CATEGORY_SOURCES.flatMap((source) => source.list.map((item) => [item.key, { item, categoryPath: source.categoryPath }])))

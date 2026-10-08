@@ -8,15 +8,15 @@
 
 <script setup lang="ts">
 defineOptions({ name: 'Category' })
-import type { SiteItem } from '@/database/types'
-import { CATEGORY_REGISTRY } from '@/router/category.registry'
+import type { SiteItem } from '@/types'
+import { getCategoryRegistry } from '@/router/category.registry'
 import { isExternal } from '@/utils'
 
 const route = useRoute()
 const router = useRouter()
 
 /** 当前路由命中的分类注册表条目 */
-const entry = computed(() => CATEGORY_REGISTRY.find((category) => category.name === route.name))
+const entry = computed(() => getCategoryRegistry().find((category) => category.name === route.name))
 
 /** 当前分类收录的站点数据列表 */
 const sites = computed(() => entry.value?.data ?? [])

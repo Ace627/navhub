@@ -1,0 +1,71 @@
+[
+  {
+    "id": "0ff92260-b310-4228-bfc5-674dfe708272",
+    "path": "movie",
+    "name": "Movie",
+    "title": "免费追剧",
+    "icon": "Movie",
+    "mode": "link",
+    "plainLink": true
+  },
+  {
+    "id": "c77a86e8-3231-4bd6-b184-627bb7cd0cfe",
+    "path": "ai",
+    "name": "AI",
+    "title": "人工智能",
+    "icon": "ChatGPT",
+    "mode": "link"
+  },
+  {
+    "id": "5fa022af-8d61-4984-ac48-3ff62a3c9cc9",
+    "path": "frontend",
+    "name": "Frontend",
+    "title": "前端专家",
+    "icon": "Frontend",
+    "mode": "link"
+  },
+  {
+    "id": "9492cfd4-724b-4828-b98e-2f25a6245261",
+    "path": "software",
+    "name": "Software",
+    "title": "好软推荐",
+    "icon": "Software",
+    "mode": "link",
+    "plainLink": true
+  },
+  {
+    "id": "9ee39df2-1307-47a5-849a-0e8e9d552e4e",
+    "path": "tool",
+    "name": "Tool",
+    "title": "实用工具",
+    "icon": "Tool",
+    "mode": "detail"
+  },
+  {
+    "id": "8652c80f-1b7f-456a-86bf-b5224d8e22c7",
+    "path": "api",
+    "name": "Api",
+    "title": "公益接口",
+    "icon": "Api",
+    "mode": "link",
+    "plainLink": true
+  },
+  {
+    "id": "4449bddc-349b-4302-ab3a-bd076bd3fb8a",
+    "path": "study",
+    "name": "Study",
+    "title": "自我提升",
+    "icon": "Study",
+    "mode": "link",
+    "plainLink": true
+  },
+  {
+    "id": "a59a2566-527a-49c0-9827-bc6d3bc68a90",
+    "path": "wallpaper",
+    "name": "Wallpaper",
+    "title": "精美壁纸",
+    "icon": "Wallpaper",
+    "mode": "link",
+    "plainLink": true
+  }
+]

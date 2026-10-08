@@ -35,7 +35,9 @@
         <el-select v-model="groupCount" placeholder="选择生成组数" class="mx-16px flex-grow-1" @change="groupChange" :disabled="loading">
           <el-option v-for="n in 5" :key="n" :label="`${n} 组`" :value="n"></el-option>
         </el-select>
-        <el-button type="primary" @click="startGenerate" class="w-160px" :loading> 生成号码 </el-button>
+        <el-button type="primary" @click="startGenerate" class="w-160px" :loading>
+          {{ loading ? '生成中' : '生成号码' }}
+        </el-button>
       </div>
 
       <div class="flex-center">

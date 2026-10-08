@@ -68,14 +68,7 @@
 defineOptions({ name: 'HeaderSearch' })
 import type { LinkItem } from '@/components/LinkCard/types'
 import { isExternal } from '@/utils'
-import { AI_LIST } from '@/database/ai'
-import { API_LIST } from '@/database/api'
-import { MOVIE_LIST } from '@/database/movie'
-import { FRONTEND_LIST } from '@/database/frontend'
-import { SOFTWARE_LIST } from '@/database/software'
-import { STUDY_LIST } from '@/database/study'
-import { TOOL_LIST } from '@/database/tool'
-import { WALLPAPER_LIST } from '@/database/wallpaper'
+import { getCategoryRegistry } from '@/router/category.registry'
 
 /** 搜索索引条目：链接条目附加所属分类信息 */
 interface SearchEntry extends LinkItem {
@@ -85,32 +78,13 @@ interface SearchEntry extends LinkItem {
   categoryPath: string
 }
 
-/** 聚合分类列表并附加分类信息的辅助类型 */
-interface CategorySource {
-  /** 分类名称 */
-  categoryName: string
-  /** 分类路由路径 */
-  categoryPath: string
-  /** 该分类下的站点列表 */
-  list: LinkItem[]
-}
-
 /** 搜索结果最大展示条数 */
 const MAX_RESULTS = 20
 
-/** 全量搜索索引：聚合 8 份分类 config，模块加载时构建一次 */
-const SEARCH_INDEX: SearchEntry[] = (
-  [
-    { categoryName: '免费追剧', categoryPath: '/movie', list: MOVIE_LIST },
-    { categoryName: '人工智能', categoryPath: '/ai', list: AI_LIST },
-    { categoryName: '前端专家', categoryPath: '/frontend', list: FRONTEND_LIST },
-    { categoryName: '好软推荐', categoryPath: '/software', list: SOFTWARE_LIST },
-    { categoryName: '实用工具', categoryPath: '/tool', list: TOOL_LIST },
-    { categoryName: '公益接口', categoryPath: '/api', list: API_LIST },
-    { categoryName: '自我提升', categoryPath: '/study', list: STUDY_LIST },
-    { categoryName: '精美壁纸', categoryPath: '/wallpaper', list: WALLPAPER_LIST },
-  ] satisfies CategorySource[]
-).flatMap((source) => source.list.map((item) => ({ ...item, categoryName: source.categoryName, categoryPath: source.categoryPath })))
+/** 全量搜索索引：按分类注册表聚合站点并附加分类信息，模块加载时构建一次（注册表在引导阶段已装配完成） */
+const SEARCH_INDEX: SearchEntry[] = getCategoryRegistry().flatMap((entry) =>
+  entry.data.map((item) => ({ ...item, categoryName: entry.title, categoryPath: `/${entry.path}` })),
+)
 
 /** 收集 src/assets/images/icons 下的本地图标，按文件名索引（key 为构建后资源地址） */
 const localIconMap: Record<string, string> = {}
