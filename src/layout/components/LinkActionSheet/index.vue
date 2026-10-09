@@ -1,0 +1,98 @@
+<template>
+  <el-drawer v-model="panelVisible" direction="btt" size="auto" :with-header="false" class="link-action-sheet">
+    <div v-if="currentItem" class="sheet-content">
+      <p class="sheet-title">{{ currentItem.title }}</p>
+      <div class="sheet-actions">
+        <button v-if="isExternal(currentItem.key)" type="button" class="sheet-action" @click="handleCopy">复制链接</button>
+        <button type="button" class="sheet-action" @click="handleToggleFavorite">{{ isFavorite(currentItem.key) ? '取消收藏' : '收藏' }}</button>
+        <button type="button" class="sheet-action is-cancel" @click="handleClose">取消</button>
+      </div>
+    </div>
+  </el-drawer>
+</template>
+
+<script setup lang="ts">
+defineOptions({ name: 'LinkActionSheet' })
+import { buildSiteShareText, copyText, isExternal } from '@/utils'
+import { useLinkActions } from '@/hooks/useLinkActions'
+import { useSiteFavorites } from '@/hooks/useSiteFavorites'
+
+const { currentItem, panelVisible, closeLinkActions } = useLinkActions()
+const { isFavorite, toggleFavorite } = useSiteFavorites()
+
+/**
+ * 复制站点分享文案（名称、链接、描述与来源）并关闭面板（复制结果提示由 copyText 内部给出）
+ */
+function handleCopy(): void {
+  if (!currentItem.value) return
+  copyText(buildSiteShareText(currentItem.value.title, currentItem.value.key, currentItem.value.description))
+  closeLinkActions()
+}
+
+/**
+ * 切换收藏状态并关闭面板
+ */
+function handleToggleFavorite(): void {
+  if (!currentItem.value) return
+  const added = toggleFavorite(currentItem.value.key)
+  ElMessage.success(added ? `已收藏「${currentItem.value.title}」` : `已取消收藏「${currentItem.value.title}」`)
+  closeLinkActions()
+}
+
+/**
+ * 取消按钮：关闭面板
+ */
+function handleClose(): void {
+  closeLinkActions()
+}
+</script>
+
+<style lang="scss" scoped>
+.sheet-content {
+  padding: 8px 0 16px;
+}
+
+.sheet-title {
+  margin: 0;
+  padding: 12px 20px;
+  overflow: hidden;
+  font-size: var(--el-font-size-base);
+  color: var(--el-text-color-secondary);
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sheet-actions {
+  display: flex;
+  flex-direction: column;
+}
+
+.sheet-action {
+  height: 52px;
+  font-size: 16px;
+  color: var(--el-text-color-primary);
+  background-color: var(--el-bg-color);
+  border: none;
+  border-top: 1px solid var(--el-border-color-lighter);
+  cursor: pointer;
+
+  &:active {
+    background-color: var(--el-fill-color-light);
+  }
+
+  &.is-cancel {
+    margin-top: 8px;
+    font-weight: 600;
+  }
+}
+
+/* 抽屉容器：顶角圆角化并去掉默认内边距，交由内容区自行控制 */
+:global(.link-action-sheet) {
+  border-radius: 16px 16px 0 0;
+}
+
+:global(.link-action-sheet .el-drawer__body) {
+  padding: 0;
+}
+</style>

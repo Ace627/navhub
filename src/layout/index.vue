@@ -16,6 +16,9 @@
 
     <!-- 移动端悬浮页面导航 -->
     <FloatNav />
+
+    <!-- 站点卡片长按操作面板（全局单例） -->
+    <LinkActionSheet />
   </div>
 </template>
 
@@ -27,6 +30,7 @@ import AppMain from './components/AppMain/index.vue'
 import Hitokoto from './components/Hitokoto/index.vue'
 import FloatNav from './components/FloatNav/index.vue'
 import AppFooter from './components/AppFooter/index.vue'
+import LinkActionSheet from './components/LinkActionSheet/index.vue'
 
 const appStore = useAppStore()
 const settingStore = useSettingStore()

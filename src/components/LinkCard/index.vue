@@ -1,25 +1,78 @@
 <template>
-  <component :is="plainLink ? 'a' : 'div'" class="link-card" :href="plainLink ? item.key : undefined" :target="plainLink ? '_blank' : undefined" :rel="plainLink ? 'noopener noreferrer' : undefined" @click="onCardClick">
+  <component
+    :is="plainLink ? 'a' : 'div'"
+    class="link-card"
+    :href="plainLink ? item.key : undefined"
+    :target="plainLink ? '_blank' : undefined"
+    :rel="plainLink ? 'noopener noreferrer' : undefined"
+    @click="onCardClick"
+    @click.capture="onRootCaptureClick"
+    @pointerdown="onPointerDown"
+    @pointermove="onPointerMove"
+    @pointerup="onPointerRelease"
+    @pointercancel="onPointerRelease"
+    @contextmenu="onContextMenu"
+  >
     <div class="card-header">
-      <img class="link-icon" :src="getIcon(item)" :alt="item.title" loading="lazy" draggable="false" referrerpolicy="no-referrer" @error="onIconError(item)" />
+      <img class="link-icon" :src="getIcon(item)" :alt="item.title" loading="lazy" draggable="false" referrerpolicy="no-referrer" @load="onIconLoad" @error="onIconError" />
       <span class="link-title">{{ item.title }}</span>
     </div>
     <ProTooltip :content="item.description">
       <span class="link-desc">{{ item.description }}</span>
     </ProTooltip>
+    <!-- 桌面端常驻操作行：复制（仅外链）与收藏 -->
+    <div class="card-actions flex-center">
+      <el-link v-if="isExternal(item.key)" type="primary" underline="never" @click="handleCopyLink">复制</el-link>
+      <el-link type="primary" underline="never" @click="handleToggleFavorite">{{ isFavorite(item.key) ? '已收藏' : '收藏' }}</el-link>
+    </div>
   </component>
 </template>
 
 <script setup lang="ts">
+import { buildSiteShareText, copyText, isExternal, recordSiteClick } from '@/utils'
 import type { LinkCardProps, LinkItem } from './types'
-import { recordSiteClick } from '@/utils'
+import { IMG_FAVICON } from '@/common/constant/image.constant'
+import { useAppStore } from '@/store/modules/app'
+import { useSiteFavorites } from '@/hooks/useSiteFavorites'
+import { useLinkActions } from '@/hooks/useLinkActions'
 
 const props = defineProps<LinkCardProps>()
 
 const emit = defineEmits<{ (e: 'click', item: LinkItem): void }>()
 
-/** 当前卡片图标已加载失败的条目 key 集合（组件内私有，命中即降级为首字占位图） */
-const failedIcons = reactive(new Set<string>())
+const appStore = useAppStore()
+const { isFavorite, toggleFavorite } = useSiteFavorites()
+const { openLinkActions } = useLinkActions()
+
+/** 触发长按面板所需的按压时长（毫秒） */
+const LONG_PRESS_DELAY = 450
+
+/** 长按过程中允许的最大位移（像素），超出视为滚动滑动，取消长按 */
+const LONG_PRESS_MOVE_THRESHOLD = 10
+
+/** 图标加载超时阈值：超过该时长仍未加载完成即降级为默认系统图标（毫秒） */
+const ICON_LOAD_TIMEOUT = 3000
+
+/** 当前卡片图标是否已加载失败或超时（命中即降级为默认系统图标） */
+const iconFailed = ref(false)
+
+/** 当前卡片图标是否已加载完成 */
+const iconLoaded = ref(false)
+
+/** 图标加载超时定时器句柄 */
+let iconTimer: ReturnType<typeof setTimeout> | undefined
+
+/** 长按定时器句柄 */
+let longPressTimer: ReturnType<typeof setTimeout> | undefined
+
+/** 长按起始点横坐标 */
+let pressStartX = 0
+
+/** 长按起始点纵坐标 */
+let pressStartY = 0
+
+/** 长按已触发标记：命中时拦截紧随其后的 click，避免触发卡片跳转 */
+let suppressNextClick = false
 
 // 收集 src/assets/images/icons 下的本地图标，按文件名索引（key 为构建后资源地址）
 const localIconMap: Record<string, string> = {}
@@ -27,18 +80,44 @@ for (const [path, url] of Object.entries(import.meta.glob<string>('/src/assets/i
   localIconMap[path.split('/').pop() || ''] = url
 }
 
+onMounted(startIconTimeout)
+onBeforeUnmount(stopIconTimeout)
+
+/**
+ * 判断条目当前是否直接展示默认系统图标（未配置图标，或已加载失败/超时）
+ *
+ * @param item 链接条目
+ * @returns 无需加载原始图标、直接走默认图标时返回 true
+ */
+function isFallbackIcon(item: LinkItem): boolean {
+  return iconFailed.value || !item.icon?.trim()
+}
+
+/**
+ * 启动图标加载超时计时：未配置图标时无需计时；超时仍未加载完成则标记失败，降级为默认系统图标
+ */
+function startIconTimeout(): void {
+  if (isFallbackIcon(props.item)) return
+  iconTimer = setTimeout(() => {
+    if (!iconLoaded.value) iconFailed.value = true
+  }, ICON_LOAD_TIMEOUT)
+}
+
+/**
+ * 停止并清理图标加载超时计时
+ */
+function stopIconTimeout(): void {
+  clearTimeout(iconTimer)
+}
+
 /**
  * 解析条目图标地址
  *
  * @param item 链接条目
- * @returns 加载失败降级为首字 SVG 占位；本地图标按文件名映射资源地址；其余原样返回
+ * @returns 加载失败/超时/未配置图标时降级为默认系统图标；本地图标按文件名映射资源地址；其余原样返回
  */
 function getIcon(item: LinkItem) {
-  if (failedIcons.has(item.key)) {
-    const ch = item.title.trim().charAt(0) || '?'
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64"><rect width="64" height="64" rx="12" fill="#409eff"/><text x="32" y="43" font-size="32" text-anchor="middle" fill="#fff" font-family="sans-serif">${ch}</text></svg>`
-    return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`
-  }
+  if (isFallbackIcon(item)) return IMG_FAVICON
   // 本地图标路径（如 @/assets/images/icons/xx.png）：按文件名匹配 src/assets/images/icons 下的资源
   if (!/^(https?:|data:)/.test(item.icon)) {
     return localIconMap[item.icon.split('/').pop() || ''] || item.icon
@@ -47,12 +126,19 @@ function getIcon(item: LinkItem) {
 }
 
 /**
- * 图标加载失败回调：记录失败标记，触发降级占位图
- *
- * @param item 链接条目
+ * 图标加载成功回调：记录完成标记并取消超时计时
  */
-function onIconError(item: LinkItem) {
-  failedIcons.add(item.key)
+function onIconLoad(): void {
+  iconLoaded.value = true
+  stopIconTimeout()
+}
+
+/**
+ * 图标加载失败回调：记录失败标记并取消超时计时，触发降级为默认系统图标
+ */
+function onIconError(): void {
+  iconFailed.value = true
+  stopIconTimeout()
 }
 
 /**
@@ -64,6 +150,98 @@ function onCardClick(): void {
   recordSiteClick(props.item.key)
   if (props.plainLink) return
   emit('click', props.item)
+}
+
+/**
+ * 卡片根节点点击捕获回调：长按触发后的首次 click 在此拦截，避免既弹出操作面板又触发跳转
+ *
+ * @param event 点击事件对象
+ */
+function onRootCaptureClick(event: MouseEvent): void {
+  if (!suppressNextClick) return
+  suppressNextClick = false
+  event.preventDefault()
+  event.stopPropagation()
+}
+
+/**
+ * 指针按下回调：仅移动端触屏启动长按计时，记录起始点用于滑动取消
+ *
+ * @param event 指针事件对象
+ */
+function onPointerDown(event: PointerEvent): void {
+  if (!appStore.isMobile || event.pointerType !== 'touch') return
+  pressStartX = event.clientX
+  pressStartY = event.clientY
+  longPressTimer = setTimeout(triggerLongPress, LONG_PRESS_DELAY)
+}
+
+/**
+ * 指针移动回调：位移超出阈值视为滚动，取消长按计时
+ *
+ * @param event 指针事件对象
+ */
+function onPointerMove(event: PointerEvent): void {
+  if (!longPressTimer) return
+  const deltaX = event.clientX - pressStartX
+  const deltaY = event.clientY - pressStartY
+  if (deltaX * deltaX + deltaY * deltaY > LONG_PRESS_MOVE_THRESHOLD * LONG_PRESS_MOVE_THRESHOLD) cancelLongPress()
+}
+
+/**
+ * 指针抬起或取消回调：结束按压，清理长按计时
+ */
+function onPointerRelease(): void {
+  cancelLongPress()
+}
+
+/**
+ * 触发长按：标记拦截后续 click，打开当前条目的底部操作面板
+ */
+function triggerLongPress(): void {
+  cancelLongPress()
+  suppressNextClick = true
+  openLinkActions(props.item)
+}
+
+/**
+ * 取消长按计时并清理句柄
+ */
+function cancelLongPress(): void {
+  clearTimeout(longPressTimer)
+  longPressTimer = undefined
+}
+
+/**
+ * 右键菜单回调：仅移动端长按期间浏览器可能弹出原生菜单，统一阻止；桌面端保留默认行为
+ *
+ * @param event 右键菜单事件对象
+ */
+function onContextMenu(event: MouseEvent): void {
+  if (appStore.isMobile) event.preventDefault()
+}
+
+/**
+ * 操作行复制点击：复制站点分享文案（名称、链接、描述与来源）并提示结果，同时阻断卡片自身的跳转行为
+ *
+ * @param event 点击事件对象
+ */
+function handleCopyLink(event: MouseEvent): void {
+  event.preventDefault()
+  event.stopPropagation()
+  copyText(buildSiteShareText(props.item.title, props.item.key, props.item.description))
+}
+
+/**
+ * 操作行收藏点击：切换收藏状态并提示结果，同时阻断卡片自身的跳转行为
+ *
+ * @param event 点击事件对象
+ */
+function handleToggleFavorite(event: MouseEvent): void {
+  event.preventDefault()
+  event.stopPropagation()
+  const added = toggleFavorite(props.item.key)
+  ElMessage.success(added ? `已收藏「${props.item.title}」` : `已取消收藏「${props.item.title}」`)
 }
 </script>
 
@@ -109,7 +287,7 @@ function onCardClick(): void {
 
 .link-desc {
   display: -webkit-box;
-  margin-top: 8px;
+  margin: 8px 0;
   overflow: hidden;
   font-size: 13px;
   line-height: 1.6;
@@ -119,6 +297,15 @@ function onCardClick(): void {
   line-clamp: 2;
 }
 
+.card-actions {
+  gap: 6px;
+  padding-top: 8px;
+  border-top: 1px solid var(--el-border-color);
+  .el-link {
+    --el-link-font-size: 12px;
+  }
+}
+
 html[data-device='mobile'] {
   .link-card {
     padding: 8px 4px;
@@ -126,11 +313,17 @@ html[data-device='mobile'] {
     background-color: transparent;
     border: none;
     box-shadow: none;
+    user-select: none;
+    -webkit-touch-callout: none;
 
     &:hover {
       box-shadow: none;
       transform: none;
     }
+  }
+
+  .card-actions {
+    display: none;
   }
 
   .card-header {

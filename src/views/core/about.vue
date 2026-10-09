@@ -3,7 +3,7 @@
     <!-- 站点介绍 -->
     <section class="hero">
       <div class="hero-logo-wrap">
-        <img class="hero-logo" src="/favicon.png" alt="logo" draggable="false" referrerpolicy="no-referrer" />
+        <img class="hero-logo" :src="IMG_FAVICON" alt="logo" draggable="false" referrerpolicy="no-referrer" />
       </div>
       <div class="hero-info">
         <h2 class="hero-title">{{ siteTitle }}</h2>
@@ -86,6 +86,7 @@
 defineOptions({ name: 'About' })
 import type { EChartsOption } from 'echarts'
 import { SiteRequest } from '@/api/site.request'
+import { IMG_FAVICON } from '@/common/constant/image.constant'
 
 /** 站点名称，取自环境变量，与侧栏 logo 处一致 */
 const siteTitle = import.meta.env.VITE_APP_TITLE

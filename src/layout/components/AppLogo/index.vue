@@ -3,13 +3,13 @@
     <transition name="sidebar-logo-fade">
       <!-- 侧栏展开状态 -->
       <router-link v-if="showTitle" key="expand" to="/" class="flex-center wh-full">
-        <img src="/favicon.png" alt="logo" draggable="false" referrerpolicy="no-referrer" />
+        <img :src="IMG_FAVICON" alt="logo" draggable="false" referrerpolicy="no-referrer" />
         <span v-if="Boolean(title)">{{ title }}</span>
       </router-link>
 
       <!-- 侧栏折叠状态 -->
       <router-link v-else key="collapse" to="/" class="flex-center wh-full">
-        <img src="/favicon.png" alt="logo" draggable="false" referrerpolicy="no-referrer" />
+        <img :src="IMG_FAVICON" alt="logo" draggable="false" referrerpolicy="no-referrer" />
         <span v-if="showTitle">{{ title }}</span>
       </router-link>
     </transition>
@@ -19,6 +19,7 @@
 <script setup lang="ts">
 defineOptions({ name: 'AppLogo' })
 import type { AppLogoProps } from './types'
+import { IMG_FAVICON } from '@/common/constant/image.constant'
 
 const props = withDefaults(defineProps<AppLogoProps>(), {
   showTitle: true,

@@ -14,14 +14,28 @@
       </el-input>
     </div>
 
-    <!-- 最近使用：按全站卡片点击次数取前 15 -->
-    <div v-if="recentSites.length" class="card-grid">
-      <template v-for="entry in recentSites" :key="entry.item.key">
-        <LinkCard v-if="isExternal(entry.item.key)" :item="entry.item" plain-link />
-        <LinkCard v-else :item="entry.item" @click="handleInternalClick(entry)" />
-      </template>
+    <!-- 我的常用：收藏条目，收藏集合顺序展示 -->
+    <div v-if="favoriteSites.length" class="site-section">
+      <p class="section-title">我的常用</p>
+      <div class="card-grid">
+        <template v-for="entry in favoriteSites" :key="entry.item.key">
+          <LinkCard v-if="isExternal(entry.item.key)" :item="entry.item" plain-link />
+          <LinkCard v-else :item="entry.item" @click="handleInternalClick(entry)" />
+        </template>
+      </div>
     </div>
-    <div v-else class="empty-state">
+
+    <!-- 最近使用：按全站卡片点击次数取前 15，排除已收藏条目 -->
+    <div v-if="recentSites.length" class="site-section">
+      <p class="section-title">最近使用</p>
+      <div class="card-grid">
+        <template v-for="entry in recentSites" :key="entry.item.key">
+          <LinkCard v-if="isExternal(entry.item.key)" :item="entry.item" plain-link />
+          <LinkCard v-else :item="entry.item" @click="handleInternalClick(entry)" />
+        </template>
+      </div>
+    </div>
+    <div v-if="!favoriteSites.length && !recentSites.length" class="empty-state">
       <SvgIcon name="Link" :size="48" class="empty-icon" />
       <p class="empty-text">暂无使用记录，去逛逛各分类导航吧</p>
       <el-text v-if="appStore.isCollapse" type="primary" class="empty-link" @click="handleExplore">探索一下吧</el-text>
@@ -33,8 +47,9 @@
 defineOptions({ name: RouterConstant.HOME_PAGE_NAME })
 import { RouterConstant } from '@/router/router.constant'
 import type { LinkItem } from '@/components/LinkCard/types'
-import { getSiteClickCounts, isExternal, pruneSiteClickCounts } from '@/utils'
+import { getSiteClickCounts, isExternal, pruneSiteClickCounts, pruneSiteFavorites } from '@/utils'
 import { useAppStore } from '@/store/modules/app'
+import { useSiteFavorites } from '@/hooks/useSiteFavorites'
 import { getCategoryRegistry } from '@/router/category.registry'
 
 /** 搜索引擎定义 */
@@ -69,14 +84,27 @@ const activeEngine = ref(ENGINE_LIST[0].name)
 /** 搜索关键词 */
 const keyword = ref('')
 
-/** 最近使用条目列表：按点击次数降序最多 8 条 */
-const recentSites = ref<SiteEntry[]>([])
-
 /** 路由实例：站内条目点击时跳转详情页 */
 const router = useRouter()
 
 /** 应用状态实例：空状态引导时用于展开侧栏菜单 */
 const appStore = useAppStore()
+
+/** 收藏站点共享状态：常用区与最近使用区随收藏变化实时联动 */
+const { favorites } = useSiteFavorites()
+
+/** 我的常用条目列表：收藏集合顺序映射全站索引，剔除已下架条目 */
+const favoriteSites = computed<SiteEntry[]>(() => [...favorites].map((key) => SITE_INDEX[key]).filter((entry): entry is SiteEntry => Boolean(entry)))
+
+/** 最近使用条目列表：按点击次数降序取前 15，排除已收藏条目避免与常用区重复 */
+const recentSites = computed<SiteEntry[]>(() => {
+  const counts = getSiteClickCounts()
+  return Object.keys(counts)
+    .filter((key) => SITE_INDEX[key] && !favorites.has(key))
+    .sort((a, b) => counts[b] - counts[a])
+    .slice(0, 15)
+    .map((key) => SITE_INDEX[key])
+})
 
 /** 分类数据源清单：分类路由路径 + 该分类下的站点列表（注册表在引导阶段已装配完成） */
 const CATEGORY_SOURCES: { categoryPath: string; list: LinkItem[] }[] = getCategoryRegistry().map((entry) => ({ categoryPath: `/${entry.path}`, list: entry.data }))
@@ -122,24 +150,15 @@ function handleExplore(): void {
 }
 
 /**
- * 刷新最近使用列表：读取本地点击计数，按次数降序取前 15 条
- *
- * 读取前先以全站配置索引为合法键集合裁剪缓存，移除站点被删除后残留的脏键；
- * 条目信息实时取自全站配置索引，缓存中只存计数不存条目副本；
- * 无任何记录时列表为空，页面展示空状态引导文案
+ * 刷新缓存一致性：以全站配置索引为合法键集合，裁剪点击计数与收藏中站点被删除后残留的脏键
  */
-function refreshRecentSites(): void {
+function refreshSiteCaches(): void {
   pruneSiteClickCounts(Object.keys(SITE_INDEX))
-  const counts = getSiteClickCounts()
-  recentSites.value = Object.keys(counts)
-    .filter((key) => SITE_INDEX[key])
-    .sort((a, b) => counts[b] - counts[a])
-    .slice(0, 15)
-    .map((key) => SITE_INDEX[key])
+  pruneSiteFavorites(Object.keys(SITE_INDEX))
 }
 
-onMounted(refreshRecentSites)
-onActivated(refreshRecentSites)
+onMounted(refreshSiteCaches)
+onActivated(refreshSiteCaches)
 </script>
 
 <style lang="scss" scoped>
@@ -196,6 +215,18 @@ onActivated(refreshRecentSites)
   }
 }
 
+.site-section {
+  & + .site-section {
+    margin-top: 24px;
+  }
+}
+
+.section-title {
+  margin: 0 0 12px;
+  font-size: 14px;
+  color: var(--el-text-color-secondary);
+}
+
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -242,6 +273,16 @@ html[data-device='mobile'] {
   .search-input {
     width: 100%;
     max-width: none;
+  }
+
+  .site-section {
+    & + .site-section {
+      margin-top: 16px;
+    }
+  }
+
+  .section-title {
+    margin-bottom: 8px;
   }
 
   .card-grid {
