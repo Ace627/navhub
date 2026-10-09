@@ -11,7 +11,6 @@
     @pointermove="onPointerMove"
     @pointerup="onPointerRelease"
     @pointercancel="onPointerRelease"
-    @contextmenu="onContextMenu"
   >
     <div class="card-header">
       <img class="link-icon" :src="getIcon(item)" :alt="item.title" loading="lazy" draggable="false" referrerpolicy="no-referrer" @load="onIconLoad" @error="onIconError" />
@@ -213,15 +212,6 @@ function cancelLongPress(): void {
 }
 
 /**
- * 右键菜单回调：仅移动端长按期间浏览器可能弹出原生菜单，统一阻止；桌面端保留默认行为
- *
- * @param event 右键菜单事件对象
- */
-function onContextMenu(event: MouseEvent): void {
-  if (appStore.isMobile) event.preventDefault()
-}
-
-/**
  * 操作行复制点击：复制站点分享文案（名称、链接、描述与来源）并提示结果，同时阻断卡片自身的跳转行为
  *
  * @param event 点击事件对象
@@ -334,6 +324,8 @@ html[data-device='mobile'] {
   .link-icon {
     width: 48px;
     height: 48px;
+    /* 触屏长按时图片不成为事件目标，避免国产浏览器弹出原生图片菜单 */
+    pointer-events: none;
   }
 
   .link-title {

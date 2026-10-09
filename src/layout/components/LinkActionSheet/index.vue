@@ -1,10 +1,10 @@
 <template>
   <el-drawer v-model="panelVisible" direction="btt" size="auto" :with-header="false" class="link-action-sheet">
-    <div v-if="currentItem" class="sheet-content">
+    <div v-if="currentItem" class="sheet-content select-none">
       <p class="sheet-title">{{ currentItem.title }}</p>
       <div class="sheet-actions">
-        <button v-if="isExternal(currentItem.key)" type="button" class="sheet-action" @click="handleCopy">复制链接</button>
-        <button type="button" class="sheet-action" @click="handleToggleFavorite">{{ isFavorite(currentItem.key) ? '取消收藏' : '收藏' }}</button>
+        <button v-if="isExternal(currentItem.key)" type="button" class="sheet-action" @click="handleCopy">复制网站</button>
+        <button type="button" class="sheet-action" @click="handleToggleFavorite">收藏网站</button>
         <button type="button" class="sheet-action is-cancel" @click="handleClose">取消</button>
       </div>
     </div>
@@ -18,7 +18,7 @@ import { useLinkActions } from '@/hooks/useLinkActions'
 import { useSiteFavorites } from '@/hooks/useSiteFavorites'
 
 const { currentItem, panelVisible, closeLinkActions } = useLinkActions()
-const { isFavorite, toggleFavorite } = useSiteFavorites()
+const { toggleFavorite } = useSiteFavorites()
 
 /**
  * 复制站点分享文案（名称、链接、描述与来源）并关闭面板（复制结果提示由 copyText 内部给出）
