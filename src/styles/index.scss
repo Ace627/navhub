@@ -2,10 +2,20 @@
 @use './transition.scss';
 @use './theme-transition.scss';
 @use 'element-plus/theme-chalk/src/dark/css-vars.scss';
+@import url('https://chinese-fonts-cdn.netlify.app/packages/jxzk/dist/江西拙楷/result.css');
+@import url('https://chinese-fonts-cdn.netlify.app/packages/ysbzt/dist/峄山碑篆体/result.css');
+@import url('https://chinese-fonts-cdn.netlify.app/packages/pfgzt/dist/平方公子体/result.css');
+@import url('https://chinese-fonts-cdn.netlify.app/packages/hwmct/dist/汇文明朝体/result.css');
+@import url('https://chinese-fonts-cdn.netlify.app/packages/qtbfsxt/dist/千图笔锋手写体/result.css');
 
 body {
-  // font-family: var(--el-font-family);
-  font-family: 'LXGW WenKai Screen', sans-serif;
+  // --el-font-family: 'jiangxizhuokai';
+  // --el-font-family: '峄山碑篆体';
+  // --el-font-family: 'PING FANG GONG ZI TI';
+  // --el-font-family: 'qiantubifengshouxieti';
+  --el-font-family: 'Huiwen-mincho';
+  // --el-font-family: 'LXGW WenKai Screen', sans-serif;
+  font-family: var(--el-font-family);
   background-color: var(--el-bg-color-page);
 }
 

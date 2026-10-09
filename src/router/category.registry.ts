@@ -61,6 +61,8 @@ export function buildCategoryRoutes(): RouteRecordRaw[] {
           // 标题按路由参数实时解析为对应条目名称，未命中时兜底为通用详情标题
           title: (route) => entry.data.find((entryItem) => entryItem.key === route.params.key)?.title ?? '条目详情',
           hidden: true,
+          // 详情页地址随条目变化，声明高亮所属分类的一级菜单
+          activeMenu: `/${entry.path}`,
         },
       })
     }
