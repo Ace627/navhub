@@ -261,6 +261,7 @@ declare global {
   const useSettingStore: typeof import('../../store/modules/setting').useSettingStore
   const useShare: typeof import('@vueuse/core').useShare
   const useSiteFavorites: typeof import('../../hooks/useSiteFavorites').useSiteFavorites
+  const useSiteShare: typeof import('../../hooks/useSiteShare').useSiteShare
   const useSlots: typeof import('vue').useSlots
   const useSorted: typeof import('@vueuse/core').useSorted
   const useSpeechRecognition: typeof import('@vueuse/core').useSpeechRecognition

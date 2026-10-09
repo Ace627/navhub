@@ -1,22 +1,49 @@
 <template>
-  <div class="app-content">
-    <!-- 搜索区：引擎切换标签 + 关键词搜索框 -->
-    <div class="search-section">
-      <el-scrollbar class="engine-scrollbar">
-        <div class="engine-tabs">
-          <button v-for="engine in ENGINE_LIST" :key="engine.name" type="button" class="engine-tab" :class="{ 'is-active': engine.name === activeEngine }" @click="switchEngine(engine.name)">{{ engine.name }}搜索</button>
+  <div class="app-content dashboard">
+    <!-- 搜索区：输入框居中定宽，引擎选择桌面端点击引擎名下拉、移动端由放大镜唤起底部弹层 -->
+    <div ref="searchSectionRef" class="search-section">
+      <div class="search-box">
+        <el-input v-model="keyword" class="search-input" size="large" clearable :placeholder="`在${activeEngine}搜索，输入关键词后回车`" @keyup.enter="handleSearch">
+          <template #prefix>
+            <el-button v-if="appStore.isMobile" text class="engine-trigger" aria-label="选择搜索引擎" @click="openEngineSheet">
+              <SvgIcon name="Search" :size="16" />
+            </el-button>
+            <el-button v-else text class="engine-trigger engine-trigger-desktop" aria-label="选择搜索引擎" @click="toggleEngineDropdown">
+              {{ activeEngine }}
+              <SvgIcon name="ArrowDown" :size="12" />
+            </el-button>
+          </template>
+          <template #suffix>
+            <el-text type="primary" class="px-8px cursor-pointer" @click="handleSearch">搜索</el-text>
+          </template>
+        </el-input>
+
+        <!-- 桌面端引擎下拉：悬挂于输入框正下方，选中引擎或点击区外收起 -->
+        <div v-if="!appStore.isMobile && engineDropdownVisible" class="engine-dropdown">
+          <el-button v-for="engine in ENGINE_LIST" :key="engine.name" text class="engine-option" :class="{ 'is-active': engine.name === activeEngine }" @click="selectEngine(engine.name)">
+            {{ engine.name }}搜索
+          </el-button>
         </div>
-      </el-scrollbar>
-      <el-input v-model="keyword" class="search-input" size="large" clearable :placeholder="`在${activeEngine}搜索，输入关键词后回车`" @keyup.enter="handleSearch">
-        <template #prefix>
-          <SvgIcon name="Search" :size="16" />
-        </template>
-      </el-input>
+      </div>
     </div>
 
-    <!-- 我的常用：收藏条目，收藏集合顺序展示 -->
+    <!-- 移动端搜索引擎选择弹层：底部弹出，选中引擎后自动收起 -->
+    <Teleport to="body">
+      <transition name="engine-sheet">
+        <div v-if="engineSheetVisible" class="engine-sheet-mask" @click="closeEngineSheet">
+          <div class="engine-sheet" @click.stop>
+            <p class="engine-sheet-title">选择搜索引擎</p>
+            <el-button v-for="engine in ENGINE_LIST" :key="engine.name" text class="engine-option engine-sheet-item" :class="{ 'is-active': engine.name === activeEngine }" @click="selectEngine(engine.name)"
+              >{{ engine.name }}搜索</el-button
+            >
+            <el-button class="engine-sheet-cancel" @click="closeEngineSheet">取消</el-button>
+          </div>
+        </div>
+      </transition>
+    </Teleport>
+
+    <!-- 收藏条目：收藏集合顺序展示，无分区分组 -->
     <div v-if="favoriteSites.length" class="site-section">
-      <p class="section-title">我的常用</p>
       <div class="card-grid">
         <template v-for="entry in favoriteSites" :key="entry.item.key">
           <LinkCard v-if="isExternal(entry.item.key)" :item="entry.item" plain-link />
@@ -24,20 +51,9 @@
         </template>
       </div>
     </div>
-
-    <!-- 最近使用：按全站卡片点击次数取前 15，排除已收藏条目 -->
-    <div v-if="recentSites.length" class="site-section">
-      <p class="section-title">最近使用</p>
-      <div class="card-grid">
-        <template v-for="entry in recentSites" :key="entry.item.key">
-          <LinkCard v-if="isExternal(entry.item.key)" :item="entry.item" plain-link />
-          <LinkCard v-else :item="entry.item" @click="handleInternalClick(entry)" />
-        </template>
-      </div>
-    </div>
-    <div v-if="!favoriteSites.length && !recentSites.length" class="empty-state">
+    <div v-if="!favoriteSites.length" class="empty-state">
       <SvgIcon name="Link" :size="48" class="empty-icon" />
-      <p class="empty-text">暂无使用记录，去逛逛各分类导航吧</p>
+      <p class="empty-text">暂无收藏站点，去逛逛各分类导航吧</p>
       <el-text v-if="appStore.isCollapse" type="primary" class="empty-link" @click="handleExplore">探索一下吧</el-text>
     </div>
   </div>
@@ -47,7 +63,7 @@
 defineOptions({ name: RouterConstant.HOME_PAGE_NAME })
 import { RouterConstant } from '@/router/router.constant'
 import type { LinkItem } from '@/components/LinkCard/types'
-import { getSiteClickCounts, isExternal, pruneSiteClickCounts, pruneSiteFavorites } from '@/utils'
+import { isExternal, pruneSiteClickCounts, pruneSiteFavorites } from '@/utils'
 import { useAppStore } from '@/store/modules/app'
 import { useSiteFavorites } from '@/hooks/useSiteFavorites'
 import { getCategoryRegistry } from '@/router/category.registry'
@@ -81,6 +97,15 @@ interface SiteEntry {
 /** 当前选中的搜索引擎名称，默认取第一个 */
 const activeEngine = ref(ENGINE_LIST[0].name)
 
+/** 移动端搜索引擎选择弹层可见性 */
+const engineSheetVisible = ref(false)
+
+/** 桌面端搜索引擎下拉可见性 */
+const engineDropdownVisible = ref(false)
+
+/** 搜索区根节点引用：文档级点击代理据此判断点击是否落在区外 */
+const searchSectionRef = ref<HTMLDivElement | null>(null)
+
 /** 搜索关键词 */
 const keyword = ref('')
 
@@ -90,21 +115,11 @@ const router = useRouter()
 /** 应用状态实例：空状态引导时用于展开侧栏菜单 */
 const appStore = useAppStore()
 
-/** 收藏站点共享状态：常用区与最近使用区随收藏变化实时联动 */
+/** 收藏站点共享状态：首页收藏区随收藏变化实时联动 */
 const { favorites } = useSiteFavorites()
 
-/** 我的常用条目列表：收藏集合顺序映射全站索引，剔除已下架条目 */
+/** 收藏站点条目列表：收藏集合顺序映射全站索引，剔除已下架条目 */
 const favoriteSites = computed<SiteEntry[]>(() => [...favorites].map((key) => SITE_INDEX[key]).filter((entry): entry is SiteEntry => Boolean(entry)))
-
-/** 最近使用条目列表：按点击次数降序取前 15，排除已收藏条目避免与常用区重复 */
-const recentSites = computed<SiteEntry[]>(() => {
-  const counts = getSiteClickCounts()
-  return Object.keys(counts)
-    .filter((key) => SITE_INDEX[key] && !favorites.has(key))
-    .sort((a, b) => counts[b] - counts[a])
-    .slice(0, 15)
-    .map((key) => SITE_INDEX[key])
-})
 
 /** 分类数据源清单：分类路由路径 + 该分类下的站点列表（注册表在引导阶段已装配完成） */
 const CATEGORY_SOURCES: { categoryPath: string; list: LinkItem[] }[] = getCategoryRegistry().map((entry) => ({ categoryPath: `/${entry.path}`, list: entry.data }))
@@ -113,12 +128,45 @@ const CATEGORY_SOURCES: { categoryPath: string; list: LinkItem[] }[] = getCatego
 const SITE_INDEX: Record<string, SiteEntry> = Object.fromEntries(CATEGORY_SOURCES.flatMap((source) => source.list.map((item) => [item.key, { item, categoryPath: source.categoryPath }])))
 
 /**
- * 切换搜索引擎
+ * 打开移动端搜索引擎选择弹层
+ */
+function openEngineSheet(): void {
+  engineSheetVisible.value = true
+}
+
+/**
+ * 关闭移动端搜索引擎选择弹层：遮罩与取消按钮共用，引擎选择保持原状
+ */
+function closeEngineSheet(): void {
+  engineSheetVisible.value = false
+}
+
+/**
+ * 切换桌面端引擎下拉：下拉以绝对定位挂在输入框下方，无需输入框失焦
+ */
+function toggleEngineDropdown(): void {
+  engineDropdownVisible.value = !engineDropdownVisible.value
+}
+
+/**
+ * 文档级点击代理：点击搜索区之外时收起桌面端引擎下拉
+ *
+ * @param event 文档点击事件
+ */
+function handleDocumentClick(event: MouseEvent): void {
+  if (!engineDropdownVisible.value || searchSectionRef.value?.contains(event.target as Node)) return
+  engineDropdownVisible.value = false
+}
+
+/**
+ * 选中搜索引擎并收起弹层：桌面端下拉与移动端弹层共用
  *
  * @param name 引擎名称
  */
-function switchEngine(name: string): void {
+function selectEngine(name: string): void {
   activeEngine.value = name
+  closeEngineSheet()
+  engineDropdownVisible.value = false
 }
 
 /**
@@ -157,74 +205,99 @@ function refreshSiteCaches(): void {
   pruneSiteFavorites(Object.keys(SITE_INDEX))
 }
 
-onMounted(refreshSiteCaches)
+onMounted(() => {
+  refreshSiteCaches()
+  document.addEventListener('click', handleDocumentClick)
+})
+
 onActivated(refreshSiteCaches)
+
+onBeforeUnmount(() => document.removeEventListener('click', handleDocumentClick))
 </script>
 
 <style lang="scss" scoped>
 .search-section {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 32px;
-}
-
-.engine-scrollbar {
-  width: 100%;
-}
-
-.engine-tabs {
-  display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 8px;
+  margin-bottom: 16px;
 }
 
-.engine-tab {
-  padding: 4px 16px;
-  font-size: var(--el-font-size-base);
-  color: var(--el-text-color-regular);
-  background-color: var(--el-bg-color);
-  border: 1px solid var(--el-border-color);
-  border-radius: 999px;
-  cursor: pointer;
-  white-space: nowrap;
-  transition:
-    color 0.2s,
-    background-color 0.2s,
-    border-color 0.2s;
+// .link-card {
+//   border-color: var(--el-color-success);
+// }
 
-  &:hover {
-    color: var(--el-color-primary);
-    border-color: var(--el-color-primary-light-5);
-  }
-
-  &.is-active {
-    color: var(--el-color-white);
-    background-color: var(--el-color-primary);
-    border-color: var(--el-color-primary);
-  }
+/* 定宽容器：输入框与下拉共用，下拉以输入框左边缘为基准定位 */
+.search-box {
+  position: relative;
+  width: 640px;
+  max-width: 100%;
 }
 
 .search-input {
-  max-width: 560px;
+  width: 100%;
 
   &:deep(.el-input__wrapper) {
     border-radius: 999px;
   }
-}
 
-.site-section {
-  & + .site-section {
-    margin-top: 24px;
+  /* 「搜索」文字与清除图标之间留距 */
+  &:deep(.el-input__suffix) {
+    gap: 8px;
   }
 }
 
-.section-title {
-  margin: 0 0 12px;
-  font-size: 14px;
-  color: var(--el-text-color-secondary);
+/* 桌面端触发器：输入框前缀展示当前引擎名，点击展开引擎下拉 */
+.engine-trigger-desktop {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: -8px;
+  padding: 4px 8px;
+  color: var(--el-text-color-regular);
+
+  &:hover {
+    color: var(--el-color-primary);
+  }
+}
+
+/* 桌面端引擎下拉：绝对定位挂在输入框下方，与输入框左边缘对齐 */
+.engine-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 10;
+  min-width: 160px;
+  padding: 6px;
+  background-color: var(--el-bg-color-overlay);
+  border: 1px solid var(--el-border-color-light);
+  border-radius: 8px;
+  box-shadow: var(--el-box-shadow-light);
+
+  /* el-button 相邻默认带 12px 左边距，会让选项整体右移，此处清零 */
+  .engine-option {
+    margin-left: 0;
+    padding: 8px 10px;
+  }
+}
+
+/* 引擎选项：桌面下拉与移动端弹层共用 */
+.engine-option {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  font-size: var(--el-font-size-base);
+  color: var(--el-text-color-regular);
+  border-radius: 8px;
+
+  &:hover {
+    background-color: var(--el-fill-color-light);
+  }
+
+  &.is-active {
+    color: var(--el-color-primary);
+    background-color: var(--el-color-primary-light-9);
+  }
 }
 
 .card-grid {
@@ -257,37 +330,82 @@ onActivated(refreshSiteCaches)
 
 html[data-device='mobile'] {
   .search-section {
-    gap: 12px;
     margin-bottom: 16px;
   }
 
-  .engine-tabs {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-  }
-
-  .engine-tab {
-    flex-shrink: 0;
-  }
-
-  .search-input {
+  .search-box {
     width: 100%;
-    max-width: none;
   }
 
-  .site-section {
-    & + .site-section {
-      margin-top: 16px;
-    }
-  }
-
-  .section-title {
-    margin-bottom: 8px;
+  /* 放大镜扩大为可点热区，触摸目标不低于 32px */
+  .engine-trigger {
+    padding: 4px;
+    color: var(--el-text-color-secondary);
   }
 
   .card-grid {
     grid-template-columns: repeat(4, 1fr);
     gap: 8px;
+  }
+}
+
+/* 搜索引擎选择弹层：底部弹出，遮罩点击与取消按钮均关闭 */
+.engine-sheet-mask {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.32);
+}
+
+.engine-sheet {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px 16px calc(16px + env(safe-area-inset-bottom));
+  background-color: var(--el-bg-color);
+  border-radius: 16px 16px 0 0;
+  box-shadow: var(--el-box-shadow-light);
+
+  /* 相邻按钮默认带 12px 左边距，会让选项行与取消按钮整体右移并溢出弹层，此处统一清零 */
+  .el-button {
+    margin-left: 0;
+  }
+}
+
+.engine-sheet-title {
+  margin: 0 0 8px;
+  text-align: center;
+  font-size: var(--el-font-size-base);
+  color: var(--el-text-color-primary);
+}
+
+/* 弹层选项行高比桌面下拉更宽松，触摸目标更大 */
+.engine-sheet-item {
+  padding: 12px 8px;
+}
+
+.engine-sheet-cancel {
+  width: 100%;
+  margin-top: 8px;
+}
+
+/* 遮罩淡入淡出，面板上滑/下滑 */
+.engine-sheet-enter-active,
+.engine-sheet-leave-active {
+  transition: opacity var(--el-transition-duration);
+
+  .engine-sheet {
+    transition: transform var(--el-transition-duration);
+  }
+}
+
+.engine-sheet-enter-from,
+.engine-sheet-leave-to {
+  opacity: 0;
+
+  .engine-sheet {
+    transform: translateY(100%);
   }
 }
 </style>

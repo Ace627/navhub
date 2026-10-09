@@ -3,7 +3,7 @@
     <div v-if="currentItem" class="sheet-content select-none">
       <p class="sheet-title">{{ currentItem.title }}</p>
       <div class="sheet-actions">
-        <button v-if="isExternal(currentItem.key)" type="button" class="sheet-action" @click="handleCopy">复制网站</button>
+        <button type="button" class="sheet-action" @click="handleCopy">复制网站</button>
         <button type="button" class="sheet-action" @click="handleToggleFavorite">收藏网站</button>
         <button type="button" class="sheet-action is-cancel" @click="handleClose">取消</button>
       </div>
@@ -13,19 +13,21 @@
 
 <script setup lang="ts">
 defineOptions({ name: 'LinkActionSheet' })
-import { buildSiteShareText, copyText, isExternal } from '@/utils'
+import { copyText } from '@/utils'
 import { useLinkActions } from '@/hooks/useLinkActions'
 import { useSiteFavorites } from '@/hooks/useSiteFavorites'
+import { useSiteShare } from '@/hooks/useSiteShare'
 
 const { currentItem, panelVisible, closeLinkActions } = useLinkActions()
 const { toggleFavorite } = useSiteFavorites()
+const { buildShareText } = useSiteShare()
 
 /**
- * 复制站点分享文案（名称、链接、描述与来源）并关闭面板（复制结果提示由 copyText 内部给出）
+ * 复制站点分享文案（名称、地址与描述，自有页面地址取站内路由）并关闭面板（复制结果提示由 copyText 内部给出）
  */
 function handleCopy(): void {
   if (!currentItem.value) return
-  copyText(buildSiteShareText(currentItem.value.title, currentItem.value.key, currentItem.value.description))
+  copyText(buildShareText(currentItem.value))
   closeLinkActions()
 }
 

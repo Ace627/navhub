@@ -19,20 +19,21 @@
     <ProTooltip :content="item.description">
       <span class="link-desc">{{ item.description }}</span>
     </ProTooltip>
-    <!-- 桌面端常驻操作行：复制（仅外链）与收藏 -->
+    <!-- 桌面端常驻操作行：复制与收藏 -->
     <div class="card-actions flex-center">
-      <el-link v-if="isExternal(item.key)" type="primary" underline="never" @click="handleCopyLink">复制</el-link>
+      <el-link type="primary" underline="never" @click="handleCopyLink">复制</el-link>
       <el-link type="primary" underline="never" @click="handleToggleFavorite">{{ isFavorite(item.key) ? '已收藏' : '收藏' }}</el-link>
     </div>
   </component>
 </template>
 
 <script setup lang="ts">
-import { buildSiteShareText, copyText, isExternal, recordSiteClick } from '@/utils'
+import { copyText, recordSiteClick } from '@/utils'
 import type { LinkCardProps, LinkItem } from './types'
 import { IMG_FAVICON } from '@/common/constant/image.constant'
 import { useAppStore } from '@/store/modules/app'
 import { useSiteFavorites } from '@/hooks/useSiteFavorites'
+import { useSiteShare } from '@/hooks/useSiteShare'
 import { useLinkActions } from '@/hooks/useLinkActions'
 
 const props = defineProps<LinkCardProps>()
@@ -41,6 +42,7 @@ const emit = defineEmits<{ (e: 'click', item: LinkItem): void }>()
 
 const appStore = useAppStore()
 const { isFavorite, toggleFavorite } = useSiteFavorites()
+const { buildShareText } = useSiteShare()
 const { openLinkActions } = useLinkActions()
 
 /** 触发长按面板所需的按压时长（毫秒） */
@@ -217,14 +219,14 @@ function cancelLongPress(): void {
 }
 
 /**
- * 操作行复制点击：复制站点分享文案（名称、链接、描述与来源）并提示结果，同时阻断卡片自身的跳转行为
+ * 操作行复制点击：复制站点分享文案（名称、地址与描述，自有页面地址取站内路由）并提示结果，同时阻断卡片自身的跳转行为
  *
  * @param event 点击事件对象
  */
 function handleCopyLink(event: MouseEvent): void {
   event.preventDefault()
   event.stopPropagation()
-  copyText(buildSiteShareText(props.item.title, props.item.key, props.item.description))
+  copyText(buildShareText(props.item))
 }
 
 /**

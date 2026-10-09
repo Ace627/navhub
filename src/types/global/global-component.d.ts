@@ -8,5 +8,6 @@ declare module 'vue' {
     ProChart: (typeof import('../components/ProChart/index.vue'))['default']
     ProTooltip: (typeof import('../components/ProTooltip/index.vue'))['default']
     LinkCard: (typeof import('../components/LinkCard/index.vue'))['default']
+    ActionSheet: (typeof import('../components/ActionSheet/index.vue'))['default']
   }
 }
