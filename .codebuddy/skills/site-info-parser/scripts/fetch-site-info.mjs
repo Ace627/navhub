@@ -6,7 +6,6 @@
  */
 import { setTimeout as delay } from 'node:timers/promises';
 
-const DEFAULT_ICON = 'https://q1.qlogo.cn/g?b=qq&nk=1433224387&s=640';
 const UA =
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36';
 const PAGE_TIMEOUT = 15000;
@@ -152,7 +151,7 @@ async function resolveIcon(candidates) {
       /* 尝试下一个 */
     }
   }
-  return DEFAULT_ICON;
+  return '';
 }
 
 async function parseSite(rawInput) {
@@ -181,7 +180,7 @@ async function parseSite(rawInput) {
   } catch (e) {
     result.error = e?.cause?.message || e?.message || String(e);
     if (!result.url) result.url = (() => { try { return normalizeUrl(normalizeInput(rawInput)); } catch { return rawInput; } })();
-    result.icon = DEFAULT_ICON;
+    result.icon = '';
     if (!result.title) result.title = (() => { try { return new URL(normalizeInput(rawInput)).hostname; } catch { return ''; } })();
   }
   return result;
@@ -194,6 +193,6 @@ if (inputs.length === 0) {
 }
 const results = [];
 for (const input of inputs) {
-  results.push(await Promise.race([parseSite(input), delay(PAGE_TIMEOUT + ICON_TIMEOUT + 5000).then(() => ({ input, title: '', url: '', icon: DEFAULT_ICON, description: '', error: '整体超时' }))]));
+  results.push(await Promise.race([parseSite(input), delay(PAGE_TIMEOUT + ICON_TIMEOUT + 5000).then(() => ({ input, title: '', url: '', icon: '', description: '', error: '整体超时' }))]));
 }
 console.log(JSON.stringify(results, null, 2));

@@ -1168,6 +1168,14 @@
     "description": "免费压缩解压软件，支持ZIP、RAR、7Z等多种格式，高速压缩与解压。"
   },
   {
+    "id": "84745478-e6b9-4b0a-adb9-179aaa903c7d",
+    "categoryId": "9ee39df2-1307-47a5-849a-0e8e9d552e4e",
+    "key": "https://d.serctl.com",
+    "title": "镜像中转下载",
+    "icon": "https://q1.qlogo.cn/g?b=qq&nk=1433224387&s=640",
+    "description": "离线下载中转服务，支持代理下载 GitHub 等来源文件，生成镜像链接需尽快保存。"
+  },
+  {
     "id": "c7967949-706a-4da7-aa55-c9d1fffb19f9",
     "categoryId": "9ee39df2-1307-47a5-849a-0e8e9d552e4e",
     "key": "DoubleColorBall",
