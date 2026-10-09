@@ -1,7 +1,7 @@
 import { fileURLToPath } from 'node:url'
 import { defineConfig, loadEnv } from 'vite'
 import { setupVitePlugins } from './build/plugins/index.ts'
-import dayjs from 'dayjs'
+// import dayjs from 'dayjs'
 
 export default defineConfig(({ mode }) => {
   const runtimeConfig = loadEnv(mode, process.cwd())

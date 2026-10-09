@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { copyText, recordSiteClick } from '@/utils'
+import { copyText } from '@/utils'
 import type { LinkCardProps, LinkItem } from './types'
 import { IMG_FAVICON } from '@/common/constant/image.constant'
 import { useAppStore } from '@/store/modules/app'
@@ -143,13 +143,12 @@ function onIconError(): void {
 }
 
 /**
- * 卡片点击回调：记录一次导航点击统计，纯外链模式交给 a 标签默认导航（仅桌面端），其余抛出 click 事件由父级决定跳转
+ * 卡片点击回调：纯外链模式交给 a 标签默认导航（仅桌面端），其余抛出 click 事件由父级决定跳转
  *
  * 桌面端纯外链不调用 preventDefault/stopPropagation，保留 target="_blank" 默认新标签跳转；
  * 移动端纯外链因根节点渲染为 div，改为 window.open 新窗口打开，规避触屏长按触发的浏览器原生链接菜单
  */
 function onCardClick(): void {
-  recordSiteClick(props.item.key)
   if (props.plainLink && !appStore.isMobile) return
   if (props.plainLink) {
     window.open(props.item.key, '_blank', 'noopener,noreferrer')

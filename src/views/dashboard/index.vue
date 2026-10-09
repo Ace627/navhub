@@ -63,7 +63,7 @@
 defineOptions({ name: RouterConstant.HOME_PAGE_NAME })
 import { RouterConstant } from '@/router/router.constant'
 import type { LinkItem } from '@/components/LinkCard/types'
-import { isExternal, pruneSiteClickCounts, pruneSiteFavorites } from '@/utils'
+import { isExternal, pruneSiteFavorites } from '@/utils'
 import { useAppStore } from '@/store/modules/app'
 import { useSiteFavorites } from '@/hooks/useSiteFavorites'
 import { getCategoryRegistry } from '@/router/category.registry'
@@ -198,10 +198,9 @@ function handleExplore(): void {
 }
 
 /**
- * 刷新缓存一致性：以全站配置索引为合法键集合，裁剪点击计数与收藏中站点被删除后残留的脏键
+ * 刷新缓存一致性：以全站配置索引为合法键集合，裁剪收藏中站点被删除后残留的脏键
  */
 function refreshSiteCaches(): void {
-  pruneSiteClickCounts(Object.keys(SITE_INDEX))
   pruneSiteFavorites(Object.keys(SITE_INDEX))
 }
 
