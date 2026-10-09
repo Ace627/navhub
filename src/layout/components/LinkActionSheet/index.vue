@@ -1,5 +1,12 @@
 <template>
-  <el-drawer v-model="panelVisible" direction="btt" size="auto" :with-header="false" class="link-action-sheet">
+  <el-drawer
+    v-model="panelVisible"
+    direction="btt"
+    size="auto"
+    :with-header="false"
+    :lock-scroll="false"
+    class="link-action-sheet"
+  >
     <div v-if="currentItem" class="sheet-content select-none">
       <p class="sheet-title">{{ currentItem.title }}</p>
       <div class="sheet-actions">
