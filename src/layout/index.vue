@@ -10,7 +10,9 @@
         <Navbar />
         <Hitokoto v-if="settingStore.showHitokoto" />
       </header>
-      <AppMain />
+      <el-scrollbar>
+        <AppMain />
+      </el-scrollbar>
       <AppFooter />
     </div>
 

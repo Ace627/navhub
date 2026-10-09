@@ -4,7 +4,7 @@
       <p class="sheet-title">{{ currentItem.title }}</p>
       <div class="sheet-actions">
         <button type="button" class="sheet-action" @click="handleCopy">复制网站</button>
-        <button type="button" class="sheet-action" @click="handleToggleFavorite">收藏网站</button>
+        <button type="button" class="sheet-action" @click="handleToggleFavorite">{{ isCurrentFavorite ? '取消收藏' : '收藏网站' }}</button>
         <button type="button" class="sheet-action is-cancel" @click="handleClose">取消</button>
       </div>
     </div>
@@ -19,8 +19,11 @@ import { useSiteFavorites } from '@/hooks/useSiteFavorites'
 import { useSiteShare } from '@/hooks/useSiteShare'
 
 const { currentItem, panelVisible, closeLinkActions } = useLinkActions()
-const { toggleFavorite } = useSiteFavorites()
+const { isFavorite, toggleFavorite } = useSiteFavorites()
 const { buildShareText } = useSiteShare()
+
+/** 当前条目的收藏状态：随收藏集合实时变化，已收藏时长按显示「取消收藏」 */
+const isCurrentFavorite = computed(() => (currentItem.value ? isFavorite(currentItem.value.key) : false))
 
 /**
  * 复制站点分享文案（名称、地址与描述，自有页面地址取站内路由）并关闭面板（复制结果提示由 copyText 内部给出）
