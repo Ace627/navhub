@@ -1,5 +1,13 @@
 [
   {
+    "id": "7c1f4e2a-3b8d-4a6f-9e15-2d7c60b4f831",
+    "categoryId": "0ff92260-b310-4228-bfc5-674dfe708272",
+    "key": "https://www.rijutt.com",
+    "title": "日剧天堂",
+    "icon": "@/assets/images/icons/日剧天堂.ico",
+    "description": "日剧天堂提供日剧推荐、排行榜与在线播放，最新日剧资源持续更新。"
+  },
+  {
     "id": "8f4a1d2c-63b7-4e59-9a30-c2e8b7d51f46",
     "categoryId": "0ff92260-b310-4228-bfc5-674dfe708272",
     "key": "https://tv.n103.top",
