@@ -58,7 +58,7 @@ function goSetting() {
   display: flex;
   align-items: center;
   height: 100%;
-  padding: 0 8px;
+  padding: 0 4px;
   transition: background-color var(--el-transition-duration-fast);
 }
 .hover-effect:hover {

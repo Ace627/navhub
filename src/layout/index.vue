@@ -73,6 +73,8 @@ html[data-device='mobile'] .app-container {
 
 .main-container {
   position: relative;
+  display: flex;
+  flex-direction: column;
   height: 100%;
   margin-left: var(--el-sidebar-width);
   transition: margin-left var(--el-transition-duration);
