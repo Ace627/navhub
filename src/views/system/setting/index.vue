@@ -16,40 +16,18 @@
             <div class="row-ctrl">
               <!-- 主题走命令式切换，由 useTheme 播放圆形扩散动效，不参与通用绑定 -->
               <div v-if="item.type === 'theme'" class="theme-switch">
-                <button
-                  v-for="option in THEME_OPTIONS"
-                  :key="option.value"
-                  type="button"
-                  class="theme-btn"
-                  :class="{ 'is-active': settingStore.theme === option.value }"
-                  @click="handleTheme(option.value, $event)"
-                >
+                <button v-for="option in THEME_OPTIONS" :key="option.value" type="button" class="theme-btn" :class="{ 'is-active': settingStore.theme === option.value }" @click="handleTheme(option.value, $event)">
                   <SvgIcon :name="option.icon" :size="14" />
                   <span>{{ option.label }}</span>
                 </button>
               </div>
-              <el-switch
-                v-else-if="item.type === 'switch'"
-                :model-value="settingStore[item.prop]"
-                @update:model-value="handleUpdate(item.prop, $event)"
-              />
-              <el-radio-group
-                v-else-if="item.type === 'radio'"
-                :model-value="settingStore[item.prop]"
-                size="small"
-                @update:model-value="handleUpdate(item.prop, $event)"
-              >
+              <el-switch v-else-if="item.type === 'switch'" :model-value="settingStore[item.prop]" @update:model-value="handleUpdate(item.prop, $event)" />
+              <el-radio-group v-else-if="item.type === 'radio'" :model-value="settingStore[item.prop]" size="small" @update:model-value="handleUpdate(item.prop, $event)">
                 <el-radio-button v-for="option in item.options" :key="option.value" :value="option.value">
                   {{ option.label }}
                 </el-radio-button>
               </el-radio-group>
-              <el-select
-                v-else-if="item.type === 'select'"
-                :model-value="settingStore[item.prop]"
-                size="small"
-                class="row-select"
-                @update:model-value="handleUpdate(item.prop, $event)"
-              >
+              <el-select v-else-if="item.type === 'select'" :model-value="settingStore[item.prop]" size="small" class="row-select" @update:model-value="handleUpdate(item.prop, $event)">
                 <el-option v-for="option in item.options" :key="option.value" :label="option.label" :value="option.value" />
               </el-select>
             </div>
@@ -59,6 +37,12 @@
 
       <!-- 底部操作区：作用于全页的重置与保存 -->
       <div class="page-actions">
+        <el-button plain @click="handleClearCache">
+          <template #icon>
+            <SvgIcon name="Clear" />
+          </template>
+          <span>清理缓存</span>
+        </el-button>
         <el-button plain type="danger" @click="handleReset">
           <template #icon>
             <SvgIcon name="Refresh" />
@@ -80,7 +64,7 @@
 defineOptions({ name: 'SystemSetting' })
 import { cloneDeep } from 'lodash-es'
 import type { SystemSetting } from '@/defaultSettings'
-import { getSystemSetting, removeSystemSetting, setSystemSetting, TipModal } from '@/utils'
+import { getSystemSetting, removeSystemSetting, setSystemSetting, StorageCache, TipModal } from '@/utils'
 
 const settingStore = useSettingStore()
 const { apply: applyTheme } = useTheme()
@@ -209,6 +193,21 @@ async function handleReset() {
   if (!confirm) return
   settingStore.resetSetting()
 }
+
+/**
+ * 清理本地缓存：二次确认后清空带前缀的 localStorage 与会话级 sessionStorage 并刷新页面
+ *
+ * StorageCache.clear 只删除本项目带 VITE_STORAGE_PREFIX 前缀的键，不会误清同源其它数据；
+ * 刷新后各 store 重新从缓存读取，缺失的键回落到默认值，故清缓存与重置配置在同一场景下结果接近，
+ * 区别是清理缓存同时会丢弃收藏夹等用户数据
+ */
+async function handleClearCache() {
+  const { confirm } = await TipModal.confirm('将清空全部本地缓存（含系统配置、站点收藏等）并刷新页面，是否继续？')
+  if (!confirm) return
+  StorageCache.clear()
+  sessionStorage.clear()
+  window.location.reload()
+}
 </script>
 
 <style lang="scss" scoped>
@@ -222,8 +221,7 @@ async function handleReset() {
 .page-actions {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  gap: 8px;
+  justify-content: center;
 }
 
 /* 通用面板 */
@@ -361,8 +359,9 @@ html[data-device='mobile'] {
   .setting-row {
     padding: 12px 4px;
 
+    /* 窄屏隐藏行内说明文案，只保留标题 */
     .row-body span {
-      line-height: 1.5;
+      display: none;
     }
   }
 
