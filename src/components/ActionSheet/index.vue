@@ -77,6 +77,7 @@ import type { ActionSheetAction, ActionSheetCloseAction } from './types'
  * @property {string|string[]} title - 顶部标题，传数组表示多行
  * @property {string} description - 选项上方的描述文案
  * @property {string} cancelText - 取消按钮文字，为空则不渲染
+ * @property {number|string} itemHeight - 选项行与取消按钮的行高（px），默认 36
  * @property {boolean} closeable - 是否显示右上角关闭按钮
  * @property {string} closeIcon - 关闭图标名称，对应 src/assets/svg-icons 下图标
  * @property {number|string} duration - 动画时长（秒），传 0 可禁用动画
@@ -101,6 +102,7 @@ const props = defineProps({
   title: { type: [String, Array] as PropType<string | string[]>, default: '' },
   description: { type: String, default: '' },
   cancelText: { type: String, default: '' },
+  itemHeight: { type: [Number, String], default: 36 },
   closeable: { type: Boolean, default: true },
   closeIcon: { type: String, default: 'Close' },
   duration: { type: [Number, String], default: 0.3 },
@@ -165,10 +167,11 @@ const titleLines = computed(() => {
 /** 是否渲染头部：标题、描述、关闭按钮任意其一存在即渲染 */
 const showHeader = computed(() => props.closeable || !!titleLines.value.length || !!props.description || !!slots.description)
 
-/** 抽屉行内样式：通过 CSS 变量下发动画时长与底部安全区高度 */
+/** 抽屉行内样式：通过 CSS 变量下发动画时长、行高与底部安全区高度 */
 const drawerStyle = computed(() => {
   return {
     '--action-sheet-duration': `${props.duration}s`,
+    '--action-sheet-item-height': typeof props.itemHeight === 'number' ? `${props.itemHeight}px` : props.itemHeight,
     '--action-sheet-safe-bottom': props.safeAreaInsetBottom ? 'env(safe-area-inset-bottom)' : '0px',
   }
 })
@@ -239,6 +242,8 @@ function handleCancel() {
 <style lang="scss" scoped>
 .action-sheet__body {
   padding-bottom: max(8px, var(--action-sheet-safe-bottom, 0px));
+  /* 面板由长按触发，若不禁用选中会在手指抬起时选中文案 */
+  user-select: none;
 }
 
 /* 头部：标题与描述居中，关闭按钮绝对定在左上角 */
@@ -270,7 +275,7 @@ function handleCancel() {
 .action-sheet__close {
   position: absolute;
   top: 10px;
-  left: 8px;
+  right: 8px;
   width: 32px;
   height: 32px;
   padding: 0;
@@ -282,7 +287,7 @@ function handleCancel() {
 .action-sheet__action {
   justify-content: space-between;
   width: 100%;
-  height: 52px;
+  height: var(--action-sheet-item-height, 36px);
   padding: 0 16px;
   font-size: 16px;
   border-radius: 0;
@@ -316,12 +321,32 @@ function handleCancel() {
 /* 取消按钮：与内容区之间留出 8px 间距并加分割线 */
 .action-sheet__cancel {
   width: 100%;
-  height: 52px;
+  height: var(--action-sheet-item-height, 36px);
   margin-top: 8px;
   font-size: 16px;
   font-weight: 600;
   border-top: 1px solid var(--el-border-color-lighter);
   border-radius: 0;
+}
+
+/* 移动端：选项内容整体水平居中 */
+html[data-device='mobile'] {
+  .action-sheet__action {
+    :deep(> span) {
+      justify-content: center;
+    }
+  }
+}
+
+/* Element Plus 相邻按钮默认带 12px 左边距，会让第二行起整行右移，这里按更高特异性清零 */
+.action-sheet__body .el-button.action-sheet__action,
+.action-sheet__body .el-button.action-sheet__cancel {
+  margin: 0;
+}
+
+/* 取消按钮重新补回与内容区的间距（被上面清零规则覆盖） */
+.action-sheet__body .el-button.action-sheet__cancel {
+  margin-top: 8px;
 }
 
 /* 抽屉容器：抽屉被 Teleport 到 body，样式需用 :global 命中 */

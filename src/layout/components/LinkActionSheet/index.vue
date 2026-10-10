@@ -1,27 +1,10 @@
 <template>
-  <el-drawer
-    v-model="panelVisible"
-    direction="btt"
-    size="auto"
-    :with-header="false"
-    :lock-scroll="false"
-    class="link-action-sheet"
-  >
-    <div v-if="currentItem" class="sheet-content select-none">
-      <p class="sheet-title">{{ currentItem.title }}</p>
-      <div class="sheet-actions">
-        <button v-if="reorderable" type="button" class="sheet-action" :class="{ 'is-disabled': !canMoveCurrent(-1) }" :disabled="!canMoveCurrent(-1)" @click="handleMove(-1)">前移</button>
-        <button type="button" class="sheet-action" @click="handleCopy">复制网站</button>
-        <button type="button" class="sheet-action" @click="handleToggleFavorite">{{ isCurrentFavorite ? '取消收藏' : '收藏网站' }}</button>
-        <button v-if="reorderable" type="button" class="sheet-action" :class="{ 'is-disabled': !canMoveCurrent(1) }" :disabled="!canMoveCurrent(1)" @click="handleMove(1)">后移</button>
-        <button type="button" class="sheet-action is-cancel" @click="handleClose">取消</button>
-      </div>
-    </div>
-  </el-drawer>
+  <ActionSheet v-model:show="panelVisible" :actions="actions" :title="currentItem?.title ?? ''" :lock-scroll="false" />
 </template>
 
 <script setup lang="ts">
 defineOptions({ name: 'LinkActionSheet' })
+import type { ActionSheetAction } from '@/components/ActionSheet/types'
 import { copyText } from '@/utils'
 import { useLinkActions } from '@/hooks/useLinkActions'
 import { useSiteFavorites } from '@/hooks/useSiteFavorites'
@@ -43,6 +26,18 @@ const isCurrentFavorite = computed(() => (currentItem.value ? isFavorite(current
 function canMoveCurrent(offset: -1 | 1): boolean {
   return reorderable.value && Boolean(currentItem.value) && canMoveFavorite(currentItem.value?.key ?? '', offset)
 }
+
+/**
+ * 面板选项列表：收藏卡片场景追加前移/后移项（首尾按可移动方向禁用），其余场景仅提供复制与收藏切换
+ */
+const actions = computed<ActionSheetAction[]>(() => {
+  const list: ActionSheetAction[] = []
+  if (reorderable.value) {
+    list.push({ name: '向前移动', disabled: !canMoveCurrent(-1), callback: () => handleMove(-1) }, { name: '向后移动', disabled: !canMoveCurrent(1), callback: () => handleMove(1) })
+  }
+  list.push({ name: '复制网站', callback: handleCopy }, { name: isCurrentFavorite.value ? '取消收藏' : '收藏网站', callback: handleToggleFavorite })
+  return list
+})
 
 /**
  * 复制站点分享文案（名称、地址与描述，自有页面地址取站内路由）并关闭面板（复制结果提示由 copyText 内部给出）
@@ -73,66 +68,4 @@ function handleMove(offset: -1 | 1): void {
   moveFavorite(currentItem.value.key, offset)
   closeLinkActions()
 }
-
-/**
- * 取消按钮：关闭面板
- */
-function handleClose(): void {
-  closeLinkActions()
-}
 </script>
-
-<style lang="scss" scoped>
-.sheet-content {
-  padding: 8px 0 16px;
-}
-
-.sheet-title {
-  margin: 0;
-  padding: 12px 20px;
-  overflow: hidden;
-  font-size: var(--el-font-size-base);
-  color: var(--el-text-color-secondary);
-  text-align: center;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.sheet-actions {
-  display: flex;
-  flex-direction: column;
-}
-
-.sheet-action {
-  height: 52px;
-  font-size: 16px;
-  color: var(--el-text-color-primary);
-  background-color: var(--el-bg-color);
-  border: none;
-  border-top: 1px solid var(--el-border-color-lighter);
-  cursor: pointer;
-
-  &:active {
-    background-color: var(--el-fill-color-light);
-  }
-
-  &.is-disabled {
-    color: var(--el-text-color-placeholder);
-    cursor: not-allowed;
-  }
-
-  &.is-cancel {
-    margin-top: 8px;
-    font-weight: 600;
-  }
-}
-
-/* 抽屉容器：顶角圆角化并去掉默认内边距，交由内容区自行控制 */
-:global(.link-action-sheet) {
-  border-radius: 16px 16px 0 0;
-}
-
-:global(.link-action-sheet .el-drawer__body) {
-  padding: 0;
-}
-</style>

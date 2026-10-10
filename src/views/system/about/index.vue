@@ -8,17 +8,16 @@
       <div class="hero-info">
         <h2 class="hero-title">{{ siteTitle }}</h2>
         <p class="hero-desc">一个干净、无广告的个人上网导航，收录日常高频使用的影视、软件、学习与网盘资源站点，让好网站一眼就能找到。</p>
-        <button type="button" class="qq-btn" @click="copyQQ">
-          <SvgIcon name="About" :size="16" />
-          <span>QQ 交流群：{{ qqGroup }} </span>
-          <em>点击复制</em>
-        </button>
+        <p class="hero-uptime">
+          <SvgIcon name="Schedule" :size="16" />
+          <span>已运行 {{ uptimeText }}</span>
+        </p>
       </div>
     </section>
 
     <!-- 数据统计 -->
     <section class="stat-grid">
-      <div v-for="stat in statList" :key="stat.label" class="stat-card">
+      <div v-for="stat in statList" :key="stat.label" class="stat-card" :class="{ 'is-copyable': stat.copyText }" @click="handleCopyStat(stat)">
         <strong>{{ stat.value }}</strong>
         <span>{{ stat.label }}</span>
       </div>
@@ -85,11 +84,61 @@
 <script setup lang="ts">
 defineOptions({ name: 'About' })
 import type { EChartsOption } from 'echarts'
+import dayjs from 'dayjs'
 import { SiteRequest } from '@/api/site.request'
 import { IMG_FAVICON } from '@/common/constant/image.constant'
 
 /** 站点名称，取自环境变量，与侧栏 logo 处一致 */
 const siteTitle = import.meta.env.VITE_APP_TITLE
+
+/** 统计卡片项：copyText 有值时卡片可点击复制 */
+interface StatItem {
+  label: string
+  value: string
+  copyText?: string
+}
+
+/** 站点上线时间，运行时长的起算点，随站点的正式对外时间维护 */
+const SITE_LAUNCH_TIME = '2026-09-30'
+
+/** 当前时间，每秒刷新，用于驱动运行时长展示 */
+const now = ref(new Date())
+
+/** 运行时长的刷新定时器，组件卸载时清理 */
+let uptimeTimer: ReturnType<typeof setInterval>
+
+onMounted(() => {
+  uptimeTimer = setInterval(() => (now.value = new Date()), 1000)
+})
+
+onUnmounted(() => clearInterval(uptimeTimer))
+
+/**
+ * 计算站点已运行时长文案
+ *
+ * 年、月按自然月推进（dayjs 差值已做月末修正），不足整月的部分即为天数；
+ * 上线时间取当日零点，故时分秒直接取当前时刻
+ */
+const uptimeText = computed(() => {
+  const current = dayjs(now.value)
+  const launch = dayjs(SITE_LAUNCH_TIME)
+  const years = current.diff(launch, 'year')
+  const months = current.diff(launch.add(years, 'year'), 'month')
+  const days = current.diff(launch.add(years, 'year').add(months, 'month'), 'day')
+  return `${years} 年 ${padTwo(months)} 月 ${padTwo(days)} 天 ${padTwo(current.hour())} 时 ${padTwo(current.minute())} 分 ${padTwo(current.second())} 秒`
+})
+
+/**
+ * 将数值补零为两位字符串
+ *
+ * 运行时长的月、日、时、分、秒统一按两位展示，避免个位数与时钟式阅读习惯错位
+ *
+ * @param value 待补零的数值
+ * @returns 不足两位时前面补 0 的字符串
+ */
+function padTwo(value: number) {
+  return String(value).padStart(2, '0')
+}
 
 /** 系统帧率，由 requestAnimationFrame 采样，原右上角展示迁移至此 */
 const fps = useFps()
@@ -167,12 +216,12 @@ const categoryOption = computed<EChartsOption>(() => ({
   ],
 }))
 
-/** 统计卡片数据：分类数由分类分布数据直接推导 */
-const statList = computed(() => [
-  { label: '站点分类', value: categoryStats.value.length },
-  { label: '收录站点', value: siteCount.value },
-  { label: '交流群号', value: qqGroup },
-  { label: '系统帧率', value: fps.value },
+/** 统计卡片数据：分类数由分类分布数据直接推导，交流群号支持点击复制 */
+const statList = computed<StatItem[]>(() => [
+  { label: '站点分类', value: `${categoryStats.value.length}` },
+  { label: '收录站点', value: `${siteCount.value}` },
+  { label: '交流群号', value: qqGroup, copyText: qqGroup },
+  { label: '系统帧率', value: `${fps.value}` },
 ])
 
 /** 功能特性数据：均为站内已实现的真实能力 */
@@ -195,26 +244,36 @@ const techList = [
 ]
 
 /**
- * 复制 QQ 群号到剪贴板，并弹出结果提示
+ * 复制文本到剪贴板，并弹出结果提示
  *
  * 剪贴板 API 不可用（非安全上下文等）时降级为 execCommand 方案
  */
-async function copyQQ() {
+async function copyText(text: string, message: string) {
   try {
     if (navigator.clipboard) {
-      await navigator.clipboard.writeText(qqGroup)
+      await navigator.clipboard.writeText(text)
     } else {
       const input = document.createElement('textarea')
-      input.value = qqGroup
+      input.value = text
       document.body.appendChild(input)
       input.select()
       document.execCommand('copy')
       input.remove()
     }
-    ElMessage.success(`群号 ${qqGroup} 已复制，欢迎加入交流`)
+    ElMessage.success(message)
   } catch {
-    ElMessage.error('复制失败，请手动复制群号')
+    ElMessage.error('复制失败，请手动复制')
   }
+}
+
+/**
+ * 点击统计卡片时复制该项的值
+ *
+ * 仅带 copyText 的卡片有复制能力，其余卡片点击不做处理，避免无意义反馈
+ */
+function handleCopyStat(stat: StatItem) {
+  if (!stat.copyText) return
+  copyText(stat.copyText, `${stat.label}已复制`)
 }
 </script>
 
@@ -254,42 +313,18 @@ async function copyQQ() {
 }
 
 .hero-desc {
-  margin: 0 0 14px;
+  margin: 0 0 8px;
   font-size: 14px;
-  line-height: 1.7;
   color: var(--el-text-color-secondary);
 }
 
-.qq-btn {
+.hero-uptime {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 16px;
-  border: 1px solid var(--el-color-primary);
-  border-radius: 6px;
+  margin: 0;
   font-size: 14px;
-  color: var(--el-color-primary);
-  background-color: var(--el-bg-color);
-  cursor: pointer;
-  transition:
-    background-color var(--el-transition-duration-fast),
-    box-shadow var(--el-transition-duration-fast),
-    transform var(--el-transition-duration-fast);
-
-  &:hover {
-    background-color: var(--el-color-primary-light-9);
-    box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
-  }
-
-  &:active {
-    transform: scale(0.97);
-  }
-
-  em {
-    font-style: normal;
-    font-size: 12px;
-    color: var(--el-text-color-secondary);
-  }
+  color: var(--el-text-color-regular);
 }
 
 /* 统计卡片区 */
@@ -328,6 +363,12 @@ async function copyQQ() {
   span {
     font-size: 13px;
     color: var(--el-text-color-secondary);
+  }
+
+  /* 可复制卡片：光标与 user-select 区分于只读卡片 */
+  &.is-copyable {
+    cursor: pointer;
+    user-select: none;
   }
 }
 
@@ -532,6 +573,10 @@ html[data-device='mobile'] {
 
   .hero-desc {
     margin-bottom: 12px;
+  }
+
+  .hero-uptime {
+    justify-content: center;
   }
 
   .stat-grid {

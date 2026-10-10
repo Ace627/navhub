@@ -1792,14 +1792,6 @@
     "description": "零艺客免费接口平台，致力提供稳定、快速的公益 API 数据接口服务。"
   },
   {
-    "id": "cbcfa2c9-f9e2-4d9a-9a6e-75924ca40efa",
-    "categoryId": "8652c80f-1b7f-456a-86bf-b5224d8e22c7",
-    "key": "https://api.xinyew.cn",
-    "title": "新野API",
-    "icon": "@/assets/images/icons/新野API.ico",
-    "description": "新野免费接口平台，提供稳定、快速的公益数据接口，免费开放调用。"
-  },
-  {
     "id": "bb202885-726d-40b5-86ea-9bfa77e27c8f",
     "categoryId": "8652c80f-1b7f-456a-86bf-b5224d8e22c7",
     "key": "http://api.xn--yet605m.xyz",

@@ -5,6 +5,7 @@
         <button type="button" @click="goHome">最近使用</button>
         <button type="button" @click="openSidebar">分类导航</button>
         <button type="button" @click="openSearch">全站搜索</button>
+        <button type="button" @click="goAbout">关于我们</button>
       </div>
     </transition>
     <button type="button" class="float-nav-fab" aria-label="页面导航" @click="panelVisible = !panelVisible">
@@ -50,6 +51,14 @@ function openSidebar() {
 function openSearch() {
   panelVisible.value = false
   mobileSearchVisible.value = true
+}
+
+/**
+ * 跳转到关于我们页：收起面板后进入关于页
+ */
+function goAbout() {
+  panelVisible.value = false
+  router.push({ name: 'About' })
 }
 
 /**

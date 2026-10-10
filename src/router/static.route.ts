@@ -45,7 +45,7 @@ export function buildStaticRouteList(): RouteRecordRaw[] {
         {
           name: 'About',
           path: 'about',
-          component: () => import('@/views/core/about.vue'),
+          component: () => import('@/views/system/about/index.vue'),
           meta: { title: '关于我们', icon: 'About' },
         },
       ],
@@ -53,7 +53,7 @@ export function buildStaticRouteList(): RouteRecordRaw[] {
 
     {
       path: '/:pathMatch(.*)*', // 404页面（必须放在最后）
-      component: () => import('@/views/core/404.vue'),
+      component: () => import('@/views/system/exception/index.vue'),
       meta: { hidden: true, title: '页面不存在' },
     },
   ]
