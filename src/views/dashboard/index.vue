@@ -54,6 +54,13 @@
     <div v-if="!favoriteSites.length" class="empty-state">
       <SvgIcon name="Link" :size="48" class="empty-icon" />
       <p class="empty-text">暂无收藏站点，去逛逛各分类导航吧</p>
+      <!-- 分类快捷入口：仅收藏为空时出现，点击跳转对应分类列表页 -->
+      <div class="category-grid">
+        <div v-for="entry in CATEGORY_SHORTCUTS" :key="entry.path" class="category-item" @click="handleCategoryClick(entry.path)">
+          <SvgIcon :name="entry.icon" :size="18" />
+          <span class="category-name">{{ entry.title }}</span>
+        </div>
+      </div>
       <el-text v-if="appStore.isCollapse" type="primary" class="empty-link" @click="handleExplore">探索一下吧</el-text>
     </div>
   </div>
@@ -127,6 +134,9 @@ const CATEGORY_SOURCES: { categoryPath: string; list: LinkItem[] }[] = getCatego
 /** 全站条目索引：以条目 key（外链为 URL，站内为路由参数）为键，模块加载时构建一次 */
 const SITE_INDEX: Record<string, SiteEntry> = Object.fromEntries(CATEGORY_SOURCES.flatMap((source) => source.list.map((item) => [item.key, { item, categoryPath: source.categoryPath }])))
 
+/** 空状态分类快捷入口：取注册表全部分类的标题、图标与路径，顺序与侧栏菜单一致 */
+const CATEGORY_SHORTCUTS = getCategoryRegistry().map((entry) => ({ path: entry.path, title: entry.title, icon: entry.icon }))
+
 /**
  * 打开移动端搜索引擎选择弹层
  */
@@ -188,6 +198,15 @@ function handleSearch(): void {
  */
 function handleInternalClick(entry: SiteEntry): void {
   router.push(`${entry.categoryPath}/${entry.item.key}`)
+}
+
+/**
+ * 空状态分类快捷入口点击：路由跳转到对应分类列表页
+ *
+ * @param path 分类路由路径，不含前导斜杠
+ */
+function handleCategoryClick(path: string): void {
+  router.push(`/${path}`)
 }
 
 /**
@@ -310,7 +329,8 @@ onBeforeUnmount(() => document.removeEventListener('click', handleDocumentClick)
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  padding: 64px 0;
+  width: 960px;
+  margin: 0 auto;
   color: var(--el-text-color-secondary);
 
   .empty-icon {
@@ -325,6 +345,44 @@ onBeforeUnmount(() => document.removeEventListener('click', handleDocumentClick)
   .empty-link {
     cursor: pointer;
   }
+}
+
+/* 分类快捷入口：空状态下补齐横向跳转能力，列宽较卡片网格更窄以容纳更多入口 */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+  width: 100%;
+}
+
+.category-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 8px;
+  font-size: var(--el-font-size-base);
+  color: var(--el-text-color-regular);
+  cursor: pointer;
+  background-color: var(--el-bg-color);
+  border: 1px solid var(--el-border-color);
+  border-radius: 8px;
+  transition:
+    color 0.2s,
+    background-color 0.2s,
+    border-color 0.2s;
+
+  &:hover {
+    color: var(--el-color-primary);
+    background-color: var(--el-color-primary-light-9);
+    border-color: var(--el-color-primary-light-5);
+  }
+}
+
+.category-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 html[data-device='mobile'] {
@@ -342,9 +400,27 @@ html[data-device='mobile'] {
     color: var(--el-text-color-secondary);
   }
 
+  /* 空状态定宽仅适用于桌面端，移动端占满可用宽度 */
+  .empty-state {
+    width: 100%;
+  }
+
   .card-grid {
     grid-template-columns: repeat(4, 1fr);
     gap: 8px;
+  }
+
+  /* 分类快捷入口：移动端四列紧凑排布，图标与标题上下排列 */
+  .category-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
+  .category-item {
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px 4px;
+    font-size: 12px;
   }
 }
 
