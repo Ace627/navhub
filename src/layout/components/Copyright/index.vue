@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-center">
+  <div class="flex-center copyright">
     <span v-for="(item, index) in stats" :key="item.label" class="stat-item">
       <span class="stat-item__label">{{ item.label }}</span>
       <span class="stat-item__value">{{ item.value }}</span>
@@ -102,6 +102,15 @@ onUnmounted(() => {
 </script>
 
 <style lang="scss" scoped>
+.copyright {
+  flex-shrink: 0;
+  width: 100%;
+  height: var(--el-copyright-height);
+  background-color: var(--el-copyright-bg-color);
+  box-shadow: var(--el-copyright-box-shadow);
+  transition: width var(--el-transition-duration);
+}
+
 .stat-item {
   font-size: var(--el-copyright-font-size);
   &__label {

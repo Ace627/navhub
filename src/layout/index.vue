@@ -11,7 +11,7 @@
         <Hitokoto v-if="settingStore.showHitokoto" />
       </header>
       <AppMain />
-      <Copyright class="fixed-footer" />
+      <Copyright />
     </div>
 
     <!-- 移动端悬浮页面导航 -->
@@ -43,18 +43,15 @@ const classes = computed(() => [{ 'hide-sidebar': appStore.isCollapse }, { 'open
   --el-drawer-bg-index: calc(var(--el-sidebar-index) - 1);
   --el-fixed-header-index: calc(var(--el-sidebar-index) - 2);
   --el-fixed-header-width: calc(100% - var(--el-sidebar-width));
-  --el-copyright-width: calc(100% - var(--el-sidebar-width));
   position: relative;
   width: 100%;
   height: 100%;
 }
 html[data-device='mobile'] .app-container {
   --el-fixed-header-width: 100%;
-  --el-copyright-width: 100%;
 }
 .hide-sidebar {
   --el-fixed-header-width: calc(100% - var(--el-sidebar-hide-width));
-  --el-copyright-width: calc(100% - var(--el-sidebar-hide-width));
 }
 
 .sidebar-container {
@@ -87,17 +84,6 @@ html[data-device='mobile'] .app-container {
   right: 0;
   z-index: var(--el-fixed-header-index);
   width: var(--el-fixed-header-width);
-  transition: width var(--el-transition-duration);
-}
-.fixed-footer {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  z-index: var(--el-fixed-header-index);
-  width: var(--el-copyright-width);
-  height: var(--el-copyright-height);
-  background-color: var(--el-copyright-bg-color);
-  box-shadow: var(--el-copyright-box-shadow);
   transition: width var(--el-transition-duration);
 }
 
