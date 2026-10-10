@@ -13,16 +13,25 @@
     @pointercancel="onPointerRelease"
   >
     <div class="card-header">
-      <img class="link-icon" :src="getIcon(item)" :alt="item.title" loading="lazy" draggable="false" referrerpolicy="no-referrer" @load="onIconLoad" @error="onIconError" />
+      <!-- 图标区：默认按条目配置渲染图片，传入 icon 插槽可替换为任意图标组件 -->
+      <span class="link-icon">
+        <slot name="icon">
+          <img :src="getIcon(item)" :alt="item.title" loading="lazy" draggable="false" referrerpolicy="no-referrer" @load="onIconLoad" @error="onIconError" />
+        </slot>
+      </span>
       <span class="link-title">{{ item.title }}</span>
     </div>
     <ProTooltip :content="item.description">
       <span class="link-desc">{{ item.description }}</span>
     </ProTooltip>
-    <!-- 桌面端常驻操作行：复制与收藏 -->
+    <!-- 桌面端常驻操作行：默认复制与收藏，reorderable 时前移居首、后移居尾，传入 actions 插槽可自定义 -->
     <div class="card-actions flex-center">
-      <el-link type="primary" underline="never" @click="handleCopyLink">复制</el-link>
-      <el-link type="primary" underline="never" @click="handleToggleFavorite">{{ isFavorite(item.key) ? '已收藏' : '收藏' }}</el-link>
+      <slot name="actions">
+        <el-link v-if="reorderable" type="primary" underline="never" :disabled="!canMoveFavorite(item.key, -1)" @click="handleMove(-1, $event)">前移</el-link>
+        <el-link type="primary" underline="never" @click="handleCopyLink">复制</el-link>
+        <el-link type="primary" underline="never" @click="handleToggleFavorite">{{ isFavorite(item.key) ? '已收藏' : '收藏' }}</el-link>
+        <el-link v-if="reorderable" type="primary" underline="never" :disabled="!canMoveFavorite(item.key, 1)" @click="handleMove(1, $event)">后移</el-link>
+      </slot>
     </div>
   </component>
 </template>
@@ -33,6 +42,7 @@ import type { LinkCardProps, LinkItem } from './types'
 import { IMG_FAVICON } from '@/common/constant/image.constant'
 import { useAppStore } from '@/store/modules/app'
 import { useSiteFavorites } from '@/hooks/useSiteFavorites'
+import { useSiteRecords } from '@/hooks/useSiteRecords'
 import { useSiteShare } from '@/hooks/useSiteShare'
 import { useLinkActions } from '@/hooks/useLinkActions'
 
@@ -41,7 +51,8 @@ const props = defineProps<LinkCardProps>()
 const emit = defineEmits<{ (e: 'click', item: LinkItem): void }>()
 
 const appStore = useAppStore()
-const { isFavorite, toggleFavorite } = useSiteFavorites()
+const { isFavorite, toggleFavorite, canMoveFavorite, moveFavorite } = useSiteFavorites()
+const { recordVisit } = useSiteRecords()
 const { buildShareText } = useSiteShare()
 const { openLinkActions } = useLinkActions()
 
@@ -143,12 +154,15 @@ function onIconError(): void {
 }
 
 /**
- * 卡片点击回调：纯外链模式交给 a 标签默认导航（仅桌面端），其余抛出 click 事件由父级决定跳转
+ * 卡片点击回调：按需写入最近浏览记录（同键去重并置顶），再按模式决定导航方式
  *
+ * 纯外链模式交给 a 标签默认导航（仅桌面端），其余抛出 click 事件由父级决定跳转；
  * 桌面端纯外链不调用 preventDefault/stopPropagation，保留 target="_blank" 默认新标签跳转；
- * 移动端纯外链因根节点渲染为 div，改为 window.open 新窗口打开，规避触屏长按触发的浏览器原生链接菜单
+ * 移动端纯外链因根节点渲染为 div，改为 window.open 新窗口打开，规避触屏长按触发的浏览器原生链接菜单；
+ * 入口类卡片（非站点条目）通过 skipRecord 关闭记录写入，避免产生无效记录
  */
 function onCardClick(): void {
+  if (!props.skipRecord) recordVisit(props.item.key)
   if (props.plainLink && !appStore.isMobile) return
   if (props.plainLink) {
     window.open(props.item.key, '_blank', 'noopener,noreferrer')
@@ -206,7 +220,7 @@ function onPointerRelease(): void {
 function triggerLongPress(): void {
   cancelLongPress()
   suppressNextClick = true
-  openLinkActions(props.item)
+  openLinkActions(props.item, { reorderable: props.reorderable })
 }
 
 /**
@@ -239,12 +253,30 @@ function handleToggleFavorite(event: MouseEvent): void {
   const added = toggleFavorite(props.item.key)
   ElMessage.success(added ? `已收藏「${props.item.title}」` : `已取消收藏「${props.item.title}」`)
 }
+
+/**
+ * 操作行顺序调整点击：将当前条目在收藏列表中前移或后移一位并提示结果，同时阻断卡片自身的跳转行为
+ *
+ * 处于首尾无可移动方向时链接为禁用态，不会触发本方法。
+ *
+ * @param offset 移动方向，-1 表示前移一位，1 表示后移一位
+ * @param event 点击事件对象
+ */
+function handleMove(offset: -1 | 1, event: MouseEvent): void {
+  event.preventDefault()
+  event.stopPropagation()
+  moveFavorite(props.item.key, offset)
+  ElMessage.success(offset < 0 ? `「${props.item.title}」已前移` : `「${props.item.title}」已后移`)
+}
 </script>
 
 <style lang="scss" scoped>
 .link-card {
   --el-link-card-icon-size: 32px;
-  display: block;
+  /* 纵向弹性布局：描述行数不定时，操作行仍贴卡片底部对齐 */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   padding: 8px 12px;
   background-color: var(--el-bg-color);
   border: 1px solid var(--el-border-color);
@@ -269,10 +301,19 @@ function handleToggleFavorite(event: MouseEvent): void {
 }
 
 .link-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: var(--el-link-card-icon-size);
   height: var(--el-link-card-icon-size);
-  object-fit: contain;
   flex-shrink: 0;
+
+  /* 插槽内容（图片或图标组件）统一填满图标区，避免自身尺寸规则与容器冲突 */
+  > * {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 }
 
 .link-title {
@@ -294,6 +335,8 @@ function handleToggleFavorite(event: MouseEvent): void {
 }
 
 .card-actions {
+  /* 自动外边距把操作行推至卡片底部，各卡片操作行横向对齐 */
+  margin-top: auto;
   gap: 6px;
   padding-top: 8px;
   border-top: 1px solid var(--el-border-color);

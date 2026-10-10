@@ -25,6 +25,13 @@ export function buildStaticRouteList(): RouteRecordRaw[] {
           meta: { title: '最近使用', icon: 'Home', affix: true },
         },
 
+        {
+          name: RouterConstant.RECENT_PAGE_NAME,
+          path: 'recent',
+          component: () => import('@/views/recent/index.vue'),
+          meta: { title: '最近浏览', icon: 'Schedule', affix: true },
+        },
+
         // 分类页路由：由分类注册表生成（detail 模式分类自动附带详情子路由），全部指向通用列表页/详情页
         ...buildCategoryRoutes(),
 

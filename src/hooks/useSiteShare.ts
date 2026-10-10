@@ -24,6 +24,17 @@ function getCategoryPathIndex(): Record<string, string> {
 }
 
 /**
+ * 拼接站内路由地址：当前域名 + 部署路径 + 站内路由路径
+ *
+ * @param routePath 站内路由路径（如 /recent）
+ * @returns 可直接访问的完整站内地址
+ */
+function resolveRouteAddress(routePath: string): string {
+  const basePath = VITE_PUBLIC_PATH.replace(/\/+$/, '')
+  return `${window.location.origin}${basePath}${routePath}`
+}
+
+/**
  * 站点分享文案共享逻辑：卡片操作行与长按操作面板复用同一份地址解析与文案构建
  *
  * @returns 地址解析与文案构建方法
@@ -39,8 +50,7 @@ export function useSiteShare() {
     if (isExternal(key)) return key
     const categoryPath = getCategoryPathIndex()[key]
     if (!categoryPath) return key
-    const basePath = VITE_PUBLIC_PATH.replace(/\/+$/, '')
-    return `${window.location.origin}${basePath}${categoryPath}/${key}`
+    return resolveRouteAddress(`${categoryPath}/${key}`)
   }
 
   /**
@@ -53,5 +63,5 @@ export function useSiteShare() {
     return buildSiteShareText(item.title, resolveSiteAddress(item.key), item.description)
   }
 
-  return { resolveSiteAddress, buildShareText }
+  return { resolveSiteAddress, resolveRouteAddress, buildShareText }
 }

@@ -10,8 +10,10 @@
     <div v-if="currentItem" class="sheet-content select-none">
       <p class="sheet-title">{{ currentItem.title }}</p>
       <div class="sheet-actions">
+        <button v-if="reorderable" type="button" class="sheet-action" :class="{ 'is-disabled': !canMoveCurrent(-1) }" :disabled="!canMoveCurrent(-1)" @click="handleMove(-1)">前移</button>
         <button type="button" class="sheet-action" @click="handleCopy">复制网站</button>
         <button type="button" class="sheet-action" @click="handleToggleFavorite">{{ isCurrentFavorite ? '取消收藏' : '收藏网站' }}</button>
+        <button v-if="reorderable" type="button" class="sheet-action" :class="{ 'is-disabled': !canMoveCurrent(1) }" :disabled="!canMoveCurrent(1)" @click="handleMove(1)">后移</button>
         <button type="button" class="sheet-action is-cancel" @click="handleClose">取消</button>
       </div>
     </div>
@@ -25,12 +27,22 @@ import { useLinkActions } from '@/hooks/useLinkActions'
 import { useSiteFavorites } from '@/hooks/useSiteFavorites'
 import { useSiteShare } from '@/hooks/useSiteShare'
 
-const { currentItem, panelVisible, closeLinkActions } = useLinkActions()
-const { isFavorite, toggleFavorite } = useSiteFavorites()
+const { currentItem, panelVisible, reorderable, closeLinkActions } = useLinkActions()
+const { isFavorite, toggleFavorite, canMoveFavorite, moveFavorite } = useSiteFavorites()
 const { buildShareText } = useSiteShare()
 
 /** 当前条目的收藏状态：随收藏集合实时变化，已收藏时长按显示「取消收藏」 */
 const isCurrentFavorite = computed(() => (currentItem.value ? isFavorite(currentItem.value.key) : false))
+
+/**
+ * 当前条目是否可按指定方向调整展示顺序：仅收藏卡片场景（reorderable 为 true）有效，首尾禁用
+ *
+ * @param offset 移动方向，-1 表示前移一位，1 表示后移一位
+ * @returns 可移动时返回 true
+ */
+function canMoveCurrent(offset: -1 | 1): boolean {
+  return reorderable.value && Boolean(currentItem.value) && canMoveFavorite(currentItem.value?.key ?? '', offset)
+}
 
 /**
  * 复制站点分享文案（名称、地址与描述，自有页面地址取站内路由）并关闭面板（复制结果提示由 copyText 内部给出）
@@ -48,6 +60,17 @@ function handleToggleFavorite(): void {
   if (!currentItem.value) return
   const added = toggleFavorite(currentItem.value.key)
   ElMessage.success(added ? `已收藏「${currentItem.value.title}」` : `已取消收藏「${currentItem.value.title}」`)
+  closeLinkActions()
+}
+
+/**
+ * 将当前条目在收藏列表中前移或后移一位并关闭面板（处于首尾无可移动方向时按钮为禁用态，不会触发本方法）
+ *
+ * @param offset 移动方向，-1 表示前移一位，1 表示后移一位
+ */
+function handleMove(offset: -1 | 1): void {
+  if (!currentItem.value) return
+  moveFavorite(currentItem.value.key, offset)
   closeLinkActions()
 }
 
@@ -91,6 +114,11 @@ function handleClose(): void {
 
   &:active {
     background-color: var(--el-fill-color-light);
+  }
+
+  &.is-disabled {
+    color: var(--el-text-color-placeholder);
+    cursor: not-allowed;
   }
 
   &.is-cancel {

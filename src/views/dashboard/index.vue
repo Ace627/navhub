@@ -42,12 +42,18 @@
       </transition>
     </Teleport>
 
-    <!-- 收藏条目：收藏集合顺序展示，无分区分组 -->
-    <div v-if="favoriteSites.length" class="site-section">
+    <!-- 卡片区：首张固定为最近浏览入口，其后依次展示收藏条目（收藏集合顺序，无分区分组） -->
+    <div class="site-section">
       <div class="card-grid">
+        <!-- 最近浏览入口卡片：复用 LinkCard，操作行由插槽自定义，跳转行为由父级处理 -->
+        <LinkCard :item="RECENT_ENTRY" skip-record @click="router.push(RouterConstant.RECENT_PAGE_URL)">
+          <template #actions>
+            <el-link type="primary" underline="never" @click="handleCopyRecent">复制</el-link>
+          </template>
+        </LinkCard>
         <template v-for="entry in favoriteSites" :key="entry.item.key">
-          <LinkCard v-if="isExternal(entry.item.key)" :item="entry.item" plain-link />
-          <LinkCard v-else :item="entry.item" @click="handleInternalClick(entry)" />
+          <LinkCard v-if="isExternal(entry.item.key)" :item="entry.item" plain-link reorderable />
+          <LinkCard v-else :item="entry.item" reorderable @click="handleInternalClick(entry)" />
         </template>
       </div>
     </div>
@@ -69,10 +75,13 @@
 <script setup lang="ts">
 defineOptions({ name: RouterConstant.HOME_PAGE_NAME })
 import { RouterConstant } from '@/router/router.constant'
-import type { LinkItem } from '@/components/LinkCard/types'
-import { isExternal, pruneSiteFavorites } from '@/utils'
+import { SITE_RECORD_LIMIT, buildSiteShareText, copyText, isExternal, pruneSiteFavorites, pruneSiteRecords } from '@/utils'
 import { useAppStore } from '@/store/modules/app'
 import { useSiteFavorites } from '@/hooks/useSiteFavorites'
+import { useSiteIndex } from '@/hooks/useSiteIndex'
+import type { SiteEntry } from '@/hooks/useSiteIndex'
+import { useSiteShare } from '@/hooks/useSiteShare'
+import type { LinkItem } from '@/components/LinkCard/types'
 import { getCategoryRegistry } from '@/router/category.registry'
 
 /** 搜索引擎定义 */
@@ -92,14 +101,6 @@ const ENGINE_LIST: SearchEngine[] = [
   { name: '抖音', url: 'https://www.douyin.com/search/' },
   { name: '小红书', url: 'https://www.xiaohongshu.com/search_result?keyword=' },
 ]
-
-/** 全站条目定义：链接条目 + 所属分类路由路径（站内条目跳转时拼接使用） */
-interface SiteEntry {
-  /** 链接条目 */
-  item: LinkItem
-  /** 所属分类路由路径，如 /tool */
-  categoryPath: string
-}
 
 /** 当前选中的搜索引擎名称，默认取第一个 */
 const activeEngine = ref(ENGINE_LIST[0].name)
@@ -122,17 +123,25 @@ const router = useRouter()
 /** 应用状态实例：空状态引导时用于展开侧栏菜单 */
 const appStore = useAppStore()
 
+/** 全站条目索引：以条目 key（外链为 URL，站内为路由参数）为键，模块加载时构建一次 */
+const SITE_INDEX = useSiteIndex()
+
+/** 站内地址与分享文案构建方法：最近浏览入口卡片复制时复用 */
+const { resolveRouteAddress } = useSiteShare()
+
+/** 最近浏览入口卡片条目：非站点条目，key 取最近浏览页路由，仅用于展示与分享文案 */
+const RECENT_ENTRY: LinkItem = {
+  key: RouterConstant.RECENT_PAGE_URL,
+  title: '最近浏览',
+  icon: '@/assets/images/icons/历史记录.png',
+  description: `自动记录最近打开的站点，最多保留 ${SITE_RECORD_LIMIT} 条`,
+}
+
 /** 收藏站点共享状态：首页收藏区随收藏变化实时联动 */
 const { favorites } = useSiteFavorites()
 
 /** 收藏站点条目列表：收藏集合顺序映射全站索引，剔除已下架条目 */
 const favoriteSites = computed<SiteEntry[]>(() => [...favorites].map((key) => SITE_INDEX[key]).filter((entry): entry is SiteEntry => Boolean(entry)))
-
-/** 分类数据源清单：分类路由路径 + 该分类下的站点列表（注册表在引导阶段已装配完成） */
-const CATEGORY_SOURCES: { categoryPath: string; list: LinkItem[] }[] = getCategoryRegistry().map((entry) => ({ categoryPath: `/${entry.path}`, list: entry.data }))
-
-/** 全站条目索引：以条目 key（外链为 URL，站内为路由参数）为键，模块加载时构建一次 */
-const SITE_INDEX: Record<string, SiteEntry> = Object.fromEntries(CATEGORY_SOURCES.flatMap((source) => source.list.map((item) => [item.key, { item, categoryPath: source.categoryPath }])))
 
 /** 空状态分类快捷入口：取注册表全部分类的标题、图标与路径，顺序与侧栏菜单一致 */
 const CATEGORY_SHORTCUTS = getCategoryRegistry().map((entry) => ({ path: entry.path, title: entry.title, icon: entry.icon }))
@@ -192,6 +201,17 @@ function handleSearch(): void {
 }
 
 /**
+ * 最近浏览入口卡片操作行复制：复制最近浏览页分享文案（名称、站内地址与描述，格式与 LinkCard 一致）并阻断卡片自身的跳转
+ *
+ * @param event 点击事件对象
+ */
+function handleCopyRecent(event: MouseEvent): void {
+  event.preventDefault()
+  event.stopPropagation()
+  copyText(buildSiteShareText(RECENT_ENTRY.title, resolveRouteAddress(RECENT_ENTRY.key), RECENT_ENTRY.description))
+}
+
+/**
  * 站内条目点击跳转：路由跳转到所属分类的详情页
  *
  * @param entry 被点击的站内条目
@@ -217,10 +237,11 @@ function handleExplore(): void {
 }
 
 /**
- * 刷新缓存一致性：以全站配置索引为合法键集合，裁剪收藏中站点被删除后残留的脏键
+ * 刷新缓存一致性：以全站配置索引为合法键集合，裁剪收藏与最近浏览中站点被删除后残留的脏键
  */
 function refreshSiteCaches(): void {
   pruneSiteFavorites(Object.keys(SITE_INDEX))
+  pruneSiteRecords(Object.keys(SITE_INDEX))
 }
 
 onMounted(() => {

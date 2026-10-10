@@ -262,6 +262,8 @@ declare global {
   const useSettingStore: typeof import('../../store/modules/setting').useSettingStore
   const useShare: typeof import('@vueuse/core').useShare
   const useSiteFavorites: typeof import('../../hooks/useSiteFavorites').useSiteFavorites
+  const useSiteIndex: typeof import('../../hooks/useSiteIndex').useSiteIndex
+  const useSiteRecords: typeof import('../../hooks/useSiteRecords').useSiteRecords
   const useSiteShare: typeof import('../../hooks/useSiteShare').useSiteShare
   const useSlots: typeof import('vue').useSlots
   const useSorted: typeof import('@vueuse/core').useSorted
@@ -331,4 +333,7 @@ declare global {
   // @ts-ignore
   export type { Component, Slot, Slots, ComponentPublicInstance, ComputedRef, DirectiveBinding, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, ShallowRef, MaybeRef, MaybeRefOrGetter, VNode, WritableComputedRef } from 'vue'
   import('vue')
+  // @ts-ignore
+  export type { SiteEntry } from '../../hooks/useSiteIndex'
+  import('../../hooks/useSiteIndex')
 }
