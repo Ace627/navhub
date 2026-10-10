@@ -21,7 +21,8 @@ export async function setupRouter(app: App) {
   const router = createRouter({
     history: VITE_ROUTER_MODE === 'hash' ? createWebHashHistory(VITE_PUBLIC_PATH) : createWebHistory(VITE_PUBLIC_PATH),
     routes: buildStaticRouteList(),
-    scrollBehavior: () => ({ left: 0, top: 0 }),
+    // scrollBehavior: () => ({ left: 0, top: 0 }),
+    scrollBehavior: () => new Promise((resolve) => setTimeout(() => resolve({ left: 0, top: 0 }), 160)),
   })
 
   // 配置路由全局前置守卫
