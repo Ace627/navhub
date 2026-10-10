@@ -9,7 +9,6 @@
         <h2 class="hero-title">{{ siteTitle }}</h2>
         <p class="hero-desc">一个干净、无广告的个人上网导航，收录日常高频使用的影视、软件、学习与网盘资源站点，让好网站一眼就能找到。</p>
         <p class="hero-uptime">
-          <SvgIcon name="Schedule" :size="16" />
           <span>已运行 {{ uptimeText }}</span>
         </p>
       </div>
@@ -313,8 +312,8 @@ function handleCopyStat(stat: StatItem) {
 }
 
 .hero-desc {
-  margin: 0 0 8px;
   font-size: 14px;
+  line-height: 1.5;
   color: var(--el-text-color-secondary);
 }
 
@@ -324,7 +323,8 @@ function handleCopyStat(stat: StatItem) {
   gap: 6px;
   margin: 0;
   font-size: 14px;
-  color: var(--el-text-color-regular);
+  font-weight: bold;
+  color: var(--el-color-primary);
 }
 
 /* 统计卡片区 */
