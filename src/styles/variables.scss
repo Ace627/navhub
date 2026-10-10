@@ -18,6 +18,15 @@ html {
   --el-navbar-bg-color: var(--el-bg-color);
   --el-navbar-box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 
+  /* 版权信息固定在底部，阴影投射方向取负，作用于上边框 */
+  --el-copyright-height: 42px;
+  --el-copyright-bg-color: var(--el-navbar-bg-color);
+  --el-copyright-box-shadow: 0 -1px 4px rgba(0, 21, 41, 0.08);
+  --el-copyright-font-size: 12px;
+  --el-copyright-label-color: var(--el-text-color-secondary);
+  --el-copyright-value-gap: 6px;
+  --el-copyright-value-color: var(--el-text-color-primary);
+
   --el-hitokoto-height: 34px;
   --el-hitokoto-bg-color: var(--el-bg-color);
   --el-hitokoto-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 0 3px 0 rgba(0, 0, 0, 0.04);
@@ -36,6 +45,8 @@ html.dark {
   --el-sidebar-box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
 
   --el-navbar-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+
+  --el-copyright-box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.4);
 
   --el-hitokoto-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5), 0 0 3px 0 rgba(0, 0, 0, 0.3);
   --el-hitokoto-border-color: rgba(255, 255, 255, 0.12);

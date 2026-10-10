@@ -26,7 +26,7 @@ html, body, #app {
 /* 解决在移动端时，点击元素会出现阴影的问题 */
 body {
   -webkit-tap-highlight-color: transparent;
-  font-family: 'LXGW WenKai Screen', 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
 }
 
 a {

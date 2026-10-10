@@ -11,6 +11,13 @@
         <el-text type="primary">{{ formatTime }}</el-text>
       </div>
 
+      <!-- 系统设置入口：跳转系统设置页 -->
+      <el-tooltip content="系统设置" effect="dark" placement="bottom">
+        <span class="navbar-item hover-effect" @click="goSetting">
+          <SvgIcon name="Setting" size="1.16em" />
+        </span>
+      </el-tooltip>
+
       <!-- 主题切换 -->
       <el-tooltip :content="settingStore.isDark ? '浅色主题' : '深色主题'" effect="dark" placement="bottom">
         <ThemeSwitch class="navbar-item hover-effect" />
@@ -27,8 +34,14 @@ import HeaderSearch from './HeaderSearch.vue'
 
 const appStore = useAppStore()
 const settingStore = useSettingStore()
+const router = useRouter()
 
 const formatTime = useDateFormat(useNow(), 'YYYY-MM-DD HH:mm:ss')
+
+/** 跳转系统设置页 */
+function goSetting() {
+  router.push({ name: 'SystemSetting' })
+}
 </script>
 
 <style lang="scss" scoped>

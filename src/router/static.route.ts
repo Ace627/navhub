@@ -29,6 +29,13 @@ export function buildStaticRouteList(): RouteRecordRaw[] {
         ...buildCategoryRoutes(),
 
         {
+          name: 'SystemSetting',
+          path: 'setting',
+          component: () => import('@/views/system/setting/index.vue'),
+          meta: { title: '系统设置', icon: 'Setting' },
+        },
+
+        {
           name: 'About',
           path: 'about',
           component: () => import('@/views/core/about.vue'),

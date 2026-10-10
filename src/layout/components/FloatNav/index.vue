@@ -87,7 +87,7 @@ html[data-device='mobile'] {
     position: fixed;
     right: 16px;
     bottom: 32px;
-    z-index: 900;
+    z-index: 2025;
     display: flex;
     align-items: center;
     justify-content: center;

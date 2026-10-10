@@ -1,5 +1,5 @@
 <template>
-  <div class="px-16px py-8px flex-center">
+  <div class="flex-center">
     <span v-for="(item, index) in stats" :key="item.label" class="stat-item">
       <span class="stat-item__label">{{ item.label }}</span>
       <span class="stat-item__value">{{ item.value }}</span>
@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-defineOptions({ name: 'AppFooter' })
+defineOptions({ name: 'Copyright' })
 
 /** 单条访客统计（标签 + 数值） */
 interface VisitorStat {
@@ -103,15 +103,15 @@ onUnmounted(() => {
 
 <style lang="scss" scoped>
 .stat-item {
-  font-size: 12px;
+  font-size: var(--el-copyright-font-size);
   &__label {
-    color: var(--el-text-color-secondary);
+    color: var(--el-copyright-label-color);
   }
 
   &__value {
-    margin-left: 6px;
+    margin-left: var(--el-copyright-value-gap);
     font-weight: bold;
-    color: var(--el-text-color-primary);
+    color: var(--el-copyright-value-color);
   }
 }
 
