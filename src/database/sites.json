@@ -1,5 +1,13 @@
 [
   {
+    "id": "ffb92d8a-5bfb-4f1f-a144-3425c8a12191",
+    "categoryId": "0ff92260-b310-4228-bfc5-674dfe708272",
+    "key": "MovieRecommend",
+    "title": "随便看一部",
+    "icon": "@/assets/images/icons/随便看一部.ico",
+    "description": "不知道看什么就点我，从个人片单里随机抽一部，附评分类型，可跳转豆瓣详情页。"
+  },
+  {
     "id": "7c1f4e2a-3b8d-4a6f-9e15-2d7c60b4f831",
     "categoryId": "0ff92260-b310-4228-bfc5-674dfe708272",
     "key": "https://www.rijutt.com",

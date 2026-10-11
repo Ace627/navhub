@@ -5,7 +5,7 @@
     "name": "Movie",
     "title": "免费追剧",
     "icon": "Movie",
-    "mode": "link",
+    "mode": "detail",
     "plainLink": true
   },
   {

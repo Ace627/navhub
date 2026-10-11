@@ -1,7 +1,7 @@
 <template>
   <div class="app-content">
     <div class="card-grid">
-      <LinkCard v-for="item in sites" :key="item.key" :item="item" :plain-link="plainLink" @click="handleClickItem(item)" />
+      <LinkCard v-for="item in sites" :key="item.key" :item="item" :plain-link="plainLink && isExternal(item.key)" @click="handleClickItem(item)" />
     </div>
   </div>
 </template>
