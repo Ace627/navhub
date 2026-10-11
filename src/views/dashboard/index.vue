@@ -1,7 +1,7 @@
 <template>
   <div class="app-content dashboard">
     <!-- 搜索区：输入框居中定宽，引擎选择桌面端点击引擎名下拉、移动端由放大镜唤起底部弹层 -->
-    <div ref="searchSectionRef" class="search-section">
+    <div v-if="settingStore.showHomeSearch" ref="searchSectionRef" class="search-section">
       <div class="search-box">
         <el-input v-model="keyword" class="search-input" size="large" clearable :placeholder="`在${activeEngine}搜索，输入关键词后回车`" @keyup.enter="handleSearch">
           <template #prefix>
@@ -77,6 +77,7 @@ defineOptions({ name: RouterConstant.HOME_PAGE_NAME })
 import { RouterConstant } from '@/router/router.constant'
 import { SITE_RECORD_LIMIT, buildSiteShareText, copyText, isExternal, pruneSiteFavorites, pruneSiteRecords } from '@/utils'
 import { useAppStore } from '@/store/modules/app'
+import { useSettingStore } from '@/store/modules/setting'
 import { useSiteFavorites } from '@/hooks/useSiteFavorites'
 import { useSiteIndex } from '@/hooks/useSiteIndex'
 import type { SiteEntry } from '@/hooks/useSiteIndex'
@@ -122,6 +123,9 @@ const router = useRouter()
 
 /** 应用状态实例：空状态引导时用于展开侧栏菜单 */
 const appStore = useAppStore()
+
+/** 系统设置实例：控制首页搜索区显隐 */
+const settingStore = useSettingStore()
 
 /** 全站条目索引：以条目 key（外链为 URL，站内为路由参数）为键，模块加载时构建一次 */
 const SITE_INDEX = useSiteIndex()
@@ -244,12 +248,19 @@ function refreshSiteCaches(): void {
   pruneSiteRecords(Object.keys(SITE_INDEX))
 }
 
-onMounted(() => {
-  refreshSiteCaches()
-  document.addEventListener('click', handleDocumentClick)
-})
+onMounted(refreshSiteCaches)
 
 onActivated(refreshSiteCaches)
+
+/** 首页搜索区显隐联动：仅显示期间挂载文档级点击代理，隐藏时彻底移除，恢复显示时重新挂载 */
+watch(
+  () => settingStore.showHomeSearch,
+  (visible) => {
+    if (visible) document.addEventListener('click', handleDocumentClick)
+    else document.removeEventListener('click', handleDocumentClick)
+  },
+  { immediate: true }
+)
 
 onBeforeUnmount(() => document.removeEventListener('click', handleDocumentClick))
 </script>

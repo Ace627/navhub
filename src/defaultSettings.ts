@@ -11,6 +11,8 @@ export interface SystemSetting {
   showLogo: boolean
   /** 是否显示一言栏 */
   showHitokoto: boolean
+  /** 是否显示首页搜索框 */
+  showHomeSearch: boolean
   /** 全局字体，取值为已挂载的网络字体名 */
   fontFamily: string
   /** 路由转场动效 */
@@ -25,5 +27,6 @@ export const defaultSettings: SystemSetting = {
   showDynamicTitle: true,
   showLogo: true,
   showHitokoto: true,
+  showHomeSearch: true,
   fontFamily: 'LXGW WenKai Screen',
 }

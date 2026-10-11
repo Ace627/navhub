@@ -143,6 +143,7 @@ const groups: SettingGroup[] = [
     items: [
       { prop: 'showLogo', type: 'switch', icon: 'About', label: '显示 Logo', desc: '侧边栏顶部的站点名称与图标' },
       { prop: 'showHitokoto', type: 'switch', icon: 'Poem', label: '一言栏', desc: '导航栏下方通栏展示的随机名句，点击可复制' },
+      { prop: 'showHomeSearch', type: 'switch', icon: 'Search', label: '首页搜索框', desc: '首页顶部的聚合搜索输入框与引擎切换' },
       { prop: 'showDynamicTitle', type: 'switch', icon: 'Signature', label: '动态标题', desc: '浏览器标签页标题随路由变化' },
       { prop: 'uniqueOpened', type: 'switch', icon: 'Menu', label: '手风琴侧边栏', desc: '同一时刻只展开一组菜单' },
     ],
