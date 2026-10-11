@@ -9,6 +9,7 @@ import { copyText } from '@/utils'
 import { useLinkActions } from '@/hooks/useLinkActions'
 import { useSiteFavorites } from '@/hooks/useSiteFavorites'
 import { useSiteShare } from '@/hooks/useSiteShare'
+import { SYSTEM_WIDGET_MAP } from '@/views/system/widget/components/registry'
 
 const { currentItem, panelVisible, reorderable, closeLinkActions } = useLinkActions()
 const { isFavorite, toggleFavorite, canMoveFavorite, moveFavorite } = useSiteFavorites()
@@ -16,6 +17,9 @@ const { buildShareText } = useSiteShare()
 
 /** 当前条目的收藏状态：随收藏集合实时变化，已收藏时长按显示「取消收藏」 */
 const isCurrentFavorite = computed(() => (currentItem.value ? isFavorite(currentItem.value.key) : false))
+
+/** 当前条目是否为系统小组件：无站点地址语义，面板不提供复制项且收藏文案不带「网站」 */
+const isSystemWidget = computed(() => Boolean(currentItem.value && SYSTEM_WIDGET_MAP.has(currentItem.value.key)))
 
 /**
  * 当前条目是否可按指定方向调整展示顺序：仅收藏卡片场景（reorderable 为 true）有效，首尾禁用
@@ -28,14 +32,15 @@ function canMoveCurrent(offset: -1 | 1): boolean {
 }
 
 /**
- * 面板选项列表：收藏卡片场景追加前移/后移项（首尾按可移动方向禁用），其余场景仅提供复制与收藏切换
+ * 面板选项列表：收藏卡片场景追加前移/后移项（首尾按可移动方向禁用）；系统小组件无地址语义不提供复制项，其余场景提供复制与收藏切换
  */
 const actions = computed<ActionSheetAction[]>(() => {
   const list: ActionSheetAction[] = []
   if (reorderable.value) {
     list.push({ name: '向前移动', disabled: !canMoveCurrent(-1), callback: () => handleMove(-1) }, { name: '向后移动', disabled: !canMoveCurrent(1), callback: () => handleMove(1) })
   }
-  list.push({ name: '复制网站', callback: handleCopy }, { name: isCurrentFavorite.value ? '取消收藏' : '收藏网站', callback: handleToggleFavorite })
+  if (!isSystemWidget.value) list.push({ name: '复制网站', callback: handleCopy })
+  list.push({ name: isCurrentFavorite.value ? '取消收藏' : isSystemWidget.value ? '收藏' : '收藏网站', callback: handleToggleFavorite })
   return list
 })
 

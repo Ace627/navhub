@@ -42,7 +42,7 @@
       </transition>
     </Teleport>
 
-    <!-- 卡片区：首张固定为最近浏览入口，其后依次展示收藏条目（收藏集合顺序，无分区分组） -->
+    <!-- 卡片区：首张固定为最近浏览入口，其后按收藏集合顺序混排站点条目与系统小组件 -->
     <div class="site-section">
       <div class="card-grid">
         <!-- 最近浏览入口卡片：复用 LinkCard，操作行由插槽自定义，跳转行为由父级处理 -->
@@ -51,15 +51,32 @@
             <el-link type="primary" underline="never" @click="handleCopyRecent">复制</el-link>
           </template>
         </LinkCard>
-        <template v-for="entry in favoriteSites" :key="entry.item.key">
-          <LinkCard v-if="isExternal(entry.item.key)" :item="entry.item" plain-link reorderable />
-          <LinkCard v-else :item="entry.item" reorderable @click="handleInternalClick(entry)" />
+        <template v-for="favorite in favoriteEntries" :key="favorite.kind === 'widget' ? favorite.widget.key : favorite.entry.item.key">
+          <!-- 系统小组件卡片：无跳转语义，跳过最近浏览记录；移动端长按面板与站点卡片一致（reorderable 提供排序与取消收藏）；移动端通栏一行一个 -->
+          <LinkCard v-if="favorite.kind === 'widget'" :item="favorite.widget.item" :span="appStore.isMobile ? 4 : 1" :hide-header="favorite.widget.hideHeader" :bare="favorite.widget.bare" skip-record reorderable>
+            <template #icon>
+              <SvgIcon :name="favorite.widget.icon" :size="32" />
+            </template>
+            <template #body>
+              <component :is="favorite.widget.component" />
+            </template>
+            <template #actions>
+              <el-link type="primary" underline="never" :disabled="!canMoveFavorite(favorite.widget.key, -1)" @click="handleMoveWidget(favorite.widget.key, -1, $event)">前移</el-link>
+              <el-link type="primary" underline="never" @click="handleRemoveWidget(favorite.widget.key, $event)">取消收藏</el-link>
+              <el-link type="primary" underline="never" :disabled="!canMoveFavorite(favorite.widget.key, 1)" @click="handleMoveWidget(favorite.widget.key, 1, $event)">后移</el-link>
+            </template>
+          </LinkCard>
+          <!-- 站点收藏卡片：外链直开，站内条目跳转所属分类详情页 -->
+          <template v-else>
+            <LinkCard v-if="isExternal(favorite.entry.item.key)" :item="favorite.entry.item" plain-link reorderable />
+            <LinkCard v-else :item="favorite.entry.item" reorderable @click="handleInternalClick(favorite.entry)" />
+          </template>
         </template>
       </div>
     </div>
-    <div v-if="!favoriteSites.length" class="empty-state">
+    <div v-if="!favoriteEntries.length" class="empty-state">
       <SvgIcon name="Link" :size="48" class="empty-icon" />
-      <p class="empty-text">暂无收藏站点，去逛逛各分类导航吧</p>
+      <p class="empty-text">暂无收藏站点或小组件，去逛逛各分类导航吧</p>
       <!-- 分类快捷入口：仅收藏为空时出现，点击跳转对应分类列表页 -->
       <div class="category-grid">
         <div v-for="entry in CATEGORY_SHORTCUTS" :key="entry.path" class="category-item" @click="handleCategoryClick(entry.path)">
@@ -84,6 +101,8 @@ import type { SiteEntry } from '@/hooks/useSiteIndex'
 import { useSiteShare } from '@/hooks/useSiteShare'
 import type { LinkItem } from '@/components/LinkCard/types'
 import { getCategoryRegistry } from '@/router/category.registry'
+import { SYSTEM_WIDGETS, SYSTEM_WIDGET_MAP } from '@/views/system/widget/components/registry'
+import type { SystemWidget } from '@/views/system/widget/components/registry'
 
 /** 搜索引擎定义 */
 interface SearchEngine {
@@ -141,14 +160,26 @@ const RECENT_ENTRY: LinkItem = {
   description: `自动记录最近打开的站点，最多保留 ${SITE_RECORD_LIMIT} 条`,
 }
 
-/** 收藏站点共享状态：首页收藏区随收藏变化实时联动 */
-const { favorites } = useSiteFavorites()
+/** 收藏共享状态：首页收藏区随收藏变化实时联动，并提供组件卡片的排序与取消收藏能力 */
+const { favorites, toggleFavorite, canMoveFavorite, moveFavorite } = useSiteFavorites()
 
-/** 收藏站点条目列表：收藏集合顺序映射全站索引，剔除已下架条目 */
-const favoriteSites = computed<SiteEntry[]>(() => [...favorites].map((key) => SITE_INDEX[key]).filter((entry): entry is SiteEntry => Boolean(entry)))
+/** 卡片区收藏条目视图：系统小组件与站点条目的混排单元 */
+type FavoriteEntry = { kind: 'widget'; widget: SystemWidget } | { kind: 'site'; entry: SiteEntry }
 
-/** 空状态分类快捷入口：取注册表全部分类的标题、图标与路径，顺序与侧栏菜单一致 */
-const CATEGORY_SHORTCUTS = getCategoryRegistry().map((entry) => ({ path: entry.path, title: entry.title, icon: entry.icon }))
+/** 收藏条目列表：收藏集合顺序映射系统小组件注册表与全站索引，剔除已下架条目 */
+const favoriteEntries = computed<FavoriteEntry[]>(() =>
+  [...favorites]
+    .map((key): FavoriteEntry | null => {
+      const widget = SYSTEM_WIDGET_MAP.get(key)
+      if (widget) return { kind: 'widget', widget }
+      const entry = SITE_INDEX[key]
+      return entry ? { kind: 'site', entry } : null
+    })
+    .filter((favorite): favorite is FavoriteEntry => favorite !== null)
+)
+
+/** 空状态分类快捷入口：取注册表全部分类的标题、图标与路径，顺序与侧栏菜单一致，末尾追加系统组件页入口 */
+const CATEGORY_SHORTCUTS = [...getCategoryRegistry().map((entry) => ({ path: entry.path, title: entry.title, icon: entry.icon })), { path: 'system/widget', title: '系统组件', icon: 'Operation' }]
 
 /**
  * 打开移动端搜索引擎选择弹层
@@ -225,6 +256,35 @@ function handleInternalClick(entry: SiteEntry): void {
 }
 
 /**
+ * 系统小组件卡片顺序调整点击：将组件在收藏列表中前移或后移一位并提示结果，同时阻断卡片自身的跳转行为
+ *
+ * 处于首尾无可移动方向时链接为禁用态，不会触发本方法。
+ *
+ * @param key 小组件唯一标识
+ * @param offset 移动方向，-1 表示前移一位，1 表示后移一位
+ * @param event 点击事件对象
+ */
+function handleMoveWidget(key: string, offset: -1 | 1, event: MouseEvent): void {
+  event.preventDefault()
+  event.stopPropagation()
+  moveFavorite(key, offset)
+  ElMessage.success(offset < 0 ? '小组件已前移' : '小组件已后移')
+}
+
+/**
+ * 系统小组件卡片取消收藏点击：从收藏集合移除并提示结果，同时阻断卡片自身的跳转行为
+ *
+ * @param key 小组件唯一标识
+ * @param event 点击事件对象
+ */
+function handleRemoveWidget(key: string, event: MouseEvent): void {
+  event.preventDefault()
+  event.stopPropagation()
+  toggleFavorite(key)
+  ElMessage.success('已取消收藏小组件')
+}
+
+/**
  * 空状态分类快捷入口点击：路由跳转到对应分类列表页
  *
  * @param path 分类路由路径，不含前导斜杠
@@ -241,10 +301,11 @@ function handleExplore(): void {
 }
 
 /**
- * 刷新缓存一致性：以全站配置索引为合法键集合，裁剪收藏与最近浏览中站点被删除后残留的脏键
+ * 刷新缓存一致性：以全站配置索引与系统小组件注册表为合法键集合，裁剪收藏与最近浏览中条目被删除后残留的脏键
  */
 function refreshSiteCaches(): void {
-  pruneSiteFavorites(Object.keys(SITE_INDEX))
+  const validKeys = [...Object.keys(SITE_INDEX), ...SYSTEM_WIDGETS.map((widget) => widget.key)]
+  pruneSiteFavorites(validKeys)
   pruneSiteRecords(Object.keys(SITE_INDEX))
 }
 

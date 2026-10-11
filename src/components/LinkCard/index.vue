@@ -5,7 +5,8 @@
     :href="plainLink && !appStore.isMobile ? item.key : undefined"
     :target="plainLink && !appStore.isMobile ? '_blank' : undefined"
     :rel="plainLink && !appStore.isMobile ? 'noopener noreferrer' : undefined"
-    :class="{ 'is-row': layout === 'row' }"
+    :class="{ 'is-row': layout === 'row', 'is-widget': span === 4, 'is-bare': bare, 'is-headerless': hideHeader }"
+    :style="span === 4 ? { gridColumn: 'span 4' } : undefined"
     @click="onCardClick"
     @click.capture="onRootCaptureClick"
     @pointerdown="onPointerDown"
@@ -13,7 +14,7 @@
     @pointerup="onPointerRelease"
     @pointercancel="onPointerRelease"
   >
-    <div class="card-header">
+    <div v-if="!hideHeader" class="card-header">
       <!-- 图标区：默认按条目配置渲染图片，传入 icon 插槽可替换为任意图标组件 -->
       <span class="link-icon">
         <slot name="icon">
@@ -22,11 +23,14 @@
       </span>
       <span class="link-title">{{ item.title }}</span>
     </div>
-    <ProTooltip :content="item.description">
-      <span class="link-desc">{{ item.description }}</span>
-    </ProTooltip>
-    <!-- 桌面端常驻操作行：默认复制与收藏，reorderable 时前移居首、后移居尾，传入 actions 插槽可自定义 -->
-    <div class="card-actions flex-center">
+    <!-- 主体内容：默认展示描述文案，传入 body 插槽可替换为小组件等自定义内容 -->
+    <slot name="body">
+      <ProTooltip :content="item.description">
+        <span class="link-desc">{{ item.description }}</span>
+      </ProTooltip>
+    </slot>
+    <!-- 桌面端常驻操作行：默认复制与收藏，reorderable 时前移居首、后移居尾，传入 actions 插槽可自定义；hideActions 置 true 时整行隐藏 -->
+    <div v-if="!hideActions" class="card-actions flex-center">
       <slot name="actions">
         <el-link v-if="reorderable" type="primary" underline="never" :disabled="!canMoveFavorite(item.key, -1)" @click="handleMove(-1, $event)">前移</el-link>
         <el-link type="primary" underline="never" @click="handleCopyLink">复制</el-link>
@@ -428,6 +432,20 @@ html[data-device='mobile'] {
     display: none;
   }
 
+  /* 无头部的小组件卡在移动端还原卡片外壳：其主体是完整版面（日历/一言），不适合裸排在页面底色上 */
+  .link-card.is-headerless {
+    padding: 12px 16px;
+    background-color: var(--el-bg-color);
+    border: 1px solid var(--el-border-color);
+    border-radius: 8px;
+    text-align: left;
+
+    &:hover {
+      box-shadow: none;
+      transform: none;
+    }
+  }
+
   /* 行布局在移动端还原卡片底色并改为两行栅格：图标 + 标题一行、描述一行、时间右侧垂直居中 */
   .link-card.is-row {
     display: grid;
@@ -470,6 +488,60 @@ html[data-device='mobile'] {
     display: flex;
     grid-column: 2;
     grid-row: 1 / span 2;
+  }
+
+  /* 小组件卡：移动端通栏还原卡片底色，标题行还原横向紧凑排布 */
+  .link-card.is-widget {
+    padding: 12px 16px;
+    background-color: var(--el-bg-color);
+    border: 1px solid var(--el-border-color);
+    border-radius: 8px;
+    text-align: left;
+  }
+
+  .link-card.is-widget .card-header {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .link-card.is-widget .link-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .link-card.is-widget .link-title {
+    font-size: 15px;
+    font-weight: 600;
+  }
+}
+
+/* 整卡自绘模式：剥离底色/边框/内边距，版面由主体内容自绘（如一言的暗色背景）；
+   置于末尾以覆盖上方桌面与移动端的底色/内边距规则，操作行浮于版面右下角 */
+.link-card.is-bare {
+  position: relative;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  overflow: hidden;
+
+  &:hover {
+    transform: none;
+  }
+
+  .card-actions {
+    position: absolute;
+    right: 12px;
+    bottom: 8px;
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+    border-top: none;
+
+    /* 暗色版面上操作链接改用白色系保证可读 */
+    :deep(.el-link) {
+      --el-link-text-color: rgba(255, 255, 255, 0.85);
+      --el-link-hover-text-color: var(--el-color-white);
+    }
   }
 }
 </style>

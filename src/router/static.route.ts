@@ -57,6 +57,12 @@ export function buildStaticRouteList(): RouteRecordRaw[] {
           meta: { title: '图标管理', icon: 'Image' },
         },
         {
+          name: 'Widget',
+          path: 'widget',
+          component: () => import('@/views/system/widget/index.vue'),
+          meta: { title: '系统组件', icon: 'Operation' },
+        },
+        {
           name: 'About',
           path: 'about',
           component: () => import('@/views/system/about/index.vue'),

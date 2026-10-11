@@ -8,7 +8,8 @@
     <div class="main-container">
       <header class="fixed-header">
         <Navbar />
-        <Hitokoto v-if="settingStore.showHitokoto" />
+        <!-- 一言横条：系统小组件仅桌面端可用，移动端保留布局横条兜底展示 -->
+        <Hitokoto v-if="appStore.isMobile" />
       </header>
       <AppMain />
       <Copyright />
@@ -33,9 +34,8 @@ import Copyright from './components/Copyright/index.vue'
 import LinkActionSheet from './components/LinkActionSheet/index.vue'
 
 const appStore = useAppStore()
-const settingStore = useSettingStore()
 
-const classes = computed(() => [{ 'hide-sidebar': appStore.isCollapse }, { 'open-sidebar': !appStore.isCollapse }, { 'has-hitokoto-view': settingStore.showHitokoto }, { withoutAnimation: appStore.withoutAnimation }])
+const classes = computed(() => [{ 'hide-sidebar': appStore.isCollapse }, { 'open-sidebar': !appStore.isCollapse }, { 'has-hitokoto-view': appStore.isMobile }, { withoutAnimation: appStore.withoutAnimation }])
 </script>
 
 <style lang="scss" scoped>
