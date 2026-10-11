@@ -13,4 +13,5 @@ const settingStore = useSettingStore()
 useResize()
 useDynamicTitle()
 useFontFamily()
+useVisitorStats()
 </script>

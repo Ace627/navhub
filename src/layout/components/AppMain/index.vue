@@ -38,8 +38,4 @@ watch(
 .fixed-header + .app-main {
   margin-top: var(--el-navbar-height);
 }
-
-.has-hitokoto-view .fixed-header + .app-main {
-  margin-top: calc(var(--el-navbar-height) + var(--el-hitokoto-height));
-}
 </style>

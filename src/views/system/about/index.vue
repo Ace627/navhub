@@ -3,9 +3,7 @@
     <AboutHero class="area-hero" />
     <AboutStats class="area-stats" :category-count="categoryStats.length" :site-count="siteCount" />
     <AboutCategoryChart class="area-chart" :category-stats="categoryStats" :site-count="siteCount" />
-    <AboutFeatures class="area-feature" />
-    <AboutTechStack class="area-tech" />
-    <AboutChangelog class="area-log" />
+    <AboutVisitorChart class="area-visit" />
     <AboutNotice class="area-notice" />
   </div>
 </template>
@@ -16,9 +14,7 @@ import { SiteRequest } from '@/api/site.request'
 import AboutHero from './components/AboutHero.vue'
 import AboutStats from './components/AboutStats.vue'
 import AboutCategoryChart from './components/AboutCategoryChart.vue'
-import AboutFeatures from './components/AboutFeatures.vue'
-import AboutTechStack from './components/AboutTechStack.vue'
-import AboutChangelog from './components/AboutChangelog.vue'
+import AboutVisitorChart from './components/AboutVisitorChart.vue'
 import AboutNotice from './components/AboutNotice.vue'
 
 /** 收录站点总数：仅统计外部站点，挂载后由数据接口拉取更新 */
@@ -46,8 +42,7 @@ onMounted(fetchStats)
   grid-template-areas:
     'hero hero hero hero'
     'stats stats stats stats'
-    'chart chart feature feature'
-    'tech tech tech log'
+    'chart chart visit visit'
     'notice notice notice notice';
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
@@ -65,16 +60,8 @@ onMounted(fetchStats)
   grid-area: chart;
 }
 
-.area-feature {
-  grid-area: feature;
-}
-
-.area-tech {
-  grid-area: tech;
-}
-
-.area-log {
-  grid-area: log;
+.area-visit {
+  grid-area: visit;
 }
 
 .area-notice {
@@ -87,11 +74,10 @@ html[data-device='mobile'] {
       'hero'
       'stats'
       'chart'
-      'feature'
-      'tech'
-      'log'
+      'visit'
       'notice';
-    grid-template-columns: 1fr;
+    /* 用 minmax(0, 1fr) 允许列被压缩：1fr 的最小尺寸是内容宽度，图表 canvas 会把列撑破 */
+    grid-template-columns: minmax(0, 1fr);
     gap: 8px;
   }
 }

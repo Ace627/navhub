@@ -211,6 +211,7 @@ declare global {
   const useLastChanged: typeof import('@vueuse/core').useLastChanged
   const useLink: typeof import('vue-router').useLink
   const useLinkActions: typeof import('../../hooks/useLinkActions').useLinkActions
+  const useLinkMenuActions: typeof import('../../hooks/useLinkMenuActions').useLinkMenuActions
   const useLiveAnnouncer: typeof import('@vueuse/core').useLiveAnnouncer
   const useLocalStorage: typeof import('@vueuse/core').useLocalStorage
   const useMagicKeys: typeof import('@vueuse/core').useMagicKeys
@@ -264,7 +265,6 @@ declare global {
   const useShare: typeof import('@vueuse/core').useShare
   const useSiteFavorites: typeof import('../../hooks/useSiteFavorites').useSiteFavorites
   const useSiteIndex: typeof import('../../hooks/useSiteIndex').useSiteIndex
-  const useSiteRecords: typeof import('../../hooks/useSiteRecords').useSiteRecords
   const useSiteShare: typeof import('../../hooks/useSiteShare').useSiteShare
   const useSlots: typeof import('vue').useSlots
   const useSorted: typeof import('@vueuse/core').useSorted
@@ -303,6 +303,7 @@ declare global {
   const useVModels: typeof import('@vueuse/core').useVModels
   const useVibrate: typeof import('@vueuse/core').useVibrate
   const useVirtualList: typeof import('@vueuse/core').useVirtualList
+  const useVisitorStats: typeof import('../../hooks/useVisitorStats').useVisitorStats
   const useWakeLock: typeof import('@vueuse/core').useWakeLock
   const useWebMCP: typeof import('@vueuse/core').useWebMCP
   const useWebNotification: typeof import('@vueuse/core').useWebNotification
@@ -338,6 +339,12 @@ declare global {
   export type { PoemRecord } from '../../hooks/useHitokoto'
   import('../../hooks/useHitokoto')
   // @ts-ignore
+  export type { LinkMenuAction, LinkMenuActionOptions } from '../../hooks/useLinkMenuActions'
+  import('../../hooks/useLinkMenuActions')
+  // @ts-ignore
   export type { SiteEntry } from '../../hooks/useSiteIndex'
   import('../../hooks/useSiteIndex')
+  // @ts-ignore
+  export type { VisitorStat } from '../../hooks/useVisitorStats'
+  import('../../hooks/useVisitorStats')
 }

@@ -42,41 +42,19 @@
       </transition>
     </Teleport>
 
-    <!-- 卡片区：首张固定为最近浏览入口，其后按收藏集合顺序混排站点条目与系统小组件 -->
+    <!-- 卡片区：按收藏集合顺序排布收藏的站点条目；长按卡片可拖拽调整收藏顺序 -->
     <div class="site-section">
-      <div class="card-grid">
-        <!-- 最近浏览入口卡片：复用 LinkCard，操作行由插槽自定义，跳转行为由父级处理 -->
-        <LinkCard :item="RECENT_ENTRY" skip-record @click="router.push(RouterConstant.RECENT_PAGE_URL)">
-          <template #actions>
-            <el-link type="primary" underline="never" @click="handleCopyRecent">复制</el-link>
-          </template>
-        </LinkCard>
-        <template v-for="favorite in favoriteEntries" :key="favorite.kind === 'widget' ? favorite.widget.key : favorite.entry.item.key">
-          <!-- 系统小组件卡片：无跳转语义，跳过最近浏览记录；移动端长按面板与站点卡片一致（reorderable 提供排序与取消收藏）；移动端通栏一行一个 -->
-          <LinkCard v-if="favorite.kind === 'widget'" :item="favorite.widget.item" :span="appStore.isMobile ? 4 : 1" :hide-header="favorite.widget.hideHeader" :bare="favorite.widget.bare" skip-record reorderable>
-            <template #icon>
-              <SvgIcon :name="favorite.widget.icon" :size="32" />
-            </template>
-            <template #body>
-              <component :is="favorite.widget.component" />
-            </template>
-            <template #actions>
-              <el-link type="primary" underline="never" :disabled="!canMoveFavorite(favorite.widget.key, -1)" @click="handleMoveWidget(favorite.widget.key, -1, $event)">前移</el-link>
-              <el-link type="primary" underline="never" @click="handleRemoveWidget(favorite.widget.key, $event)">取消收藏</el-link>
-              <el-link type="primary" underline="never" :disabled="!canMoveFavorite(favorite.widget.key, 1)" @click="handleMoveWidget(favorite.widget.key, 1, $event)">后移</el-link>
-            </template>
-          </LinkCard>
-          <!-- 站点收藏卡片：外链直开，站内条目跳转所属分类详情页 -->
-          <template v-else>
-            <LinkCard v-if="isExternal(favorite.entry.item.key)" :item="favorite.entry.item" plain-link reorderable />
-            <LinkCard v-else :item="favorite.entry.item" reorderable @click="handleInternalClick(favorite.entry)" />
-          </template>
+      <div ref="cardGridRef" class="card-grid" @click.capture="handleGridCaptureClick">
+        <!-- 站点收藏卡片：外链直开，站内条目跳转所属分类详情页 -->
+        <template v-for="favorite in favoriteEntries" :key="favorite.item.key">
+          <LinkCard v-if="isExternal(favorite.item.key)" :item="favorite.item" plain-link long-press-disabled />
+          <LinkCard v-else :item="favorite.item" long-press-disabled @click="handleInternalClick(favorite)" />
         </template>
       </div>
     </div>
     <div v-if="!favoriteEntries.length" class="empty-state">
       <SvgIcon name="Link" :size="48" class="empty-icon" />
-      <p class="empty-text">暂无收藏站点或小组件，去逛逛各分类导航吧</p>
+      <p class="empty-text">暂无收藏站点，去逛逛各分类导航吧</p>
       <!-- 分类快捷入口：仅收藏为空时出现，点击跳转对应分类列表页 -->
       <div class="category-grid">
         <div v-for="entry in CATEGORY_SHORTCUTS" :key="entry.path" class="category-item" @click="handleCategoryClick(entry.path)">
@@ -92,17 +70,15 @@
 <script setup lang="ts">
 defineOptions({ name: RouterConstant.HOME_PAGE_NAME })
 import { RouterConstant } from '@/router/router.constant'
-import { SITE_RECORD_LIMIT, buildSiteShareText, copyText, isExternal, pruneSiteFavorites, pruneSiteRecords } from '@/utils'
+import Sortable from 'sortablejs'
+import { isExternal, pruneSiteFavorites } from '@/utils'
 import { useAppStore } from '@/store/modules/app'
 import { useSettingStore } from '@/store/modules/setting'
 import { useSiteFavorites } from '@/hooks/useSiteFavorites'
 import { useSiteIndex } from '@/hooks/useSiteIndex'
 import type { SiteEntry } from '@/hooks/useSiteIndex'
-import { useSiteShare } from '@/hooks/useSiteShare'
-import type { LinkItem } from '@/components/LinkCard/types'
+import { useLinkActions } from '@/hooks/useLinkActions'
 import { getCategoryRegistry } from '@/router/category.registry'
-import { SYSTEM_WIDGETS, SYSTEM_WIDGET_MAP } from '@/views/system/widget/components/registry'
-import type { SystemWidget } from '@/views/system/widget/components/registry'
 
 /** 搜索引擎定义 */
 interface SearchEngine {
@@ -149,37 +125,17 @@ const settingStore = useSettingStore()
 /** 全站条目索引：以条目 key（外链为 URL，站内为路由参数）为键，模块加载时构建一次 */
 const SITE_INDEX = useSiteIndex()
 
-/** 站内地址与分享文案构建方法：最近浏览入口卡片复制时复用 */
-const { resolveRouteAddress } = useSiteShare()
+/** 长按操作面板共享状态：移动端长按卡片原地松手时唤起对应条目的操作面板 */
+const { openLinkActions } = useLinkActions()
 
-/** 最近浏览入口卡片条目：非站点条目，key 取最近浏览页路由，仅用于展示与分享文案 */
-const RECENT_ENTRY: LinkItem = {
-  key: RouterConstant.RECENT_PAGE_URL,
-  title: '最近浏览',
-  icon: '@/assets/images/icons/历史记录.png',
-  description: `自动记录最近打开的站点，最多保留 ${SITE_RECORD_LIMIT} 条`,
-}
+/** 收藏共享状态：首页收藏区随收藏变化实时联动，长按拖拽结束时按新位置写回收藏集合 */
+const { favorites, reorderFavorite } = useSiteFavorites()
 
-/** 收藏共享状态：首页收藏区随收藏变化实时联动，并提供组件卡片的排序与取消收藏能力 */
-const { favorites, toggleFavorite, canMoveFavorite, moveFavorite } = useSiteFavorites()
+/** 收藏站点条目列表：收藏集合顺序映射全站索引，剔除已下架条目 */
+const favoriteEntries = computed<SiteEntry[]>(() => [...favorites].flatMap((key) => (SITE_INDEX[key] ? [SITE_INDEX[key]] : [])))
 
-/** 卡片区收藏条目视图：系统小组件与站点条目的混排单元 */
-type FavoriteEntry = { kind: 'widget'; widget: SystemWidget } | { kind: 'site'; entry: SiteEntry }
-
-/** 收藏条目列表：收藏集合顺序映射系统小组件注册表与全站索引，剔除已下架条目 */
-const favoriteEntries = computed<FavoriteEntry[]>(() =>
-  [...favorites]
-    .map((key): FavoriteEntry | null => {
-      const widget = SYSTEM_WIDGET_MAP.get(key)
-      if (widget) return { kind: 'widget', widget }
-      const entry = SITE_INDEX[key]
-      return entry ? { kind: 'site', entry } : null
-    })
-    .filter((favorite): favorite is FavoriteEntry => favorite !== null)
-)
-
-/** 空状态分类快捷入口：取注册表全部分类的标题、图标与路径，顺序与侧栏菜单一致，末尾追加系统组件页入口 */
-const CATEGORY_SHORTCUTS = [...getCategoryRegistry().map((entry) => ({ path: entry.path, title: entry.title, icon: entry.icon })), { path: 'system/widget', title: '系统组件', icon: 'Operation' }]
+/** 空状态分类快捷入口：取注册表全部分类的标题、图标与路径，顺序与侧栏菜单一致 */
+const CATEGORY_SHORTCUTS = getCategoryRegistry().map((entry) => ({ path: entry.path, title: entry.title, icon: entry.icon }))
 
 /**
  * 打开移动端搜索引擎选择弹层
@@ -236,17 +192,6 @@ function handleSearch(): void {
 }
 
 /**
- * 最近浏览入口卡片操作行复制：复制最近浏览页分享文案（名称、站内地址与描述，格式与 LinkCard 一致）并阻断卡片自身的跳转
- *
- * @param event 点击事件对象
- */
-function handleCopyRecent(event: MouseEvent): void {
-  event.preventDefault()
-  event.stopPropagation()
-  copyText(buildSiteShareText(RECENT_ENTRY.title, resolveRouteAddress(RECENT_ENTRY.key), RECENT_ENTRY.description))
-}
-
-/**
  * 站内条目点击跳转：路由跳转到所属分类的详情页
  *
  * @param entry 被点击的站内条目
@@ -255,33 +200,98 @@ function handleInternalClick(entry: SiteEntry): void {
   router.push(`${entry.categoryPath}/${entry.item.key}`)
 }
 
+/** 触发长按拖拽所需的按压时长（毫秒），与 LinkCard 长按面板时长保持一致 */
+const DRAG_PRESS_DELAY = 450
+
+/** 长按后允许的最大位移（像素），超出视为滚动滑动，取消拖拽意图 */
+const DRAG_MOVE_THRESHOLD = 12
+
+/** 卡片网格根节点引用：长按拖拽排序的作用容器 */
+const cardGridRef = ref<HTMLDivElement | null>(null)
+
+/** 长按拖拽排序实例 */
+let sortable: Sortable | null = null
+
+/** 拖拽结束后待拦截的 click 标记：排序或唤起面板后避免误触发卡片跳转 */
+let suppressGridClick = false
+
+/** 拖拽期间指针是否发生明显位移：原地松手视为长按，唤起操作面板而非排序 */
+let dragPointerMoved = false
+
+/** 拖拽指针位移基准坐标 */
+let dragBase: { x: number; y: number } | null = null
+
 /**
- * 系统小组件卡片顺序调整点击：将组件在收藏列表中前移或后移一位并提示结果，同时阻断卡片自身的跳转行为
+ * 拖拽期间指针移动捕获回调：累计位移超出阈值即判定为拖拽意图，松手后走排序而非面板
  *
- * 处于首尾无可移动方向时链接为禁用态，不会触发本方法。
- *
- * @param key 小组件唯一标识
- * @param offset 移动方向，-1 表示前移一位，1 表示后移一位
- * @param event 点击事件对象
+ * @param event 指针移动事件对象
  */
-function handleMoveWidget(key: string, offset: -1 | 1, event: MouseEvent): void {
-  event.preventDefault()
-  event.stopPropagation()
-  moveFavorite(key, offset)
-  ElMessage.success(offset < 0 ? '小组件已前移' : '小组件已后移')
+function handleDragPointerMove(event: PointerEvent): void {
+  if (!dragBase) {
+    dragBase = { x: event.clientX, y: event.clientY }
+    return
+  }
+  const deltaX = event.clientX - dragBase.x
+  const deltaY = event.clientY - dragBase.y
+  if (deltaX * deltaX + deltaY * deltaY > DRAG_MOVE_THRESHOLD * DRAG_MOVE_THRESHOLD) dragPointerMoved = true
 }
 
 /**
- * 系统小组件卡片取消收藏点击：从收藏集合移除并提示结果，同时阻断卡片自身的跳转行为
+ * 长按触发拖拽开始：重置位移基准并标记拦截拖拽结束后的 click
+ */
+function handleDragStart(): void {
+  dragPointerMoved = false
+  dragBase = null
+  suppressGridClick = true
+  document.addEventListener('pointermove', handleDragPointerMove, true)
+}
+
+/**
+ * 拖拽结束：还原 Sortable 的 DOM 移动交由 Vue 响应式渲染接管，再按指针是否位移决定排序或唤起操作面板
  *
- * @param key 小组件唯一标识
+ * @param event 拖拽结束事件对象
+ */
+function handleDragEnd(event: Sortable.SortableEvent): void {
+  document.removeEventListener('pointermove', handleDragPointerMove, true)
+  const { item, from } = event
+  const { oldIndex, newIndex } = event
+  if (oldIndex === undefined || newIndex === undefined) return
+  if (oldIndex !== newIndex) {
+    // 先按锚点还原被 Sortable 移动的节点，避免外部 DOM 变更与 Vue diff 冲突；真实顺序由收藏集合状态驱动
+    from.removeChild(item)
+    const reference = from.children[oldIndex]
+    if (reference) from.insertBefore(item, reference)
+    else from.appendChild(item)
+    reorderFavorite(oldIndex, newIndex)
+  } else if (!dragPointerMoved && appStore.isMobile) {
+    openFavoritePanel(oldIndex)
+  }
+  window.setTimeout(() => {
+    suppressGridClick = false
+  }, 120)
+}
+
+/**
+ * 唤起收藏卡片的操作面板：仅移动端长按原地松手时触发，桌面端操作入口统一为卡片右键菜单
+ *
+ * @param index 收藏条目在收藏列表中的下标
+ */
+function openFavoritePanel(index: number): void {
+  const favorite = favoriteEntries.value[index]
+  if (!favorite) return
+  openLinkActions(favorite.item)
+}
+
+/**
+ * 网格点击捕获回调：拖拽结束后的首个 click 在此拦截，避免排序或唤起面板的同时触发卡片跳转
+ *
  * @param event 点击事件对象
  */
-function handleRemoveWidget(key: string, event: MouseEvent): void {
+function handleGridCaptureClick(event: MouseEvent): void {
+  if (!suppressGridClick) return
+  suppressGridClick = false
   event.preventDefault()
   event.stopPropagation()
-  toggleFavorite(key)
-  ElMessage.success('已取消收藏小组件')
 }
 
 /**
@@ -301,17 +311,39 @@ function handleExplore(): void {
 }
 
 /**
- * 刷新缓存一致性：以全站配置索引与系统小组件注册表为合法键集合，裁剪收藏与最近浏览中条目被删除后残留的脏键
+ * 刷新缓存一致性：以全站配置索引为合法键集合，裁剪收藏中条目被删除后残留的脏键
  */
 function refreshSiteCaches(): void {
-  const validKeys = [...Object.keys(SITE_INDEX), ...SYSTEM_WIDGETS.map((widget) => widget.key)]
+  const validKeys = Object.keys(SITE_INDEX)
   pruneSiteFavorites(validKeys)
-  pruneSiteRecords(Object.keys(SITE_INDEX))
 }
 
 onMounted(refreshSiteCaches)
 
 onActivated(refreshSiteCaches)
+
+/** 挂载长按拖拽排序：延迟按压替代原生拖拽，桌面与移动端统一长按 450ms 后进入拖拽态 */
+onMounted(() => {
+  if (!cardGridRef.value) return
+  sortable = new Sortable(cardGridRef.value, {
+    animation: 150,
+    forceFallback: true,
+    delay: DRAG_PRESS_DELAY,
+    delayOnTouchOnly: false,
+    touchStartThreshold: DRAG_MOVE_THRESHOLD,
+    ghostClass: 'drag-ghost',
+    chosenClass: 'drag-chosen',
+    fallbackClass: 'drag-floating',
+    onStart: handleDragStart,
+    onEnd: handleDragEnd,
+  })
+})
+
+onBeforeUnmount(() => {
+  sortable?.destroy()
+  sortable = null
+  document.removeEventListener('pointermove', handleDragPointerMove, true)
+})
 
 /** 首页搜索区显隐联动：仅显示期间挂载文档级点击代理，隐藏时彻底移除，恢复显示时重新挂载 */
 watch(
@@ -320,7 +352,7 @@ watch(
     if (visible) document.addEventListener('click', handleDocumentClick)
     else document.removeEventListener('click', handleDocumentClick)
   },
-  { immediate: true }
+  { immediate: true },
 )
 
 onBeforeUnmount(() => document.removeEventListener('click', handleDocumentClick))
@@ -415,7 +447,21 @@ onBeforeUnmount(() => document.removeEventListener('click', handleDocumentClick)
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 16px;
+  /* 同行卡片等高由网格默认拉伸实现，卡片间保持 8px 均匀间隙 */
+  gap: 8px;
+}
+
+/* 长按拖拽：被拖卡片自身即「浮起卡」，抬起阴影、压在其余卡片之上，原位不留空槽、不留半透明残影 */
+.card-grid:deep(.link-card.drag-ghost) {
+  position: relative;
+  z-index: 2;
+  box-shadow: var(--el-box-shadow-dark);
+}
+
+/* 长按拖拽：隐去 Sortable 跟随指针的浮起克隆，改由卡片本身在槽位间滑动补位，与手机桌面图标拖拽一致；
+   否则会出现「浮起卡压住别的卡 + 原位空一格」两个破绽 */
+.card-grid:deep(.drag-floating) {
+  display: none !important;
 }
 
 .empty-state {
@@ -503,6 +549,15 @@ html[data-device='mobile'] {
   .card-grid {
     grid-template-columns: repeat(4, 1fr);
     gap: 8px;
+  }
+
+  /* 移动端卡片默认无底色/边框，拖拽中补齐卡片外壳并保留抬起阴影，保证「浮起卡」可辨识
+     （只补视觉、不改内边距，避免拖拽中尺寸跳动；此处选择器带 html 前缀以压过 LinkCard 的移动端 hover 阴影重置） */
+  .card-grid:deep(.link-card.drag-ghost) {
+    background-color: var(--el-bg-color);
+    border: 1px solid var(--el-border-color);
+    border-radius: 8px;
+    box-shadow: var(--el-box-shadow-dark);
   }
 
   /* 分类快捷入口：移动端四列紧凑排布，图标与标题上下排列 */

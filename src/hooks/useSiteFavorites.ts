@@ -55,38 +55,25 @@ export function useSiteFavorites() {
   }
 
   /**
-   * 判断站点在收藏集合中的位置是否允许按指定方向移动（位于首位不可前移、位于末位不可后移）
+   * 将收藏条目从原位置移动到目标位置，并同步写回本地缓存
    *
-   * @param key 站点唯一键
-   * @param offset 移动方向，-1 表示前移一位，1 表示后移一位
-   * @returns 可移动时返回 true
-   */
-  function canMoveFavorite(key: string, offset: -1 | 1): boolean {
-    const index = [...favorites].indexOf(key)
-    if (index < 0) return false
-    const target = index + offset
-    return target >= 0 && target < favorites.size
-  }
-
-  /**
-   * 调整站点在收藏集合中的位置：按指定方向与相邻条目交换，并同步写回本地缓存
+   * 集合整体清空后按新顺序回填，保证迭代顺序即展示顺序；下标非法或位置未变化时直接返回。
    *
-   * 集合整体清空后按新顺序回填，保证迭代顺序即展示顺序；处于首尾无可移动时直接返回。
-   *
-   * @param key 站点唯一键
-   * @param offset 移动方向，-1 表示前移一位，1 表示后移一位
+   * @param oldIndex 原位置下标
+   * @param newIndex 目标位置下标
    * @returns 是否实际发生移动
    */
-  function moveFavorite(key: string, offset: -1 | 1): boolean {
-    if (!canMoveFavorite(key, offset)) return false
+  function reorderFavorite(oldIndex: number, newIndex: number): boolean {
+    if (oldIndex === newIndex) return false
+    if (oldIndex < 0 || newIndex < 0 || oldIndex >= favorites.size || newIndex >= favorites.size) return false
     const keys = [...favorites]
-    const target = keys.indexOf(key) + offset
-    keys.splice(target, 0, ...keys.splice(keys.indexOf(key), 1))
+    const [moved] = keys.splice(oldIndex, 1)
+    keys.splice(newIndex, 0, moved)
     favorites.clear()
     for (const item of keys) favorites.add(item)
     persist()
     return true
   }
 
-  return { favorites, isFavorite, toggleFavorite, canMoveFavorite, moveFavorite }
+  return { favorites, isFavorite, toggleFavorite, reorderFavorite }
 }

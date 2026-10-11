@@ -1,7 +1,7 @@
+@use 'element-plus/theme-chalk/src/dark/css-vars.scss';
 @use './variables.scss';
 @use './transition.scss';
 @use './theme-transition.scss';
-@use 'element-plus/theme-chalk/src/dark/css-vars.scss';
 @import url('https://chinese-fonts-cdn.netlify.app/packages/jxzk/dist/江西拙楷/result.css');
 @import url('https://chinese-fonts-cdn.netlify.app/packages/ysbzt/dist/峄山碑篆体/result.css');
 @import url('https://chinese-fonts-cdn.netlify.app/packages/pfgzt/dist/平方公子体/result.css');
@@ -12,6 +12,8 @@
 body {
   font-family: var(--el-font-family);
   background-color: var(--el-bg-color-page);
+  background-image: var(--el-bg-img-texture);
+  background-repeat: repeat;
 }
 
 .app-content {

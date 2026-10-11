@@ -25,13 +25,6 @@ export function buildStaticRouteList(): RouteRecordRaw[] {
           meta: { title: '最近使用', icon: 'Home', affix: true },
         },
 
-        {
-          name: RouterConstant.RECENT_PAGE_NAME,
-          path: 'recent',
-          component: () => import('@/views/recent/index.vue'),
-          meta: { title: '最近浏览', icon: 'Schedule', affix: true },
-        },
-
         // 分类页路由：由分类注册表生成（detail 模式分类自动附带详情子路由），全部指向通用列表页/详情页
         ...buildCategoryRoutes(),
       ],
@@ -55,12 +48,6 @@ export function buildStaticRouteList(): RouteRecordRaw[] {
           path: 'icon',
           component: () => import('@/views/system/icon/index.vue'),
           meta: { title: '图标管理', icon: 'Image' },
-        },
-        {
-          name: 'Widget',
-          path: 'widget',
-          component: () => import('@/views/system/widget/index.vue'),
-          meta: { title: '系统组件', icon: 'Operation' },
         },
         {
           name: 'About',

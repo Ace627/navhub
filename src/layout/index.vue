@@ -8,8 +8,6 @@
     <div class="main-container">
       <header class="fixed-header">
         <Navbar />
-        <!-- 一言横条：系统小组件仅桌面端可用，移动端保留布局横条兜底展示 -->
-        <Hitokoto v-if="appStore.isMobile" />
       </header>
       <AppMain />
       <Copyright />
@@ -20,6 +18,9 @@
 
     <!-- 站点卡片长按操作面板（全局单例） -->
     <LinkActionSheet />
+
+    <!-- 站点卡片右键操作菜单（全局单例） -->
+    <LinkContextMenu />
   </div>
 </template>
 
@@ -28,14 +29,14 @@ defineOptions({ name: 'Layout' })
 import Navbar from './components/Navbar/index.vue'
 import Sidebar from './components/Sidebar/index.vue'
 import AppMain from './components/AppMain/index.vue'
-import Hitokoto from './components/Hitokoto/index.vue'
 import FloatNav from './components/FloatNav/index.vue'
 import Copyright from './components/Copyright/index.vue'
 import LinkActionSheet from './components/LinkActionSheet/index.vue'
+import LinkContextMenu from './components/LinkContextMenu/index.vue'
 
 const appStore = useAppStore()
 
-const classes = computed(() => [{ 'hide-sidebar': appStore.isCollapse }, { 'open-sidebar': !appStore.isCollapse }, { 'has-hitokoto-view': appStore.isMobile }, { withoutAnimation: appStore.withoutAnimation }])
+const classes = computed(() => [{ 'hide-sidebar': appStore.isCollapse }, { 'open-sidebar': !appStore.isCollapse }, { withoutAnimation: appStore.withoutAnimation }])
 </script>
 
 <style lang="scss" scoped>

@@ -9,6 +9,7 @@
     :style="span === 4 ? { gridColumn: 'span 4' } : undefined"
     @click="onCardClick"
     @click.capture="onRootCaptureClick"
+    @contextmenu="onContextMenu"
     @pointerdown="onPointerDown"
     @pointermove="onPointerMove"
     @pointerup="onPointerRelease"
@@ -29,26 +30,13 @@
         <span class="link-desc">{{ item.description }}</span>
       </ProTooltip>
     </slot>
-    <!-- 桌面端常驻操作行：默认复制与收藏，reorderable 时前移居首、后移居尾，传入 actions 插槽可自定义；hideActions 置 true 时整行隐藏 -->
-    <div v-if="!hideActions" class="card-actions flex-center">
-      <slot name="actions">
-        <el-link v-if="reorderable" type="primary" underline="never" :disabled="!canMoveFavorite(item.key, -1)" @click="handleMove(-1, $event)">前移</el-link>
-        <el-link type="primary" underline="never" @click="handleCopyLink">复制</el-link>
-        <el-link type="primary" underline="never" @click="handleToggleFavorite">{{ isFavorite(item.key) ? '已收藏' : '收藏' }}</el-link>
-        <el-link v-if="reorderable" type="primary" underline="never" :disabled="!canMoveFavorite(item.key, 1)" @click="handleMove(1, $event)">后移</el-link>
-      </slot>
-    </div>
   </component>
 </template>
 
 <script setup lang="ts">
-import { copyText } from '@/utils'
 import type { LinkCardProps, LinkItem } from './types'
 import { IMG_FAVICON } from '@/common/constant/image.constant'
 import { useAppStore } from '@/store/modules/app'
-import { useSiteFavorites } from '@/hooks/useSiteFavorites'
-import { useSiteRecords } from '@/hooks/useSiteRecords'
-import { useSiteShare } from '@/hooks/useSiteShare'
 import { useLinkActions } from '@/hooks/useLinkActions'
 
 const props = defineProps<LinkCardProps>()
@@ -56,10 +44,7 @@ const props = defineProps<LinkCardProps>()
 const emit = defineEmits<{ (e: 'click', item: LinkItem): void }>()
 
 const appStore = useAppStore()
-const { isFavorite, toggleFavorite, canMoveFavorite, moveFavorite } = useSiteFavorites()
-const { recordVisit } = useSiteRecords()
-const { buildShareText } = useSiteShare()
-const { openLinkActions } = useLinkActions()
+const { openLinkActions, openLinkMenu } = useLinkActions()
 
 /** 触发长按面板所需的按压时长（毫秒） */
 const LONG_PRESS_DELAY = 450
@@ -159,15 +144,13 @@ function onIconError(): void {
 }
 
 /**
- * 卡片点击回调：按需写入最近浏览记录（同键去重并置顶），再按模式决定导航方式
+ * 卡片点击回调：按模式决定导航方式
  *
  * 纯外链模式交给 a 标签默认导航（仅桌面端），其余抛出 click 事件由父级决定跳转；
  * 桌面端纯外链不调用 preventDefault/stopPropagation，保留 target="_blank" 默认新标签跳转；
- * 移动端纯外链因根节点渲染为 div，改为 window.open 新窗口打开，规避触屏长按触发的浏览器原生链接菜单；
- * 入口类卡片（非站点条目）通过 skipRecord 关闭记录写入，避免产生无效记录
+ * 移动端纯外链因根节点渲染为 div，改为 window.open 新窗口打开，规避触屏长按触发的浏览器原生链接菜单
  */
 function onCardClick(): void {
-  if (!props.skipRecord) recordVisit(props.item.key)
   if (props.plainLink && !appStore.isMobile) return
   if (props.plainLink) {
     window.open(props.item.key, '_blank', 'noopener,noreferrer')
@@ -194,7 +177,7 @@ function onRootCaptureClick(event: MouseEvent): void {
  * @param event 指针事件对象
  */
 function onPointerDown(event: PointerEvent): void {
-  if (!appStore.isMobile || event.pointerType !== 'touch') return
+  if (props.longPressDisabled || !appStore.isMobile || event.pointerType !== 'touch') return
   pressStartX = event.clientX
   pressStartY = event.clientY
   longPressTimer = setTimeout(triggerLongPress, LONG_PRESS_DELAY)
@@ -225,7 +208,7 @@ function onPointerRelease(): void {
 function triggerLongPress(): void {
   cancelLongPress()
   suppressNextClick = true
-  openLinkActions(props.item, { reorderable: props.reorderable })
+  openLinkActions(props.item)
 }
 
 /**
@@ -237,52 +220,27 @@ function cancelLongPress(): void {
 }
 
 /**
- * 操作行复制点击：复制站点分享文案（名称、地址与描述，自有页面地址取站内路由）并提示结果，同时阻断卡片自身的跳转行为
+ * 卡片右键回调：桌面端拦截浏览器原生菜单，交由全局单例菜单在指针坐标处展开
  *
- * @param event 点击事件对象
+ * 移动端不接管：原生菜单已由全局 useResize 统一阻止，操作入口保持长按面板
+ *
+ * @param event 右键事件对象
  */
-function handleCopyLink(event: MouseEvent): void {
+function onContextMenu(event: MouseEvent): void {
+  if (appStore.isMobile) return
   event.preventDefault()
-  event.stopPropagation()
-  copyText(buildShareText(props.item))
-}
-
-/**
- * 操作行收藏点击：切换收藏状态并提示结果，同时阻断卡片自身的跳转行为
- *
- * @param event 点击事件对象
- */
-function handleToggleFavorite(event: MouseEvent): void {
-  event.preventDefault()
-  event.stopPropagation()
-  const added = toggleFavorite(props.item.key)
-  ElMessage.success(added ? `已收藏「${props.item.title}」` : `已取消收藏「${props.item.title}」`)
-}
-
-/**
- * 操作行顺序调整点击：将当前条目在收藏列表中前移或后移一位并提示结果，同时阻断卡片自身的跳转行为
- *
- * 处于首尾无可移动方向时链接为禁用态，不会触发本方法。
- *
- * @param offset 移动方向，-1 表示前移一位，1 表示后移一位
- * @param event 点击事件对象
- */
-function handleMove(offset: -1 | 1, event: MouseEvent): void {
-  event.preventDefault()
-  event.stopPropagation()
-  moveFavorite(props.item.key, offset)
-  ElMessage.success(offset < 0 ? `「${props.item.title}」已前移` : `「${props.item.title}」已后移`)
+  openLinkMenu(props.item, { x: event.clientX, y: event.clientY }, { hideFavorite: props.hideFavorite })
 }
 </script>
 
 <style lang="scss" scoped>
 .link-card {
   --el-link-card-icon-size: 32px;
-  /* 纵向弹性布局：描述行数不定时，操作行仍贴卡片底部对齐 */
+  /* 纵向弹性布局：头部、主体与行尾信息自上而下排布；height 撑满网格单元，保证同行卡片等高 */
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 8px 12px;
+  padding: 8px;
   background-color: var(--el-bg-color);
   border: 1px solid var(--el-border-color);
   border-radius: 8px;
@@ -329,7 +287,8 @@ function handleMove(offset: -1 | 1, event: MouseEvent): void {
 
 .link-desc {
   display: -webkit-box;
-  margin: 8px 0;
+  /* 只保留与标题之间的上间距：下外边距会与卡片 padding 叠加，造成上下留白不一致 */
+  margin: 8px 0 0;
   overflow: hidden;
   font-size: 13px;
   line-height: 1.6;
@@ -339,7 +298,13 @@ function handleMove(offset: -1 | 1, event: MouseEvent): void {
   line-clamp: 2;
 }
 
-/* 行布局：横向单行排布，描述单行截断，操作行靠右且不带顶部分隔线（用于最近浏览等历史列表场景） */
+/* 卡片内容在卡片内垂直居中：等高布局下，内容少于同行最高卡的卡片把余量均匀分到上下，
+   避免空白全部堆在底部形成「掉底」视觉（行布局为横向排布，不参与居中） */
+.link-card:not(.is-row) {
+  justify-content: center;
+}
+
+/* 行布局：横向单行排布，描述单行截断，行尾信息靠右（用于最近浏览等历史列表场景） */
 .link-card.is-row {
   flex-direction: row;
   align-items: center;
@@ -368,25 +333,6 @@ function handleMove(offset: -1 | 1, event: MouseEvent): void {
   white-space: nowrap;
 }
 
-.link-card.is-row .card-actions {
-  flex-shrink: 0;
-  margin: 0 0 0 auto;
-  padding: 0;
-  border-top: none;
-}
-
-.card-actions {
-  /* 自动外边距把操作行推至卡片底部，各卡片操作行横向对齐 */
-  margin-top: auto;
-  gap: 6px;
-  padding-top: 8px;
-  border-top: 1px solid var(--el-border-color);
-  /* 深度选择器使外部插槽内容（如首页最近浏览入口的复制链接）与默认操作行字号一致 */
-  :deep(.el-link) {
-    --el-link-font-size: 12px;
-  }
-}
-
 html[data-device='mobile'] {
   .link-card {
     padding: 8px 4px;
@@ -401,10 +347,6 @@ html[data-device='mobile'] {
       box-shadow: none;
       transform: none;
     }
-  }
-
-  .card-actions {
-    display: none;
   }
 
   .card-header {
@@ -446,12 +388,11 @@ html[data-device='mobile'] {
     }
   }
 
-  /* 行布局在移动端还原卡片底色并改为两行栅格：图标 + 标题一行、描述一行、时间右侧垂直居中 */
+  /* 行布局在移动端还原卡片底色并改为两行栅格：图标 + 标题一行、描述一行 */
   .link-card.is-row {
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr;
     align-items: center;
-    column-gap: 10px;
     padding: 10px 12px;
     background-color: var(--el-bg-color);
     border: 1px solid var(--el-border-color);
@@ -484,12 +425,6 @@ html[data-device='mobile'] {
     white-space: nowrap;
   }
 
-  .link-card.is-row .card-actions {
-    display: flex;
-    grid-column: 2;
-    grid-row: 1 / span 2;
-  }
-
   /* 小组件卡：移动端通栏还原卡片底色，标题行还原横向紧凑排布 */
   .link-card.is-widget {
     padding: 12px 16px;
@@ -516,7 +451,7 @@ html[data-device='mobile'] {
 }
 
 /* 整卡自绘模式：剥离底色/边框/内边距，版面由主体内容自绘（如一言的暗色背景）；
-   置于末尾以覆盖上方桌面与移动端的底色/内边距规则，操作行浮于版面右下角 */
+   置于末尾以覆盖上方桌面与移动端的底色/内边距规则 */
 .link-card.is-bare {
   position: relative;
   padding: 0;
@@ -526,22 +461,6 @@ html[data-device='mobile'] {
 
   &:hover {
     transform: none;
-  }
-
-  .card-actions {
-    position: absolute;
-    right: 12px;
-    bottom: 8px;
-    z-index: 1;
-    margin: 0;
-    padding: 0;
-    border-top: none;
-
-    /* 暗色版面上操作链接改用白色系保证可读 */
-    :deep(.el-link) {
-      --el-link-text-color: rgba(255, 255, 255, 0.85);
-      --el-link-hover-text-color: var(--el-color-white);
-    }
   }
 }
 </style>
