@@ -104,7 +104,9 @@ function pad2(value: number): string {
  * @returns 自然日天数差，今天为 0、昨天为 1，未来日期为负数
  */
 function getDayDiff(date: Date, now: Date): number {
-  return Math.floor((new Date(now.getFullYear(), now.getMonth(), now.getDate()) - new Date(date.getFullYear(), date.getMonth(), date.getDate())) / (24 * 60 * 60 * 1000))
+  const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime()
+  const startOfTarget = new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime()
+  return Math.floor((startOfToday - startOfTarget) / (24 * 60 * 60 * 1000))
 }
 
 /**
