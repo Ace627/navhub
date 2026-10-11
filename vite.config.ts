@@ -43,7 +43,7 @@ export default defineConfig(({ mode }) => {
        */
       preprocessorOptions: {
         scss: {
-          additionalData: `@use "@/styles/element-plus/el-theme.scss";`,
+          additionalData: `@use "@/styles/element-plus/el-theme.scss";@use "@/styles/mixins.scss" as *;`,
         },
       },
     },

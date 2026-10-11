@@ -18,4 +18,9 @@ body {
   position: relative;
   width: 100%;
   padding: 16px;
+
+  /* 移动端收窄页面内边距 */
+  @include mobile {
+    padding: 12px;
+  }
 }

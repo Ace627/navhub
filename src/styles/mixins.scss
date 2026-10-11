@@ -1,0 +1,6 @@
+/** 移动端作用域混入：统一按 html[data-device='mobile'] 属性选择器匹配，经 vite additionalData 全局注入，无需手动引入 */
+@mixin mobile {
+  html[data-device='mobile'] & {
+    @content;
+  }
+}

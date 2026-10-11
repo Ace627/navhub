@@ -5,6 +5,7 @@
     :href="plainLink && !appStore.isMobile ? item.key : undefined"
     :target="plainLink && !appStore.isMobile ? '_blank' : undefined"
     :rel="plainLink && !appStore.isMobile ? 'noopener noreferrer' : undefined"
+    :class="{ 'is-row': layout === 'row' }"
     @click="onCardClick"
     @click.capture="onRootCaptureClick"
     @pointerdown="onPointerDown"
@@ -63,7 +64,7 @@ const LONG_PRESS_DELAY = 450
 const LONG_PRESS_MOVE_THRESHOLD = 10
 
 /** 图标加载超时阈值：超过该时长仍未加载完成即降级为默认系统图标（毫秒） */
-const ICON_LOAD_TIMEOUT = 3000
+const ICON_LOAD_TIMEOUT = 5000
 
 /** 当前卡片图标是否已加载失败或超时（命中即降级为默认系统图标） */
 const iconFailed = ref(false)
@@ -334,13 +335,50 @@ function handleMove(offset: -1 | 1, event: MouseEvent): void {
   line-clamp: 2;
 }
 
+/* 行布局：横向单行排布，描述单行截断，操作行靠右且不带顶部分隔线（用于最近浏览等历史列表场景） */
+.link-card.is-row {
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+
+  &:hover {
+    transform: none;
+  }
+}
+
+.link-card.is-row .card-header {
+  flex-shrink: 0;
+}
+
+.link-card.is-row .link-title {
+  white-space: nowrap;
+}
+
+.link-card.is-row .link-desc {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.link-card.is-row .card-actions {
+  flex-shrink: 0;
+  margin: 0 0 0 auto;
+  padding: 0;
+  border-top: none;
+}
+
 .card-actions {
   /* 自动外边距把操作行推至卡片底部，各卡片操作行横向对齐 */
   margin-top: auto;
   gap: 6px;
   padding-top: 8px;
   border-top: 1px solid var(--el-border-color);
-  .el-link {
+  /* 深度选择器使外部插槽内容（如首页最近浏览入口的复制链接）与默认操作行字号一致 */
+  :deep(.el-link) {
     --el-link-font-size: 12px;
   }
 }
@@ -388,6 +426,50 @@ html[data-device='mobile'] {
 
   .link-desc {
     display: none;
+  }
+
+  /* 行布局在移动端还原卡片底色并改为两行栅格：图标 + 标题一行、描述一行、时间右侧垂直居中 */
+  .link-card.is-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    column-gap: 10px;
+    padding: 10px 12px;
+    background-color: var(--el-bg-color);
+    border: 1px solid var(--el-border-color);
+    border-radius: 8px;
+    text-align: left;
+  }
+
+  .link-card.is-row .card-header {
+    min-width: 0;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .link-card.is-row .link-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .link-card.is-row .link-title {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .link-card.is-row .link-desc {
+    display: block;
+    margin: 2px 0 0;
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .link-card.is-row .card-actions {
+    display: flex;
+    grid-column: 2;
+    grid-row: 1 / span 2;
   }
 }
 </style>
