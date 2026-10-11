@@ -34,14 +34,28 @@ export function buildStaticRouteList(): RouteRecordRaw[] {
 
         // 分类页路由：由分类注册表生成（detail 模式分类自动附带详情子路由），全部指向通用列表页/详情页
         ...buildCategoryRoutes(),
+      ],
+    },
 
+    {
+      name: 'System',
+      path: '/system',
+      component: Layout,
+      redirect: '/404',
+      meta: { icon: 'Setting', title: '系统管理' },
+      children: [
         {
-          name: 'SystemSetting',
+          name: 'Setting',
           path: 'setting',
           component: () => import('@/views/system/setting/index.vue'),
-          meta: { title: '系统设置', icon: 'Setting' },
+          meta: { title: '系统设置', icon: 'ConfigSetting' },
         },
-
+        {
+          name: 'Icon',
+          path: 'icon',
+          component: () => import('@/views/system/icon/index.vue'),
+          meta: { title: '图标管理', icon: 'Image' },
+        },
         {
           name: 'About',
           path: 'about',

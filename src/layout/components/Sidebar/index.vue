@@ -27,10 +27,13 @@ function resolveRoutePath(path: string): string {
   return `/${path.replace(/^\//, '')}`
 }
 
-/** 布局路由的子路由即全部导航页，过滤隐藏项后作为菜单数据源，渲染逻辑交由 SidebarItem 处理 */
+/** 布局子路由与其余顶层路由合并为菜单数据源，过滤隐藏项后作为导航页，渲染逻辑交由 SidebarItem 处理 */
 const sidebarRouters = computed<RouteRecordRaw[]>(() => {
-  const layoutRoute = router.options.routes.find((item) => item.name === RouterConstant.LAYOUT_NAME)
-  return (layoutRoute?.children ?? []).filter((item) => !item.meta?.hidden && item.meta?.icon).map((item) => ({ ...item, path: resolveRoutePath(item.path) }))
+  const routes = router.options.routes
+  const layoutRoute = routes.find((item) => item.name === RouterConstant.LAYOUT_NAME)
+  return [...(layoutRoute?.children ?? []), ...routes.filter((item) => item !== layoutRoute)]
+    .filter((item) => !item.meta?.hidden && item.meta?.icon)
+    .map((item) => ({ ...item, path: resolveRoutePath(item.path) }))
 })
 
 /** 当前激活菜单：优先取路由声明的 activeMenu（详情页等子路由高亮所属一级菜单），否则用当前路径 */

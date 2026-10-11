@@ -5,13 +5,13 @@
       <div class="search-box">
         <el-input v-model="keyword" class="search-input" size="large" clearable :placeholder="`在${activeEngine}搜索，输入关键词后回车`" @keyup.enter="handleSearch">
           <template #prefix>
-            <el-button v-if="appStore.isMobile" text class="engine-trigger" aria-label="选择搜索引擎" @click="openEngineSheet">
+            <span v-if="appStore.isMobile" class="engine-trigger" role="button" aria-label="选择搜索引擎" @click="openEngineSheet">
               <SvgIcon name="Search" :size="16" />
-            </el-button>
-            <el-button v-else text class="engine-trigger engine-trigger-desktop" aria-label="选择搜索引擎" @click="toggleEngineDropdown">
+            </span>
+            <span v-else class="engine-trigger engine-trigger-desktop" role="button" aria-label="选择搜索引擎" @click="toggleEngineDropdown">
               {{ activeEngine }}
               <SvgIcon name="ArrowDown" :size="12" />
-            </el-button>
+            </span>
           </template>
           <template #suffix>
             <el-text type="primary" class="px-8px cursor-pointer" @click="handleSearch">搜索</el-text>
@@ -293,6 +293,7 @@ onBeforeUnmount(() => document.removeEventListener('click', handleDocumentClick)
   margin-left: -8px;
   padding: 4px 8px;
   color: var(--el-text-color-regular);
+  cursor: pointer;
 
   &:hover {
     color: var(--el-color-primary);
@@ -419,6 +420,7 @@ html[data-device='mobile'] {
   .engine-trigger {
     padding: 4px;
     color: var(--el-text-color-secondary);
+    cursor: pointer;
   }
 
   /* 空状态定宽仅适用于桌面端，移动端占满可用宽度 */

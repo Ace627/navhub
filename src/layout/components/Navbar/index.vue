@@ -40,7 +40,7 @@ const formatTime = useDateFormat(useNow(), 'YYYY-MM-DD HH:mm:ss')
 
 /** 跳转系统设置页 */
 function goSetting() {
-  router.push({ name: 'SystemSetting' })
+  router.push({ name: 'Setting' })
 }
 </script>
 
