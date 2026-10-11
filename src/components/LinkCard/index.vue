@@ -26,7 +26,7 @@
     </div>
     <!-- 主体内容：默认展示描述文案，传入 body 插槽可替换为小组件等自定义内容 -->
     <slot name="body">
-      <ProTooltip :content="item.description">
+      <ProTooltip :content="item.description" :show-after="DESC_TOOLTIP_SHOW_DELAY">
         <span class="link-desc">{{ item.description }}</span>
       </ProTooltip>
     </slot>
@@ -54,6 +54,9 @@ const LONG_PRESS_MOVE_THRESHOLD = 10
 
 /** 图标加载超时阈值：超过该时长仍未加载完成即降级为默认系统图标（毫秒） */
 const ICON_LOAD_TIMEOUT = 5000
+
+/** 描述气泡的悬浮展示延迟（毫秒）：鼠标快速划过卡片时不弹出，避免遮挡相邻卡片 */
+const DESC_TOOLTIP_SHOW_DELAY = 720
 
 /** 当前卡片图标是否已加载失败或超时（命中即降级为默认系统图标） */
 const iconFailed = ref(false)

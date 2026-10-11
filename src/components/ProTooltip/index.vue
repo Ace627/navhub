@@ -1,6 +1,6 @@
 <template>
-  <!-- 透传所有 el-tooltip 属性，完全兼容原生用法 -->
-  <el-tooltip v-bind="$attrs" :show-after="320" :disabled>
+  <!-- 透传所有 el-tooltip 属性，完全兼容原生用法；$attrs 置于默认值之后，保证外部传参能覆盖默认延迟 -->
+  <el-tooltip :show-after="320" :disabled v-bind="$attrs">
     <!-- 触发元素插槽，和原生一致 -->
     <slot>{{ displayText }}</slot>
     <!-- 自定义内容插槽，处理换行和宽度 -->
