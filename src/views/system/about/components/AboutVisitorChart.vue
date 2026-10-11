@@ -44,7 +44,8 @@ const chartData = computed<ChartItem[]>(() => stats.value.map((item) => ({ name:
 const visitorOption = computed<EChartsOption>(() => ({
   tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
   grid: { top: '6%', right: '12%', bottom: '6%', left: '4%' },
-  xAxis: { type: 'value' },
+  // 移动端容器窄，数值刻度会相互重叠，交由 ECharts 隐藏冲突标签（不重叠时不隐藏，桌面端表现不变）
+  xAxis: { type: 'value', axisLabel: { hideOverlap: true } },
   yAxis: { type: 'category', inverse: true, data: chartData.value.map((item) => item.name) },
   series: [
     {
