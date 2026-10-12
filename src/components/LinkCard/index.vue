@@ -24,6 +24,10 @@
       </span>
       <span class="link-title">{{ item.title }}</span>
     </div>
+    <!-- 标签区：条目配置了 tags 时在右上角逐个展示 -->
+    <div v-if="item.tags?.length" class="card-tags">
+      <el-tag v-for="tag in item.tags" :key="tag" type="primary" size="small" effect="dark">{{ tag }}</el-tag>
+    </div>
     <!-- 主体内容：默认展示描述文案，传入 body 插槽可替换为小组件等自定义内容 -->
     <slot name="body">
       <ProTooltip :content="item.description" :show-after="DESC_TOOLTIP_SHOW_DELAY" :truncate-target="descRef">
@@ -243,6 +247,7 @@ function onContextMenu(event: MouseEvent): void {
 .link-card {
   --el-link-card-icon-size: 32px;
   /* 纵向弹性布局：头部、主体与行尾信息自上而下排布；height 撑满网格单元，保证同行卡片等高 */
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -253,13 +258,12 @@ function onContextMenu(event: MouseEvent): void {
   color: var(--el-text-color-regular);
   text-decoration: none;
   cursor: pointer;
-  transition:
-    box-shadow 0.2s,
-    transform 0.2s;
+  transition: all var(--el-transition-duration);
 
   &:hover {
     box-shadow: var(--el-box-shadow-light);
     transform: translateY(-2px);
+    border-color: var(--el-color-primary);
   }
 }
 
@@ -267,6 +271,15 @@ function onContextMenu(event: MouseEvent): void {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+/* 标签区：悬浮卡片右上角，tags 为空时不渲染 */
+.card-tags {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  gap: 4px;
 }
 
 .link-icon {

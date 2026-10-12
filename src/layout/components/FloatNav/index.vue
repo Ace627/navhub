@@ -5,6 +5,7 @@
         <button type="button" @click="goHome">最近使用</button>
         <button type="button" @click="openSidebar">分类导航</button>
         <button type="button" @click="openSearch">全站搜索</button>
+        <button type="button" @click="goSetting">系统设置</button>
         <button type="button" @click="goAbout">关于我们</button>
       </div>
     </transition>
@@ -51,6 +52,14 @@ function openSidebar() {
 function openSearch() {
   panelVisible.value = false
   mobileSearchVisible.value = true
+}
+
+/**
+ * 跳转到系统设置页：收起面板后进入设置页
+ */
+function goSetting() {
+  panelVisible.value = false
+  router.push({ name: 'Setting' })
 }
 
 /**

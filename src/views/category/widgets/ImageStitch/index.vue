@@ -120,8 +120,14 @@ interface StitchImageItem {
   height: number
 }
 
-/** 浏览器画布单边像素上限，超出后 toBlob 会静默失败，须提前拦截 */
+/** 是否 WebKit 内核（Safari 与 iOS 上的全部浏览器）：画布存在远小于单边上限的总像素面积限制 */
+const isWebKit = /Apple/.test(navigator.vendor)
+
+/** 浏览器画布单边像素上限，超出后画布会静默失败，须提前拦截 */
 const CANVAS_MAX_SIDE = 16384
+
+/** 画布总像素上限：WebKit 系固定 4096×4096（iPhone 原图两三张即超），Chromium 系按单边上限平方兜底 */
+const CANVAS_MAX_AREA = isWebKit ? 4096 * 4096 : CANVAS_MAX_SIDE * CANVAS_MAX_SIDE
 
 /** 条目 id 自增种子 */
 let idSeed = 0
@@ -324,17 +330,21 @@ function renderResult() {
 
   const items = imageItems.value
   const isHorizontal = direction.value === 'horizontal'
-  const crossSize = isHorizontal ? Math.max(...items.map((item) => item.height)) : Math.max(...items.map((item) => item.width))
-  const mainSize = items.reduce((total, item) => total + (isHorizontal ? item.width : item.height), 0) + gap.value * (items.length - 1)
+  const rawCrossSize = isHorizontal ? Math.max(...items.map((item) => item.height)) : Math.max(...items.map((item) => item.width))
+  const rawMainSize = items.reduce((total, item) => total + (isHorizontal ? item.width : item.height), 0) + gap.value * (items.length - 1)
+  const rawWidth = isHorizontal ? rawMainSize : rawCrossSize
+  const rawHeight = isHorizontal ? rawCrossSize : rawMainSize
 
-  const width = isHorizontal ? mainSize : crossSize
-  const height = isHorizontal ? crossSize : mainSize
-  if (width > CANVAS_MAX_SIDE || height > CANVAS_MAX_SIDE) {
-    ElMessage.warning('拼接结果尺寸超出画布上限，请缩小图片或减小间距')
-    resultWidth.value = 0
-    resultHeight.value = 0
-    return
+  /* 原图像素普遍远超屏幕，超出画布单边/总面积上限时整体等比缩小兜底，而非直接拒绝拼接 */
+  const scale = Math.min(1, CANVAS_MAX_SIDE / Math.max(rawWidth, rawHeight), Math.sqrt(CANVAS_MAX_AREA / (rawWidth * rawHeight)))
+  if (scale < 1) {
+    ElMessage.warning({ message: `图片较大，已自动缩小到 ${Math.round(scale * 100)}% 以适配画布上限`, grouping: true })
   }
+
+  const crossSize = Math.round(rawCrossSize * scale)
+  const scaledGap = gap.value * scale
+  const width = Math.round(rawWidth * scale)
+  const height = Math.round(rawHeight * scale)
 
   canvas.width = width
   canvas.height = height
@@ -350,13 +360,13 @@ function renderResult() {
 
   let mainOffset = 0
   for (const item of items) {
-    const itemMainSize = isHorizontal ? item.width : item.height
-    const itemCrossSize = isHorizontal ? item.height : item.width
-    const crossOffset = alignment.value === 'center' ? Math.round((crossSize - itemCrossSize) / 2) : 0
+    const drawMainSize = (isHorizontal ? item.width : item.height) * scale
+    const drawCrossSize = (isHorizontal ? item.height : item.width) * scale
+    const crossOffset = alignment.value === 'center' ? Math.round((crossSize - drawCrossSize) / 2) : 0
     const x = isHorizontal ? mainOffset : crossOffset
     const y = isHorizontal ? crossOffset : mainOffset
-    context.drawImage(item.image, x, y)
-    mainOffset += itemMainSize + gap.value
+    context.drawImage(item.image, x, y, drawMainSize, drawCrossSize)
+    mainOffset += drawMainSize + scaledGap
   }
 
   resultWidth.value = width

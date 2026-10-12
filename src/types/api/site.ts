@@ -34,6 +34,8 @@ export interface SiteItem {
   icon: string
   /** 描述文案：卡片上展示的简短说明，约 32 字 */
   description: string
+  /** 标签列表：卡片右上角展示的分类标记，默认空数组 */
+  tags: string[]
 }
 
 /** 站点列表查询参数：字段均可选，缺省表示不过滤 */

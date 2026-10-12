@@ -10,6 +10,8 @@ export interface LinkItem {
   icon: string
   /** 描述文案：卡片上展示的简短说明 */
   description: string
+  /** 标签列表：卡片右上角展示的分类标记，可选（历史记录等非站点条目可能无此字段） */
+  tags?: string[]
 }
 
 /**

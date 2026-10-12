@@ -105,9 +105,13 @@ html:not([data-device='mobile']) .fixed-header {
 }
 
 html[data-device='mobile'] {
-  /* 移动端 侧边栏展开 */
+  /* 移动端 侧边栏展开，隐藏顶部导航（FloatNav 已覆盖导航/搜索入口） */
   .main-container {
     margin-left: 0;
+    --el-navbar-height: 0px;
+  }
+  .fixed-header {
+    display: none;
   }
 }
 

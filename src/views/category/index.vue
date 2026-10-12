@@ -18,8 +18,12 @@ const router = useRouter()
 /** 当前路由命中的分类注册表条目 */
 const entry = computed(() => getCategoryRegistry().find((category) => category.name === route.name))
 
-/** 当前分类收录的站点数据列表 */
-const sites = computed(() => entry.value?.data ?? [])
+/** 当前分类收录的站点数据列表：自有条目（非外链）集中排到最前，其余保持数据原序 */
+const sites = computed(() => {
+  const data = entry.value?.data ?? []
+  const ownItems = data.filter((item) => !isExternal(item.key))
+  return [...ownItems, ...data.filter((item) => isExternal(item.key))]
+})
 
 /** 当前分类是否以纯外链（a 标签直链）模式渲染卡片 */
 const plainLink = computed(() => entry.value?.plainLink ?? false)

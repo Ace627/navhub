@@ -5,7 +5,8 @@
     "key": "MovieRecommend",
     "title": "随便看一部",
     "icon": "@/assets/images/icons/随便看一部.ico",
-    "description": "不知道看什么就点我，从个人片单里随机抽一部，附评分类型，可跳转豆瓣详情页。"
+    "description": "不知道看什么就点我，从个人片单里随机抽一部，附评分类型，可跳转豆瓣详情页。",
+    "tags": []
   },
   {
     "id": "7c1f4e2a-3b8d-4a6f-9e15-2d7c60b4f831",
@@ -13,7 +14,8 @@
     "key": "https://www.rijutt.com",
     "title": "日剧天堂",
     "icon": "@/assets/images/icons/日剧天堂.ico",
-    "description": "日剧天堂提供日剧推荐、排行榜与在线播放，最新日剧资源持续更新。"
+    "description": "日剧天堂提供日剧推荐、排行榜与在线播放，最新日剧资源持续更新。",
+    "tags": []
   },
   {
     "id": "8f4a1d2c-63b7-4e59-9a30-c2e8b7d51f46",
@@ -21,7 +23,8 @@
     "key": "https://tv.n103.top",
     "title": "Ntv",
     "icon": "@/assets/images/icons/Ntv.png",
-    "description": "Ntv免费在线影视搜索站，聚合多源内容，无广告免注册，追剧观影更轻松。"
+    "description": "Ntv免费在线影视搜索站，聚合多源内容，无广告免注册，追剧观影更轻松。",
+    "tags": []
   },
   {
     "id": "81d8ee45-7180-4d39-a83e-38d003409ed3",
@@ -29,7 +32,8 @@
     "key": "https://www.ncat1.app",
     "title": "网飞猫",
     "icon": "@/assets/images/icons/网飞猫.ico",
-    "description": "影视资源在线观看导航站，聚合热门电影、电视剧与动漫资源，免费在线播放。"
+    "description": "影视资源在线观看导航站，聚合热门电影、电视剧与动漫资源，免费在线播放。",
+    "tags": []
   },
   {
     "id": "1efb8f44-fcd7-4646-940c-713a281fbd18",
@@ -37,7 +41,8 @@
     "key": "https://ddys.io",
     "title": "低端影视",
     "icon": "@/assets/images/icons/低端影视.png",
-    "description": "低端影视官方站，提供海量美剧、韩剧、日剧与热门电影的在线观看与字幕更新。"
+    "description": "低端影视官方站，提供海量美剧、韩剧、日剧与热门电影的在线观看与字幕更新。",
+    "tags": []
   },
   {
     "id": "57f8de53-d7c1-4ad7-a203-f7ef2e9b652d",
@@ -45,7 +50,8 @@
     "key": "https://dym11.bond",
     "title": "电影猫",
     "icon": "@/assets/images/icons/电影猫.png",
-    "description": "汇集高清电影、电视剧、短剧与动漫资源，海量影视内容实时更新的在线观影站。"
+    "description": "汇集高清电影、电视剧、短剧与动漫资源，海量影视内容实时更新的在线观影站。",
+    "tags": []
   },
   {
     "id": "d0c7ddf3-0a13-4494-8659-f011727c9325",
@@ -53,7 +59,8 @@
     "key": "https://360yy.cc",
     "title": "360影院",
     "icon": "@/assets/images/icons/360影院.png",
-    "description": "提供最新高清免费电影、电视剧、综艺、动漫与短剧的在线观看影视平台。"
+    "description": "提供最新高清免费电影、电视剧、综艺、动漫与短剧的在线观看影视平台。",
+    "tags": []
   },
   {
     "id": "74a21c39-f216-4796-9eaa-c595c85f438b",
@@ -61,7 +68,8 @@
     "key": "https://4kvm.site",
     "title": "4k影视",
     "icon": "@/assets/images/icons/4k影视.png",
-    "description": "综合性影视站，持续更新热门电影、最新美剧与韩剧，提供高清在线与影视推荐。"
+    "description": "综合性影视站，持续更新热门电影、最新美剧与韩剧，提供高清在线与影视推荐。",
+    "tags": []
   },
   {
     "id": "05945ab0-349a-4f3a-8ab5-eb0213d9d01f",
@@ -69,7 +77,8 @@
     "key": "https://www.hqvod.com",
     "title": "高清点播",
     "icon": "@/assets/images/icons/高清点播.png",
-    "description": "海量高清电影与最新电视剧免费在线观看，每日更新，支持追剧与多端播放。"
+    "description": "海量高清电影与最新电视剧免费在线观看，每日更新，支持追剧与多端播放。",
+    "tags": []
   },
   {
     "id": "f198210f-dc92-4307-972e-1c631826ce2d",
@@ -77,7 +86,8 @@
     "key": "https://www.hhkan0.com",
     "title": "好好看",
     "icon": "@/assets/images/icons/好好看.ico",
-    "description": "好好看影视站，每日更新奈飞新剧与欧美日韩电影，免费在线观看。"
+    "description": "好好看影视站，每日更新奈飞新剧与欧美日韩电影，免费在线观看。",
+    "tags": []
   },
   {
     "id": "2486e1cd-4981-48e7-af9c-ab27c805226f",
@@ -85,7 +95,8 @@
     "key": "https://dmbus.cc",
     "title": "动漫巴士",
     "icon": "@/assets/images/icons/动漫巴士.ico",
-    "description": "动漫巴士提供最新热门动漫在线观看，覆盖国产、日本、欧美动漫，播放流畅无广告。"
+    "description": "动漫巴士提供最新热门动漫在线观看，覆盖国产、日本、欧美动漫，播放流畅无广告。",
+    "tags": []
   },
   {
     "id": "7c54b5d6-9a7b-4151-8a56-f1d845865c26",
@@ -93,7 +104,8 @@
     "key": "https://cupfox.app",
     "title": "茶杯狐",
     "icon": "@/assets/images/icons/茶杯狐.png",
-    "description": "茶杯狐影视资源搜索引擎，聚合全网电影、剧集与动漫资源链接，支持快速查找。"
+    "description": "茶杯狐影视资源搜索引擎，聚合全网电影、剧集与动漫资源链接，支持快速查找。",
+    "tags": []
   },
   {
     "id": "a31e1ca1-4108-42fd-b282-624bd34c1e52",
@@ -101,7 +113,8 @@
     "key": "https://findno.tv",
     "title": "NO视频",
     "icon": "@/assets/images/icons/NO视频.ico",
-    "description": "NO视频影视站，聚合电影、电视剧与综艺资源，免注册在线观看，界面简洁体验佳。"
+    "description": "NO视频影视站，聚合电影、电视剧与综艺资源，免注册在线观看，界面简洁体验佳。",
+    "tags": []
   },
   {
     "id": "64a094cc-8463-40ba-a070-da398a0accdf",
@@ -109,7 +122,8 @@
     "key": "https://www.1905.com",
     "title": "1905电影网",
     "icon": "@/assets/images/icons/1905电影网.png",
-    "description": "电影频道节目中心旗下电影门户，提供电影资讯、影评、预告片、在线观影及票务服务。"
+    "description": "电影频道节目中心旗下电影门户，提供电影资讯、影评、预告片、在线观影及票务服务。",
+    "tags": []
   },
   {
     "id": "720bf629-1072-44a4-b8f8-f0bcc6d86c10",
@@ -117,7 +131,8 @@
     "key": "https://www.sxzxc.com",
     "title": "68影院",
     "icon": "assets/images/icons/68影院.png",
-    "description": "提供最新影视大全免费在线观看，每日第一时间更新，无需VIP即可观看高清影视。"
+    "description": "提供最新影视大全免费在线观看，每日第一时间更新，无需VIP即可观看高清影视。",
+    "tags": []
   },
   {
     "id": "fc83e9ea-bc5a-4846-bbc0-e821114f2316",
@@ -125,7 +140,8 @@
     "key": "https://bojucc.github.io",
     "title": "播剧网",
     "icon": "assets/images/icons/播剧网.png",
-    "description": "提供最新电视剧、电影、短剧、动漫、综艺在线观看，支持按类型、地区、年份和演员快速查找。"
+    "description": "提供最新电视剧、电影、短剧、动漫、综艺在线观看，支持按类型、地区、年份和演员快速查找。",
+    "tags": []
   },
   {
     "id": "45055d7a-a12a-48f9-8218-9fce033b9289",
@@ -133,7 +149,8 @@
     "key": "https://www.svlik.com/t/movie",
     "title": "视频在线解析",
     "icon": "@/assets/images/icons/视频在线解析.ico",
-    "description": "VIP 视频在线解析工具，支持优酷、爱奇艺、腾讯等平台会员视频免费观看。"
+    "description": "VIP 视频在线解析工具，支持优酷、爱奇艺、腾讯等平台会员视频免费观看。",
+    "tags": []
   },
   {
     "id": "055b3fac-13dc-4db2-bca2-e3af458585a7",
@@ -141,7 +158,8 @@
     "key": "https://www.cilixiong.cc",
     "title": "磁力熊",
     "icon": "assets/images/icons/磁力熊.png",
-    "description": "影视资源聚合搜索站点，可在线查找热播剧集与电影资源，助你快速追剧。"
+    "description": "影视资源聚合搜索站点，可在线查找热播剧集与电影资源，助你快速追剧。",
+    "tags": []
   },
   {
     "id": "dac6e8a2-0df5-4d6b-887b-aa1c29b103d1",
@@ -149,7 +167,8 @@
     "key": "https://www.mp4ba.vip",
     "title": "高清Mp4吧",
     "icon": "@/assets/images/icons/高清Mp4吧.ico",
-    "description": "提供1080P、4K高清电影剧集mp4/mkv下载，资源更新及时适合追剧。"
+    "description": "提供1080P、4K高清电影剧集mp4/mkv下载，资源更新及时适合追剧。",
+    "tags": []
   },
   {
     "id": "6a1379e7-6372-42b1-910d-c794a6df9acf",
@@ -157,7 +176,8 @@
     "key": "https://www.6v520.cc",
     "title": "6v电影",
     "icon": "@/assets/images/icons/6v电影.ico",
-    "description": "每日搜集互联网最新电影与电视剧，提供高清免费下载，资源更新快。"
+    "description": "每日搜集互联网最新电影与电视剧，提供高清免费下载，资源更新快。",
+    "tags": []
   },
   {
     "id": "87f6c2a5-79ba-490b-9bb2-b43e91fc1d3c",
@@ -165,7 +185,8 @@
     "key": "https://www.yangshipin.cn",
     "title": "央视频",
     "icon": "@/assets/images/icons/央视频.ico",
-    "description": "中央广播电视总台旗下视频平台，汇聚新闻、影视、体育、综艺等正版内容。"
+    "description": "中央广播电视总台旗下视频平台，汇聚新闻、影视、体育、综艺等正版内容。",
+    "tags": []
   },
   {
     "id": "716546ba-eca5-40c6-8970-48bcc77c0615",
@@ -173,7 +194,8 @@
     "key": "https://tv.cctv.com/live/index.shtml",
     "title": "央视直播",
     "icon": "@/assets/images/icons/央视直播.ico",
-    "description": "央视网官方直播入口，提供 CCTV 各频道在线直播与节目表预告等服务。"
+    "description": "央视网官方直播入口，提供 CCTV 各频道在线直播与节目表预告等服务。",
+    "tags": []
   },
   {
     "id": "87228c8d-8681-4efb-9652-c7eb51dcfc20",
@@ -181,7 +203,8 @@
     "key": "https://www.acfun.cn",
     "title": "AcFun",
     "icon": "@/assets/images/icons/AcFun.ico",
-    "description": "国内老牌弹幕视频网站，汇聚独家动漫新番与UP主创作，弹幕氛围友好活跃。"
+    "description": "国内老牌弹幕视频网站，汇聚独家动漫新番与UP主创作，弹幕氛围友好活跃。",
+    "tags": []
   },
   {
     "id": "dc7cdc3d-0b3a-456f-a1a6-48f1b7408e2a",
@@ -189,7 +212,8 @@
     "key": "https://www.bilibili.com",
     "title": "哔哩哔哩",
     "icon": "assets/images/icons/哔哩哔哩.png",
-    "description": "哔哩哔哩视频弹幕站，汇聚动漫新番、影视综艺与UP主创作视频，互动氛围活跃。"
+    "description": "哔哩哔哩视频弹幕站，汇聚动漫新番、影视综艺与UP主创作视频，互动氛围活跃。",
+    "tags": []
   },
   {
     "id": "c95ce317-ead1-43ce-9d76-fb1ad2da67b8",
@@ -197,7 +221,8 @@
     "key": "https://v.qq.com",
     "title": "腾讯视频",
     "icon": "@/assets/images/icons/腾讯视频.png",
-    "description": "腾讯官方在线视频平台，提供海量正版剧集、电影、综艺与动漫，独播内容持续更新。"
+    "description": "腾讯官方在线视频平台，提供海量正版剧集、电影、综艺与动漫，独播内容持续更新。",
+    "tags": []
   },
   {
     "id": "ad2a72ad-a154-44e4-9ecb-0371d981d3b0",
@@ -205,7 +230,8 @@
     "key": "https://www.iqiyi.com",
     "title": "爱奇艺",
     "icon": "@/assets/images/icons/爱奇艺.ico",
-    "description": "国内领先在线视频平台，提供海量正版剧集、电影、综艺与动漫，独播内容持续更新。"
+    "description": "国内领先在线视频平台，提供海量正版剧集、电影、综艺与动漫，独播内容持续更新。",
+    "tags": []
   },
   {
     "id": "9272e2a2-c115-4f9d-87c7-df12be7553ce",
@@ -213,7 +239,8 @@
     "key": "https://www.youku.com/ku/webhome",
     "title": "优酷",
     "icon": "@/assets/images/icons/优酷.png",
-    "description": "阿里旗下在线视频平台，提供正版剧集、电影、综艺与动漫，独播内容持续更新。"
+    "description": "阿里旗下在线视频平台，提供正版剧集、电影、综艺与动漫，独播内容持续更新。",
+    "tags": []
   },
   {
     "id": "58a79e42-f5a4-4366-a0c5-0b6c926c9b94",
@@ -221,7 +248,8 @@
     "key": "https://www.keke1.app",
     "title": "可可影视",
     "icon": "@/assets/images/icons/可可影视.ico",
-    "description": "可可影视免费在线观影站，奈飞热剧每日更新，欧美日韩剧集电影免费看。"
+    "description": "可可影视免费在线观影站，奈飞热剧每日更新，欧美日韩剧集电影免费看。",
+    "tags": []
   },
   {
     "id": "6684740f-a7f5-41c9-ae56-e4c3115f7084",
@@ -229,7 +257,8 @@
     "key": "https://dongpian1.com",
     "title": "懂片帝",
     "icon": "@/assets/images/icons/懂片帝.png",
-    "description": "智能影视助手，AI搜索电影、剧集、短剧与综艺，发现片单并在线播放。"
+    "description": "智能影视助手，AI搜索电影、剧集、短剧与综艺，发现片单并在线播放。",
+    "tags": []
   },
   {
     "id": "5dee6f8f-4e03-4abf-a13d-dd8937c7c2cc",
@@ -237,7 +266,8 @@
     "key": "https://www.kpkuang.fun",
     "title": "看片狂人",
     "icon": "@/assets/images/icons/看片狂人.png",
-    "description": "影视资源站，每日收录电影、剧集、动漫与综艺，高清资源免费在线观看下载。"
+    "description": "影视资源站，每日收录电影、剧集、动漫与综艺，高清资源免费在线观看下载。",
+    "tags": []
   },
   {
     "id": "f0b3f636-03cb-4083-ab10-c54d438924cd",
@@ -245,7 +275,8 @@
     "key": "https://www.yikaocq.com",
     "title": "星空影院",
     "icon": "@/assets/images/icons/星空影院.png",
-    "description": "全网热门高清电影电视剧免费在线观看，含动漫综艺短剧，每日持续更新。"
+    "description": "全网热门高清电影电视剧免费在线观看，含动漫综艺短剧，每日持续更新。",
+    "tags": []
   },
   {
     "id": "444b8d0a-4ce5-458e-b525-d6edbb4b04fe",
@@ -253,7 +284,8 @@
     "key": "https://www.dcjyb.com",
     "title": "樱花影院",
     "icon": "@/assets/images/icons/樱花影院.png",
-    "description": "免费在线看电影电视剧，高清VIP剧集与热门电影每日更新，追剧便捷。"
+    "description": "免费在线看电影电视剧，高清VIP剧集与热门电影每日更新，追剧便捷。",
+    "tags": []
   },
   {
     "id": "da072377-8a30-423e-a0a3-90d38dde63ce",
@@ -261,7 +293,8 @@
     "key": "https://www.shenqizhe.com",
     "title": "碟调网",
     "icon": "@/assets/images/icons/碟调网.png",
-    "description": "影视聚合站，热门电影电视剧与短剧动漫在线观看，日更海量内容免费看。"
+    "description": "影视聚合站，热门电影电视剧与短剧动漫在线观看，日更海量内容免费看。",
+    "tags": []
   },
   {
     "id": "f1885344-3869-432d-bfbd-6e496cf67c81",
@@ -269,7 +302,8 @@
     "key": "https://gaze.red",
     "title": "注视影视",
     "icon": "@/assets/images/icons/注视影视.png",
-    "description": "界面简洁流畅的免费观影站，高清热门剧、番剧与冷门电影在线观看。"
+    "description": "界面简洁流畅的免费观影站，高清热门剧、番剧与冷门电影在线观看。",
+    "tags": []
   },
   {
     "id": "26f3302b-adb2-4828-9d73-e5281e8fcafe",
@@ -277,7 +311,8 @@
     "key": "https://kanju1.com",
     "title": "看剧AI",
     "icon": "@/assets/images/icons/看剧AI.png",
-    "description": "影视搜索与发现工具，支持电影、剧集、动漫与综艺片库浏览及智能推荐。"
+    "description": "影视搜索与发现工具，支持电影、剧集、动漫与综艺片库浏览及智能推荐。",
+    "tags": []
   },
   {
     "id": "ac656161-90bb-4eb3-97f1-318e8c2c1676",
@@ -285,7 +320,8 @@
     "key": "https://www.imtlink.com",
     "title": "影视森林",
     "icon": "@/assets/images/icons/影视森林.png",
-    "description": "聚合全网影视资源，短剧电影剧集综艺动漫与欧冠NBA等体育赛事免费观看。"
+    "description": "聚合全网影视资源，短剧电影剧集综艺动漫与欧冠NBA等体育赛事免费观看。",
+    "tags": []
   },
   {
     "id": "56765307-ae57-488e-a9df-864a8b1cc1b2",
@@ -293,7 +329,8 @@
     "key": "https://chat.deepseek.com",
     "title": "DeepSeek",
     "icon": "@/assets/images/icons/DeepSeek.png",
-    "description": "深度求索旗下 AI 对话助手，擅长编程、写作与文件处理，支持文件上传与长文本对话。"
+    "description": "深度求索旗下 AI 对话助手，擅长编程、写作与文件处理，支持文件上传与长文本对话。",
+    "tags": []
   },
   {
     "id": "2eab47e9-c740-49eb-8aa5-6a3fe032a3f3",
@@ -301,7 +338,8 @@
     "key": "https://www.doubao.com/chat",
     "title": "豆包",
     "icon": "@/assets/images/icons/豆包.png",
-    "description": "字节跳动旗下 AI 智能助手，支持聊天问答、写作翻译与编程，可免费体验视频生成。"
+    "description": "字节跳动旗下 AI 智能助手，支持聊天问答、写作翻译与编程，可免费体验视频生成。",
+    "tags": []
   },
   {
     "id": "c3dcd967-ee6c-43a9-8e81-fc1d6ebba8dd",
@@ -309,7 +347,8 @@
     "key": "https://chatgpt.com",
     "title": "ChatGPT",
     "icon": "@/assets/images/icons/ChatGPT.png",
-    "description": "OpenAI 旗下 AI 对话助手，支持问答写作与代码编程，可上传文件解析内容。"
+    "description": "OpenAI 旗下 AI 对话助手，支持问答写作与代码编程，可上传文件解析内容。",
+    "tags": []
   },
   {
     "id": "398520bb-3637-477a-aa68-b91f6b187724",
@@ -317,7 +356,8 @@
     "key": "https://claude.com/product/overview",
     "title": "Claude",
     "icon": "@/assets/images/icons/Claude.png",
-    "description": "Anthropic 旗下 AI 助手，交付任务并生成文档、幻灯与原型，支持定时执行。"
+    "description": "Anthropic 旗下 AI 助手，交付任务并生成文档、幻灯与原型，支持定时执行。",
+    "tags": []
   },
   {
     "id": "e8fe662b-9905-4cfb-9521-756ef96a8c20",
@@ -325,7 +365,8 @@
     "key": "https://yuanbao.tencent.com",
     "title": "元宝",
     "icon": "@/assets/images/icons/元宝.png",
-    "description": "腾讯旗下全能 AI 助手，支持智能对话与联网搜索，多端同步助力工作学习。"
+    "description": "腾讯旗下全能 AI 助手，支持智能对话与联网搜索，多端同步助力工作学习。",
+    "tags": []
   },
   {
     "id": "76c5592d-5f74-4379-907a-51815ae908c3",
@@ -333,7 +374,8 @@
     "key": "https://www.kimi.com",
     "title": "Kimi",
     "icon": "@/assets/images/icons/Kimi.png",
-    "description": "月之暗面旗下 AI 助手，K3 新版上线，支持智能体编程与知识工作，并行执行任务。"
+    "description": "月之暗面旗下 AI 助手，K3 新版上线，支持智能体编程与知识工作，并行执行任务。",
+    "tags": []
   },
   {
     "id": "bb4cb29f-9dfc-4a81-94d4-6f46a20e08a8",
@@ -341,7 +383,8 @@
     "key": "https://www.qianwen.com",
     "title": "千问",
     "icon": "@/assets/images/icons/千问.png",
-    "description": "阿里官方 AI 助手，提供 Qwen 大模型体验，支持 AI 搜索、生图与 PPT 创作。"
+    "description": "阿里官方 AI 助手，提供 Qwen 大模型体验，支持 AI 搜索、生图与 PPT 创作。",
+    "tags": []
   },
   {
     "id": "fd313894-4c2e-4355-be5f-d74dcb6c2687",
@@ -349,7 +392,8 @@
     "key": "https://xiaoyi.huawei.com/chat",
     "title": "小艺",
     "icon": "@/assets/images/icons/小艺.png",
-    "description": "华为自研 AI 智慧助手，支持问答写作、文档阅读与编码辅助，鸿蒙生态深度适配。"
+    "description": "华为自研 AI 智慧助手，支持问答写作、文档阅读与编码辅助，鸿蒙生态深度适配。",
+    "tags": []
   },
   {
     "id": "3d4423e1-f3f2-4119-a769-dc53877d0c37",
@@ -357,7 +401,8 @@
     "key": "https://grok.com",
     "title": "Grok",
     "icon": "@/assets/images/icons/Grok.png",
-    "description": "xAI 推出的 AI 对话助手，支持实时搜索与推理问答，可辅助写作与编程分析。"
+    "description": "xAI 推出的 AI 对话助手，支持实时搜索与推理问答，可辅助写作与编程分析。",
+    "tags": []
   },
   {
     "id": "92a106f7-5dc9-4984-a653-ac2e23aebcdf",
@@ -365,7 +410,8 @@
     "key": "https://skillsmp.com/zh",
     "title": "SkillsMP",
     "icon": "@/assets/images/icons/SkillsMP.png",
-    "description": "Agent 技能市场，汇集 Codex 与 Claude 技能，支持搜索对比与来源检查。"
+    "description": "Agent 技能市场，汇集 Codex 与 Claude 技能，支持搜索对比与来源检查。",
+    "tags": []
   },
   {
     "id": "f80b69e7-5cfd-4660-91ba-ef5fbd8aecd2",
@@ -373,7 +419,8 @@
     "key": "https://skills66.com",
     "title": "Skills66",
     "icon": "@/assets/images/icons/Skills66.ico",
-    "description": "AI 技能分享平台，汇集高质量技能、Prompt 与工具资源，助力提升 AI 开发效率。"
+    "description": "AI 技能分享平台，汇集高质量技能、Prompt 与工具资源，助力提升 AI 开发效率。",
+    "tags": []
   },
   {
     "id": "40e1de2b-0c6c-4551-80b6-c3e52c3c777a",
@@ -381,7 +428,8 @@
     "key": "https://www.aishort.top",
     "title": "AiShort",
     "icon": "@/assets/images/icons/AiShort.png",
-    "description": "实用提示词模板库，覆盖写作、编程、翻译等场景，一键复制让 AI 精准理解指令。"
+    "description": "实用提示词模板库，覆盖写作、编程、翻译等场景，一键复制让 AI 精准理解指令。",
+    "tags": []
   },
   {
     "id": "26af715a-d0db-4883-9f77-c52bee49d4fb",
@@ -389,7 +437,8 @@
     "key": "https://ccswitch.io/zh",
     "title": "CC Switch",
     "icon": "@/assets/images/icons/CC Switch.png",
-    "description": "AI 编程工具统一管理平台，集中管理多家供应商配置、MCP、技能与用量统计。"
+    "description": "AI 编程工具统一管理平台，集中管理多家供应商配置、MCP、技能与用量统计。",
+    "tags": []
   },
   {
     "id": "dc1c910f-7ac7-4e71-85b3-e839f58fcdb0",
@@ -397,7 +446,8 @@
     "key": "https://www.workbuddy.cn",
     "title": "WorkBuddy",
     "icon": "@/assets/images/icons/WorkBuddy.svg",
-    "description": "腾讯云代码助手推出的 AI Agent 办公工具，多智能体并行，交付复杂任务结果。"
+    "description": "腾讯云代码助手推出的 AI Agent 办公工具，多智能体并行，交付复杂任务结果。",
+    "tags": []
   },
   {
     "id": "0b2227ad-6157-42dd-b19c-67efc32947e3",
@@ -405,7 +455,8 @@
     "key": "https://opencode.ai",
     "title": "OpenCode",
     "icon": "@/assets/images/icons/OpenCode.png",
-    "description": "开源 AI 编程代理，深度集成终端工作流，助力开发者高效完成编码任务。"
+    "description": "开源 AI 编程代理，深度集成终端工作流，助力开发者高效完成编码任务。",
+    "tags": []
   },
   {
     "id": "384926ef-01fe-465f-a32d-a5d9822dec63",
@@ -413,7 +464,8 @@
     "key": "https://www.trae.cn/work",
     "title": "TraeWork",
     "icon": "@/assets/images/icons/TraeWork.png",
-    "description": "字节跳动推出的 AI 办公平台，支持生成 PPT、数据分析与文档撰写，多端协同提效。"
+    "description": "字节跳动推出的 AI 办公平台，支持生成 PPT、数据分析与文档撰写，多端协同提效。",
+    "tags": []
   },
   {
     "id": "8a7a73ec-b146-4a78-b8b4-98d9e226d9f9",
@@ -421,7 +473,8 @@
     "key": "https://www.coze.cn/overview",
     "title": "扣子",
     "icon": "@/assets/images/icons/扣子.png",
-    "description": "字节跳动旗下职场 AI 伙伴与一站式开发平台，支持智能体搭建，直接交付工作结果。"
+    "description": "字节跳动旗下职场 AI 伙伴与一站式开发平台，支持智能体搭建，直接交付工作结果。",
+    "tags": []
   },
   {
     "id": "7bd108aa-5c52-4520-9ffb-8aed5f249d68",
@@ -429,7 +482,8 @@
     "key": "https://dify.ai/zh",
     "title": "Dify",
     "icon": "@/assets/images/icons/Dify.svg",
-    "description": "开源 LLM 应用开发平台，可视化编排智能体与工作流，助你从原型快速走向生产。"
+    "description": "开源 LLM 应用开发平台，可视化编排智能体与工作流，助你从原型快速走向生产。",
+    "tags": []
   },
   {
     "id": "96dc96bc-5ecf-453d-bcbb-ef398f18e6a8",
@@ -437,7 +491,8 @@
     "key": "https://ima.tencent.com/download",
     "title": "ima",
     "icon": "@/assets/images/icons/ima.svg",
-    "description": "腾讯推出的 AI 知识管家，以知识库为基础，提供搜、读、写一站式智能体验。"
+    "description": "腾讯推出的 AI 知识管家，以知识库为基础，提供搜、读、写一站式智能体验。",
+    "tags": []
   },
   {
     "id": "17c6062c-e36c-4fd8-a647-0213c133733f",
@@ -445,7 +500,8 @@
     "key": "https://gitee.com",
     "title": "Gitee",
     "icon": "@/assets/images/icons/Gitee.ico",
-    "description": "国内主流代码托管平台，提供 Git 代码管理、项目协作与持续集成等研发服务。"
+    "description": "国内主流代码托管平台，提供 Git 代码管理、项目协作与持续集成等研发服务。",
+    "tags": []
   },
   {
     "id": "d994252b-1960-4325-a151-bb1bd10f9641",
@@ -453,7 +509,8 @@
     "key": "https://github.com/feed",
     "title": "GitHub",
     "icon": "@/assets/images/icons/GitHub.svg",
-    "description": "全球最大开源代码托管平台，汇聚海量开源项目，支持代码协作与版本管理。"
+    "description": "全球最大开源代码托管平台，汇聚海量开源项目，支持代码协作与版本管理。",
+    "tags": []
   },
   {
     "id": "70624151-f025-4c42-b138-1ef4d97bd51d",
@@ -461,7 +518,8 @@
     "key": "https://gitcode.com",
     "title": "GitCode",
     "icon": "@/assets/images/icons/GitCode.png",
-    "description": "面向开发者的代码托管与开源协作平台，提供项目托管与社区交流服务。"
+    "description": "面向开发者的代码托管与开源协作平台，提供项目托管与社区交流服务。",
+    "tags": []
   },
   {
     "id": "2b19c182-2c04-4dd7-ad88-a03f1cbaf75e",
@@ -469,7 +527,8 @@
     "key": "https://gogs.io",
     "title": "Gogs",
     "icon": "@/assets/images/icons/Gogs.png",
-    "description": "轻量级开源的自托管 Git 代码托管服务，部署简单、跨平台，适合快速搭建私有仓库协作。"
+    "description": "轻量级开源的自托管 Git 代码托管服务，部署简单、跨平台，适合快速搭建私有仓库协作。",
+    "tags": []
   },
   {
     "id": "58e03551-a9e9-498e-b280-b881ac8b932a",
@@ -477,7 +536,8 @@
     "key": "https://gitlab.cn",
     "title": "GitLab",
     "icon": "@/assets/images/icons/GitLab.svg",
-    "description": "GitLab 中文官网，企业级 AI 代码托管与 DevSecOps 平台，支持私有化部署与 SaaS 交付。"
+    "description": "GitLab 中文官网，企业级 AI 代码托管与 DevSecOps 平台，支持私有化部署与 SaaS 交付。",
+    "tags": []
   },
   {
     "id": "3038778c-8185-46dc-b63d-46acb9e03060",
@@ -485,7 +545,8 @@
     "key": "https://element-plus.org/zh-CN/component/overview",
     "title": "Element Plus",
     "icon": "@/assets/images/icons/Element Plus.svg",
-    "description": "基于 Vue 3 的开源组件库，文档完善、示例丰富，助力开发者高效构建界面。"
+    "description": "基于 Vue 3 的开源组件库，文档完善、示例丰富，助力开发者高效构建界面。",
+    "tags": []
   },
   {
     "id": "91876736-1cb9-412f-be6a-cb3f93a68dfb",
@@ -493,7 +554,8 @@
     "key": "https://wot-ui.cn",
     "title": "Wot UI",
     "icon": "@/assets/images/icons/Wot UI.png",
-    "description": "轻量美观的 uni-app 组件库，提供 80+ 高质量组件，支持暗黑模式。"
+    "description": "轻量美观的 uni-app 组件库，提供 80+ 高质量组件，支持暗黑模式。",
+    "tags": []
   },
   {
     "id": "a28180af-bec5-47a2-9eb9-fe0dd34cb645",
@@ -501,7 +563,8 @@
     "key": "https://v2.element-plus-x.com/zh",
     "title": "Element Plus X",
     "icon": "@/assets/images/icons/Element Plus X.ico",
-    "description": "基于 Vue3 与 Element Plus 的 AI 体验组件库，开箱即用。"
+    "description": "基于 Vue3 与 Element Plus 的 AI 体验组件库，开箱即用。",
+    "tags": []
   },
   {
     "id": "6bd869ac-c84c-46c7-a391-b79566342f5f",
@@ -509,7 +572,8 @@
     "key": "https://vant.pro/vant",
     "title": "Vant",
     "icon": "@/assets/images/icons/Vant.png",
-    "description": "轻量可定制的移动端 Vue 组件库，提供 70+ 高质量组件，助力移动应用高效开发。"
+    "description": "轻量可定制的移动端 Vue 组件库，提供 70+ 高质量组件，助力移动应用高效开发。",
+    "tags": []
   },
   {
     "id": "4debe687-702f-454e-8328-1c4699aec615",
@@ -517,7 +581,8 @@
     "key": "https://www.naiveui.com/zh-CN/os-theme",
     "title": "Naive UI",
     "icon": "@/assets/images/icons/Naive UI.png",
-    "description": "基于 Vue 3 的组件库，TypeScript 编写，主题可调，内置暗黑模式与丰富组件。"
+    "description": "基于 Vue 3 的组件库，TypeScript 编写，主题可调，内置暗黑模式与丰富组件。",
+    "tags": []
   },
   {
     "id": "dea2b926-ff1d-471c-829b-02b6aaf27d59",
@@ -525,7 +590,8 @@
     "key": "https://antdv.com/components/overview-cn",
     "title": "Ant Design Vue",
     "icon": "@/assets/images/icons/Ant Design Vue.ico",
-    "description": "基于 Ant Design 设计规范与 Vue 的企业级组件库，提供丰富的高质量组件。"
+    "description": "基于 Ant Design 设计规范与 Vue 的企业级组件库，提供丰富的高质量组件。",
+    "tags": []
   },
   {
     "id": "8d8e2ea8-11c2-4f4c-b6da-b00f11f7ea7a",
@@ -533,7 +599,8 @@
     "key": "https://arco.design/vue/docs/start",
     "title": "Arco Design",
     "icon": "@/assets/images/icons/Arco Design.ico",
-    "description": "字节跳动出品的企业级设计系统 Vue 版组件库，风格简洁，组件丰富，开箱即用。"
+    "description": "字节跳动出品的企业级设计系统 Vue 版组件库，风格简洁，组件丰富，开箱即用。",
+    "tags": []
   },
   {
     "id": "a6e45e51-451e-464d-a5d3-26c7b46a1780",
@@ -541,7 +608,8 @@
     "key": "https://tdesign.tencent.com/vue-next/overview",
     "title": "TDesign",
     "icon": "@/assets/images/icons/TDesign.png",
-    "description": "腾讯开源的企业级设计体系 Vue 3 组件库，组件丰富，配套设计指南与资源。"
+    "description": "腾讯开源的企业级设计体系 Vue 3 组件库，组件丰富，配套设计指南与资源。",
+    "tags": []
   },
   {
     "id": "cb131ca9-76df-4c6b-b012-8d41b0e51b60",
@@ -549,7 +617,8 @@
     "key": "https://vue-devui.github.io/quick-start",
     "title": "DevUI",
     "icon": "@/assets/images/icons/DevUI.svg",
-    "description": "华为开源的 Vue 3 组件库，基于 DevUI 设计体系，提供企业级中后台场景组件。"
+    "description": "华为开源的 Vue 3 组件库，基于 DevUI 设计体系，提供企业级中后台场景组件。",
+    "tags": []
   },
   {
     "id": "a7fc078a-70e6-4999-9aaf-fb72136c7dfe",
@@ -557,7 +626,8 @@
     "key": "https://nutui.jd.com/h5/vue/4x",
     "title": "NutUI",
     "icon": "@/assets/images/icons/NutUI.png",
-    "description": "京东风格的轻量级移动端 Vue 组件库，支持 H5 与小程序多端开发，组件丰富。"
+    "description": "京东风格的轻量级移动端 Vue 组件库，支持 H5 与小程序多端开发，组件丰富。",
+    "tags": []
   },
   {
     "id": "689df278-4ec7-4533-96cc-c45f8c09b4cb",
@@ -565,7 +635,8 @@
     "key": "https://maomentai817.github.io/pixel-ui",
     "title": "Pixel UI",
     "icon": "@/assets/images/icons/Pixel UI.ico",
-    "description": "基于 CSS Houdini 实现的像素风组件库，组件自带复古像素质感，适合个性界面。"
+    "description": "基于 CSS Houdini 实现的像素风组件库，组件自带复古像素质感，适合个性界面。",
+    "tags": []
   },
   {
     "id": "561b078e-233f-407b-812f-71431c97468c",
@@ -573,7 +644,8 @@
     "key": "https://cn.vuejs.org/guide/introduction",
     "title": "Vue",
     "icon": "@/assets/images/icons/Vue.svg",
-    "description": "渐进式 JavaScript 前端框架，官方中文文档，提供指南、API 与示例。"
+    "description": "渐进式 JavaScript 前端框架，官方中文文档，提供指南、API 与示例。",
+    "tags": []
   },
   {
     "id": "a2b8431d-6102-4da0-9c59-5e3258ae4512",
@@ -581,7 +653,8 @@
     "key": "https://router.vuejs.org/zh/introduction.html",
     "title": "Vue Router",
     "icon": "@/assets/images/icons/Vue Router.svg",
-    "description": "Vue.js 官方路由器，支持嵌套路由、动态路由与导航守卫等核心能力。"
+    "description": "Vue.js 官方路由器，支持嵌套路由、动态路由与导航守卫等核心能力。",
+    "tags": []
   },
   {
     "id": "b864e0fd-8ede-4a0b-9fdd-95b771949716",
@@ -589,7 +662,8 @@
     "key": "https://pinia.vuejs.org/zh",
     "title": "Pinia",
     "icon": "@/assets/images/icons/Pinia.svg",
-    "description": "Vue 官方推荐的状态管理库，提供类型安全、模块化与开发者工具支持。"
+    "description": "Vue 官方推荐的状态管理库，提供类型安全、模块化与开发者工具支持。",
+    "tags": []
   },
   {
     "id": "36d77c89-c816-4ad8-b74c-9ba9dbf4dec8",
@@ -597,7 +671,8 @@
     "key": "https://vueuse.nodejs.cn/guide",
     "title": "VueUse",
     "icon": "@/assets/images/icons/VueUse.png",
-    "description": "基于 Vue 组合式 API 的实用工具函数集合，覆盖状态、DOM 与常用交互场景。"
+    "description": "基于 Vue 组合式 API 的实用工具函数集合，覆盖状态、DOM 与常用交互场景。",
+    "tags": []
   },
   {
     "id": "2c60c335-6a62-4957-9039-f4e2300a6373",
@@ -605,7 +680,8 @@
     "key": "https://cn.vitejs.dev/guide",
     "title": "Vite",
     "icon": "@/assets/images/icons/Vite.svg",
-    "description": "下一代前端构建工具链，极速冷启动与热更新，官方中文文档。"
+    "description": "下一代前端构建工具链，极速冷启动与热更新，官方中文文档。",
+    "tags": []
   },
   {
     "id": "0f429036-c4d2-4bd4-b88e-2e61d19cd7b1",
@@ -613,7 +689,8 @@
     "key": "https://vitepress.dev/zh",
     "title": "VitePress",
     "icon": "@/assets/images/icons/VitePress.svg",
-    "description": "基于 Vite 与 Vue 的静态站点生成器，用 Markdown 快速建站。"
+    "description": "基于 Vite 与 Vue 的静态站点生成器，用 Markdown 快速建站。",
+    "tags": []
   },
   {
     "id": "7d26ecd0-73eb-40ca-8bf8-bd1725c8d26d",
@@ -621,7 +698,8 @@
     "key": "https://unocss.nodejs.cn",
     "title": "UnoCSS",
     "icon": "@/assets/images/icons/UnoCSS.svg",
-    "description": "即时按需的原子化 CSS 引擎，规则灵活可定制，提升样式开发效率。"
+    "description": "即时按需的原子化 CSS 引擎，规则灵活可定制，提升样式开发效率。",
+    "tags": []
   },
   {
     "id": "c9a74bca-6007-4900-995b-b54afe5e1e80",
@@ -629,7 +707,8 @@
     "key": "https://uniapp.dcloud.net.cn/api",
     "title": "uni-app",
     "icon": "@/assets/images/icons/uni-app.png",
-    "description": "uni-app 官方 API 文档，覆盖网络、存储、媒体等常用跨端接口。"
+    "description": "uni-app 官方 API 文档，覆盖网络、存储、媒体等常用跨端接口。",
+    "tags": []
   },
   {
     "id": "860e04e0-959d-4330-b06c-6839a2b76dbe",
@@ -637,7 +716,8 @@
     "key": "https://uni-helper.js.org",
     "title": "uni-helper",
     "icon": "@/assets/images/icons/uni-helper.ico",
-    "description": "uni-app 生态工具集，提供类型提示与常用插件，助力跨端开发。"
+    "description": "uni-app 生态工具集，提供类型提示与常用插件，助力跨端开发。",
+    "tags": []
   },
   {
     "id": "89e533ef-ead4-4d37-9237-0e3be21b3668",
@@ -645,7 +725,8 @@
     "key": "https://electron.nodejs.cn",
     "title": "Electron",
     "icon": "@/assets/images/icons/Electron.ico",
-    "description": "使用 JavaScript、HTML 和 CSS 构建跨平台桌面应用。"
+    "description": "使用 JavaScript、HTML 和 CSS 构建跨平台桌面应用。",
+    "tags": []
   },
   {
     "id": "6c004584-3250-4328-973b-9573b155604f",
@@ -653,7 +734,8 @@
     "key": "https://flutter.cn",
     "title": "Flutter",
     "icon": "@/assets/images/icons/Flutter.png",
-    "description": "Flutter 官方文档中文版，包含 SDK 下载、最新特性、代码示例与中文社区等内容。"
+    "description": "Flutter 官方文档中文版，包含 SDK 下载、最新特性、代码示例与中文社区等内容。",
+    "tags": []
   },
   {
     "id": "3114dc88-d9f4-4f80-b9d8-4e65fa235d18",
@@ -661,7 +743,8 @@
     "key": "https://docs.nestjs.cn/introduction",
     "title": "NestJS",
     "icon": "@/assets/images/icons/NestJS.svg",
-    "description": "TypeScript 构建的 Node.js 服务端框架，高效且可扩展。"
+    "description": "TypeScript 构建的 Node.js 服务端框架，高效且可扩展。",
+    "tags": []
   },
   {
     "id": "d85d71b9-ea82-454a-a8ae-192a265a063d",
@@ -669,7 +752,8 @@
     "key": "https://www.typeorm.net",
     "title": "TypeORM",
     "icon": "@/assets/images/icons/TypeORM.ico",
-    "description": "支持 TypeScript 与多数据库的 ORM 框架，可运行于多端环境。"
+    "description": "支持 TypeScript 与多数据库的 ORM 框架，可运行于多端环境。",
+    "tags": []
   },
   {
     "id": "b36fe4c0-adec-4c1c-88a4-7b660647fc7d",
@@ -677,7 +761,8 @@
     "key": "https://www.redisio.com/Getting-started.html",
     "title": "Redis中文文档",
     "icon": "@/assets/images/icons/Redis中文文档.png",
-    "description": "Redis 中文教程站，涵盖安装运行、数据类型与常用命令等入门内容。"
+    "description": "Redis 中文教程站，涵盖安装运行、数据类型与常用命令等入门内容。",
+    "tags": []
   },
   {
     "id": "ca14858f-7092-4662-bac9-6b9b4dfdea09",
@@ -685,7 +770,8 @@
     "key": "https://github.com/produck/svg-captcha/blob/1.x/README_CN.md",
     "title": "svg-captcha",
     "icon": "@/assets/images/icons/svg-captcha.svg",
-    "description": "Node.js 验证码生成库，纯 JavaScript 实现，可生成 SVG 格式数字与算式验证码。"
+    "description": "Node.js 验证码生成库，纯 JavaScript 实现，可生成 SVG 格式数字与算式验证码。",
+    "tags": []
   },
   {
     "id": "ce150732-e4fa-4fe2-a6b2-0503a5191661",
@@ -693,7 +779,8 @@
     "key": "https://www.axios-http.cn/docs/intro",
     "title": "Axios",
     "icon": "@/assets/images/icons/Axios.ico",
-    "description": "基于 Promise 的网络请求库，同时支持浏览器与 Node.js 端。"
+    "description": "基于 Promise 的网络请求库，同时支持浏览器与 Node.js 端。",
+    "tags": []
   },
   {
     "id": "44ce885a-ff07-4cae-8393-7e98e6fafa57",
@@ -701,7 +788,8 @@
     "key": "https://echarts.apache.org/zh/index.html",
     "title": "ECharts",
     "icon": "@/assets/images/icons/ECharts.png",
-    "description": "基于 JavaScript 的开源可视化图表库，类型丰富、交互流畅。"
+    "description": "基于 JavaScript 的开源可视化图表库，类型丰富、交互流畅。",
+    "tags": []
   },
   {
     "id": "5bac52f7-5d9a-4a0d-a0a3-8cd771e131a0",
@@ -709,7 +797,8 @@
     "key": "https://dayjs.fenxianglu.cn/category",
     "title": "Day.js",
     "icon": "@/assets/images/icons/Day.js.png",
-    "description": "极简的 JavaScript 日期库，支持解析、校验、格式化与日期计算。"
+    "description": "极简的 JavaScript 日期库，支持解析、校验、格式化与日期计算。",
+    "tags": []
   },
   {
     "id": "934bec57-0adb-41a4-ae6f-c3736b6bb451",
@@ -717,7 +806,8 @@
     "key": "https://www.lodashjs.com",
     "title": "Lodash",
     "icon": "@/assets/images/icons/Lodash.ico",
-    "description": "一致、模块化、高性能的 JavaScript 实用工具库，官方中文文档。"
+    "description": "一致、模块化、高性能的 JavaScript 实用工具库，官方中文文档。",
+    "tags": []
   },
   {
     "id": "234bf09f-e135-4352-8e1f-14b9446f807e",
@@ -725,7 +815,8 @@
     "key": "https://6tail.cn/tyme.html",
     "title": "Tyme",
     "icon": "@/assets/images/icons/Tyme.ico",
-    "description": "强大的多历法日历工具库，支持农历、干支、节气、星座与法定假日等。"
+    "description": "强大的多历法日历工具库，支持农历、干支、节气、星座与法定假日等。",
+    "tags": []
   },
   {
     "id": "210159fa-aa2e-4c2d-85d5-efc0176889ef",
@@ -733,7 +824,8 @@
     "key": "https://www.canvasapi.cn",
     "title": "Canvas",
     "icon": "@/assets/images/icons/Canvas.ico",
-    "description": "Canvas API 中文文档站，提供画布绘图接口的属性、方法与示例讲解。"
+    "description": "Canvas API 中文文档站，提供画布绘图接口的属性、方法与示例讲解。",
+    "tags": []
   },
   {
     "id": "2e94c30a-014a-4065-a2c2-32208e9a8668",
@@ -741,7 +833,8 @@
     "key": "https://leafletjs.cn",
     "title": "Leaflet",
     "icon": "@/assets/images/icons/Leaflet.ico",
-    "description": "开源交互式地图 JavaScript 库，轻量易用，支持移动端适配。"
+    "description": "开源交互式地图 JavaScript 库，轻量易用，支持移动端适配。",
+    "tags": []
   },
   {
     "id": "ef9a11b0-809f-404d-aa32-95da8bfcc512",
@@ -749,7 +842,8 @@
     "key": "https://nes-vue-docs.netlify.app/zh",
     "title": "NES Vue",
     "icon": "@/assets/images/icons/NES Vue.png",
-    "description": "基于 Vue3 的 NES 模拟器组件，在网页端运行 nes 游戏文件。"
+    "description": "基于 Vue3 的 NES 模拟器组件，在网页端运行 nes 游戏文件。",
+    "tags": []
   },
   {
     "id": "fd4d7151-b836-4486-a8c7-efa0823dc0f5",
@@ -757,7 +851,8 @@
     "key": "https://www.iconfont.cn",
     "title": "阿里图标库",
     "icon": "@/assets/images/icons/阿里图标库.png",
-    "description": "阿里旗下矢量图标库，提供图标下载、在线存储与格式转换等便捷服务。"
+    "description": "阿里旗下矢量图标库，提供图标下载、在线存储与格式转换等便捷服务。",
+    "tags": []
   },
   {
     "id": "37b4cbda-38b6-417c-b082-4393957c30af",
@@ -765,7 +860,8 @@
     "key": "https://juejin.cn/frontend",
     "title": "掘金",
     "icon": "@/assets/images/icons/掘金.png",
-    "description": "面向中文开发者的技术社区，前端频道汇聚优质文章与实践经验。"
+    "description": "面向中文开发者的技术社区，前端频道汇聚优质文章与实践经验。",
+    "tags": []
   },
   {
     "id": "86955ae2-a1a1-4dd0-a9e0-c4b5b468916b",
@@ -773,7 +869,8 @@
     "key": "https://www.pnpm.cn",
     "title": "pnpm",
     "icon": "@/assets/images/icons/pnpm.png",
-    "description": "极速、高效利用磁盘空间的包管理器，官方中文文档。"
+    "description": "极速、高效利用磁盘空间的包管理器，官方中文文档。",
+    "tags": []
   },
   {
     "id": "03ba8c79-f2eb-4d86-9224-f5096b6bc3c5",
@@ -781,7 +878,8 @@
     "key": "https://www.jsdelivr.com",
     "title": "jsDelivr",
     "icon": "@/assets/images/icons/jsDelivr.png",
-    "description": "免费快速的公共 CDN 服务，加速 npm 与 GitHub 资源分发。"
+    "description": "免费快速的公共 CDN 服务，加速 npm 与 GitHub 资源分发。",
+    "tags": []
   },
   {
     "id": "c677247e-01b0-4225-a80f-cb79820d92bb",
@@ -789,7 +887,8 @@
     "key": "https://github.com/waligoraamodio288-rgb/hongguo-desktop-releases",
     "title": "红果短剧",
     "icon": "@/assets/images/icons/红果短剧.png",
-    "description": "红果短剧官方电脑版，免费观看海量短剧，支持自动连播、收藏与历史记录。"
+    "description": "红果短剧官方电脑版，免费观看海量短剧，支持自动连播、收藏与历史记录。",
+    "tags": []
   },
   {
     "id": "8286dcb4-4dfc-4b53-a3db-ae3d9184a1f1",
@@ -797,7 +896,8 @@
     "key": "https://pc.weixin.qq.com",
     "title": "微信",
     "icon": "@/assets/images/icons/微信.png",
-    "description": "腾讯官方即时通讯软件，支持聊天、语音视频通话与文件传输，电脑版官方下载。"
+    "description": "腾讯官方即时通讯软件，支持聊天、语音视频通话与文件传输，电脑版官方下载。",
+    "tags": []
   },
   {
     "id": "bcdd73d6-9835-4c05-9f37-51594cd46873",
@@ -805,7 +905,8 @@
     "key": "https://github.com/huiyadanli/RevokeMsgPatcher",
     "title": "微信防撤回",
     "icon": "assets/images/icons/微信防撤回.png",
-    "description": "开源的微信、QQ、TIM 防撤回补丁工具，一键修改客户端拦截撤回消息。"
+    "description": "开源的微信、QQ、TIM 防撤回补丁工具，一键修改客户端拦截撤回消息。",
+    "tags": []
   },
   {
     "id": "a9e62eb8-d0f5-4164-a7df-5d13dca515c1",
@@ -813,7 +914,8 @@
     "key": "https://meeting.tencent.com/download",
     "title": "腾讯会议",
     "icon": "@/assets/images/icons/腾讯会议.png",
-    "description": "腾讯会议高清流畅、便捷易用、安全可靠的多人音视频会议软件，支持多端下载安装。"
+    "description": "腾讯会议高清流畅、便捷易用、安全可靠的多人音视频会议软件，支持多端下载安装。",
+    "tags": []
   },
   {
     "id": "7d7ce02a-fda9-42c6-9121-aae92b35d487",
@@ -821,7 +923,8 @@
     "key": "https://www.lsplayer.com",
     "title": "雷神模拟器",
     "icon": "@/assets/images/icons/雷神模拟器.png",
-    "description": "领先内核打造的安卓模拟器，运行快速稳定，为大屏游戏带来流畅操控体验。"
+    "description": "领先内核打造的安卓模拟器，运行快速稳定，为大屏游戏带来流畅操控体验。",
+    "tags": []
   },
   {
     "id": "0e60048f-f418-44ad-ae4f-b95867dd186f",
@@ -829,7 +932,8 @@
     "key": "https://store.steampowered.com",
     "title": "Steam",
     "icon": "@/assets/images/icons/Steam.ico",
-    "description": "全球知名的游戏发行平台，提供游戏购买下载、社区创意工坊与成就系统。"
+    "description": "全球知名的游戏发行平台，提供游戏购买下载、社区创意工坊与成就系统。",
+    "tags": []
   },
   {
     "id": "0d517661-18bc-4064-8f8c-d6a511867f0b",
@@ -837,7 +941,8 @@
     "key": "https://www.clashverge.dev",
     "title": "Clash Verge",
     "icon": "@/assets/images/icons/Clash Verge.ico",
-    "description": "基于 Tauri 的跨平台代理客户端，界面简洁，支持多内核与规则配置。"
+    "description": "基于 Tauri 的跨平台代理客户端，界面简洁，支持多内核与规则配置。",
+    "tags": []
   },
   {
     "id": "e5496614-16ec-476a-bdd6-367d1e2558f6",
@@ -845,7 +950,8 @@
     "key": "https://www.i4.cn/pros/pc.html",
     "title": "爱思助手",
     "icon": "@/assets/images/icons/爱思助手.png",
-    "description": "专业的苹果设备管理工具，支持一键刷机、数据备份还原、换机搬家与应用下载。"
+    "description": "专业的苹果设备管理工具，支持一键刷机、数据备份还原、换机搬家与应用下载。",
+    "tags": []
   },
   {
     "id": "5a870dfe-b674-403e-8f53-970fe1543f28",
@@ -853,7 +959,8 @@
     "key": "https://423down.lanzouo.com/b105455",
     "title": "WinRAR",
     "icon": "@/assets/images/icons/WinRAR.ico",
-    "description": "老牌知名压缩解压软件，支持多种压缩格式，个人版免费，装机必备工具之一。"
+    "description": "老牌知名压缩解压软件，支持多种压缩格式，个人版免费，装机必备工具之一。",
+    "tags": []
   },
   {
     "id": "0239cf5e-918f-4ad9-ab6c-825bf80bc5d9",
@@ -861,7 +968,8 @@
     "key": "https://423down.lanzouo.com/b0f1k59qh",
     "title": "PotPlayer",
     "icon": "@/assets/images/icons/PotPlayer.svg",
-    "description": "PotPlayer 全能多媒体播放器，支持主流音视频格式与字幕播放。"
+    "description": "PotPlayer 全能多媒体播放器，支持主流音视频格式与字幕播放。",
+    "tags": []
   },
   {
     "id": "c72c5d32-ff6a-4fca-abae-97a5dfbf9c4e",
@@ -869,7 +977,8 @@
     "key": "https://www.bypass.cn",
     "title": "分流抢票",
     "icon": "@/assets/images/icons/分流抢票.ico",
-    "description": "免费自动抢票工具，支持自动抢候补、识别验证码、多线程秒单与捡漏。"
+    "description": "免费自动抢票工具，支持自动抢候补、识别验证码、多线程秒单与捡漏。",
+    "tags": []
   },
   {
     "id": "6318f8eb-9a84-4107-b7e4-d4eebd3dc758",
@@ -877,7 +986,8 @@
     "key": "https://cmwtat.cloudmoe.com/cn.html",
     "title": "云萌激活工具",
     "icon": "",
-    "description": "开源免费的 Windows 数字权利激活工具，一键终身激活并自动续期。"
+    "description": "开源免费的 Windows 数字权利激活工具，一键终身激活并自动续期。",
+    "tags": []
   },
   {
     "id": "0a9bc843-deef-410b-a304-e8f354ff2902",
@@ -885,7 +995,8 @@
     "key": "https://www.centbrowser.cn",
     "title": "百分浏览器",
     "icon": "@/assets/images/icons/百分浏览器.ico",
-    "description": "Chrome 增强版浏览器，紧跟最新内核，主打快速简约，优化办公娱乐上网体验。"
+    "description": "Chrome 增强版浏览器，紧跟最新内核，主打快速简约，优化办公娱乐上网体验。",
+    "tags": []
   },
   {
     "id": "400724bb-a205-4eea-8c67-d80fd352e10f",
@@ -893,7 +1004,8 @@
     "key": "https://www.google.cn/chrome",
     "title": "谷歌浏览器",
     "icon": "@/assets/images/icons/谷歌浏览器.png",
-    "description": "谷歌官方网络浏览器，以快捷、安全、易用著称，支持丰富扩展插件生态。"
+    "description": "谷歌官方网络浏览器，以快捷、安全、易用著称，支持丰富扩展插件生态。",
+    "tags": []
   },
   {
     "id": "2b2dd07f-c2fa-4351-8fb6-9b7e5d79543b",
@@ -901,7 +1013,8 @@
     "key": "https://www.huorong.cn",
     "title": "火绒安全",
     "icon": "@/assets/images/icons/火绒安全.png",
-    "description": "专注终端安全的国产安全软件，个人版免费使用，企业版提供终端安全统一管理。"
+    "description": "专注终端安全的国产安全软件，个人版免费使用，企业版提供终端安全统一管理。",
+    "tags": []
   },
   {
     "id": "e1f719de-c9d0-4949-a7b0-23347f11d525",
@@ -909,7 +1022,8 @@
     "key": "https://coolapk.123741.xyz",
     "title": "酷安桌面版",
     "icon": "@/assets/images/icons/酷安桌面版.png",
-    "description": "非官方酷安桌面客户端，轻量纯净的大屏社区浏览体验，全平台覆盖。"
+    "description": "非官方酷安桌面客户端，轻量纯净的大屏社区浏览体验，全平台覆盖。",
+    "tags": []
   },
   {
     "id": "961fbd72-a2f1-4789-a744-7340b0bd459a",
@@ -917,7 +1031,8 @@
     "key": "https://www.52pojie.cn/forum-16-1.html",
     "title": "精品软件区",
     "icon": "assets/images/icons/精品软件区.webp",
-    "description": "吾爱破解精品软件区，会员每日分享推荐 PC 与安卓手机软件，交流氛围活跃。"
+    "description": "吾爱破解精品软件区，会员每日分享推荐 PC 与安卓手机软件，交流氛围活跃。",
+    "tags": []
   },
   {
     "id": "2f938067-2dc1-46e4-89a0-bff5e8e76fc9",
@@ -925,7 +1040,8 @@
     "key": "https://www.423down.com",
     "title": "423Down",
     "icon": "@/assets/images/icons/423Down.ico",
-    "description": "始于2014的绿色软件下载站，超千款净化便携软件，三重检测，纯净安全。"
+    "description": "始于2014的绿色软件下载站，超千款净化便携软件，三重检测，纯净安全。",
+    "tags": []
   },
   {
     "id": "86d42989-328c-4427-8c5f-42471bc1bb40",
@@ -933,7 +1049,8 @@
     "key": "https://www.gndown.net",
     "title": "绿软驿站",
     "icon": "@/assets/images/icons/绿软驿站.ico",
-    "description": "安全纯净的绿色软件下载站，无广告免安装，全部软件经人工检测，纯净无捆绑。"
+    "description": "安全纯净的绿色软件下载站，无广告免安装，全部软件经人工检测，纯净无捆绑。",
+    "tags": []
   },
   {
     "id": "ee46e7ce-1dae-4349-bc8d-b3a0ef6899e4",
@@ -941,7 +1058,8 @@
     "key": "https://www.wycad.com",
     "title": "无忧软件网",
     "icon": "@/assets/images/icons/无忧软件网.ico",
-    "description": "分享互联网优质资源，收录绿色软件与破解工具，覆盖多端，每日持续更新。"
+    "description": "分享互联网优质资源，收录绿色软件与破解工具，覆盖多端，每日持续更新。",
+    "tags": []
   },
   {
     "id": "38837982-03ff-4b51-aaf5-d5ba62b43ad1",
@@ -949,7 +1067,8 @@
     "key": "https://www.ghxi.com",
     "title": "果核剥壳",
     "icon": "@/assets/images/icons/果核剥壳.ico",
-    "description": "长期更新的科技网站，涵盖绿色软件、系统工具与科技资讯，分享实用资源。"
+    "description": "长期更新的科技网站，涵盖绿色软件、系统工具与科技资讯，分享实用资源。",
+    "tags": []
   },
   {
     "id": "6cc4731d-f5e7-410d-a81f-5f766077555c",
@@ -957,7 +1076,8 @@
     "key": "https://www.ipapark.com",
     "title": "iPA资源站",
     "icon": "@/assets/images/icons/iPA资源站.png",
-    "description": "iPA资源下载站，收录iPhone/iPad软件，附砸壳规则与免费证书。"
+    "description": "iPA资源下载站，收录iPhone/iPad软件，附砸壳规则与免费证书。",
+    "tags": []
   },
   {
     "id": "a4ce5499-78fd-4860-8198-1ee323739370",
@@ -965,7 +1085,8 @@
     "key": "https://www.xiaoheiw.com",
     "title": "小黑资源网",
     "icon": "@/assets/images/icons/小黑资源网.ico",
-    "description": "每日更新技术教程、活动线报与软件工具分享，内容实用，持续更新。"
+    "description": "每日更新技术教程、活动线报与软件工具分享，内容实用，持续更新。",
+    "tags": []
   },
   {
     "id": "3777a2cb-9768-4600-8629-fa7fdcf20e25",
@@ -973,7 +1094,8 @@
     "key": "https://www.x6d.com",
     "title": "小刀娱乐网",
     "icon": "@/assets/images/icons/小刀娱乐网.ico",
-    "description": "专注活动线报、绿色软件与教程分享，分类清晰，持续更新网络实用内容。"
+    "description": "专注活动线报、绿色软件与教程分享，分类清晰，持续更新网络实用内容。",
+    "tags": []
   },
   {
     "id": "278fe2f9-468d-4986-ae83-c9a248846c65",
@@ -981,7 +1103,8 @@
     "key": "https://wwt.lanzouj.com/s/jkrj",
     "title": "极客软件库",
     "icon": "@/assets/images/icons/极客软件库.webp",
-    "description": "汇聚优质软件、游戏与工具，安全检测保障下载，支持版本更新与断点续传。"
+    "description": "汇聚优质软件、游戏与工具，安全检测保障下载，支持版本更新与断点续传。",
+    "tags": []
   },
   {
     "id": "a86a4035-ef67-4f96-9d10-65cc4e4eb128",
@@ -989,7 +1112,8 @@
     "key": "https://pan.lanzoup.com/u/qianxun8",
     "title": "大肥精品软件",
     "icon": "assets/images/icons/大肥精品软件.png",
-    "description": "大肥爱分享的精品软件合集，免费分享各类福利软件资源，每日持续更新。"
+    "description": "大肥爱分享的精品软件合集，免费分享各类福利软件资源，每日持续更新。",
+    "tags": []
   },
   {
     "id": "a76bca18-294c-4b3f-9386-eeb288fceb13",
@@ -997,7 +1121,8 @@
     "key": "https://lanzoup.com/b032bt3j3c",
     "title": "最先软件库",
     "icon": "assets/images/icons/最先软件库.png",
-    "description": "永久免费分享的各类软件资源合集，更新频繁，部分资源可能失效，仅供学习交流请勿商用。"
+    "description": "永久免费分享的各类软件资源合集，更新频繁，部分资源可能失效，仅供学习交流请勿商用。",
+    "tags": []
   },
   {
     "id": "1b94feac-3520-4f75-aea7-6fd5bf4a8c78",
@@ -1005,7 +1130,8 @@
     "key": "https://qcrjk.lanzoul.com/b05w0777e",
     "title": "千城游戏合集",
     "icon": "@/assets/images/icons/千城游戏合集.ico",
-    "description": "不定时更新各类好玩破解的安卓游戏资源，收录丰富，喜欢玩游戏的小伙伴不容错过。"
+    "description": "不定时更新各类好玩破解的安卓游戏资源，收录丰富，喜欢玩游戏的小伙伴不容错过。",
+    "tags": []
   },
   {
     "id": "b420d9c3-ca0b-4ce3-b964-3150f681ecc1",
@@ -1013,7 +1139,8 @@
     "key": "https://app.lanzouv.com/s/fuckapp",
     "title": "FuckApp",
     "icon": "@/assets/images/icons/FuckApp.ico",
-    "description": "破解类安卓应用合集，附安装指南：被拦截可断网安装，报毒为破解应用误报，仅供学习研究。"
+    "description": "破解类安卓应用合集，附安装指南：被拦截可断网安装，报毒为破解应用误报，仅供学习研究。",
+    "tags": []
   },
   {
     "id": "196c03f6-540a-4924-82f2-80c4f9280d15",
@@ -1021,7 +1148,8 @@
     "key": "https://www.lanzoui.com/b133841",
     "title": "兜兜软件库",
     "icon": "@/assets/images/icons/兜兜软件库.ico",
-    "description": "兜兜软件库合集，不定时更新各类福利软件，收录丰富，欢迎收藏备用。"
+    "description": "兜兜软件库合集，不定时更新各类福利软件，收录丰富，欢迎收藏备用。",
+    "tags": []
   },
   {
     "id": "545ac7d6-6e1a-4fa4-9bfb-5f39c50dedaf",
@@ -1029,7 +1157,8 @@
     "key": "https://jiuren.lanzoul.com/s/ruanjiange",
     "title": "旧人软件阁",
     "icon": "assets/images/icons/旧人软件阁.png",
-    "description": "旧人软件阁的软件合集，软件基于官方接口制作，若失效多为官方已修复所致。"
+    "description": "旧人软件阁的软件合集，软件基于官方接口制作，若失效多为官方已修复所致。",
+    "tags": []
   },
   {
     "id": "439ccd97-01ce-4d9e-94fc-baee3f4e74fd",
@@ -1037,7 +1166,8 @@
     "key": "https://huanziapp.lanzout.com/b0fq2clwj",
     "title": "欢子黑科技",
     "icon": "@/assets/images/icons/欢子黑科技.ico",
-    "description": "佚名收集的各种破解软件资源。"
+    "description": "佚名收集的各种破解软件资源。",
+    "tags": []
   },
   {
     "id": "9c19205a-2702-4eee-b85b-390a68c81487",
@@ -1045,7 +1175,8 @@
     "key": "https://www.lanzoui.com/b838976",
     "title": "滚哥网盘资源",
     "icon": "@/assets/images/icons/滚哥网盘资源.ico",
-    "description": "滚哥网盘资源合集，每日动态更新各类软件，失效多为版本更新，仅供测试请勿他用。"
+    "description": "滚哥网盘资源合集，每日动态更新各类软件，失效多为版本更新，仅供测试请勿他用。",
+    "tags": []
   },
   {
     "id": "d342c747-b30c-4e6d-a616-95b101a7384b",
@@ -1053,7 +1184,8 @@
     "key": "https://yoyodadada.lanzouw.com/u/yoyodadada",
     "title": "优质软件合集",
     "icon": "@/assets/images/icons/优质软件合集.ico",
-    "description": "佚名收集的各种破解软件资源。"
+    "description": "佚名收集的各种破解软件资源。",
+    "tags": []
   },
   {
     "id": "9df7f792-33c2-479d-af39-1cb5196e77e5",
@@ -1061,7 +1193,8 @@
     "key": "https://www.lanzoui.com/b01b01h9a",
     "title": "未分类软件集",
     "icon": "@/assets/images/icons/未分类软件集.ico",
-    "description": "佚名收集的各种破解软件资源。"
+    "description": "佚名收集的各种破解软件资源。",
+    "tags": []
   },
   {
     "id": "facc18f5-73be-418f-b7d4-0602611d10d9",
@@ -1069,7 +1202,8 @@
     "key": "https://pan.lanzoui.com/b221497",
     "title": "精选软件推荐",
     "icon": "@/assets/images/icons/精选软件推荐.ico",
-    "description": "人工精选的热门娱乐实用软件合集，每天更新，持续上新，欢迎收藏使用。"
+    "description": "人工精选的热门娱乐实用软件合集，每天更新，持续上新，欢迎收藏使用。",
+    "tags": []
   },
   {
     "id": "ccd96377-2677-402e-a47f-eba02ed49133",
@@ -1077,7 +1211,8 @@
     "key": "https://pan.lanzoui.com/b215476",
     "title": "乐分享软件",
     "icon": "@/assets/images/icons/乐分享软件.ico",
-    "description": "佚名收集的各种破解软件资源。"
+    "description": "佚名收集的各种破解软件资源。",
+    "tags": []
   },
   {
     "id": "65bbcdbe-bd8b-46f2-8f4d-c810ab04e6a6",
@@ -1085,7 +1220,8 @@
     "key": "https://pan.lanzoui.com/b828085",
     "title": "安卓破解软件",
     "icon": "@/assets/images/icons/安卓破解软件.ico",
-    "description": "常用软件破解版合集，涵盖影视会员、音乐、下载工具等热门安卓应用的破解版本。"
+    "description": "常用软件破解版合集，涵盖影视会员、音乐、下载工具等热门安卓应用的破解版本。",
+    "tags": []
   },
   {
     "id": "26adb2d6-3add-47fd-9098-dba143c3a135",
@@ -1093,7 +1229,8 @@
     "key": "https://pan.lanzoui.com/b888887",
     "title": "破解游戏合集",
     "icon": "@/assets/images/icons/破解游戏合集.ico",
-    "description": "佚名收集的各种破解软件资源。"
+    "description": "佚名收集的各种破解软件资源。",
+    "tags": []
   },
   {
     "id": "7a145e6c-a69d-45bf-9939-231a7d30d769",
@@ -1101,7 +1238,8 @@
     "key": "https://pan.lanzoui.com/b54212",
     "title": "允晨软件库",
     "icon": "@/assets/images/icons/允晨软件库.ico",
-    "description": "佚名收集的各种破解软件资源。"
+    "description": "佚名收集的各种破解软件资源。",
+    "tags": []
   },
   {
     "id": "175b4a13-75b2-49a9-bbcb-0cc9ec564003",
@@ -1109,7 +1247,8 @@
     "key": "https://pan.lanzoui.com/u/ygtq",
     "title": "软件实验室",
     "icon": "@/assets/images/icons/软件实验室.ico",
-    "description": "佚名收集的各种破解软件资源。"
+    "description": "佚名收集的各种破解软件资源。",
+    "tags": []
   },
   {
     "id": "f5e06025-6277-42d8-8980-d1f680ed72e9",
@@ -1117,7 +1256,8 @@
     "key": "https://pan.lanzoui.com/b60564",
     "title": "清风软件集",
     "icon": "@/assets/images/icons/清风软件集.ico",
-    "description": "清风软件集，全部软件免费使用，基于官方接口改写，若失效多为官方已修复。"
+    "description": "清风软件集，全部软件免费使用，基于官方接口改写，若失效多为官方已修复。",
+    "tags": []
   },
   {
     "id": "66db6b7c-badf-4a16-a177-a9e6de30f4d4",
@@ -1125,7 +1265,8 @@
     "key": "https://pan.lanzoui.com/b158157",
     "title": "小说软件合集",
     "icon": "@/assets/images/icons/小说软件合集.ico",
-    "description": "佚名收集的各种破解软件资源。"
+    "description": "佚名收集的各种破解软件资源。",
+    "tags": []
   },
   {
     "id": "3c6c55fd-6a1a-4516-8e4e-5785a5e83221",
@@ -1133,7 +1274,8 @@
     "key": "https://pan.lanzoui.com/u/aybaba",
     "title": "阿友软件合集",
     "icon": "@/assets/images/icons/阿友软件合集.ico",
-    "description": "阿友软件合集，软件基于官方接口制作，全部免费使用，若失效多为官方已修复。"
+    "description": "阿友软件合集，软件基于官方接口制作，全部免费使用，若失效多为官方已修复。",
+    "tags": []
   },
   {
     "id": "4c24de5b-b925-47f6-833d-0aa4ed1553b3",
@@ -1141,7 +1283,8 @@
     "key": "https://www.lanzoui.com/u/xiaopengi",
     "title": "小鹏软件合集",
     "icon": "@/assets/images/icons/小鹏软件合集.ico",
-    "description": "小鹏团队出品的软件合集，不保证长久可用，失效即停更，仅供学习参考请勿非法使用。"
+    "description": "小鹏团队出品的软件合集，不保证长久可用，失效即停更，仅供学习参考请勿非法使用。",
+    "tags": []
   },
   {
     "id": "0d366de5-992e-4688-abf3-789ae8fff90e",
@@ -1149,7 +1292,8 @@
     "key": "https://www.lanzoui.com/u/azsoft",
     "title": "星辰软件合集",
     "icon": "@/assets/images/icons/星辰软件合集.ico",
-    "description": "星辰软件合集，收录好玩有趣的各类软件资源，持续更新，欢迎体验收藏。"
+    "description": "星辰软件合集，收录好玩有趣的各类软件资源，持续更新，欢迎体验收藏。",
+    "tags": []
   },
   {
     "id": "c1b297b8-5448-45e8-b3c4-b5cc66cc714f",
@@ -1157,7 +1301,8 @@
     "key": "https://www.lanzoui.com/u/xinqidian",
     "title": "新起点软件库",
     "icon": "@/assets/images/icons/新起点软件库.ico",
-    "description": "良心出品的各类实用软件，多为活动或接口类应用，失效属正常情况望理解。"
+    "description": "良心出品的各类实用软件，多为活动或接口类应用，失效属正常情况望理解。",
+    "tags": []
   },
   {
     "id": "cbf920c3-4c38-4525-b6b4-41ee57acc9c0",
@@ -1165,7 +1310,8 @@
     "key": "https://pan.lanzoup.com/b059sp2j",
     "title": "软件窝合集",
     "icon": "@/assets/images/icons/软件窝合集.ico",
-    "description": "软件窝福利软件合集，不定时更新各类资源，内容源于互联网仅供学习参考。"
+    "description": "软件窝福利软件合集，不定时更新各类资源，内容源于互联网仅供学习参考。",
+    "tags": []
   },
   {
     "id": "f685e719-1a5c-4e50-9607-a22f29d9a285",
@@ -1173,7 +1319,8 @@
     "key": "https://jamcz.com",
     "title": "晨钟网络科技",
     "icon": "@/assets/images/icons/晨钟网络科技.png",
-    "description": "专注开发小众实用的安卓与 Windows 软件，解决数码爱好者的使用痛点。"
+    "description": "专注开发小众实用的安卓与 Windows 软件，解决数码爱好者的使用痛点。",
+    "tags": []
   },
   {
     "id": "b2e7c9a4-5d18-4f63-8e07-a9c4d1f63b85",
@@ -1181,7 +1328,8 @@
     "key": "https://www.bandisoft.com/bandizip",
     "title": "Bandizip",
     "icon": "@/assets/images/icons/Bandizip.ico",
-    "description": "免费压缩解压软件，支持ZIP、RAR、7Z等多种格式，高速压缩与解压。"
+    "description": "免费压缩解压软件，支持ZIP、RAR、7Z等多种格式，高速压缩与解压。",
+    "tags": []
   },
   {
     "id": "c7967949-706a-4da7-aa55-c9d1fffb19f9",
@@ -1189,7 +1337,8 @@
     "key": "DoubleColorBall",
     "title": "双色球模拟器",
     "icon": "@/assets/images/icons/双色球.png",
-    "description": "随机模拟双色球与大乐透号码，支持自定义组数与摇号动画，仅供娱乐。"
+    "description": "随机模拟双色球与大乐透号码，支持自定义组数与摇号动画，仅供娱乐。",
+    "tags": ["自研"]
   },
   {
     "id": "5e2f8a41-9c3b-4d7e-b1a6-8f0c2d4e6a9b",
@@ -1197,7 +1346,8 @@
     "key": "OffWorkCountdown",
     "title": "下班倒计时",
     "icon": "@/assets/images/icons/下班倒计时.svg",
-    "description": "实时显示距离下班的剩余时间，支持自定义下班时间与本地记忆设置。"
+    "description": "实时显示距离下班的剩余时间，支持自定义下班时间与本地记忆设置。",
+    "tags": ["自研"]
   },
   {
     "id": "a4d18c52-7b3e-4f69-9c2d-1e8a5b0f3d74",
@@ -1205,7 +1355,8 @@
     "key": "ImageStitch",
     "title": "图片拼接",
     "icon": "@/assets/images/icons/图片拼接.svg",
-    "description": "多张图片横向或竖向拼接成长图，支持间距对齐与格式选择，纯本地处理。"
+    "description": "多张图片横向或竖向拼接成长图，支持间距对齐与格式选择，纯本地处理。",
+    "tags": ["自研"]
   },
   {
     "id": "c5f14c3c-ea5f-46ca-b50a-260d165b8a20",
@@ -1213,7 +1364,8 @@
     "key": "https://www.5adanci.com",
     "title": "日历精灵",
     "icon": "@/assets/images/icons/日历精灵.png",
-    "description": "提供全年日历图免费下载，含农历周数与节假日调休安排，高清精美可打印。"
+    "description": "提供全年日历图免费下载，含农历周数与节假日调休安排，高清精美可打印。",
+    "tags": []
   },
   {
     "id": "b6ed5a37-c6ab-4b30-87c8-eae7e20ca97f",
@@ -1221,7 +1373,8 @@
     "key": "https://tools.pdf24.org/zh",
     "title": "PDF24 Tools",
     "icon": "@/assets/images/icons/PDF24 Tools.png",
-    "description": "免费在线 PDF 工具集，支持合并压缩转换编辑，无水印且无需注册。"
+    "description": "免费在线 PDF 工具集，支持合并压缩转换编辑，无水印且无需注册。",
+    "tags": []
   },
   {
     "id": "dd420795-83b9-408d-a124-ca71c8a03984",
@@ -1229,7 +1382,8 @@
     "key": "https://colors.ichuantong.cn",
     "title": "中国古典颜色",
     "icon": "@/assets/images/icons/中国古典颜色.png",
-    "description": "收录六百余种中国传统色，提供精准色值与色彩代码一键获取，国风设计必备。"
+    "description": "收录六百余种中国传统色，提供精准色值与色彩代码一键获取，国风设计必备。",
+    "tags": []
   },
   {
     "id": "2f9b732e-a7ec-46b7-825e-7b4b59edb81a",
@@ -1237,7 +1391,8 @@
     "key": "https://www.speedtest.cn",
     "title": "网络测速",
     "icon": "@/assets/images/icons/网络测速.png",
-    "description": "专业网速测试平台，支持宽带与家庭网络测速，提供网络诊断及提速优化服务。"
+    "description": "专业网速测试平台，支持宽带与家庭网络测速，提供网络诊断及提速优化服务。",
+    "tags": []
   },
   {
     "id": "70254042-e926-4645-a555-0aced4cdf78b",
@@ -1245,7 +1400,8 @@
     "key": "https://pansou.cc",
     "title": "盘搜搜",
     "icon": "@/assets/images/icons/盘搜搜.png",
-    "description": "网盘资源搜索神器，实时收录全网影视、音乐、软件等资源，一键快速查找。"
+    "description": "网盘资源搜索神器，实时收录全网影视、音乐、软件等资源，一键快速查找。",
+    "tags": []
   },
   {
     "id": "6e80cc23-40c4-41ba-a195-148af37ac1f4",
@@ -1253,7 +1409,8 @@
     "key": "https://wormhole.app",
     "title": "Wormhole",
     "icon": "@/assets/images/icons/Wormhole.png",
-    "description": "端到端加密文件传输工具，链接自动过期，无需注册即可安全分享大文件。"
+    "description": "端到端加密文件传输工具，链接自动过期，无需注册即可安全分享大文件。",
+    "tags": []
   },
   {
     "id": "333986c4-61c0-4f09-bf66-94eed9819500",
@@ -1261,7 +1418,8 @@
     "key": "https://jiejingku.net/tag/jiejingku",
     "title": "捷径库",
     "icon": "@/assets/images/icons/捷径库.webp",
-    "description": "海量 iOS 快捷指令分享站，支持分类查找与一键导入，让手机操作更高效。"
+    "description": "海量 iOS 快捷指令分享站，支持分类查找与一键导入，让手机操作更高效。",
+    "tags": []
   },
   {
     "id": "06d2e618-45b6-421b-8229-157beced43df",
@@ -1269,7 +1427,8 @@
     "key": "https://www.rcuts.com",
     "title": "快捷指令库",
     "icon": "@/assets/images/icons/快捷指令库.png",
-    "description": "分享苹果 iOS 快捷指令大全，提供捷径下载与教程，一款实用的效率工具。"
+    "description": "分享苹果 iOS 快捷指令大全，提供捷径下载与教程，一款实用的效率工具。",
+    "tags": []
   },
   {
     "id": "ea14d56c-9304-4b2c-a9e1-dbd3ca99dda4",
@@ -1277,7 +1436,8 @@
     "key": "https://tool.browser.qq.com",
     "title": "帮小忙",
     "icon": "@/assets/images/icons/帮小忙.jpg",
-    "description": "腾讯QQ浏览器在线工具箱，提供证件照、PDF转换、照片修复等实用小工具。"
+    "description": "腾讯QQ浏览器在线工具箱，提供证件照、PDF转换、照片修复等实用小工具。",
+    "tags": []
   },
   {
     "id": "711abbd6-f3bb-47b9-b044-0a6965f08c05",
@@ -1285,7 +1445,8 @@
     "key": "https://ol.woobx.cn",
     "title": "一个木函",
     "icon": "@/assets/images/icons/一个木函.png",
-    "description": "一个木函在线工具箱，集合文字处理、图片处理、单位换算等实用小工具。"
+    "description": "一个木函在线工具箱，集合文字处理、图片处理、单位换算等实用小工具。",
+    "tags": []
   },
   {
     "id": "eb4b3f9d-292f-4709-8585-e9752749c3bd",
@@ -1293,7 +1454,8 @@
     "key": "https://bigjpg.com",
     "title": "图片无损放大",
     "icon": "@/assets/images/icons/图片无损放大.png",
-    "description": "基于 AI 深度卷积神经网络无损放大图片，支持插画与照片，放大后依然清晰。"
+    "description": "基于 AI 深度卷积神经网络无损放大图片，支持插画与照片，放大后依然清晰。",
+    "tags": []
   },
   {
     "id": "bf4caffe-95c7-422c-b7ef-40dc361d7eec",
@@ -1301,7 +1463,8 @@
     "key": "https://www.bmcx.com",
     "title": "便民查询网",
     "icon": "@/assets/images/icons/便民查询网.png",
-    "description": "汇聚天气、快递、汇率、电话归属地等便民查询工具，支持免费在线使用。"
+    "description": "汇聚天气、快递、汇率、电话归属地等便民查询工具，支持免费在线使用。",
+    "tags": []
   },
   {
     "id": "e47493b3-9c25-4ef8-8ee7-0d0542d7ddb0",
@@ -1309,7 +1472,8 @@
     "key": "https://tool.mkblog.cn",
     "title": "孟坤工具箱",
     "icon": "@/assets/images/icons/孟坤工具箱.ico",
-    "description": "集成图片处理、文本处理、二维码生成等在线小工具合集，免费即开即用。"
+    "description": "集成图片处理、文本处理、二维码生成等在线小工具合集，免费即开即用。",
+    "tags": []
   },
   {
     "id": "18775e55-3440-450c-96af-4b12a7c940a0",
@@ -1317,7 +1481,8 @@
     "key": "https://www.tool77.com/zh-CN",
     "title": "七七工具箱",
     "icon": "@/assets/images/icons/七七工具箱.ico",
-    "description": "提供文档转换、单位换算、图片处理、AI 工具等一站式在线服务。"
+    "description": "提供文档转换、单位换算、图片处理、AI 工具等一站式在线服务。",
+    "tags": []
   },
   {
     "id": "27a17919-481a-4426-863d-b96de893bcff",
@@ -1325,7 +1490,8 @@
     "key": "https://tools.miku.ac",
     "title": "MikuTools",
     "icon": "@/assets/images/icons/MikuTools.png",
-    "description": "聚合图片生成、格式转换、视频下载等在线工具，内置 AI，免登录即用。"
+    "description": "聚合图片生成、格式转换、视频下载等在线工具，内置 AI，免登录即用。",
+    "tags": []
   },
   {
     "id": "0ec869d4-e4fe-4670-9098-89cdff85ed3c",
@@ -1333,7 +1499,8 @@
     "key": "https://uutool.cn",
     "title": "UU在线工具",
     "icon": "@/assets/images/icons/UU在线工具.jpg",
-    "description": "覆盖文本、图像、编程、音视频处理的数百款在线工具，免注册即开即用。"
+    "description": "覆盖文本、图像、编程、音视频处理的数百款在线工具，免注册即开即用。",
+    "tags": []
   },
   {
     "id": "692d2f74-97f5-4fc4-bd36-3eb2aa8fcc82",
@@ -1341,7 +1508,8 @@
     "key": "https://tools.meetlight.cn",
     "title": "在线工具箱",
     "icon": "@/assets/images/icons/在线工具箱.png",
-    "description": "汇集各类免费实用在线小工具，涵盖格式转换、文本处理等常用功能。"
+    "description": "汇集各类免费实用在线小工具，涵盖格式转换、文本处理等常用功能。",
+    "tags": []
   },
   {
     "id": "a4439e28-9b59-476a-aa92-bb065e9ce597",
@@ -1349,7 +1517,8 @@
     "key": "https://www.toolsdo.com",
     "title": "工具箱",
     "icon": "@/assets/images/icons/工具箱.png",
-    "description": "汇集免费在线实用工具，覆盖文本、格式转换、开发辅助等日常场景。"
+    "description": "汇集免费在线实用工具，覆盖文本、格式转换、开发辅助等日常场景。",
+    "tags": []
   },
   {
     "id": "d4f46dce-f3e8-439f-8285-0c1f39ffd413",
@@ -1357,7 +1526,8 @@
     "key": "https://toolup.com.cn",
     "title": "ToolBox",
     "icon": "@/assets/images/icons/ToolBox.png",
-    "description": "提供编码解码、格式转换、加密解密、文本处理等百余款在线工具，本地处理。"
+    "description": "提供编码解码、格式转换、加密解密、文本处理等百余款在线工具，本地处理。",
+    "tags": []
   },
   {
     "id": "13f72590-89ca-4d47-b089-f4bb6a140958",
@@ -1365,7 +1535,8 @@
     "key": "https://www.lizshop.cn",
     "title": "全能工具箱",
     "icon": "@/assets/images/icons/全能工具箱.png",
-    "description": "提供JSON格式化、时间戳转换等免费在线工具，涵盖开发与文本场景。"
+    "description": "提供JSON格式化、时间戳转换等免费在线工具，涵盖开发与文本场景。",
+    "tags": []
   },
   {
     "id": "2fe7c173-854e-499a-bc3c-945677cded32",
@@ -1373,7 +1544,8 @@
     "key": "https://toolight.cn",
     "title": "偷懒工具",
     "icon": "@/assets/images/icons/偷懒工具.png",
-    "description": "免费在线工具集合，无需登录即可使用，覆盖办公与日常多种实用场景。"
+    "description": "免费在线工具集合，无需登录即可使用，覆盖办公与日常多种实用场景。",
+    "tags": []
   },
   {
     "id": "11cacc43-584a-4ae7-b481-ba972567e2dc",
@@ -1381,7 +1553,8 @@
     "key": "https://www.toolnb.com",
     "title": "爱资料工具",
     "icon": "@/assets/images/icons/爱资料工具.ico",
-    "description": "面向开发与运维的在线工具箱，收录开发、运维、SEO 等数百款工具。"
+    "description": "面向开发与运维的在线工具箱，收录开发、运维、SEO 等数百款工具。",
+    "tags": []
   },
   {
     "id": "a8b9d559-6171-4a9c-9595-128f2fc6b824",
@@ -1389,7 +1562,8 @@
     "key": "https://tools.quickso.cn",
     "title": "IT工具箱",
     "icon": "@/assets/images/icons/IT工具箱.png",
-    "description": "面向开发者的开源在线工具集，界面清爽好用，覆盖编码、转换等常见需求。"
+    "description": "面向开发者的开源在线工具集，界面清爽好用，覆盖编码、转换等常见需求。",
+    "tags": []
   },
   {
     "id": "680ce2f2-e6d2-4199-91ff-4663a7db87a1",
@@ -1397,7 +1571,8 @@
     "key": "https://tools.yuanfen.net",
     "title": "猿奋工具箱",
     "icon": "@/assets/images/icons/猿奋工具箱.png",
-    "description": "提供JSON解析、密码生成、哈希计算、时间转换等开发者实用小工具。"
+    "description": "提供JSON解析、密码生成、哈希计算、时间转换等开发者实用小工具。",
+    "tags": []
   },
   {
     "id": "f90fe12a-14e1-46ed-b99a-c0fb8e969cb4",
@@ -1405,7 +1580,8 @@
     "key": "https://greasyfork.org/zh-CN/scripts",
     "title": "油猴脚本",
     "icon": "@/assets/images/icons/油猴脚本.png",
-    "description": "针对所访问网站添加功能或解决问题漏洞的用户脚本平台，可免费安装使用。"
+    "description": "针对所访问网站添加功能或解决问题漏洞的用户脚本平台，可免费安装使用。",
+    "tags": []
   },
   {
     "id": "840fd32f-5e2c-4919-a584-ebf338f6c33b",
@@ -1413,7 +1589,8 @@
     "key": "https://www.youxiaohou.com",
     "title": "油小猴",
     "icon": "@/assets/images/icons/油小猴.ico",
-    "description": "汇聚各类黑科技工具的小站，提供网盘直链下载、智能识别等实用助手脚本。"
+    "description": "汇聚各类黑科技工具的小站，提供网盘直链下载、智能识别等实用助手脚本。",
+    "tags": []
   },
   {
     "id": "166217e4-7e70-45c8-b7d8-fd2a8e64490c",
@@ -1421,7 +1598,17 @@
     "key": "https://www.sordum.org/9470/windows-update-blocker-v1-8",
     "title": "更新阻止器",
     "icon": "@/assets/images/icons/更新阻止器.png",
-    "description": "一键启用或禁用 Windows 系统更新的轻量工具，避免自动更新打断日常使用。"
+    "description": "一键启用或禁用 Windows 系统更新的轻量工具，避免自动更新打断日常使用。",
+    "tags": []
+  },
+  {
+    "id": "e5a1c7d9-4b2f-4c68-9a3e-7f0d2b8c6a41",
+    "categoryId": "9ee39df2-1307-47a5-849a-0e8e9d552e4e",
+    "key": "WorldClock",
+    "title": "世界时钟",
+    "icon": "@/assets/images/icons/世界时钟.svg",
+    "description": "实时查看全球主要城市时间与昼夜状态，自动处理夏令时与日期差。",
+    "tags": ["自研"]
   },
   {
     "id": "a5222f88-44a0-4deb-b27d-f21d9b3a314d",
@@ -1429,7 +1616,8 @@
     "key": "https://api.aa1.cn",
     "title": "夏柔聚合接口",
     "icon": "@/assets/images/icons/夏柔聚合接口.png",
-    "description": "免费接口聚合平台，上千位开发者入驻，上千款公益 API 接口免费调用。"
+    "description": "免费接口聚合平台，上千位开发者入驻，上千款公益 API 接口免费调用。",
+    "tags": []
   },
   {
     "id": "87bd3943-69f3-48ea-ac4b-2a052f9de435",
@@ -1437,7 +1625,8 @@
     "key": "https://timor.tech/api/holiday",
     "title": "免费节假日",
     "icon": "@/assets/images/icons/免费节假日.ico",
-    "description": "免费好用的节假日查询接口，支持查询调休安排，可返回人类可阅读的中文结果。"
+    "description": "免费好用的节假日查询接口，支持查询调休安排，可返回人类可阅读的中文结果。",
+    "tags": []
   },
   {
     "id": "8968e731-2703-4d21-80d4-66dad8a540da",
@@ -1445,7 +1634,8 @@
     "key": "https://api.istero.com/service",
     "title": "起零数据",
     "icon": "@/assets/images/icons/起零数据.ico",
-    "description": "免费 API 接口开放平台，提供歌词、热搜、备案查询等 200 余款实用接口。"
+    "description": "免费 API 接口开放平台，提供歌词、热搜、备案查询等 200 余款实用接口。",
+    "tags": []
   },
   {
     "id": "455e5f3b-c7d3-4335-a35a-c6c1c20de233",
@@ -1453,7 +1643,8 @@
     "key": "https://mshopact.vivo.com.cn/tool/config",
     "title": "VIVO时间戳",
     "icon": "@/assets/images/icons/VIVO时间戳.png",
-    "description": "vivo 商城隐藏接口，JSON 直出服务器毫秒时间戳，可作免费校时来源。"
+    "description": "vivo 商城隐藏接口，JSON 直出服务器毫秒时间戳，可作免费校时来源。",
+    "tags": []
   },
   {
     "id": "43041316-5293-472c-b674-417360accf1e",
@@ -1461,7 +1652,8 @@
     "key": "https://www.bokewo.com/bing/bingimg.php",
     "title": "必应每日壁纸",
     "icon": "@/assets/images/icons/必应每日壁纸.ico",
-    "description": "必应每日壁纸接口，直接返回当天 Bing 壁纸，可作网页背景图源调用。"
+    "description": "必应每日壁纸接口，直接返回当天 Bing 壁纸，可作网页背景图源调用。",
+    "tags": []
   },
   {
     "id": "d6da49c0-0910-4d76-8003-32f7b139fbf8",
@@ -1469,7 +1661,8 @@
     "key": "https://api.qingnian8.com",
     "title": "咸虾米接口库",
     "icon": "@/assets/images/icons/咸虾米接口库.ico",
-    "description": "咸虾米免费接口库，收录各类公益 API，满足开发者与学习者的调用需求。"
+    "description": "咸虾米免费接口库，收录各类公益 API，满足开发者与学习者的调用需求。",
+    "tags": []
   },
   {
     "id": "4d6a1066-0a49-40d9-a63a-3eca2943bc47",
@@ -1477,7 +1670,8 @@
     "key": "https://hitokoto.cn",
     "title": "一言",
     "icon": "@/assets/images/icons/一言.ico",
-    "description": "免费的一句话接口服务，随机返回动漫、小说、哲学等语句，适合开发调用。"
+    "description": "免费的一句话接口服务，随机返回动漫、小说、哲学等语句，适合开发调用。",
+    "tags": []
   },
   {
     "id": "21d58fdd-cee5-47b2-9d4f-2bd701acf027",
@@ -1485,7 +1679,8 @@
     "key": "https://blog.csdn.net/qq_46144627/article/details/140908826",
     "title": "QQ头像接口",
     "icon": "@/assets/images/icons/QQ头像接口.ico",
-    "description": "QQ 头像官方接口教程，支持用 QQ 号、邮箱、空间三种方式获取用户头像。"
+    "description": "QQ 头像官方接口教程，支持用 QQ 号、邮箱、空间三种方式获取用户头像。",
+    "tags": []
   },
   {
     "id": "ca3b7db9-c4c6-4064-8b0f-301b8ac8e5c2",
@@ -1493,7 +1688,8 @@
     "key": "https://www.explinks.com",
     "title": "幂简集成",
     "icon": "@/assets/images/icons/幂简集成.png",
-    "description": "国内领先的 API 聚合平台，一站搜索、试用并集成国内外接口服务。"
+    "description": "国内领先的 API 聚合平台，一站搜索、试用并集成国内外接口服务。",
+    "tags": []
   },
   {
     "id": "8dbe2a90-07a4-47e4-965b-16b902199ce9",
@@ -1501,7 +1697,8 @@
     "key": "https://api.icofun.cn",
     "title": "小齐API",
     "icon": "",
-    "description": "小齐 API 接口服务站，提供随机一言、工具类等多种免费接口，稳定高效。"
+    "description": "小齐 API 接口服务站，提供随机一言、工具类等多种免费接口，稳定高效。",
+    "tags": []
   },
   {
     "id": "02dd7f47-b3ac-4cda-be26-8e134937ad80",
@@ -1509,7 +1706,8 @@
     "key": "https://5213140.xyz",
     "title": "安生API",
     "icon": "@/assets/images/icons/安生API.jpg",
-    "description": "安生 API 免费接口面板，提供接口调用统计与多项公益接口，供开发者使用。"
+    "description": "安生 API 免费接口面板，提供接口调用统计与多项公益接口，供开发者使用。",
+    "tags": []
   },
   {
     "id": "d0fb7f69-f419-477b-bc49-6414c74989d9",
@@ -1517,7 +1715,8 @@
     "key": "https://api.andeer.top",
     "title": "极光API",
     "icon": "@/assets/images/icons/极光API.ico",
-    "description": "高质量 API 服务平台，主打稳定、快速、易用，接口免费开放调用。"
+    "description": "高质量 API 服务平台，主打稳定、快速、易用，接口免费开放调用。",
+    "tags": []
   },
   {
     "id": "67acdde3-d4ec-42be-8f35-866b5206de63",
@@ -1525,7 +1724,8 @@
     "key": "https://api.317ak.com",
     "title": "倾梦API",
     "icon": "@/assets/images/icons/倾梦API.jpg",
-    "description": "倾梦免费 API 平台，接口免费开放调用，助力开发者的项目开发进程。"
+    "description": "倾梦免费 API 平台，接口免费开放调用，助力开发者的项目开发进程。",
+    "tags": []
   },
   {
     "id": "5f7ad896-68b5-4613-86e6-9288893a22da",
@@ -1533,7 +1733,8 @@
     "key": "https://api.yujn.cn",
     "title": "遇见API",
     "icon": "@/assets/images/icons/遇见API.jpg",
-    "description": "遇见免费接口平台，提供多种常用公益 API 接口，供开发者免费调用。"
+    "description": "遇见免费接口平台，提供多种常用公益 API 接口，供开发者免费调用。",
+    "tags": []
   },
   {
     "id": "bfdd6364-e84c-4a6d-82fe-2517d70c72e8",
@@ -1541,7 +1742,8 @@
     "key": "https://api.suyanw.cn",
     "title": "素颜API",
     "icon": "@/assets/images/icons/素颜API.png",
-    "description": "免费数据接口调用平台，致力于提供稳定、快速的公益 API 接口服务。"
+    "description": "免费数据接口调用平台，致力于提供稳定、快速的公益 API 接口服务。",
+    "tags": []
   },
   {
     "id": "5d4c40db-7103-43e7-8c64-05f00deeb745",
@@ -1549,7 +1751,8 @@
     "key": "https://www.free-api.com",
     "title": "接口大全",
     "icon": "@/assets/images/icons/接口大全.ico",
-    "description": "免费接口大全站点，收集互联网各类免费 API 服务，做接口的搬运工。"
+    "description": "免费接口大全站点，收集互联网各类免费 API 服务，做接口的搬运工。",
+    "tags": []
   },
   {
     "id": "4f1b3d89-7315-4a71-8c8a-0826e539ef14",
@@ -1557,7 +1760,8 @@
     "key": "https://yunzhiapi.cn",
     "title": "云智API",
     "icon": "@/assets/images/icons/云智API.ico",
-    "description": "提供稳定高效的接口调用服务，涵盖人工智能、生活服务、音乐解析等接口。"
+    "description": "提供稳定高效的接口调用服务，涵盖人工智能、生活服务、音乐解析等接口。",
+    "tags": []
   },
   {
     "id": "16a867e1-9dc8-4f26-b802-c2b786ccf9c1",
@@ -1565,7 +1769,8 @@
     "key": "https://api.shanhe.kim",
     "title": "山河云API",
     "icon": "",
-    "description": "山河云免费接口平台，提供多种公益 API 数据接口，供开发者免费调用。"
+    "description": "山河云免费接口平台，提供多种公益 API 数据接口，供开发者免费调用。",
+    "tags": []
   },
   {
     "id": "45af966b-58e3-4885-b1b6-fffac462ee3c",
@@ -1573,7 +1778,8 @@
     "key": "https://api.dwo.cc",
     "title": "小渡API",
     "icon": "@/assets/images/icons/小渡API.ico",
-    "description": "免费 API 聚合平台，提供稳定高并发的数据接口，聚合多家优质资源。"
+    "description": "免费 API 聚合平台，提供稳定高并发的数据接口，聚合多家优质资源。",
+    "tags": []
   },
   {
     "id": "0d176060-4e51-429d-86d5-833ce3748e34",
@@ -1581,7 +1787,8 @@
     "key": "https://oiapi.net",
     "title": "OIAPI",
     "icon": "@/assets/images/icons/OIAPI.png",
-    "description": "提供丰富的免费 API 服务，支持即点即用、无需注册，可在线测试调用。"
+    "description": "提供丰富的免费 API 服务，支持即点即用、无需注册，可在线测试调用。",
+    "tags": []
   },
   {
     "id": "09a8a4e1-5e27-4579-a6ab-d6910bd1265f",
@@ -1589,7 +1796,8 @@
     "key": "https://xxapi.cn/api-market",
     "title": "API市场",
     "icon": "@/assets/images/icons/API市场.ico",
-    "description": "免费 API 接口市场，提供各类实用接口服务，调用快速稳定。"
+    "description": "免费 API 接口市场，提供各类实用接口服务，调用快速稳定。",
+    "tags": []
   },
   {
     "id": "ce50f5ac-d0d7-4117-a51e-cf83711183af",
@@ -1597,7 +1805,8 @@
     "key": "https://api.okcode.vip",
     "title": "OKAPI",
     "icon": "@/assets/images/icons/OKAPI.ico",
-    "description": "致力于提供安全稳定、快速便捷的免费 API 接口服务平台。"
+    "description": "致力于提供安全稳定、快速便捷的免费 API 接口服务平台。",
+    "tags": []
   },
   {
     "id": "307b091b-6f39-476a-91c8-1062662ad7e4",
@@ -1605,7 +1814,8 @@
     "key": "https://free.wqwlkj.cn",
     "title": "问情API",
     "icon": "@/assets/images/icons/问情API.ico",
-    "description": "问情网络科技出品的接口管理平台，界面美观，接口免费开放调用。"
+    "description": "问情网络科技出品的接口管理平台，界面美观，接口免费开放调用。",
+    "tags": []
   },
   {
     "id": "63be5912-30a3-4650-8697-1ddf36304300",
@@ -1613,7 +1823,8 @@
     "key": "https://api-v2.yuafeng.cn",
     "title": "枫雨API",
     "icon": "@/assets/images/icons/枫雨API.png",
-    "description": "枫雨免费接口平台，致力为用户提供稳定、快速的 API 数据接口服务。"
+    "description": "枫雨免费接口平台，致力为用户提供稳定、快速的 API 数据接口服务。",
+    "tags": []
   },
   {
     "id": "b8752a11-a716-4b1e-b83b-301c66547c14",
@@ -1621,7 +1832,8 @@
     "key": "https://api.qster.top/API",
     "title": "客源API",
     "icon": "@/assets/images/icons/客源API.png",
-    "description": "客源免费接口平台，提供丰富接口与功能，助力开发者高效完成任务。"
+    "description": "客源免费接口平台，提供丰富接口与功能，助力开发者高效完成任务。",
+    "tags": []
   },
   {
     "id": "653e3f24-1fc8-4bb1-aeff-0c87a3c7f1ee",
@@ -1629,7 +1841,8 @@
     "key": "https://api.ahfi.cn",
     "title": "优享云API",
     "icon": "@/assets/images/icons/优享云API.ico",
-    "description": "稳定高速的数据接口服务平台，兼具 AI 大模型接口，免费开放调用。"
+    "description": "稳定高速的数据接口服务平台，兼具 AI 大模型接口，免费开放调用。",
+    "tags": []
   },
   {
     "id": "7ce47e10-527a-446f-ac56-161ea2f234e9",
@@ -1637,7 +1850,8 @@
     "key": "https://apis.kit9.cn",
     "title": "API接口",
     "icon": "@/assets/images/icons/API接口.ico",
-    "description": "为站长与开发者提供免费公共接口，聚合生活服务、短视频、QQ 等相关服务。"
+    "description": "为站长与开发者提供免费公共接口，聚合生活服务、短视频、QQ 等相关服务。",
+    "tags": []
   },
   {
     "id": "ce73acbe-f3d5-46d4-b6e5-45ae78292a1b",
@@ -1645,7 +1859,8 @@
     "key": "https://www.yuanxiapi.cn",
     "title": "易连数据",
     "icon": "@/assets/images/icons/易连数据.ico",
-    "description": "原远昔API，提供稳定、快速、低价及免费的 API 数据接口调用服务。"
+    "description": "原远昔API，提供稳定、快速、低价及免费的 API 数据接口调用服务。",
+    "tags": []
   },
   {
     "id": "8d9fe503-1663-4c48-828e-613342f3847f",
@@ -1653,7 +1868,8 @@
     "key": "https://api.milorapart.top/api-list",
     "title": "MiloraAPI",
     "icon": "@/assets/images/icons/MiloraAPI.jpg",
-    "description": "米洛免费接口平台，提供接口列表与多种公益 API，供开发者调用。"
+    "description": "米洛免费接口平台，提供接口列表与多种公益 API，供开发者调用。",
+    "tags": []
   },
   {
     "id": "2403b0af-b76a-443a-a84f-11842d5b98ef",
@@ -1661,7 +1877,8 @@
     "key": "https://apis.whyta.cn",
     "title": "WhyApi",
     "icon": "@/assets/images/icons/WhyApi.png",
-    "description": "WhyApi 免费接口大全，聚合多种常用公益接口，供开发者快速接入。"
+    "description": "WhyApi 免费接口大全，聚合多种常用公益接口，供开发者快速接入。",
+    "tags": []
   },
   {
     "id": "3f845260-deb4-4082-a4fb-619e8a3e9ad2",
@@ -1669,7 +1886,8 @@
     "key": "https://tmini.net",
     "title": "Tmini",
     "icon": "@/assets/images/icons/Tmini.png",
-    "description": "聚合天气、快递物流、号码标记等免费接口，HTTPS 加密传输免密钥调试。"
+    "description": "聚合天气、快递物流、号码标记等免费接口，HTTPS 加密传输免密钥调试。",
+    "tags": []
   },
   {
     "id": "87105004-cd87-4449-afa2-f1a9a599dc62",
@@ -1677,7 +1895,8 @@
     "key": "https://www.gmya.net/api",
     "title": "故梦吖",
     "icon": "@/assets/images/icons/故梦吖.png",
-    "description": "故梦吖免费接口平台，提供多种常用公益 API，供站长与开发者调用。"
+    "description": "故梦吖免费接口平台，提供多种常用公益 API，供站长与开发者调用。",
+    "tags": []
   },
   {
     "id": "9efe9c7e-320e-4fd3-9ac9-216b33b2c1c3",
@@ -1685,7 +1904,8 @@
     "key": "https://jkapi.com",
     "title": "无铭API",
     "icon": "@/assets/images/icons/无铭API.ico",
-    "description": "免费稳定易用的接口平台，覆盖站长工具、IP 归属地、生活与图片视频接口。"
+    "description": "免费稳定易用的接口平台，覆盖站长工具、IP 归属地、生活与图片视频接口。",
+    "tags": []
   },
   {
     "id": "9d5923b1-faea-4ad5-974e-5bc755bbce4d",
@@ -1693,7 +1913,8 @@
     "key": "https://api.sumt.cn",
     "title": "SumtAPI",
     "icon": "@/assets/images/icons/SumtAPI.ico",
-    "description": "免费、稳定、快速的 API 数据接口调用服务平台，支持在线调试使用。"
+    "description": "免费、稳定、快速的 API 数据接口调用服务平台，支持在线调试使用。",
+    "tags": []
   },
   {
     "id": "301929dd-6f50-49f3-85d9-9d50ebb07beb",
@@ -1701,7 +1922,8 @@
     "key": "https://api.xiaoyu17love.top",
     "title": "小宇API",
     "icon": "@/assets/images/icons/小宇API.ico",
-    "description": "小宇免费接口平台，主打稳定、快速、易用，提供高质量公益接口。"
+    "description": "小宇免费接口平台，主打稳定、快速、易用，提供高质量公益接口。",
+    "tags": []
   },
   {
     "id": "ede69af9-b17d-4597-a541-cceae16572f7",
@@ -1709,7 +1931,8 @@
     "key": "https://a.aa.cab",
     "title": "云汐API",
     "icon": "@/assets/images/icons/云汐API.jpg",
-    "description": "云汐免费接口平台，提供多种常用公益 API，供开发者免费调用。"
+    "description": "云汐免费接口平台，提供多种常用公益 API，供开发者免费调用。",
+    "tags": []
   },
   {
     "id": "7e7786c7-11b9-443c-ae93-97e6308bcf8a",
@@ -1717,7 +1940,8 @@
     "key": "https://api.zxz.ee",
     "title": "HelloAPI",
     "icon": "@/assets/images/icons/HelloAPI.ico",
-    "description": "提供永久免费稳定的接口服务，支持开发者快速接入，稳定可靠。"
+    "description": "提供永久免费稳定的接口服务，支持开发者快速接入，稳定可靠。",
+    "tags": []
   },
   {
     "id": "4429b3df-35f7-45f3-b40b-fbe435e6c598",
@@ -1725,7 +1949,8 @@
     "key": "http://api.cmvip.cn",
     "title": "恋酱API",
     "icon": "@/assets/images/icons/恋酱API.png",
-    "description": "提供优质免费接口的站点，接口持续更新，秉持质量优先的理念运营。"
+    "description": "提供优质免费接口的站点，接口持续更新，秉持质量优先的理念运营。",
+    "tags": []
   },
   {
     "id": "eb1b01e9-9006-4d63-96b9-54c23e170cf7",
@@ -1733,7 +1958,8 @@
     "key": "https://api.makuo.cc",
     "title": "Yapi",
     "icon": "@/assets/images/icons/Yapi.ico",
-    "description": "免费数据接口调用平台，致力于提供稳定、快速的公益 API 服务。"
+    "description": "免费数据接口调用平台，致力于提供稳定、快速的公益 API 服务。",
+    "tags": []
   },
   {
     "id": "824ea74d-8a6a-44e3-9786-a5b383743f17",
@@ -1741,7 +1967,8 @@
     "key": "https://api.kuleu.com",
     "title": "聚合API",
     "icon": "@/assets/images/icons/聚合API.ico",
-    "description": "免费接口聚合平台，汇聚上千款公益 API，覆盖生活、数据、工具全品类。"
+    "description": "免费接口聚合平台，汇聚上千款公益 API，覆盖生活、数据、工具全品类。",
+    "tags": []
   },
   {
     "id": "052ae263-2fca-4bc5-97b6-9203824ad30b",
@@ -1749,7 +1976,8 @@
     "key": "https://api.71xk.com",
     "title": "星空API",
     "icon": "@/assets/images/icons/星空API.png",
-    "description": "星空免费接口平台，提供稳定可靠的公益 API 数据接口调用服务。"
+    "description": "星空免费接口平台，提供稳定可靠的公益 API 数据接口调用服务。",
+    "tags": []
   },
   {
     "id": "b56f0f64-5de9-4b6d-ae7e-46a916c38bed",
@@ -1757,7 +1985,8 @@
     "key": "https://img.xjh.me",
     "title": "岁月小筑",
     "icon": "@/assets/images/icons/岁月小筑.ico",
-    "description": "随机图片接口服务，每次访问随机返回背景图片，适合网页装饰调用。"
+    "description": "随机图片接口服务，每次访问随机返回背景图片，适合网页装饰调用。",
+    "tags": []
   },
   {
     "id": "22f539a2-5cd4-43e4-b5ed-8b666614bfdc",
@@ -1765,7 +1994,8 @@
     "key": "https://www.loliapi.com",
     "title": "LoliAPI",
     "icon": "@/assets/images/icons/LoliAPI.ico",
-    "description": "免费公益接口站点，提供多种常用 API 服务，支持开发者免费调用。"
+    "description": "免费公益接口站点，提供多种常用 API 服务，支持开发者免费调用。",
+    "tags": []
   },
   {
     "id": "76604b09-229f-4415-a7fa-21584f18ce64",
@@ -1773,7 +2003,8 @@
     "key": "http://www.guabu.com/API",
     "title": "卦卜网",
     "icon": "http://www.guabu.com/favicon.ico",
-    "description": "卦卜网免费接口页，提供银行卡归属地、星座运势、黄道吉日等查询接口。"
+    "description": "卦卜网免费接口页，提供银行卡归属地、星座运势、黄道吉日等查询接口。",
+    "tags": []
   },
   {
     "id": "25ee324e-d85f-4e7d-9e85-b891f7112361",
@@ -1781,7 +2012,8 @@
     "key": "https://api.qvqa.cn/home",
     "title": "简心API",
     "icon": "@/assets/images/icons/简心API.png",
-    "description": "安全稳定的接口服务平台，提供天气、一言、图片等多种免费接口。"
+    "description": "安全稳定的接口服务平台，提供天气、一言、图片等多种免费接口。",
+    "tags": []
   },
   {
     "id": "d9856da8-be1b-468e-a966-e643f2fda759",
@@ -1789,7 +2021,8 @@
     "key": "https://api.paugram.com",
     "title": "保罗API",
     "icon": "@/assets/images/icons/保罗API.png",
-    "description": "保罗免费接口站点，提供 GIF 表情包等趣味接口，适合聊天场景调用。"
+    "description": "保罗免费接口站点，提供 GIF 表情包等趣味接口，适合聊天场景调用。",
+    "tags": []
   },
   {
     "id": "4c837fa0-e455-470e-a7cf-a21adcf2e2ed",
@@ -1797,7 +2030,8 @@
     "key": "https://api.xfabe.com",
     "title": "小枫API",
     "icon": "@/assets/images/icons/小枫API.svg",
-    "description": "小枫公益接口平台，为开发者提供免费、稳定、快速的 Web 接口服务。"
+    "description": "小枫公益接口平台，为开发者提供免费、稳定、快速的 Web 接口服务。",
+    "tags": []
   },
   {
     "id": "455e3613-3a66-436c-994f-87dca7874fa0",
@@ -1805,7 +2039,8 @@
     "key": "https://api.zlxh.top",
     "title": "小黑API",
     "icon": "",
-    "description": "小黑免费接口平台，主打稳定、快速、易用，提供高质量公益接口。"
+    "description": "小黑免费接口平台，主打稳定、快速、易用，提供高质量公益接口。",
+    "tags": []
   },
   {
     "id": "dece6e57-e559-4ca4-a629-d8481523378a",
@@ -1813,7 +2048,8 @@
     "key": "https://api.lykep.com",
     "title": "零艺客API",
     "icon": "@/assets/images/icons/零艺客API.ico",
-    "description": "零艺客免费接口平台，致力提供稳定、快速的公益 API 数据接口服务。"
+    "description": "零艺客免费接口平台，致力提供稳定、快速的公益 API 数据接口服务。",
+    "tags": []
   },
   {
     "id": "bb202885-726d-40b5-86ea-9bfa77e27c8f",
@@ -1821,7 +2057,8 @@
     "key": "http://api.xn--yet605m.xyz",
     "title": "小鸟的API",
     "icon": "",
-    "description": "小鸟的免费接口站点，提供多种常用公益 API，供开发者免费调用。"
+    "description": "小鸟的免费接口站点，提供多种常用公益 API，供开发者免费调用。",
+    "tags": []
   },
   {
     "id": "21a0d439-5501-4693-97b8-22b272c6090c",
@@ -1829,7 +2066,8 @@
     "key": "https://api.tangdouz.com",
     "title": "糖豆子API",
     "icon": "@/assets/images/icons/糖豆子API.ico",
-    "description": "收录 200 余款免费接口，覆盖生活查询、文本、图像处理等，无需注册调用。"
+    "description": "收录 200 余款免费接口，覆盖生活查询、文本、图像处理等，无需注册调用。",
+    "tags": []
   },
   {
     "id": "9a2b4fc8-3ec0-4873-a04d-70c285787f08",
@@ -1837,7 +2075,8 @@
     "key": "https://api.ovo1.cc/apilist",
     "title": "小虫Api",
     "icon": "@/assets/images/icons/小虫Api.ico",
-    "description": "免费稳定API接口平台，提供多种数据接口与在线调试，助力开发者快速集成。"
+    "description": "免费稳定API接口平台，提供多种数据接口与在线调试，助力开发者快速集成。",
+    "tags": []
   },
   {
     "id": "78c0491c-1926-4d20-beb5-f45cfdc3d7c4",
@@ -1845,7 +2084,8 @@
     "key": "https://eternity4719.github.io/HowToLiveBetter",
     "title": "高性价比人生",
     "icon": "@/assets/images/icons/高性价比人生指南.png",
-    "description": "按性价比排序的人生指南，672 条建议覆盖长寿防病、省钱理财与防骗法律。"
+    "description": "按性价比排序的人生指南，672 条建议覆盖长寿防病、省钱理财与防骗法律。",
+    "tags": []
   },
   {
     "id": "3a3d06cf-c695-4cff-8f0a-0e0a85a87e3a",
@@ -1853,7 +2093,8 @@
     "key": "https://www.lvyenet.com",
     "title": "绿叶学习网",
     "icon": "@/assets/images/icons/绿叶学习网.png",
-    "description": "专注优质编程教程，涵盖网络与开发技术，并提供在线编译器助力边学边练。"
+    "description": "专注优质编程教程，涵盖网络与开发技术，并提供在线编译器助力边学边练。",
+    "tags": []
   },
   {
     "id": "ac671292-af8b-4ae2-ac80-0ec40ce00ff7",
@@ -1861,7 +2102,8 @@
     "key": "https://www.51zxw.net",
     "title": "我要自学网",
     "icon": "@/assets/images/icons/我要自学网.ico",
-    "description": "涵盖办公、3D、平面、影视动画等软件领域的免费视频教程自学网站。"
+    "description": "涵盖办公、3D、平面、影视动画等软件领域的免费视频教程自学网站。",
+    "tags": []
   },
   {
     "id": "88202d53-580c-4571-9b9f-3a18185d34a4",
@@ -1869,7 +2111,8 @@
     "key": "https://www.examcoo.com/index/ku",
     "title": "考试酷",
     "icon": "@/assets/images/icons/考试酷.ico",
-    "description": "永久免费的在线考试与电子作业平台，提供海量公共题库、自测练习与智能组卷服务。"
+    "description": "永久免费的在线考试与电子作业平台，提供海量公共题库、自测练习与智能组卷服务。",
+    "tags": []
   },
   {
     "id": "0a4709a7-ba6d-4293-bb08-76427ac09cb1",
@@ -1877,7 +2120,8 @@
     "key": "http://www.dzkbw.com",
     "title": "电子课本网",
     "icon": "@/assets/images/icons/电子课本网.ico",
-    "description": "提供人教、苏教、北师大等各版本中小学电子课本的在线阅读与下载导航。"
+    "description": "提供人教、苏教、北师大等各版本中小学电子课本的在线阅读与下载导航。",
+    "tags": []
   },
   {
     "id": "4c885c55-b66b-4484-8324-6e8f104b059d",
@@ -1885,7 +2129,8 @@
     "key": "https://le.ouchn.cn/home",
     "title": "终身教育平台",
     "icon": "@/assets/images/icons/终身教育平台.ico",
-    "description": "国家开放大学终身教育平台，免费提供学历教育、职业培训等海量在线课程。"
+    "description": "国家开放大学终身教育平台，免费提供学历教育、职业培训等海量在线课程。",
+    "tags": []
   },
   {
     "id": "f77e4489-3a57-45d5-b5fd-869bde293513",
@@ -1893,7 +2138,8 @@
     "key": "https://www.smartedu.cn",
     "title": "智慧教育平台",
     "icon": "@/assets/images/icons/智慧教育平台.ico",
-    "description": "国家智慧教育公共服务平台，汇聚优质课程资源，面向师生和社会学习者免费开放。"
+    "description": "国家智慧教育公共服务平台，汇聚优质课程资源，面向师生和社会学习者免费开放。",
+    "tags": []
   },
   {
     "id": "6730a4a4-a02b-4f11-8805-e29922cce0c3",
@@ -1901,7 +2147,8 @@
     "key": "https://www.icourse163.org",
     "title": "中国大学慕课",
     "icon": "assets/images/icons/中国大学慕课.png",
-    "description": "汇集名校名师的中文慕课平台，提供优质大学课程在线学习，学完可获得认证证书。"
+    "description": "汇集名校名师的中文慕课平台，提供优质大学课程在线学习，学完可获得认证证书。",
+    "tags": []
   },
   {
     "id": "51b4cdd6-4b04-4643-a7dd-565ad550d58d",
@@ -1909,7 +2156,8 @@
     "key": "https://gwy.gkzhenti.cn",
     "title": "公考真题库",
     "icon": "@/assets/images/icons/公考真题库.ico",
-    "description": "收录公务员、事业单位等考试真题，支持行测申论试卷整套在线下载打印。"
+    "description": "收录公务员、事业单位等考试真题，支持行测申论试卷整套在线下载打印。",
+    "tags": []
   },
   {
     "id": "6c05d258-294b-4c75-bddc-c3ece69c3c16",
@@ -1917,7 +2165,8 @@
     "key": "https://wenshu.court.gov.cn",
     "title": "裁判文书网",
     "icon": "@/assets/images/icons/裁判文书网.ico",
-    "description": "最高人民法院官方裁判文书公开平台，可在线检索查阅各类案件裁判文书。"
+    "description": "最高人民法院官方裁判文书公开平台，可在线检索查阅各类案件裁判文书。",
+    "tags": []
   },
   {
     "id": "ce7bbf92-ebfa-4116-b047-d03759174fcb",
@@ -1925,7 +2174,8 @@
     "key": "https://www.cnki.net",
     "title": "中国知网",
     "icon": "@/assets/images/icons/中国知网.ico",
-    "description": "提供学术期刊、学位论文、会议文献等资源的统一检索、在线阅读与下载服务。"
+    "description": "提供学术期刊、学位论文、会议文献等资源的统一检索、在线阅读与下载服务。",
+    "tags": []
   },
   {
     "id": "7b1ed38f-a9ba-47d8-b2e7-8e8a9a0b7d6b",
@@ -1933,7 +2183,8 @@
     "key": "https://zdic.net",
     "title": "汉典",
     "icon": "@/assets/images/icons/汉典.png",
-    "description": "在线汉语字典词典工具，涵盖康熙字典、说文解字、音韵方言与字源字形查询。"
+    "description": "在线汉语字典词典工具，涵盖康熙字典、说文解字、音韵方言与字源字形查询。",
+    "tags": []
   },
   {
     "id": "67301f9b-2cae-4379-a157-d6756dd7c9d9",
@@ -1941,7 +2192,8 @@
     "key": "https://www.allhistory.com",
     "title": "全历史",
     "icon": "@/assets/images/icons/全历史.ico",
-    "description": "以AI知识图谱呈现时空关联的历史人文内容，构建数字化的知识探索平台。"
+    "description": "以AI知识图谱呈现时空关联的历史人文内容，构建数字化的知识探索平台。",
+    "tags": []
   },
   {
     "id": "1da74864-b9b4-4f2e-aad2-ae9ce732a4c9",
@@ -1949,7 +2201,8 @@
     "key": "https://webapp.vizen.cn/gugong_pano/index.html",
     "title": "故宫全景",
     "icon": "@/assets/images/icons/故宫全景.ico",
-    "description": "故宫博物院全景漫游，足不出户欣赏紫禁城各大宫殿的高清全景影像。"
+    "description": "故宫博物院全景漫游，足不出户欣赏紫禁城各大宫殿的高清全景影像。",
+    "tags": []
   },
   {
     "id": "7166ec0a-0e22-4706-9c0e-6971962aca69",
@@ -1957,7 +2210,8 @@
     "key": "https://www.cbaigui.com",
     "title": "中国妖怪百科",
     "icon": "@/assets/images/icons/中国妖怪百科.jpg",
-    "description": "中国古典妖怪文献资料库，收录鬼怪、精怪、神兽等神话传说与民俗文化条目。"
+    "description": "中国古典妖怪文献资料库，收录鬼怪、精怪、神兽等神话传说与民俗文化条目。",
+    "tags": []
   },
   {
     "id": "e9b2e898-37fb-4323-a212-d7db8b4257b6",
@@ -1965,7 +2219,8 @@
     "key": "https://open.163.com",
     "title": "网易公开课",
     "icon": "@/assets/images/icons/网易公开课.ico",
-    "description": "汇聚国内外名校公开课程，覆盖科学、经济、人文等领域，免费开拓视野学习知识。"
+    "description": "汇聚国内外名校公开课程，覆盖科学、经济、人文等领域，免费开拓视野学习知识。",
+    "tags": []
   },
   {
     "id": "7756e4d9-ebe8-4342-a242-3341811c5401",
@@ -1973,7 +2228,8 @@
     "key": "https://www.shijuan1.com",
     "title": "第一试卷网",
     "icon": "@/assets/images/icons/第一试卷网.ico",
-    "description": "免费提供中小学各科试卷资源下载，涵盖单元卷、月考卷与期末期中试题。"
+    "description": "免费提供中小学各科试卷资源下载，涵盖单元卷、月考卷与期末期中试题。",
+    "tags": []
   },
   {
     "id": "8aefc37b-0744-4a10-88af-0d6d7146ca88",
@@ -1981,7 +2237,8 @@
     "key": "https://www.chinesemooc.org/index.php",
     "title": "华文慕课",
     "icon": "@/assets/images/icons/华文慕课.ico",
-    "description": "北大与阿里合办的中文慕课平台，汇集名校免费课程，文理医工等学科门类齐全。"
+    "description": "北大与阿里合办的中文慕课平台，汇集名校免费课程，文理医工等学科门类齐全。",
+    "tags": []
   },
   {
     "id": "5ca8a039-8d9f-4f32-8e29-e19de7e705a8",
@@ -1989,7 +2246,8 @@
     "key": "http://www.wordlm.com",
     "title": "Word联盟",
     "icon": "@/assets/images/icons/Word联盟.jpg",
-    "description": "专业办公软件学习平台，提供Word图文视频教程与各版本下载等资讯。"
+    "description": "专业办公软件学习平台，提供Word图文视频教程与各版本下载等资讯。",
+    "tags": []
   },
   {
     "id": "45d9daae-e488-48bf-b083-fb37da45dc6e",
@@ -1997,7 +2255,8 @@
     "key": "https://www.lanrenexcel.com",
     "title": "懒人Excel",
     "icon": "@/assets/images/icons/懒人Excel.png",
-    "description": "免费Excel教程站，涵盖函数公式、数据透视表、图表与VBA等实操技巧。"
+    "description": "免费Excel教程站，涵盖函数公式、数据透视表、图表与VBA等实操技巧。",
+    "tags": []
   },
   {
     "id": "27a9c50a-1509-4173-b522-6bcb960ee36c",
@@ -2005,7 +2264,8 @@
     "key": "https://res.wokanxing.info/jpgramma/index.html",
     "title": "日语语法指南",
     "icon": "@/assets/images/icons/日语语法指南.ico",
-    "description": "系统讲解日语语法的免费教程，覆盖基础到高级用法，助力入门者稳步进阶。"
+    "description": "系统讲解日语语法的免费教程，覆盖基础到高级用法，助力入门者稳步进阶。",
+    "tags": []
   },
   {
     "id": "edfc56d9-cbf7-4007-8a5b-45cc3a88ee23",
@@ -2013,7 +2273,8 @@
     "key": "https://csdiy.wiki",
     "title": "CS自学指南",
     "icon": "@/assets/images/icons/CS自学指南.ico",
-    "description": "开源计算机自学指南，汇总名校课程、教材与学习路线，助你系统规划自学方向。"
+    "description": "开源计算机自学指南，汇总名校课程、教材与学习路线，助你系统规划自学方向。",
+    "tags": []
   },
   {
     "id": "6b7ddb8a-a5c4-4ed6-8114-366957110bb6",
@@ -2021,7 +2282,8 @@
     "key": "https://programmercarl.com",
     "title": "代码随想录",
     "icon": "@/assets/images/icons/代码随想录.png",
-    "description": "免费开源的算法刷题指南，提供图文视频题解与面试八股，助力高效备战求职。"
+    "description": "免费开源的算法刷题指南，提供图文视频题解与面试八股，助力高效备战求职。",
+    "tags": []
   },
   {
     "id": "8480fc5b-8a1c-4fb1-80b2-b39a5814c96b",
@@ -2029,7 +2291,8 @@
     "key": "https://visualgo.net/zh",
     "title": "VisuAlgo",
     "icon": "@/assets/images/icons/VisuAlgo.png",
-    "description": "新加坡国立大学出品的数据结构与算法可视化动画教程，支持中文，可交互演示。"
+    "description": "新加坡国立大学出品的数据结构与算法可视化动画教程，支持中文，可交互演示。",
+    "tags": []
   },
   {
     "id": "79e02c2b-aa3a-4ab4-ac97-3d4a8d352f15",
@@ -2037,7 +2300,8 @@
     "key": "https://www.xuetangx.com",
     "title": "学堂在线",
     "icon": "@/assets/images/icons/学堂在线.ico",
-    "description": "清华大学发起的慕课平台，汇聚国内外名校优质课程，覆盖多学科免费在线学习。"
+    "description": "清华大学发起的慕课平台，汇聚国内外名校优质课程，覆盖多学科免费在线学习。",
+    "tags": []
   },
   {
     "id": "459e59d7-1f2e-41b0-aba5-741db1fb15c2",
@@ -2045,7 +2309,8 @@
     "key": "https://www.runoob.com",
     "title": "菜鸟教程",
     "icon": "@/assets/images/icons/菜鸟教程.png",
-    "description": "提供编程基础技术教程，涵盖主流编程语言与数据库知识，附大量在线实例演示。"
+    "description": "提供编程基础技术教程，涵盖主流编程语言与数据库知识，附大量在线实例演示。",
+    "tags": []
   },
   {
     "id": "284d3f00-9fd4-49a9-9b68-39500d2d7fea",
@@ -2053,7 +2318,8 @@
     "key": "https://www.jialidun.com",
     "title": "家里蹲大学",
     "icon": "@/assets/images/icons/家里蹲大学.ico",
-    "description": "提供公开课讲座视频的远程教育学习网站，汇聚网络课程资源，助力自主学习。"
+    "description": "提供公开课讲座视频的远程教育学习网站，汇聚网络课程资源，助力自主学习。",
+    "tags": []
   },
   {
     "id": "76897c45-77f1-4a9f-911d-8db83fd0c93a",
@@ -2061,7 +2327,8 @@
     "key": "https://xue.taobao.com",
     "title": "淘宝教育",
     "icon": "@/assets/images/icons/淘宝教育.ico",
-    "description": "淘宝旗下在线教育平台，提供电商、外语、职场技能等精品课程与名师直播教学。"
+    "description": "淘宝旗下在线教育平台，提供电商、外语、职场技能等精品课程与名师直播教学。",
+    "tags": []
   },
   {
     "id": "c6fe4330-c11d-4749-96d4-8826dd62b5c3",
@@ -2069,7 +2336,8 @@
     "key": "https://www.w3school.com.cn/index.html",
     "title": "W3School",
     "icon": "@/assets/images/icons/W3School.png",
-    "description": "Web开发在线教程站，涵盖HTML、CSS等技术，通俗易懂，实例丰富。"
+    "description": "Web开发在线教程站，涵盖HTML、CSS等技术，通俗易懂，实例丰富。",
+    "tags": []
   },
   {
     "id": "0b4db882-8ccc-4bc5-9b50-6714ed31df9f",
@@ -2077,7 +2345,8 @@
     "key": "https://www.shuxuele.com",
     "title": "数学乐",
     "icon": "@/assets/images/icons/数学乐.ico",
-    "description": "用浅显语言讲解数学知识，配互动谜题、游戏与测验，适合中小学生的数学乐园。"
+    "description": "用浅显语言讲解数学知识，配互动谜题、游戏与测验，适合中小学生的数学乐园。",
+    "tags": []
   },
   {
     "id": "fe9d4ac8-7720-4b01-83d5-a14845f29688",
@@ -2085,7 +2354,8 @@
     "key": "https://www.mfcad.com",
     "title": "沐风网",
     "icon": "@/assets/images/icons/沐风网.ico",
-    "description": "综合性图纸素材平台，提供CAD、Creo等软件的图纸下载与免费教程。"
+    "description": "综合性图纸素材平台，提供CAD、Creo等软件的图纸下载与免费教程。",
+    "tags": []
   },
   {
     "id": "2f2364da-2a98-489b-8fd7-7b7fb5b36074",
@@ -2093,7 +2363,8 @@
     "key": "https://www.chinacourt.cn/index.shtml",
     "title": "中国法院网",
     "icon": "@/assets/images/icons/中国法院网.png",
-    "description": "最高人民法院批准成立的综合性法律新闻网站，提供权威法律资讯与案件报道。"
+    "description": "最高人民法院批准成立的综合性法律新闻网站，提供权威法律资讯与案件报道。",
+    "tags": []
   },
   {
     "id": "4d73026c-7cde-41d5-b606-a6f5ee545b1b",
@@ -2101,7 +2372,8 @@
     "key": "https://www.eol.cn",
     "title": "中国教育在线",
     "icon": "@/assets/images/icons/中国教育在线.ico",
-    "description": "教育资讯门户，对接国内外数千所高校，发布权威招考、就业等教育信息。"
+    "description": "教育资讯门户，对接国内外数千所高校，发布权威招考、就业等教育信息。",
+    "tags": []
   },
   {
     "id": "00e9aafe-26d2-4a0a-8e6e-c8e6eda26300",
@@ -2109,7 +2381,8 @@
     "key": "https://www.neea.edu.cn",
     "title": "教育考试网",
     "icon": "@/assets/images/icons/教育考试网.ico",
-    "description": "教育部教育考试院官网，承办四六级、教师资格等考试报名与成绩查询服务。"
+    "description": "教育部教育考试院官网，承办四六级、教师资格等考试报名与成绩查询服务。",
+    "tags": []
   },
   {
     "id": "f3c8b4b4-c815-47f9-8e63-91778c52a2b4",
@@ -2117,7 +2390,8 @@
     "key": "https://www.shuge.org",
     "title": "书格",
     "icon": "@/assets/images/icons/书格.png",
-    "description": "开放免费的数字古籍图书馆，分享高清中国古典文化艺术影像，感受传统之美。"
+    "description": "开放免费的数字古籍图书馆，分享高清中国古典文化艺术影像，感受传统之美。",
+    "tags": []
   },
   {
     "id": "d52dfcb5-8e13-40ae-9a2d-0c48f9643156",
@@ -2125,7 +2399,8 @@
     "key": "https://www.mvyxws.cn",
     "title": "医学微视",
     "icon": "@/assets/images/icons/医学微视.ico",
-    "description": "中国医学科普微视频百科全书，以短视频讲解疾病防治与健康知识，通俗易懂。"
+    "description": "中国医学科普微视频百科全书，以短视频讲解疾病防治与健康知识，通俗易懂。",
+    "tags": []
   },
   {
     "id": "f1f0d57d-2b8b-4449-96d1-4dd62d9a6194",
@@ -2133,7 +2408,8 @@
     "key": "https://zh.wikihow.com",
     "title": "wikiHow",
     "icon": "@/assets/images/icons/wikiHow.png",
-    "description": "协作式生活指南百科，提供各领域免费的逐步指导，万事问题都能找到方法。"
+    "description": "协作式生活指南百科，提供各领域免费的逐步指导，万事问题都能找到方法。",
+    "tags": []
   },
   {
     "id": "9418c836-8a6b-4d15-adc2-cd87d6442f8e",
@@ -2141,7 +2417,8 @@
     "key": "https://reader.jojokanbao.cn",
     "title": "JOJO看报",
     "icon": "@/assets/images/icons/JOJO看报.png",
-    "description": "在线看报工具，聚合各类报纸资源，手机端可便捷浏览，随时畅享读报体验。"
+    "description": "在线看报工具，聚合各类报纸资源，手机端可便捷浏览，随时畅享读报体验。",
+    "tags": []
   },
   {
     "id": "9e65f08a-de01-42e0-a5fd-dc8c4ecd5aae",
@@ -2149,7 +2426,8 @@
     "key": "http://www.ngotcmszh.com",
     "title": "民间中医网",
     "icon": "@/assets/images/icons/民间中医网.png",
-    "description": "民间中医交流论坛，涵盖经典研习、经方方药、针灸推拿与养生保健等板块。"
+    "description": "民间中医交流论坛，涵盖经典研习、经方方药、针灸推拿与养生保健等板块。",
+    "tags": []
   },
   {
     "id": "88ad6661-cd55-40ef-b4ea-8e658508c2eb",
@@ -2157,7 +2435,8 @@
     "key": "http://www.qihuang.net.cn",
     "title": "岐黄书院",
     "icon": "@/assets/images/icons/岐黄书院.ico",
-    "description": "以中医为主题的阅读交流空间，提供图书借阅、技法推广与中医文化体验。"
+    "description": "以中医为主题的阅读交流空间，提供图书借阅、技法推广与中医文化体验。",
+    "tags": []
   },
   {
     "id": "511a55dc-2714-45d9-84d5-fd9ad1e07711",
@@ -2165,7 +2444,8 @@
     "key": "https://wapp.nishi001.com/forum.php",
     "title": "倪师之家",
     "icon": "@/assets/images/icons/倪师之家.ico",
-    "description": "学习倪海厦学术思想的中医社区，提供医案资源、文章专栏与自学交流板块。"
+    "description": "学习倪海厦学术思想的中医社区，提供医案资源、文章专栏与自学交流板块。",
+    "tags": []
   },
   {
     "id": "a2a0db87-dcb2-4787-91cb-282aefeda727",
@@ -2173,7 +2453,8 @@
     "key": "https://www.zt8.cn",
     "title": "字帖吧",
     "icon": "@/assets/images/icons/字帖吧.ico",
-    "description": "免费在线生成汉字、拼音、字母与数字等字帖，输入内容即可实时预览打印。"
+    "description": "免费在线生成汉字、拼音、字母与数字等字帖，输入内容即可实时预览打印。",
+    "tags": []
   },
   {
     "id": "69ab0dc0-591d-4913-9d14-53acb746ea8e",
@@ -2181,7 +2462,8 @@
     "key": "https://pic.netbian.com",
     "title": "彼岸图网",
     "icon": "assets/images/icons/彼岸图网.ico",
-    "description": "彼岸图网，4K 高清壁纸下载站，涵盖风景、动漫、游戏等海量分类，每日更新。"
+    "description": "彼岸图网，4K 高清壁纸下载站，涵盖风景、动漫、游戏等海量分类，每日更新。",
+    "tags": []
   },
   {
     "id": "b1e67e1d-0497-4038-94ec-7c0e09d3f34f",
@@ -2189,7 +2471,8 @@
     "key": "https://gallery.timeline.ink",
     "title": "拾光壁纸",
     "icon": "@/assets/images/icons/拾光壁纸.ico",
-    "description": "拾光壁纸，精选高质量壁纸在线预览与下载，界面清爽，分类丰富。"
+    "description": "拾光壁纸，精选高质量壁纸在线预览与下载，界面清爽，分类丰富。",
+    "tags": []
   },
   {
     "id": "a9320d83-c7af-48f1-893c-9f482ad9c0d1",
@@ -2197,7 +2480,8 @@
     "key": "https://wallpaperscraft.com",
     "title": "桌面壁纸",
     "icon": "@/assets/images/icons/桌面壁纸.ico",
-    "description": "海外高清桌面壁纸站，收录近十万张壁纸，支持按分辨率适配电脑与手机下载。"
+    "description": "海外高清桌面壁纸站，收录近十万张壁纸，支持按分辨率适配电脑与手机下载。",
+    "tags": []
   },
   {
     "id": "8bab822c-db9d-435d-b73f-2323447b5467",
@@ -2205,7 +2489,8 @@
     "key": "https://wallroom.io",
     "title": "Wallroom",
     "icon": "@/assets/images/icons/Wallroom.ico",
-    "description": "极简风格壁纸站，提供 4K 高清桌面与手机壁纸，按分辨率筛选，免费下载。"
+    "description": "极简风格壁纸站，提供 4K 高清桌面与手机壁纸，按分辨率筛选，免费下载。",
+    "tags": []
   },
   {
     "id": "ed5b455d-2f95-4cf2-b8a9-11071d1d5dd1",
@@ -2213,7 +2498,8 @@
     "key": "https://wallhaven.clbug.com",
     "title": "Wallhaven",
     "icon": "@/assets/images/icons/Wallhaven.ico",
-    "description": "海外精选壁纸站 Wallhaven 镜像，动漫、风景等海量高清壁纸，支持分类检索。"
+    "description": "海外精选壁纸站 Wallhaven 镜像，动漫、风景等海量高清壁纸，支持分类检索。",
+    "tags": []
   },
   {
     "id": "a98ef233-41c2-4825-9bc9-205487921517",
@@ -2221,7 +2507,8 @@
     "key": "https://bizhi.wpcoder.cn",
     "title": "全面屏壁纸",
     "icon": "@/assets/images/icons/全面屏壁纸.ico",
-    "description": "专为全面屏手机适配的免费超清壁纸站，兼容安卓 iOS，涵盖 4K 与曲面屏机型壁纸。"
+    "description": "专为全面屏手机适配的免费超清壁纸站，兼容安卓 iOS，涵盖 4K 与曲面屏机型壁纸。",
+    "tags": []
   },
   {
     "id": "6322b5cd-08da-4a3e-aa01-0a567fc8c094",
@@ -2229,7 +2516,8 @@
     "key": "https://www.yeitu.com",
     "title": "亿图全景图库",
     "icon": "@/assets/images/icons/亿图全景图库.ico",
-    "description": "亿图全景图库，提供电脑手机壁纸、动漫摄影、头像表情等图片分享与免费下载。"
+    "description": "亿图全景图库，提供电脑手机壁纸、动漫摄影、头像表情等图片分享与免费下载。",
+    "tags": []
   },
   {
     "id": "4df06821-c39a-448a-bcae-d39bbb8e7cff",
@@ -2237,7 +2525,8 @@
     "key": "https://www.bizhi66.com",
     "title": "壁纸爱好者",
     "icon": "@/assets/images/icons/壁纸爱好者.ico",
-    "description": "壁纸爱好者，4K 高清壁纸下载站，涵盖游戏动漫卡通等分类，每日更新精选壁纸。"
+    "description": "壁纸爱好者，4K 高清壁纸下载站，涵盖游戏动漫卡通等分类，每日更新精选壁纸。",
+    "tags": []
   },
   {
     "id": "ac0aeec9-5aac-40e1-90c5-ceb314704b0f",
@@ -2245,7 +2534,8 @@
     "key": "https://haowallpaper.com",
     "title": "哲风壁纸",
     "icon": "@/assets/images/icons/哲风壁纸.ico",
-    "description": "哲风壁纸，提供 4K 至 8K 高清桌面与手机壁纸，支持图搜、裁剪等特色功能，免费下载。"
+    "description": "哲风壁纸，提供 4K 至 8K 高清桌面与手机壁纸，支持图搜、裁剪等特色功能，免费下载。",
+    "tags": []
   },
   {
     "id": "a1c07b3e-0dcb-47b3-8acd-3199a990265b",
@@ -2253,7 +2543,8 @@
     "key": "https://hdqwalls.com",
     "title": "HDQWalls",
     "icon": "@/assets/images/icons/HDQWalls.ico",
-    "description": "高清壁纸资源站，提供 4K 至 8K 桌面、手机与宽屏壁纸下载，画质精选，更新及时。"
+    "description": "高清壁纸资源站，提供 4K 至 8K 桌面、手机与宽屏壁纸下载，画质精选，更新及时。",
+    "tags": []
   },
   {
     "id": "da1282ad-0760-41e8-885a-347df3c676ba",
@@ -2261,7 +2552,8 @@
     "key": "https://10wallpaper.com",
     "title": "10wallpaper",
     "icon": "@/assets/images/icons/10wallpaper.ico",
-    "description": "海外高清壁纸站，提供 4K、5K 桌面与移动端壁纸，支持多分辨率免费下载。"
+    "description": "海外高清壁纸站，提供 4K、5K 桌面与移动端壁纸，支持多分辨率免费下载。",
+    "tags": []
   },
   {
     "id": "a6526e70-151f-4336-9cc4-0cc9ef6f6df0",
@@ -2269,7 +2561,8 @@
     "key": "https://desk.3gbizhi.com",
     "title": "3G壁纸",
     "icon": "@/assets/images/icons/3G壁纸.ico",
-    "description": "3G壁纸桌面频道，提供高清电脑壁纸与 4K 桌面图片，涵盖风景、动漫、游戏主题。"
+    "description": "3G壁纸桌面频道，提供高清电脑壁纸与 4K 桌面图片，涵盖风景、动漫、游戏主题。",
+    "tags": []
   },
   {
     "id": "705e1239-21f1-499b-9e47-10044296ab2c",
@@ -2277,7 +2570,8 @@
     "key": "https://wallhere.com",
     "title": "WallHere",
     "icon": "assets/images/icons/Wallhere.png",
-    "description": "免费下载超 173 万张高清桌面壁纸，世界知名的壁纸库，支持多语言与搜索。"
+    "description": "免费下载超 173 万张高清桌面壁纸，世界知名的壁纸库，支持多语言与搜索。",
+    "tags": []
   },
   {
     "id": "0b02aeee-f2e0-483d-b7b3-f6e15a7b924d",
@@ -2285,7 +2579,8 @@
     "key": "https://www.pandadiu.com",
     "title": "Cosplay联盟",
     "icon": "@/assets/images/icons/Cosplay联盟.png",
-    "description": "Cosplay 资源分享站，非商业运营，实时收录优秀作品与热门讯息，传递快乐。"
+    "description": "Cosplay 资源分享站，非商业运营，实时收录优秀作品与热门讯息，传递快乐。",
+    "tags": []
   },
   {
     "id": "62601c27-8f22-4e79-afb5-83ba0460943d",
@@ -2293,7 +2588,8 @@
     "key": "https://www.bizhihui.com",
     "title": "壁纸汇",
     "icon": "@/assets/images/icons/壁纸汇.ico",
-    "description": "壁纸汇，免费提供手机、动漫、电脑等 4K 高清壁纸下载，支持多尺寸自定义。"
+    "description": "壁纸汇，免费提供手机、动漫、电脑等 4K 高清壁纸下载，支持多尺寸自定义。",
+    "tags": []
   },
   {
     "id": "6f8b5b1e-294b-4917-b2d7-0429d8cfa7ca",
@@ -2301,7 +2597,8 @@
     "key": "https://www.gamewallpapers.com",
     "title": "游戏主题壁纸",
     "icon": "@/assets/images/icons/游戏主题壁纸.png",
-    "description": "游戏主题壁纸站，提供 Xbox、PS 等平台游戏高清壁纸，支持 1080p 至 4K。"
+    "description": "游戏主题壁纸站，提供 Xbox、PS 等平台游戏高清壁纸，支持 1080p 至 4K。",
+    "tags": []
   },
   {
     "id": "9b2a08b4-e3b5-4a7d-863f-1bcb1e45e743",
@@ -2309,7 +2606,8 @@
     "key": "https://www.wallpaperhub.app",
     "title": "WallpaperHub",
     "icon": "@/assets/images/icons/WallpaperHub.ico",
-    "description": "海外免费壁纸站，提供 Surface 官方壁纸与 Bing 每日图，支持 4K 下载。"
+    "description": "海外免费壁纸站，提供 Surface 官方壁纸与 Bing 每日图，支持 4K 下载。",
+    "tags": []
   },
   {
     "id": "f503ab50-ddd3-4e7b-bb4b-c9836eb3bb34",
@@ -2317,7 +2615,8 @@
     "key": "https://bing.ioliu.cn",
     "title": "必应壁纸",
     "icon": "@/assets/images/icons/必应壁纸.png",
-    "description": "必应每日壁纸聚合站，纵览全球各地区精选壁纸，支持按日期浏览下载。"
+    "description": "必应每日壁纸聚合站，纵览全球各地区精选壁纸，支持按日期浏览下载。",
+    "tags": []
   },
   {
     "id": "3c36a0f0-fd7d-477f-8485-eae9d2f37bf1",
@@ -2325,7 +2624,8 @@
     "key": "https://www.wallcoo.com",
     "title": "猫猫壁纸酷",
     "icon": "@/assets/images/icons/猫猫壁纸酷.png",
-    "description": "猫猫壁纸酷，分享高清壁纸与摄影设计素材，分类丰富，作品免费下载使用。"
+    "description": "猫猫壁纸酷，分享高清壁纸与摄影设计素材，分类丰富，作品免费下载使用。",
+    "tags": []
   },
   {
     "id": "34fd0ad4-6dbe-4d50-b1c9-82ab8f61c50f",
@@ -2333,7 +2633,8 @@
     "key": "http://www.win4000.com",
     "title": "美桌网",
     "icon": "@/assets/images/icons/美桌网.jpg",
-    "description": "美桌网，提供电脑手机高清壁纸下载，分类丰富，支持按分辨率匹配适配桌面。"
+    "description": "美桌网，提供电脑手机高清壁纸下载，分类丰富，支持按分辨率匹配适配桌面。",
+    "tags": []
   },
   {
     "id": "79fe02e5-7d09-47d5-8c5f-47b98581d949",
@@ -2341,7 +2642,8 @@
     "key": "https://simpledesktops.com",
     "title": "简约壁纸",
     "icon": "@/assets/images/icons/简约壁纸.ico",
-    "description": "极简风格壁纸站，专注低干扰桌面美化，支持用户投稿，另提供多平台客户端。"
+    "description": "极简风格壁纸站，专注低干扰桌面美化，支持用户投稿，另提供多平台客户端。",
+    "tags": []
   },
   {
     "id": "f4165c0c-1ee3-458f-8678-0d5897922984",
@@ -2349,7 +2651,8 @@
     "key": "https://qingbizhi.com",
     "title": "极简壁纸",
     "icon": "@/assets/images/icons/极简壁纸.jpg",
-    "description": "极简壁纸，提供 4K 至 8K 超高清无水印壁纸，涵盖自然动漫游戏等分类，免费下载。"
+    "description": "极简壁纸，提供 4K 至 8K 超高清无水印壁纸，涵盖自然动漫游戏等分类，免费下载。",
+    "tags": []
   },
   {
     "id": "0b12ee40-55e6-4d62-95a3-bbf362149667",
@@ -2357,7 +2660,8 @@
     "key": "https://www.4kbizhi.com",
     "title": "千月壁纸",
     "icon": "@/assets/images/icons/千月壁纸.ico",
-    "description": "千月壁纸，提供 4K 高清手机电脑壁纸，涵盖游戏、动漫、风景、影视等分类。"
+    "description": "千月壁纸，提供 4K 高清手机电脑壁纸，涵盖游戏、动漫、风景、影视等分类。",
+    "tags": []
   },
   {
     "id": "f664c737-654c-47e9-91a5-e7c436ac13db",
@@ -2365,7 +2669,8 @@
     "key": "https://www.jj20.com",
     "title": "娟娟壁纸",
     "icon": "@/assets/images/icons/娟娟壁纸.png",
-    "description": "娟娟壁纸，提供风景、美女、汽车、游戏、动漫等高清桌面壁纸在线欣赏与下载。"
+    "description": "娟娟壁纸，提供风景、美女、汽车、游戏、动漫等高清桌面壁纸在线欣赏与下载。",
+    "tags": []
   },
   {
     "id": "0de14674-3c1d-43ff-8d60-113a99caf867",
@@ -2373,7 +2678,8 @@
     "key": "https://bizihu.com",
     "title": "壁纸湖",
     "icon": "@/assets/images/icons/壁纸湖.png",
-    "description": "壁纸湖，为壁纸控挖掘宝藏手机壁纸，采集优质壁纸，实时跟进最新潮流壁纸。"
+    "description": "壁纸湖，为壁纸控挖掘宝藏手机壁纸，采集优质壁纸，实时跟进最新潮流壁纸。",
+    "tags": []
   },
   {
     "id": "7a2676b6-4dca-43e5-9f41-14c8bec39d43",
@@ -2381,7 +2687,8 @@
     "key": "https://www.haokanziyuan.com",
     "title": "好看资源",
     "icon": "@/assets/images/icons/好看资源.jpg",
-    "description": "好看资源，摄影图片大全，汇集街拍写真套图资源，支持在线浏览与付费下载。"
+    "description": "好看资源，摄影图片大全，汇集街拍写真套图资源，支持在线浏览与付费下载。",
+    "tags": []
   },
   {
     "id": "2f643e97-bf96-4f99-81be-a801b33f86b8",
@@ -2389,6 +2696,7 @@
     "key": "https://www.fulizu.com",
     "title": "图集秀",
     "icon": "@/assets/images/icons/图集秀.png",
-    "description": "图集秀，汇集秀人网系列模特写真套图，涵盖微密圈与 Cosplay 作品，在线欣赏。"
+    "description": "图集秀，汇集秀人网系列模特写真套图，涵盖微密圈与 Cosplay 作品，在线欣赏。",
+    "tags": []
   }
 ]
