@@ -44,7 +44,7 @@
 
     <!-- 卡片区：按收藏集合顺序排布收藏的站点条目；长按卡片可拖拽调整收藏顺序 -->
     <div class="site-section">
-      <div ref="cardGridRef" class="card-grid" @click.capture="handleGridCaptureClick">
+      <div ref="cardGridRef" class="card-grid" :class="{ 'is-drag-sorting': isDragSorting }" @click.capture="handleGridCaptureClick">
         <!-- 站点收藏卡片：外链直开，站内条目跳转所属分类详情页 -->
         <template v-for="favorite in favoriteEntries" :key="favorite.item.key">
           <LinkCard v-if="isExternal(favorite.item.key)" :item="favorite.item" plain-link long-press-disabled />
@@ -212,6 +212,9 @@ const cardGridRef = ref<HTMLDivElement | null>(null)
 /** 长按拖拽排序实例 */
 let sortable: Sortable | null = null
 
+/** 是否处于拖拽排序中：驱动网格抓取光标与被拖卡片的浮起视觉 */
+const isDragSorting = ref(false)
+
 /** 拖拽结束后待拦截的 click 标记：排序或唤起面板后避免误触发卡片跳转 */
 let suppressGridClick = false
 
@@ -237,12 +240,14 @@ function handleDragPointerMove(event: PointerEvent): void {
 }
 
 /**
- * 长按触发拖拽开始：重置位移基准并标记拦截拖拽结束后的 click
+ * 拖拽开始：重置位移基准并进入拖拽态
+ *
+ * click 拦截不在此处标记：桌面端按下即拖，原地点击也会走一次拖拽生命周期，须等确认位移或换位后再拦截
  */
 function handleDragStart(): void {
   dragPointerMoved = false
   dragBase = null
-  suppressGridClick = true
+  isDragSorting.value = true
   document.addEventListener('pointermove', handleDragPointerMove, true)
 }
 
@@ -253,9 +258,12 @@ function handleDragStart(): void {
  */
 function handleDragEnd(event: Sortable.SortableEvent): void {
   document.removeEventListener('pointermove', handleDragPointerMove, true)
+  isDragSorting.value = false
   const { item, from } = event
   const { oldIndex, newIndex } = event
   if (oldIndex === undefined || newIndex === undefined) return
+  /** 是否需要拦截紧随的 click：换位、拖拽中位移过或唤起了操作面板 */
+  let suppressClick = false
   if (oldIndex !== newIndex) {
     // 先按锚点还原被 Sortable 移动的节点，避免外部 DOM 变更与 Vue diff 冲突；真实顺序由收藏集合状态驱动
     from.removeChild(item)
@@ -263,12 +271,19 @@ function handleDragEnd(event: Sortable.SortableEvent): void {
     if (reference) from.insertBefore(item, reference)
     else from.appendChild(item)
     reorderFavorite(oldIndex, newIndex)
+    suppressClick = true
   } else if (!dragPointerMoved && appStore.isMobile) {
     openFavoritePanel(oldIndex)
+    suppressClick = true
+  } else if (dragPointerMoved) {
+    suppressClick = true
   }
-  window.setTimeout(() => {
-    suppressGridClick = false
-  }, 120)
+  if (suppressClick) {
+    suppressGridClick = true
+    window.setTimeout(() => {
+      suppressGridClick = false
+    }, 120)
+  }
 }
 
 /**
@@ -322,14 +337,14 @@ onMounted(refreshSiteCaches)
 
 onActivated(refreshSiteCaches)
 
-/** 挂载长按拖拽排序：延迟按压替代原生拖拽，桌面与移动端统一长按 450ms 后进入拖拽态 */
+/** 挂载长按拖拽排序：触屏长按 450ms 进入拖拽态（与长按面板时长一致），桌面端鼠标按下即拖、无需等待 */
 onMounted(() => {
   if (!cardGridRef.value) return
   sortable = new Sortable(cardGridRef.value, {
     animation: 150,
     forceFallback: true,
     delay: DRAG_PRESS_DELAY,
-    delayOnTouchOnly: false,
+    delayOnTouchOnly: true,
     touchStartThreshold: DRAG_MOVE_THRESHOLD,
     ghostClass: 'drag-ghost',
     chosenClass: 'drag-chosen',
@@ -451,11 +466,29 @@ onBeforeUnmount(() => document.removeEventListener('click', handleDocumentClick)
   gap: 8px;
 }
 
-/* 长按拖拽：被拖卡片自身即「浮起卡」，抬起阴影、压在其余卡片之上，原位不留空槽、不留半透明残影 */
+/* 拖拽排序中：网格整体呈抓取光标，明确告知正在拖拽 */
+.card-grid.is-drag-sorting {
+  cursor: grabbing;
+
+  &:deep(.link-card) {
+    cursor: grabbing;
+  }
+}
+
+/* 长按按压中（触屏延迟期）：被选卡片轻微抬起预告即将拖拽 */
+.card-grid:deep(.link-card.drag-chosen) {
+  transform: scale(1.02);
+  box-shadow: var(--el-box-shadow-light);
+}
+
+/* 长按拖拽：被拖卡片自身即「浮起卡」，抬起放大、主色描边、压在其余卡片之上，原位不留空槽、不留半透明残影 */
 .card-grid:deep(.link-card.drag-ghost) {
   position: relative;
   z-index: 2;
+  transform: scale(1.03);
   box-shadow: var(--el-box-shadow-dark);
+  outline: 2px solid var(--el-color-primary-light-5);
+  outline-offset: -1px;
 }
 
 /* 长按拖拽：隐去 Sortable 跟随指针的浮起克隆，改由卡片本身在槽位间滑动补位，与手机桌面图标拖拽一致；
