@@ -102,8 +102,11 @@ const offWorkTarget = computed(() => todayAt(offWorkTime.value))
 /** 距离下班的剩余秒数，已下班时归零 */
 const remainingSeconds = computed(() => Math.max(offWorkTarget.value.diff(now.value, 'second'), 0))
 
-/** 已下班或周末时不展示有效倒计时 */
-const isCounting = computed(() => !isWeekend.value && remainingSeconds.value > 0)
+/** 今天是否还未到上班时间（非周末且当前时刻早于上班时刻） */
+const isNotStarted = computed(() => !isWeekend.value && now.value.isBefore(workStart.value))
+
+/** 未上班、已下班或周末时不展示有效倒计时 */
+const isCounting = computed(() => !isWeekend.value && !isNotStarted.value && remainingSeconds.value > 0)
 
 /** 倒计时展示串：剩余秒数格式化为 HH:MM:SS，非倒计时状态展示占位 */
 const countdown = computed(() => {
@@ -116,6 +119,7 @@ const countdown = computed(() => {
 /** 状态提示文案 */
 const statusText = computed(() => {
   if (isWeekend.value) return '今天不上班，好好休息'
+  if (isNotStarted.value) return '还没到上班时间，好好休息'
   if (!isCounting.value) return '已下班，注意休息'
   return '距离下班还有'
 })
