@@ -1200,6 +1200,14 @@
     "description": "随机模拟双色球与大乐透号码，支持自定义组数与摇号动画，仅供娱乐。"
   },
   {
+    "id": "5e2f8a41-9c3b-4d7e-b1a6-8f0c2d4e6a9b",
+    "categoryId": "9ee39df2-1307-47a5-849a-0e8e9d552e4e",
+    "key": "OffWorkCountdown",
+    "title": "下班倒计时",
+    "icon": "@/assets/images/icons/下班倒计时.svg",
+    "description": "实时显示距离下班的剩余时间，支持自定义下班时间与本地记忆设置。"
+  },
+  {
     "id": "c5f14c3c-ea5f-46ca-b50a-260d165b8a20",
     "categoryId": "9ee39df2-1307-47a5-849a-0e8e9d552e4e",
     "key": "https://www.5adanci.com",
