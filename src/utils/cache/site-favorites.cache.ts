@@ -32,24 +32,3 @@ export function setSiteFavorites(keys: string[]): void {
     // 缓存层容错：写入失败不影响页面交互
   }
 }
-
-/**
- * 裁剪收藏站点键列表：移除合法键集合之外的残留条目
- *
- * 用于站点从数据文件中移除后清理其残留收藏，避免脏键永久占用存储；
- * 合法键为空时视为异常入参，静默跳过不裁剪；任何异常均吞掉不抛出。
- *
- * @param validKeys 合法站点键集合（即当前数据文件中存在的站点键）
- */
-export function pruneSiteFavorites(validKeys: string[]): void {
-  try {
-    if (!Array.isArray(validKeys) || !validKeys.length) return
-    const validSet = new Set(validKeys)
-    const keys = getSiteFavorites()
-    const nextKeys = keys.filter((key) => validSet.has(key))
-    if (nextKeys.length === keys.length) return
-    setSiteFavorites(nextKeys)
-  } catch {
-    // 缓存层容错：清理失败不影响正常读取与展示
-  }
-}

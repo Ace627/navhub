@@ -55,6 +55,27 @@ export function useSiteFavorites() {
   }
 
   /**
+   * 裁剪收藏集合：移除合法键之外的残留条目并同步写回本地缓存
+   *
+   * 与存储层裁剪不同，本方法直接作用于内存中的响应式集合；幽灵键若不同步剔除，
+   * 收藏顺序会与展示卡片错位，拖拽排序等按下标换序的功能会错位换卡。
+   *
+   * @param validKeys 合法站点键集合（即当前数据文件中存在的站点键），为空时视为异常入参直接跳过
+   */
+  function pruneFavorites(validKeys: string[]): void {
+    if (!Array.isArray(validKeys) || !validKeys.length) return
+    const validSet = new Set(validKeys)
+    let changed = false
+    for (const key of [...favorites]) {
+      if (!validSet.has(key)) {
+        favorites.delete(key)
+        changed = true
+      }
+    }
+    if (changed) persist()
+  }
+
+  /**
    * 将收藏条目从原位置移动到目标位置，并同步写回本地缓存
    *
    * 集合整体清空后按新顺序回填，保证迭代顺序即展示顺序；下标非法或位置未变化时直接返回。
@@ -75,5 +96,5 @@ export function useSiteFavorites() {
     return true
   }
 
-  return { favorites, isFavorite, toggleFavorite, reorderFavorite }
+  return { favorites, isFavorite, toggleFavorite, reorderFavorite, pruneFavorites }
 }

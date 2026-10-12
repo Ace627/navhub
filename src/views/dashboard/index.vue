@@ -44,7 +44,7 @@
 
     <!-- 卡片区：按收藏集合顺序排布收藏的站点条目；长按卡片可拖拽调整收藏顺序 -->
     <div class="site-section">
-      <div ref="cardGridRef" class="card-grid" :class="{ 'is-drag-sorting': isDragSorting }" @click.capture="handleGridCaptureClick">
+      <div ref="cardGridRef" class="card-grid" :class="{ 'is-drag-sorting': isDragSorting }" @click.capture="handleGridCaptureClick" @dragstart.prevent>
         <!-- 站点收藏卡片：外链直开，站内条目跳转所属分类详情页 -->
         <template v-for="favorite in favoriteEntries" :key="favorite.item.key">
           <LinkCard v-if="isExternal(favorite.item.key)" :item="favorite.item" plain-link long-press-disabled />
@@ -71,7 +71,7 @@
 defineOptions({ name: RouterConstant.HOME_PAGE_NAME })
 import { RouterConstant } from '@/router/router.constant'
 import Sortable from 'sortablejs'
-import { isExternal, pruneSiteFavorites } from '@/utils'
+import { isExternal } from '@/utils'
 import { useAppStore } from '@/store/modules/app'
 import { useSettingStore } from '@/store/modules/setting'
 import { useSiteFavorites } from '@/hooks/useSiteFavorites'
@@ -126,10 +126,10 @@ const settingStore = useSettingStore()
 const SITE_INDEX = useSiteIndex()
 
 /** 长按操作面板共享状态：移动端长按卡片原地松手时唤起对应条目的操作面板 */
-const { openLinkActions } = useLinkActions()
+const { openLinkActions, closeLinkActions, closeLinkMenu } = useLinkActions()
 
 /** 收藏共享状态：首页收藏区随收藏变化实时联动，长按拖拽结束时按新位置写回收藏集合 */
-const { favorites, reorderFavorite } = useSiteFavorites()
+const { favorites, reorderFavorite, pruneFavorites } = useSiteFavorites()
 
 /** 收藏站点条目列表：收藏集合顺序映射全站索引，剔除已下架条目 */
 const favoriteEntries = computed<SiteEntry[]>(() => [...favorites].flatMap((key) => (SITE_INDEX[key] ? [SITE_INDEX[key]] : [])))
@@ -224,12 +224,19 @@ let dragPointerMoved = false
 /** 拖拽指针位移基准坐标 */
 let dragBase: { x: number; y: number } | null = null
 
+/** 拖拽期间指针的最新坐标（视口坐标） */
+let dragLastPoint: { x: number; y: number } | null = null
+
+/** 拖拽开始时刻各卡片槽位的矩形（相对网格容器坐标）：拖拽中卡片会滑动补位，槽位本身不动，可作为落点判定基准 */
+let dragSlotRects: { x: number; y: number; width: number; height: number }[] = []
+
 /**
- * 拖拽期间指针移动捕获回调：累计位移超出阈值即判定为拖拽意图，松手后走排序而非面板
+ * 拖拽期间指针移动捕获回调：记录最新坐标；累计位移超出阈值即判定为拖拽意图，松手后走排序而非面板
  *
  * @param event 指针移动事件对象
  */
 function handleDragPointerMove(event: PointerEvent): void {
+  dragLastPoint = { x: event.clientX, y: event.clientY }
   if (!dragBase) {
     dragBase = { x: event.clientX, y: event.clientY }
     return
@@ -240,15 +247,60 @@ function handleDragPointerMove(event: PointerEvent): void {
 }
 
 /**
- * 拖拽开始：重置位移基准并进入拖拽态
+ * 拖拽开始：记录槽位布局基准并进入拖拽态
  *
  * click 拦截不在此处标记：桌面端按下即拖，原地点击也会走一次拖拽生命周期，须等确认位移或换位后再拦截
  */
 function handleDragStart(): void {
   dragPointerMoved = false
   dragBase = null
+  dragLastPoint = null
+  // 右键菜单与长按面板依赖 click 收起，而拖拽期间 click 会被吞掉，进入拖拽态时主动关闭
+  closeLinkMenu()
+  closeLinkActions()
+  const grid = cardGridRef.value
+  if (grid) {
+    const gridRect = grid.getBoundingClientRect()
+    dragSlotRects = Array.from(grid.children)
+      .filter((el): el is HTMLElement => el instanceof HTMLElement && !el.classList.contains('drag-floating'))
+      .map((el) => {
+        const rect = el.getBoundingClientRect()
+        return { x: rect.left - gridRect.left, y: rect.top - gridRect.top, width: rect.width, height: rect.height }
+      })
+  }
   isDragSorting.value = true
   document.addEventListener('pointermove', handleDragPointerMove, true)
+}
+
+/**
+ * 按指针最终落点判定目标槽位下标
+ *
+ * Sortable 依赖拖拽途中的 hover 换位，快速拖拽松手时最后一次换位往往滞后于指针，
+ * 得到的 newIndex 会偏小（表现为拖到第 n 个却落在靠前位置）。此处以拖拽开始时的
+ * 槽位布局为基准，把指针落点映射为槽位下标；指针远离网格时返回 null，交由调用方沿用 Sortable 结果。
+ *
+ * @param grid 网格容器
+ * @param point 指针最终落点（视口坐标）
+ * @returns 目标槽位下标；无法判定时为 null
+ */
+function resolveDropSlotIndex(grid: HTMLElement, point: { x: number; y: number }): number | null {
+  const gridRect = grid.getBoundingClientRect()
+  const offsetX = point.x - gridRect.left
+  const offsetY = point.y - gridRect.top
+  const outsideMargin = 80
+  if (offsetX < -outsideMargin || offsetY < -outsideMargin || offsetX > gridRect.width + outsideMargin || offsetY > gridRect.height + outsideMargin) return null
+  let nearest = -1
+  let nearestDistance = Infinity
+  dragSlotRects.forEach((rect, index) => {
+    const deltaX = offsetX - (rect.x + rect.width / 2)
+    const deltaY = offsetY - (rect.y + rect.height / 2)
+    const distance = deltaX * deltaX + deltaY * deltaY
+    if (distance < nearestDistance) {
+      nearestDistance = distance
+      nearest = index
+    }
+  })
+  return nearest === -1 ? null : nearest
 }
 
 /**
@@ -262,15 +314,19 @@ function handleDragEnd(event: Sortable.SortableEvent): void {
   const { item, from } = event
   const { oldIndex, newIndex } = event
   if (oldIndex === undefined || newIndex === undefined) return
+  // 目标位置以指针最终落点映射的槽位为准，Sortable 的 newIndex 在快速拖拽时会滞后于指针
+  const grid = cardGridRef.value
+  const dropSlot = grid && dragLastPoint ? resolveDropSlotIndex(grid, dragLastPoint) : null
+  const targetIndex = dropSlot ?? newIndex
   /** 是否需要拦截紧随的 click：换位、拖拽中位移过或唤起了操作面板 */
   let suppressClick = false
-  if (oldIndex !== newIndex) {
+  if (targetIndex !== oldIndex) {
     // 先按锚点还原被 Sortable 移动的节点，避免外部 DOM 变更与 Vue diff 冲突；真实顺序由收藏集合状态驱动
     from.removeChild(item)
     const reference = from.children[oldIndex]
     if (reference) from.insertBefore(item, reference)
     else from.appendChild(item)
-    reorderFavorite(oldIndex, newIndex)
+    reorderFavorite(oldIndex, targetIndex)
     suppressClick = true
   } else if (!dragPointerMoved && appStore.isMobile) {
     openFavoritePanel(oldIndex)
@@ -327,10 +383,12 @@ function handleExplore(): void {
 
 /**
  * 刷新缓存一致性：以全站配置索引为合法键集合，裁剪收藏中条目被删除后残留的脏键
+ *
+ * 必须裁剪内存中的响应式集合而非仅修存储：幽灵键残留会让收藏顺序与展示卡片错位，
+ * 拖拽排序等按下标换序的功能会错位换卡。
  */
 function refreshSiteCaches(): void {
-  const validKeys = Object.keys(SITE_INDEX)
-  pruneSiteFavorites(validKeys)
+  pruneFavorites(Object.keys(SITE_INDEX))
 }
 
 onMounted(refreshSiteCaches)
