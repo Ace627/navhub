@@ -393,6 +393,11 @@ html[data-device='mobile'] {
     display: none;
   }
 
+  /* 紧凑图标栅格里悬浮标签会压住图标，移动端直接隐藏 */
+  .card-tags {
+    display: none;
+  }
+
   /* 无头部的小组件卡在移动端还原卡片外壳：其主体是完整版面（日历/一言），不适合裸排在页面底色上 */
   .link-card.is-headerless {
     padding: 12px 16px;

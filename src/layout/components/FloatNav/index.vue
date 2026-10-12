@@ -2,16 +2,23 @@
   <div ref="rootRef" class="float-nav">
     <transition name="float-nav-fade">
       <div v-show="panelVisible" class="float-nav-panel">
-        <button type="button" @click="goHome">最近使用</button>
-        <button type="button" @click="openSidebar">分类导航</button>
         <button type="button" @click="openSearch">全站搜索</button>
         <button type="button" @click="goSetting">系统设置</button>
         <button type="button" @click="goAbout">关于我们</button>
       </div>
     </transition>
-    <button type="button" class="float-nav-fab" aria-label="页面导航" @click="panelVisible = !panelVisible">
-      <SvgIcon name="Plus" :size="20" />
-    </button>
+    <!-- 快捷悬浮钮组：返回首页、侧栏菜单常驻，加号展开完整导航面板；侧栏抽屉展开时整体隐藏避免遮挡 -->
+    <div v-show="appStore.isCollapse" class="float-nav-actions">
+      <button type="button" class="float-nav-fab" aria-label="返回首页" @click="goHome">
+        <SvgIcon name="Home" :size="20" />
+      </button>
+      <button type="button" class="float-nav-fab" aria-label="打开侧栏菜单" @click="openSidebar">
+        <SvgIcon name="Menu" :size="20" />
+      </button>
+      <button type="button" class="float-nav-fab" aria-label="页面导航" @click="panelVisible = !panelVisible">
+        <SvgIcon name="More" :size="20" />
+      </button>
+    </div>
   </div>
 </template>
 
@@ -101,11 +108,18 @@ html[data-device='mobile'] {
     display: block;
   }
 
-  .float-nav-fab {
+  /* 悬浮钮组：纵向堆叠于右下角，整体预留底部安全距离 */
+  .float-nav-actions {
     position: fixed;
     right: 16px;
     bottom: 32px;
     z-index: 2025;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .float-nav-fab {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -120,10 +134,11 @@ html[data-device='mobile'] {
     cursor: pointer;
   }
 
+  /* 展开面板贴在钮组左侧，底边与钮组对齐（右偏移 = 钮组右距 16 + 钮宽 44 + 间隙 12） */
   .float-nav-panel {
     position: fixed;
-    right: 16px;
-    bottom: 88px;
+    right: 72px;
+    bottom: 32px;
     z-index: 900;
     display: flex;
     flex-direction: column;
