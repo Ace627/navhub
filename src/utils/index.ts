@@ -7,5 +7,6 @@ export * from './cache/system-setting.cache'
 
 export * from './cache/site-favorites.cache'
 export * from './cache/off-work.cache'
+export * from './cache/payday.cache'
 export * from './share'
 export { default as echarts } from './libs/echarts'

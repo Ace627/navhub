@@ -1350,6 +1350,15 @@
     "tags": ["自研"]
   },
   {
+    "id": "9b2e4f7a-3c5d-48b1-a6e9-0f8d2c7b4e1a",
+    "categoryId": "9ee39df2-1307-47a5-849a-0e8e9d552e4e",
+    "key": "PaydayCountdown",
+    "title": "发薪日倒计时",
+    "icon": "@/assets/images/icons/发薪日倒计时.svg",
+    "description": "实时统计各候选发薪日的剩余天数，最近一项自动高亮，支持自定义发薪日。",
+    "tags": ["自研"]
+  },
+  {
     "id": "a4d18c52-7b3e-4f69-9c2d-1e8a5b0f3d74",
     "categoryId": "9ee39df2-1307-47a5-849a-0e8e9d552e4e",
     "key": "ImageStitch",
