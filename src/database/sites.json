@@ -1184,14 +1184,6 @@
     "description": "免费压缩解压软件，支持ZIP、RAR、7Z等多种格式，高速压缩与解压。"
   },
   {
-    "id": "84745478-e6b9-4b0a-adb9-179aaa903c7d",
-    "categoryId": "9ee39df2-1307-47a5-849a-0e8e9d552e4e",
-    "key": "https://d.serctl.com",
-    "title": "镜像中转下载",
-    "icon": "@/assets/images/icons/镜像中转下载.jpg",
-    "description": "离线下载中转服务，支持代理下载 GitHub 等来源文件，生成镜像链接需尽快保存。"
-  },
-  {
     "id": "c7967949-706a-4da7-aa55-c9d1fffb19f9",
     "categoryId": "9ee39df2-1307-47a5-849a-0e8e9d552e4e",
     "key": "DoubleColorBall",
@@ -1206,6 +1198,14 @@
     "title": "下班倒计时",
     "icon": "@/assets/images/icons/下班倒计时.svg",
     "description": "实时显示距离下班的剩余时间，支持自定义下班时间与本地记忆设置。"
+  },
+  {
+    "id": "a4d18c52-7b3e-4f69-9c2d-1e8a5b0f3d74",
+    "categoryId": "9ee39df2-1307-47a5-849a-0e8e9d552e4e",
+    "key": "ImageStitch",
+    "title": "图片拼接",
+    "icon": "@/assets/images/icons/图片拼接.svg",
+    "description": "多张图片横向或竖向拼接成长图，支持间距对齐与格式选择，纯本地处理。"
   },
   {
     "id": "c5f14c3c-ea5f-46ca-b50a-260d165b8a20",

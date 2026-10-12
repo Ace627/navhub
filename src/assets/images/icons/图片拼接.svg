@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- 左侧图片卡 -->
+  <rect x="14" y="26" width="46" height="76" rx="8" fill="#409eff"/>
+  <rect x="20" y="32" width="34" height="44" rx="4" fill="#ffffff" opacity="0.9"/>
+  <path d="M20 68 L32 52 L42 62 L48 54 L54 62 L54 76 L20 76 Z" fill="#79bbff"/>
+  <circle cx="30" cy="42" r="5" fill="#f56c6c"/>
+  <!-- 右侧图片卡 -->
+  <rect x="68" y="26" width="46" height="76" rx="8" fill="#67c23a"/>
+  <rect x="74" y="32" width="34" height="44" rx="4" fill="#ffffff" opacity="0.9"/>
+  <path d="M74 68 L84 54 L92 62 L100 50 L108 60 L108 76 L74 76 Z" fill="#95d475"/>
+  <circle cx="84" cy="42" r="5" fill="#e6a23c"/>
+  <!-- 拼接缝：竖向虚线 -->
+  <line x1="64" y1="20" x2="64" y2="108" stroke="#ffffff" stroke-width="5" stroke-dasharray="9 7" stroke-linecap="round"/>
+  <line x1="64" y1="20" x2="64" y2="108" stroke="#909399" stroke-width="2.5" stroke-dasharray="9 7" stroke-linecap="round"/>
+</svg>
