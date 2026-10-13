@@ -1,7 +1,7 @@
 <template>
   <div class="app-content flex flex-col">
-    <!-- 返回条目列表 -->
-    <el-page-header class="detail-header" @back="handleBack">
+    <!-- 返回条目列表：移动端由顶栏返回箭头承担，仅桌面端展示 -->
+    <el-page-header v-if="!appStore.isMobile" class="detail-header" @back="backToDetailSource">
       <template #content>
         <span class="detail-title">{{ item?.title }}</span>
       </template>
@@ -15,11 +15,16 @@
 <script setup lang="ts">
 defineOptions({ name: 'CategoryDetail' })
 import type { Component } from 'vue'
+import { useAppStore } from '@/store/modules/app'
 import { RouterConstant } from '@/router/router.constant'
 import { getCategoryRegistry } from '@/router/category.registry'
 
 const route = useRoute()
 const router = useRouter()
+
+const appStore = useAppStore()
+
+const { backToDetailSource } = useDetailBack()
 
 /** 自有条目组件注册表：自动收集 widgets 下各条目目录的 index.vue（目录名须与注册表 key 一致）；eager 装配进详情分包，避免运行时二次异步加载导致首进白屏 */
 const widgetModules = import.meta.glob<Component>('./widgets/*/index.vue', { eager: true, import: 'default' })
@@ -32,15 +37,6 @@ const item = computed(() => entry.value?.data.find((entryItem) => entryItem.key 
 
 /** 当前条目对应的组件，路由参数未命中任何已登记组件时为 null */
 const entryComponent = computed(() => widgetModules[`./widgets/${route.params.key}/index.vue`] ?? null)
-
-/** 返回上一页：有站内历史时原路返回（如从最近使用进入可回到最近使用），无历史（直达/刷新）时回分类列表兜底 */
-function handleBack() {
-  if (window.history.state?.back) {
-    router.back()
-    return
-  }
-  router.push(entry.value ? `/${entry.value.path}` : RouterConstant.HOME_PAGE_URL)
-}
 
 /** 校验路由参数，未命中注册表时回到所在分类列表页兜底（防止手输非法地址出现空白页） */
 function validateRoute() {

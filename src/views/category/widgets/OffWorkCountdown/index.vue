@@ -478,7 +478,8 @@ html.dark {
 html[data-device='mobile'] {
   .app-content {
     --digit-font-size: clamp(48px, 16vw, 64px);
-    justify-content: flex-start;
+    /* 移动端同样垂直居中，扣除项按移动布局（TabBar + 安全区，无页头与版权栏）计算 */
+    min-height: calc(100vh - var(--el-navbar-height) - var(--el-tabbar-height) - var(--el-safe-bottom, 0px) - 24px);
     padding: 0 16px;
   }
   .tool-container {

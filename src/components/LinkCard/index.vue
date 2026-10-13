@@ -8,12 +8,12 @@
     :class="{ 'is-row': layout === 'row', 'is-widget': span === 4, 'is-bare': bare, 'is-headerless': hideHeader }"
     :style="span === 4 ? { gridColumn: 'span 4' } : undefined"
     @click="onCardClick"
-    @click.capture="onRootCaptureClick"
+    @click.capture="longPress.onClickCapture"
     @contextmenu="onContextMenu"
-    @pointerdown="onPointerDown"
-    @pointermove="onPointerMove"
-    @pointerup="onPointerRelease"
-    @pointercancel="onPointerRelease"
+    @pointerdown="longPress.onPointerDown"
+    @pointermove="longPress.onPointerMove"
+    @pointerup="longPress.onPointerRelease"
+    @pointercancel="longPress.onPointerRelease"
   >
     <div v-if="!hideHeader" class="card-header">
       <!-- 图标区：默认按条目配置渲染图片，传入 icon 插槽可替换为任意图标组件 -->
@@ -52,17 +52,16 @@ const emit = defineEmits<{ (e: 'click', item: LinkItem): void }>()
 const appStore = useAppStore()
 const { openLinkActions, openLinkMenu } = useLinkActions()
 
-/** 触发长按面板所需的按压时长（毫秒） */
-const LONG_PRESS_DELAY = 450
-
-/** 长按过程中允许的最大位移（像素），超出视为滚动滑动，取消长按 */
-const LONG_PRESS_MOVE_THRESHOLD = 10
-
 /** 图标加载超时阈值：超过该时长仍未加载完成即降级为默认系统图标（毫秒） */
 const ICON_LOAD_TIMEOUT = 5000
 
 /** 描述气泡的悬浮展示延迟（毫秒）：鼠标快速划过卡片时不弹出，避免遮挡相邻卡片 */
 const DESC_TOOLTIP_SHOW_DELAY = 720
+
+/** 移动端长按唤起操作面板：长按交互统一由 useLongPress 提供 */
+const longPress = useLongPress<void>(() => openLinkActions(props.item), {
+  disabled: () => props.longPressDisabled || !appStore.isMobile,
+})
 
 /** 描述元素引用：交给 ProTooltip 判定文案是否被截断，未截断时不弹气泡（组件实例由 ProTooltip 自行解析） */
 const descRef = ref<ComponentPublicInstance>()
@@ -78,18 +77,6 @@ const iconLoaded = ref(false)
 
 /** 图标加载超时定时器句柄 */
 let iconTimer: ReturnType<typeof setTimeout> | undefined
-
-/** 长按定时器句柄 */
-let longPressTimer: ReturnType<typeof setTimeout> | undefined
-
-/** 长按起始点横坐标 */
-let pressStartX = 0
-
-/** 长按起始点纵坐标 */
-let pressStartY = 0
-
-/** 长按已触发标记：命中时拦截紧随其后的 click，避免触发卡片跳转 */
-let suppressNextClick = false
 
 // 收集 src/assets/images/icons 下的本地图标，按文件名索引（key 为构建后资源地址）
 const localIconMap: Record<string, string> = {}
@@ -172,66 +159,6 @@ function onCardClick(): void {
     return
   }
   emit('click', props.item)
-}
-
-/**
- * 卡片根节点点击捕获回调：长按触发后的首次 click 在此拦截，避免既弹出操作面板又触发跳转
- *
- * @param event 点击事件对象
- */
-function onRootCaptureClick(event: MouseEvent): void {
-  if (!suppressNextClick) return
-  suppressNextClick = false
-  event.preventDefault()
-  event.stopPropagation()
-}
-
-/**
- * 指针按下回调：仅移动端触屏启动长按计时，记录起始点用于滑动取消
- *
- * @param event 指针事件对象
- */
-function onPointerDown(event: PointerEvent): void {
-  if (props.longPressDisabled || !appStore.isMobile || event.pointerType !== 'touch') return
-  pressStartX = event.clientX
-  pressStartY = event.clientY
-  longPressTimer = setTimeout(triggerLongPress, LONG_PRESS_DELAY)
-}
-
-/**
- * 指针移动回调：位移超出阈值视为滚动，取消长按计时
- *
- * @param event 指针事件对象
- */
-function onPointerMove(event: PointerEvent): void {
-  if (!longPressTimer) return
-  const deltaX = event.clientX - pressStartX
-  const deltaY = event.clientY - pressStartY
-  if (deltaX * deltaX + deltaY * deltaY > LONG_PRESS_MOVE_THRESHOLD * LONG_PRESS_MOVE_THRESHOLD) cancelLongPress()
-}
-
-/**
- * 指针抬起或取消回调：结束按压，清理长按计时
- */
-function onPointerRelease(): void {
-  cancelLongPress()
-}
-
-/**
- * 触发长按：标记拦截后续 click，打开当前条目的底部操作面板
- */
-function triggerLongPress(): void {
-  cancelLongPress()
-  suppressNextClick = true
-  openLinkActions(props.item)
-}
-
-/**
- * 取消长按计时并清理句柄
- */
-function cancelLongPress(): void {
-  clearTimeout(longPressTimer)
-  longPressTimer = undefined
 }
 
 /**

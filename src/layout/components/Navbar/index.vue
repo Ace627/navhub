@@ -3,8 +3,13 @@
     <!-- 侧栏折叠控制：移动端由底部 TabBar 承担导航，隐藏汉堡 -->
     <Hamburger v-if="!appStore.isMobile" class="navbar-item hover-effect" @toggleClick="appStore.toggleSidebar" />
 
+    <!-- 移动端返回入口：条目详情页在标题左侧显示小程序式返回箭头（页内返回条已隐藏） -->
+    <span v-if="isMobileDetail" class="navbar-item hover-effect" role="button" aria-label="返回" @click="backToDetailSource">
+      <SvgIcon name="ArrowLeft" size="1.16em" />
+    </span>
+
     <!-- 移动端左侧大标题：展示当前页面名称（详情页按路由参数实时解析） -->
-    <h1 v-if="appStore.isMobile" class="navbar-title">{{ mobileTitle }}</h1>
+    <h1 v-if="appStore.isMobile" class="navbar-title" :class="{ 'after-back': isMobileDetail }">{{ mobileTitle }}</h1>
 
     <!-- 站点模糊搜索：桌面端常驻输入框 -->
     <HeaderSearch v-if="!appStore.isMobile" class="navbar-item" />
@@ -60,6 +65,11 @@ const mobileTitle = computed(() => {
   return title ?? ''
 })
 
+/** 是否展示移动端返回箭头：仅条目详情页（路由含 key 参数）需要顶栏返回 */
+const isMobileDetail = computed(() => appStore.isMobile && !!route.params.key)
+
+const { backToDetailSource } = useDetailBack()
+
 /** 跳转系统设置页 */
 function goSetting() {
   router.push({ name: 'Setting' })
@@ -93,6 +103,11 @@ function goSetting() {
   font-size: 18px;
   font-weight: 700;
   color: var(--el-text-color-primary);
+}
+
+/* 返回箭头之后的标题贴近箭头，间距对齐小程序顶栏 */
+.navbar-title.after-back {
+  margin-left: 4px;
 }
 .hover-effect:hover {
   background-color: var(--el-fill-color-light);

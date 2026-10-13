@@ -17,9 +17,19 @@
         <LinkCard v-for="item in entry.data" :key="item.key" :item="item" :plain-link="!!entry.plainLink && isExternal(item.key)" @click="handleClickItem(entry, item)" />
       </div>
 
-      <!-- 列表模式：两列「图标 + 名称」行 -->
+      <!-- 列表模式：两列「图标 + 名称」行，长按唤起与宫格一致的操作面板 -->
       <div v-else class="list-grid">
-        <div v-for="item in entry.data" :key="item.key" class="list-item" @click="handleClickItem(entry, item)">
+        <div
+          v-for="item in entry.data"
+          :key="item.key"
+          class="list-item"
+          @click="handleClickItem(entry, item)"
+          @click.capture="listLongPress.onClickCapture"
+          @pointerdown="(event) => listLongPress.onPointerDown(event, item)"
+          @pointermove="listLongPress.onPointerMove"
+          @pointerup="listLongPress.onPointerRelease"
+          @pointercancel="listLongPress.onPointerRelease"
+        >
           <img class="list-icon" :src="getIcon(item)" :alt="item.title" loading="lazy" draggable="false" referrerpolicy="no-referrer" @error="onIconError(item)" />
           <span class="list-title">{{ item.title }}</span>
         </div>
@@ -63,6 +73,10 @@ const categories = getCategoryRegistry()
 
 /** 视图模式共享状态：顶栏切换图标与本页对话框跨组件联动 */
 const { viewMode, switcherVisible, applyViewMode } = useMobileCategoryView()
+
+/** 列表条目长按唤起操作面板：回调参数为按下时携带的条目，与宫格模式行为一致 */
+const { openLinkActions } = useLinkActions()
+const listLongPress = useLongPress<SiteItem>((item) => item && openLinkActions(item))
 
 /** 对话框内的暂选模式：打开时同步当前模式，确定后才落盘 */
 const draftMode = ref<MobileCategoryLayout>(viewMode.value)

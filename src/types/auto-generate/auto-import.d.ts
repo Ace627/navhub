@@ -169,6 +169,7 @@ declare global {
   const useDebounce: typeof import('@vueuse/core').useDebounce
   const useDebounceFn: typeof import('@vueuse/core').useDebounceFn
   const useDebouncedRefHistory: typeof import('@vueuse/core').useDebouncedRefHistory
+  const useDetailBack: typeof import('../../hooks/useDetailBack').useDetailBack
   const useDeviceMotion: typeof import('@vueuse/core').useDeviceMotion
   const useDeviceOrientation: typeof import('@vueuse/core').useDeviceOrientation
   const useDevicePixelRatio: typeof import('@vueuse/core').useDevicePixelRatio
@@ -214,6 +215,7 @@ declare global {
   const useLinkMenuActions: typeof import('../../hooks/useLinkMenuActions').useLinkMenuActions
   const useLiveAnnouncer: typeof import('@vueuse/core').useLiveAnnouncer
   const useLocalStorage: typeof import('@vueuse/core').useLocalStorage
+  const useLongPress: typeof import('../../hooks/useLongPress').useLongPress
   const useMagicKeys: typeof import('@vueuse/core').useMagicKeys
   const useManualRefHistory: typeof import('@vueuse/core').useManualRefHistory
   const useMediaControls: typeof import('@vueuse/core').useMediaControls
