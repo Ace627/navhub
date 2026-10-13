@@ -1,6 +1,7 @@
 import type { App } from 'vue'
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import { initCategoryRegistry } from './category.registry'
+import { installStartupPageGuard } from './router.helper'
 import { buildStaticRouteList } from './static.route'
 
 const { VITE_ROUTER_MODE, VITE_PUBLIC_PATH } = import.meta.env
@@ -23,8 +24,8 @@ export async function setupRouter(app: App) {
     routes: buildStaticRouteList(),
   })
 
-  // 配置路由全局前置守卫
-  // router.beforeEach(globalRouterBeforeGuard)
+  // 配置路由全局前置守卫：书签直达主页时按启动页配置改道
+  installStartupPageGuard(router)
 
   // 配置路由全局后置守卫
   // router.afterEach(globalRouterAfterGuard)
