@@ -3,13 +3,13 @@
     <!-- 侧栏折叠控制：移动端由底部 TabBar 承担导航，隐藏汉堡 -->
     <Hamburger v-if="!appStore.isMobile" class="navbar-item hover-effect" @toggleClick="appStore.toggleSidebar" />
 
-    <!-- 移动端返回入口：条目详情页在标题左侧显示小程序式返回箭头（页内返回条已隐藏） -->
-    <span v-if="isMobileDetail" class="navbar-item hover-effect" role="button" aria-label="返回" @click="backToDetailSource">
+    <!-- 移动端返回入口：Tab 菜单页（首页/分类/我的）之外均显示小程序式返回箭头 -->
+    <span v-if="isMobileBack" class="navbar-item hover-effect" role="button" aria-label="返回" @click="backToDetailSource">
       <SvgIcon name="ArrowLeft" size="1.16em" />
     </span>
 
     <!-- 移动端左侧大标题：展示当前页面名称（详情页按路由参数实时解析） -->
-    <h1 v-if="appStore.isMobile" class="navbar-title" :class="{ 'after-back': isMobileDetail }">{{ mobileTitle }}</h1>
+    <h1 v-if="appStore.isMobile" class="navbar-title" :class="{ 'after-back': isMobileBack }">{{ mobileTitle }}</h1>
 
     <!-- 站点模糊搜索：桌面端常驻输入框 -->
     <HeaderSearch v-if="!appStore.isMobile" class="navbar-item" />
@@ -65,8 +65,11 @@ const mobileTitle = computed(() => {
   return title ?? ''
 })
 
-/** 是否展示移动端返回箭头：仅条目详情页（路由含 key 参数）需要顶栏返回 */
-const isMobileDetail = computed(() => appStore.isMobile && !!route.params.key)
+/** 移动端 Tab 菜单页：一级标签页自身无需返回箭头 */
+const MOBILE_TAB_PATHS = [RouterConstant.HOME_PAGE_URL, RouterConstant.MOBILE_CATEGORIES_URL, RouterConstant.MOBILE_PROFILE_URL]
+
+/** 是否展示移动端返回箭头：Tab 菜单页之外（详情页、分类列表页、系统页等）均显示 */
+const isMobileBack = computed(() => appStore.isMobile && !MOBILE_TAB_PATHS.includes(route.path))
 
 const { backToDetailSource } = useDetailBack()
 

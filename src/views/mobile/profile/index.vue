@@ -69,7 +69,6 @@ const startupLabel = computed(() => STARTUP_OPTIONS.find((option) => option.valu
 /** 入口列表：复用既有系统页面，移动端以列表形式聚合；启动页为配置项不走路由跳转 */
 const cells = computed<ProfileCell[]>(() => [
   { title: '系统设置', icon: 'Setting', path: '/system/setting' },
-  { title: '图标管理', icon: 'Image', path: '/system/icon' },
   { title: '关于我们', icon: 'About', path: '/system/about' },
   { title: '启动页', icon: 'Schedule', desc: `启动默认展示：${startupLabel.value}`, dialog: true },
 ])

@@ -3,8 +3,8 @@ import { getCategoryRegistry } from '@/router/category.registry'
 import { useAppStore } from '@/store/modules/app'
 
 /**
- * 条目详情页返回逻辑：移动端遵循小程序习惯，始终跳转上一级分类列表；
- * 桌面端有站内历史时原路返回（如从最近使用进入可回到最近使用），无历史（直达/刷新）时回分类列表兜底
+ * 顶栏返回逻辑：有站内历史时原路返回（首页进的回首页、分类进的回分类，小程序式）；
+ * 无历史（直达/刷新）时按层级兜底：详情页回所属分类列表，移动端其余回分类聚合页，桌面端回主页
  *
  * @returns 返回导航方法
  */
@@ -15,12 +15,20 @@ export function useDetailBack() {
 
   /** 执行返回导航 */
   function backToDetailSource(): void {
-    const entry = getCategoryRegistry().find((category) => route.path.startsWith(`/${category.path}/`))
-    if (!appStore.isMobile && window.history.state?.back) {
+    if (window.history.state?.back) {
       router.back()
       return
     }
-    router.push(entry ? `/${entry.path}` : RouterConstant.HOME_PAGE_URL)
+    const entry = getCategoryRegistry().find((category) => route.path.startsWith(`/${category.path}/`))
+    if (entry) {
+      router.push(`/${entry.path}`)
+      return
+    }
+    if (appStore.isMobile && route.path.startsWith('/system/')) {
+      router.push(RouterConstant.MOBILE_PROFILE_URL)
+      return
+    }
+    router.push(appStore.isMobile ? RouterConstant.MOBILE_CATEGORIES_URL : RouterConstant.HOME_PAGE_URL)
   }
 
   return { backToDetailSource }
