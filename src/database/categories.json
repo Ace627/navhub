@@ -67,5 +67,14 @@
     "icon": "Wallpaper",
     "mode": "link",
     "plainLink": true
+  },
+  {
+    "id": "8a5151d2-c7bc-482b-9053-201354b97c61",
+    "path": "work",
+    "name": "Work",
+    "title": "职场百科",
+    "icon": "Company",
+    "mode": "link",
+    "plainLink": true
   }
 ]

@@ -638,4 +638,10 @@ export const records = [
     author: '苏轼',
     digest: '会挽雕弓如满月，西北望，射天狼。',
   },
+  {
+    title: '客至',
+    dynasty: '唐',
+    author: '杜甫',
+    digest: '花径不曾缘客扫，蓬门今始为君开。',
+  },
 ]

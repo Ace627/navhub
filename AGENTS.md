@@ -7,6 +7,8 @@
 - 全程使用简体中文回复
 - 每次回复前，用固定称呼「主人」开头
 - 移动端样式判定统一使用 `html[data-device='mobile']` 属性选择器（由 `src/hooks/useResize.ts` 维护，阈值 750px），不使用 CSS 媒体查询判断移动端
+- 所有代码（页面、组件、样式、交互）都要同时考虑桌面端和移动端的适配；移动端样式统一通过 `html[data-device='mobile']` 选择器编写
+- 所有代码都要考虑深色模式与浅色模式的适配；样式颜色优先使用 Element Plus CSS 变量（变量随主题自动切换），确需自定义色值时必须同时给出深浅两种模式下的取值
 - 写函数时优先使用 `function` 声明，而非箭头函数（`const fn = () => {}`）
 - 写样式时颜色、字号、间距等优先使用 Element Plus 的 CSS 变量（如 `var(--el-text-color-primary)`、`var(--el-color-primary)`、`var(--el-border-color)`），不硬编码色值；仅当设计稿颜色无对应 el 变量时才写具体值
 - `vue` 的 API（`ref`、`computed`、`reactive`、`onMounted` 等）由 `unplugin-auto-import` 自动导入（声明见 `src/types/auto-generate/auto-import.d.ts`），源码中不写 `import { xxx } from 'vue'`；非 vue 的模块（json、常量等）仍需显式导入

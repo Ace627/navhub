@@ -909,15 +909,6 @@
     "tags": []
   },
   {
-    "id": "a9e62eb8-d0f5-4164-a7df-5d13dca515c1",
-    "categoryId": "9492cfd4-724b-4828-b98e-2f25a6245261",
-    "key": "https://meeting.tencent.com/download",
-    "title": "腾讯会议",
-    "icon": "@/assets/images/icons/腾讯会议.png",
-    "description": "腾讯会议高清流畅、便捷易用、安全可靠的多人音视频会议软件，支持多端下载安装。",
-    "tags": []
-  },
-  {
     "id": "7d7ce02a-fda9-42c6-9121-aae92b35d487",
     "categoryId": "9492cfd4-724b-4828-b98e-2f25a6245261",
     "key": "https://www.lsplayer.com",
@@ -1338,7 +1329,9 @@
     "title": "双色球模拟器",
     "icon": "@/assets/images/icons/双色球.png",
     "description": "随机模拟双色球与大乐透号码，支持自定义组数与摇号动画，仅供娱乐。",
-    "tags": ["自研"]
+    "tags": [
+      "自研"
+    ]
   },
   {
     "id": "5e2f8a41-9c3b-4d7e-b1a6-8f0c2d4e6a9b",
@@ -1347,7 +1340,9 @@
     "title": "下班倒计时",
     "icon": "@/assets/images/icons/下班倒计时.svg",
     "description": "实时显示距离下班的剩余时间，支持自定义下班时间与本地记忆设置。",
-    "tags": ["自研"]
+    "tags": [
+      "自研"
+    ]
   },
   {
     "id": "9b2e4f7a-3c5d-48b1-a6e9-0f8d2c7b4e1a",
@@ -1356,7 +1351,9 @@
     "title": "发薪日倒计时",
     "icon": "@/assets/images/icons/发薪日倒计时.svg",
     "description": "实时统计各候选发薪日的剩余天数，最近一项自动高亮，支持自定义发薪日。",
-    "tags": ["自研"]
+    "tags": [
+      "自研"
+    ]
   },
   {
     "id": "a4d18c52-7b3e-4f69-9c2d-1e8a5b0f3d74",
@@ -1365,7 +1362,9 @@
     "title": "图片拼接",
     "icon": "@/assets/images/icons/图片拼接.svg",
     "description": "多张图片横向或竖向拼接成长图，支持间距对齐与格式选择，纯本地处理。",
-    "tags": ["自研"]
+    "tags": [
+      "自研"
+    ]
   },
   {
     "id": "c5f14c3c-ea5f-46ca-b50a-260d165b8a20",
@@ -1617,7 +1616,9 @@
     "title": "世界时钟",
     "icon": "@/assets/images/icons/世界时钟.svg",
     "description": "实时查看全球主要城市时间与昼夜状态，自动处理夏令时与日期差。",
-    "tags": ["自研"]
+    "tags": [
+      "自研"
+    ]
   },
   {
     "id": "a5222f88-44a0-4deb-b27d-f21d9b3a314d",
@@ -2160,24 +2161,6 @@
     "tags": []
   },
   {
-    "id": "51b4cdd6-4b04-4643-a7dd-565ad550d58d",
-    "categoryId": "4449bddc-349b-4302-ab3a-bd076bd3fb8a",
-    "key": "https://gwy.gkzhenti.cn",
-    "title": "公考真题库",
-    "icon": "@/assets/images/icons/公考真题库.ico",
-    "description": "收录公务员、事业单位等考试真题，支持行测申论试卷整套在线下载打印。",
-    "tags": []
-  },
-  {
-    "id": "6c05d258-294b-4c75-bddc-c3ece69c3c16",
-    "categoryId": "4449bddc-349b-4302-ab3a-bd076bd3fb8a",
-    "key": "https://wenshu.court.gov.cn",
-    "title": "裁判文书网",
-    "icon": "@/assets/images/icons/裁判文书网.ico",
-    "description": "最高人民法院官方裁判文书公开平台，可在线检索查阅各类案件裁判文书。",
-    "tags": []
-  },
-  {
     "id": "ce7bbf92-ebfa-4116-b047-d03759174fcb",
     "categoryId": "4449bddc-349b-4302-ab3a-bd076bd3fb8a",
     "key": "https://www.cnki.net",
@@ -2247,24 +2230,6 @@
     "title": "华文慕课",
     "icon": "@/assets/images/icons/华文慕课.ico",
     "description": "北大与阿里合办的中文慕课平台，汇集名校免费课程，文理医工等学科门类齐全。",
-    "tags": []
-  },
-  {
-    "id": "5ca8a039-8d9f-4f32-8e29-e19de7e705a8",
-    "categoryId": "4449bddc-349b-4302-ab3a-bd076bd3fb8a",
-    "key": "http://www.wordlm.com",
-    "title": "Word联盟",
-    "icon": "@/assets/images/icons/Word联盟.jpg",
-    "description": "专业办公软件学习平台，提供Word图文视频教程与各版本下载等资讯。",
-    "tags": []
-  },
-  {
-    "id": "45d9daae-e488-48bf-b083-fb37da45dc6e",
-    "categoryId": "4449bddc-349b-4302-ab3a-bd076bd3fb8a",
-    "key": "https://www.lanrenexcel.com",
-    "title": "懒人Excel",
-    "icon": "@/assets/images/icons/懒人Excel.png",
-    "description": "免费Excel教程站，涵盖函数公式、数据透视表、图表与VBA等实操技巧。",
     "tags": []
   },
   {
@@ -2706,6 +2671,114 @@
     "title": "图集秀",
     "icon": "@/assets/images/icons/图集秀.png",
     "description": "图集秀，汇集秀人网系列模特写真套图，涵盖微密圈与 Cosplay 作品，在线欣赏。",
+    "tags": []
+  },
+  {
+    "id": "51b4cdd6-4b04-4643-a7dd-565ad550d58d",
+    "categoryId": "8a5151d2-c7bc-482b-9053-201354b97c61",
+    "key": "https://gwy.gkzhenti.cn",
+    "title": "公考真题库",
+    "icon": "@/assets/images/icons/公考真题库.ico",
+    "description": "收录公务员、事业单位等考试真题，支持行测申论试卷整套在线下载打印。",
+    "tags": []
+  },
+  {
+    "id": "6c05d258-294b-4c75-bddc-c3ece69c3c16",
+    "categoryId": "8a5151d2-c7bc-482b-9053-201354b97c61",
+    "key": "https://wenshu.court.gov.cn",
+    "title": "裁判文书网",
+    "icon": "@/assets/images/icons/裁判文书网.ico",
+    "description": "最高人民法院官方裁判文书公开平台，可在线检索查阅各类案件裁判文书。",
+    "tags": []
+  },
+  {
+    "id": "5ca8a039-8d9f-4f32-8e29-e19de7e705a8",
+    "categoryId": "8a5151d2-c7bc-482b-9053-201354b97c61",
+    "key": "http://www.wordlm.com",
+    "title": "Word联盟",
+    "icon": "@/assets/images/icons/Word联盟.jpg",
+    "description": "专业办公软件学习平台，提供Word图文视频教程与各版本下载等资讯。",
+    "tags": []
+  },
+  {
+    "id": "45d9daae-e488-48bf-b083-fb37da45dc6e",
+    "categoryId": "8a5151d2-c7bc-482b-9053-201354b97c61",
+    "key": "https://www.lanrenexcel.com",
+    "title": "懒人Excel",
+    "icon": "@/assets/images/icons/懒人Excel.png",
+    "description": "免费Excel教程站，涵盖函数公式、数据透视表、图表与VBA等实操技巧。",
+    "tags": []
+  },
+  {
+    "id": "786e5372-6b06-4bc3-acbe-d26321685661",
+    "categoryId": "8a5151d2-c7bc-482b-9053-201354b97c61",
+    "key": "https://docs.qq.com",
+    "title": "腾讯文档",
+    "icon": "@/assets/images/icons/腾讯文档.ico",
+    "description": "腾讯官方多人协作在线文档，实时编辑保存，支持设置好友访问与编辑权限。",
+    "tags": []
+  },
+  {
+    "id": "146219b8-e39f-417f-8675-c174e032e0f7",
+    "categoryId": "8a5151d2-c7bc-482b-9053-201354b97c61",
+    "key": "https://shimo.im",
+    "title": "石墨文档",
+    "icon": "@/assets/images/icons/石墨文档.ico",
+    "description": "新一代云办公平台，支持多人在线协同编辑文档、表格与幻灯片，跨终端保存。",
+    "tags": []
+  },
+  {
+    "id": "d749a3a7-8739-4f7f-92af-15ac700e5e99",
+    "categoryId": "8a5151d2-c7bc-482b-9053-201354b97c61",
+    "key": "https://www.zhipin.com",
+    "title": "BOSS直聘",
+    "icon": "@/assets/images/icons/BOSS直聘.ico",
+    "description": "直聘模式招聘平台，求职者可与 boss 直接开聊，在线投递简历快速找工作。",
+    "tags": []
+  },
+  {
+    "id": "20632743-2eb4-43fc-8760-6499d00a6bf3",
+    "categoryId": "8a5151d2-c7bc-482b-9053-201354b97c61",
+    "key": "https://www.zhaopin.com",
+    "title": "智联招聘",
+    "icon": "@/assets/images/icons/智联招聘.ico",
+    "description": "大型综合人才招聘网站，提供真实准确的招聘信息，一站式人力资源综合服务。",
+    "tags": []
+  },
+  {
+    "id": "59b9b562-d003-4886-80ef-d55b5d956ede",
+    "categoryId": "8a5151d2-c7bc-482b-9053-201354b97c61",
+    "key": "https://www.qmjianli.com",
+    "title": "全民简历",
+    "icon": "@/assets/images/icons/全民简历.ico",
+    "description": "专业简历制作与模板下载平台，各职业模板免费使用，支持 AI 一键生成简历。",
+    "tags": []
+  },
+  {
+    "id": "a9e62eb8-d0f5-4164-a7df-5d13dca515c1",
+    "categoryId": "8a5151d2-c7bc-482b-9053-201354b97c61",
+    "key": "https://meeting.tencent.com/download",
+    "title": "腾讯会议",
+    "icon": "@/assets/images/icons/腾讯会议.png",
+    "description": "腾讯会议高清流畅、便捷易用、安全可靠的多人音视频会议软件，支持多端下载安装。",
+    "tags": []
+  },
+  {
+    "id": "94de63a8-9ab6-4a98-ba28-4e5131c059a2",
+    "categoryId": "8a5151d2-c7bc-482b-9053-201354b97c61",
+    "key": "https://www.dingtalk.com/download",
+    "title": "钉钉",
+    "icon": "@/assets/images/icons/钉钉.png",
+    "description": "阿里巴巴推出的企业办公平台，集沟通、会议、考勤审批于一体，支持多端下载。",
+    "tags": []
+  },
+  {
+    "id": "eda0ed77-e4d6-4441-b02b-0710f31cf456",
+    "categoryId": "8a5151d2-c7bc-482b-9053-201354b97c61",
+    "key": "https://work.weixin.qq.com",
+    "title": "企业微信",
+    "icon": "@/assets/images/icons/企业微信.png",
+    "description": "腾讯为企业打造的专业办公工具，与微信互通，内置 OA 应用助力企业高效管理。",
     "tags": []
   }
 ]
