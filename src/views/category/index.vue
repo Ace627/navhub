@@ -29,15 +29,15 @@ const sites = computed(() => {
 const plainLink = computed(() => entry.value?.plainLink ?? false)
 
 /**
- * 点击条目卡片：detail 模式下自有条目跳转详情页，其余条目一律新窗口打开
+ * 点击条目卡片：自有条目（小部件）跳转详情页，外链条目一律新窗口打开
  *
  * 纯外链分类的卡片由 LinkCard 内部 a 标签完成跳转，不会触发本回调
  *
  * @param item 被点击的站点条目
  */
 function handleClickItem(item: SiteItem) {
-  if (entry.value?.mode === 'detail' && !isExternal(item.key)) {
-    router.push(`/${entry.value.path}/${item.key}`)
+  if (!isExternal(item.key)) {
+    router.push(`/${entry.value?.path}/${item.key}`)
     return
   }
   window.open(item.key, '_blank')

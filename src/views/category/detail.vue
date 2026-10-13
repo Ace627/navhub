@@ -24,8 +24,8 @@ const router = useRouter()
 /** 自有条目组件注册表：自动收集 widgets 下各条目目录的 index.vue（目录名须与注册表 key 一致） */
 const widgetModules = import.meta.glob('./widgets/*/index.vue')
 
-/** 当前路由命中的详情型分类注册表条目：按路由路径前缀匹配（非法 key 时也能定位分类以正确兜底） */
-const entry = computed(() => getCategoryRegistry().find((category) => category.mode === 'detail' && route.path.startsWith(`/${category.path}/`)))
+/** 当前路由命中的分类注册表条目：按路由路径前缀匹配（非法 key 时也能定位分类以正确兜底） */
+const entry = computed(() => getCategoryRegistry().find((category) => route.path.startsWith(`/${category.path}/`)))
 
 /** 根据路由参数匹配到的分类条目 */
 const item = computed(() => entry.value?.data.find((entryItem) => entryItem.key === route.params.key))
@@ -36,8 +36,12 @@ const entryComponent = computed(() => {
   return loader ? defineAsyncComponent(loader as () => Promise<Component>) : null
 })
 
-/** 返回条目所在分类的列表页 */
+/** 返回上一页：有站内历史时原路返回（如从最近使用进入可回到最近使用），无历史（直达/刷新）时回分类列表兜底 */
 function handleBack() {
+  if (window.history.state?.back) {
+    router.back()
+    return
+  }
   router.push(entry.value ? `/${entry.value.path}` : RouterConstant.HOME_PAGE_URL)
 }
 

@@ -9,6 +9,15 @@
     "plainLink": true
   },
   {
+    "id": "8a5151d2-c7bc-482b-9053-201354b97c61",
+    "path": "work",
+    "name": "Work",
+    "title": "职场百科",
+    "icon": "Company",
+    "mode": "link",
+    "plainLink": true
+  },
+  {
     "id": "c77a86e8-3231-4bd6-b184-627bb7cd0cfe",
     "path": "ai",
     "name": "AI",
@@ -65,15 +74,6 @@
     "name": "Wallpaper",
     "title": "精美壁纸",
     "icon": "Wallpaper",
-    "mode": "link",
-    "plainLink": true
-  },
-  {
-    "id": "8a5151d2-c7bc-482b-9053-201354b97c61",
-    "path": "work",
-    "name": "Work",
-    "title": "职场百科",
-    "icon": "Company",
     "mode": "link",
     "plainLink": true
   }

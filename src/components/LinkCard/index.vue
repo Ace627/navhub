@@ -24,20 +24,22 @@
       </span>
       <span class="link-title">{{ item.title }}</span>
     </div>
-    <!-- 标签区：条目配置了 tags 时在右上角逐个展示 -->
-    <div v-if="item.tags?.length" class="card-tags">
-      <el-tag v-for="tag in item.tags" :key="tag" type="primary" size="small" effect="dark">{{ tag }}</el-tag>
-    </div>
     <!-- 主体内容：默认展示描述文案，传入 body 插槽可替换为小组件等自定义内容 -->
     <slot name="body">
       <ProTooltip :content="item.description" :show-after="DESC_TOOLTIP_SHOW_DELAY" :truncate-target="descRef">
-        <span ref="descRef" class="link-desc">{{ item.description }}</span>
+        <!-- el-text 自带多行省略；title 置空压掉其内置原生 title 提示，避免与气泡重复 -->
+        <el-text ref="descRef" class="link-desc" :line-clamp="2" title="">{{ item.description }}</el-text>
       </ProTooltip>
     </slot>
+    <!-- 标签区：描述下方一行；无标签的普通描述卡也渲染空行占位，保证网格各行等高 -->
+    <div v-if="item.tags?.length || tagPlaceholder" class="card-tags">
+      <el-tag v-for="tag in item.tags" :key="tag" type="primary" size="small" effect="plain">{{ tag }}</el-tag>
+    </div>
   </component>
 </template>
 
 <script setup lang="ts">
+import type { ComponentPublicInstance } from 'vue'
 import type { LinkCardProps, LinkItem } from './types'
 import { IMG_FAVICON } from '@/common/constant/image.constant'
 import { useAppStore } from '@/store/modules/app'
@@ -62,8 +64,11 @@ const ICON_LOAD_TIMEOUT = 5000
 /** 描述气泡的悬浮展示延迟（毫秒）：鼠标快速划过卡片时不弹出，避免遮挡相邻卡片 */
 const DESC_TOOLTIP_SHOW_DELAY = 720
 
-/** 描述元素引用：交给 ProTooltip 判定文案是否被截断，未截断时不弹气泡 */
-const descRef = ref<HTMLElement>()
+/** 描述元素引用：交给 ProTooltip 判定文案是否被截断，未截断时不弹气泡（组件实例由 ProTooltip 自行解析） */
+const descRef = ref<ComponentPublicInstance>()
+
+/** 是否渲染空标签占位行：默认描述布局（非自定义 body、非行布局）下预留，保证带/不带标签的卡片等高 */
+const tagPlaceholder = computed(() => !useSlots().body && props.layout !== 'row')
 
 /** 当前卡片图标是否已加载失败或超时（命中即降级为默认系统图标） */
 const iconFailed = ref(false)
@@ -252,18 +257,51 @@ function onContextMenu(event: MouseEvent): void {
   flex-direction: column;
   height: 100%;
   padding: 8px;
-  background-color: var(--el-bg-color);
+  /* 半透明白色轻玻璃底：透出页面纹理背景，避免纯白卡与背景割裂 */
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--el-border-color);
   border-radius: 8px;
+  /* 双层投影 + 顶部内高光：小半径贴地阴影定边界，大半径弱投影把卡片从背景上抬起，
+     顶部 1px 高光强化玻璃片的立体感 */
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 6px 16px rgba(0, 0, 0, 0.06);
   color: var(--el-text-color-regular);
   text-decoration: none;
   cursor: pointer;
   transition: all var(--el-transition-duration);
 
   &:hover {
-    box-shadow: var(--el-box-shadow-light);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.6),
+      0 2px 4px rgba(0, 0, 0, 0.05),
+      0 12px 24px rgba(0, 0, 0, 0.1);
     transform: translateY(-2px);
     border-color: var(--el-color-primary);
+  }
+}
+
+/* 深色模式：浅玻璃底改为深色融入，避免暗色页面里卡片发白。
+   近黑背景上黑投影几乎不可见，立体感改由「顶部亮边高光 + 底部暗边 + 大半径深投影」三层构成 */
+html.dark .link-card {
+  background-color: color-mix(in srgb, var(--el-bg-color) 55%, transparent);
+  /* EP 深色边框变量偏灰白发亮，换成低透明度白线，只留细微轮廓不发白 */
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.5),
+    0 8px 20px rgba(0, 0, 0, 0.5);
+
+  &:hover {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.16),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.4),
+      0 4px 8px rgba(0, 0, 0, 0.55),
+      0 14px 28px rgba(0, 0, 0, 0.6);
   }
 }
 
@@ -273,13 +311,14 @@ function onContextMenu(event: MouseEvent): void {
   gap: 10px;
 }
 
-/* 标签区：悬浮卡片右上角，tags 为空时不渲染 */
+/* 标签区：描述下方独立一行，靠左排列，放不下时自动换行；
+   min-height 与单个小号标签等高，空行占位时撑起同高等高的卡片底行 */
 .card-tags {
-  position: absolute;
-  top: 8px;
-  right: 8px;
   display: flex;
+  flex-wrap: wrap;
   gap: 4px;
+  margin-top: 8px;
+  min-height: 20px;
 }
 
 .link-icon {
@@ -305,16 +344,12 @@ function onContextMenu(event: MouseEvent): void {
 }
 
 .link-desc {
-  display: -webkit-box;
-  /* 只保留与标题之间的上间距：下外边距会与卡片 padding 叠加，造成上下留白不一致 */
-  margin: 8px 0 0;
-  overflow: hidden;
+  /* el-text 自带 align-self: center，在纵向 flex 卡里会水平居中，这里拉回满宽左对齐 */
+  align-self: stretch;
+  margin: 4px 0 0;
   font-size: 13px;
   line-height: 1.6;
   color: var(--el-color-info);
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
 }
 
 /* 卡片内容在卡片内垂直居中：等高布局下，内容少于同行最高卡的卡片把余量均匀分到上下，

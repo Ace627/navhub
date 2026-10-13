@@ -224,12 +224,29 @@ async function handleClearCache() {
   justify-content: center;
 }
 
-/* 通用面板 */
+/* 通用面板：半透明轻玻璃底，透出页面纹理背景，与全站 LinkCard 视觉一致 */
 .panel {
   padding: 16px 20px;
-  background-color: var(--el-bg-color);
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--el-border-color-lighter);
   border-radius: 8px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+/* 深色模式：深色融入 + 亮边高光勾立体，避免暗底上面板发白或纯平 */
+html.dark .panel {
+  background-color: color-mix(in srgb, var(--el-bg-color) 55%, transparent);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.5),
+    0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
 .panel-title {

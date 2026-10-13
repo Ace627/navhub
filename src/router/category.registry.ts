@@ -1,6 +1,7 @@
 import type { RouteRecordRaw } from 'vue-router'
 import type { CategoryItem, SiteItem } from '@/types'
 import { SiteRequest } from '@/api/site.request'
+import { isExternal } from '@/utils'
 
 /** 分类注册条目定义：分类表条目附加该分类下的站点数据列表 */
 export type CategoryEntry = CategoryItem & {
@@ -38,7 +39,8 @@ export async function initCategoryRegistry(): Promise<void> {
 /**
  * 由分类注册表生成布局子路由
  *
- * link 模式仅生成列表路由；detail 模式额外生成 `<path>/:key` 详情路由，指向通用详情页
+ * 各分类生成列表路由；收录了自有条目（小部件，key 非外链）的分类额外生成 `<path>/:key` 详情路由，
+ * 指向通用详情页——自有条目可能出现在任意模式（link/detail）的分类下，点击均需可进详情
  *
  * @returns 分类路由列表
  */
@@ -52,7 +54,7 @@ export function buildCategoryRoutes(): RouteRecordRaw[] {
         meta: { title: entry.title, icon: entry.icon },
       },
     ]
-    if (entry.mode === 'detail') {
+    if (entry.data.some((item) => !isExternal(item.key))) {
       routes.push({
         path: `${entry.path}/:key`,
         name: `${entry.name}Detail`,

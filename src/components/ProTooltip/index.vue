@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import type { PropType } from 'vue'
+import type { ComponentPublicInstance, PropType } from 'vue'
 
 defineOptions({ name: 'ProTooltip' })
 
@@ -27,8 +27,8 @@ const props = defineProps({
   length: { type: Number, default: 0 },
   /** 省略符号 */
   ellipsis: { type: String, default: '...' },
-  /** 截断判定目标元素：传入后仅在其内容被截断时显示提示，通常传入触发元素自身的 ref */
-  truncateTarget: { type: Object as PropType<HTMLElement | null>, default: null },
+  /** 截断判定目标：原生元素或组件实例（自动解析其根元素），传入后仅在其内容被截断时显示提示 */
+  truncateTarget: { type: Object as PropType<HTMLElement | ComponentPublicInstance | null>, default: null },
 })
 
 // 计算：显示的截取文字
@@ -48,6 +48,17 @@ let measuredWidth = -1
 const LINE_CLAMP_PROPS = ['-webkit-line-clamp', 'line-clamp']
 
 /**
+ * 解析测量目标：组件实例取其根元素，原生元素直接使用
+ *
+ * @returns 可测量的原生元素，无法解析时返回 null
+ */
+function resolveTarget(): HTMLElement | null {
+  const target = props.truncateTarget
+  if (!target) return null
+  return ((target as ComponentPublicInstance).$el as HTMLElement | undefined) ?? (target as HTMLElement)
+}
+
+/**
  * 测量目标元素内容是否被截断
  *
  * 元素被 -webkit-line-clamp 截断时 scrollHeight 与 clientHeight 相等，直接比较无法判断，
@@ -55,7 +66,7 @@ const LINE_CLAMP_PROPS = ['-webkit-line-clamp', 'line-clamp']
  * 单行省略（nowrap + text-overflow）不产生纵向差异，由横向滚动宽度兜底判定
  */
 function measureTruncated(): void {
-  const el = props.truncateTarget
+  const el = resolveTarget()
   if (!el) return
   const visibleHeight = el.clientHeight
   const visibleWidth = el.clientWidth
@@ -74,7 +85,7 @@ function measureTruncated(): void {
  * 目标元素尺寸变化回调：宽度未变时换行结果不变，跳过重测
  */
 function handleTargetResize(): void {
-  const el = props.truncateTarget
+  const el = resolveTarget()
   if (!el || el.clientWidth === measuredWidth) return
   measuredWidth = el.clientWidth
   measureTruncated()
@@ -82,7 +93,7 @@ function handleTargetResize(): void {
 
 // 目标元素挂载后先测一次；缩放、侧栏折叠、字体切换等改变宽度时按宽度重测
 onMounted(() => nextTick(measureTruncated))
-useResizeObserver(() => props.truncateTarget, handleTargetResize)
+useResizeObserver(resolveTarget, handleTargetResize)
 
 // 文案变化时宽度可能不变但行数已变，同样需要重测
 watch(

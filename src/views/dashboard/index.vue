@@ -453,6 +453,10 @@ onBeforeUnmount(() => document.removeEventListener('click', handleDocumentClick)
   width: 100%;
 
   &:deep(.el-input__wrapper) {
+    /* 轻玻璃底：透出页面纹理背景，与全站卡片视觉一致，避免纯白胶囊突兀 */
+    background-color: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-radius: 999px;
   }
 
@@ -460,6 +464,11 @@ onBeforeUnmount(() => document.removeEventListener('click', handleDocumentClick)
   &:deep(.el-input__suffix) {
     gap: 8px;
   }
+}
+
+/* 深色模式：玻璃底换深色融入，避免暗底下搜索框发灰发白 */
+html.dark .search-input:deep(.el-input__wrapper) {
+  background-color: color-mix(in srgb, var(--el-bg-color) 55%, transparent);
 }
 
 /* 桌面端触发器：输入框前缀展示当前引擎名，点击展开引擎下拉 */

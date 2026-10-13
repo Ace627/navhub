@@ -546,7 +546,9 @@
     "title": "Element Plus",
     "icon": "@/assets/images/icons/Element Plus.svg",
     "description": "基于 Vue 3 的开源组件库，文档完善、示例丰富，助力开发者高效构建界面。",
-    "tags": []
+    "tags": [
+      "Vue"
+    ]
   },
   {
     "id": "91876736-1cb9-412f-be6a-cb3f93a68dfb",
@@ -564,7 +566,9 @@
     "title": "Element Plus X",
     "icon": "@/assets/images/icons/Element Plus X.ico",
     "description": "基于 Vue3 与 Element Plus 的 AI 体验组件库，开箱即用。",
-    "tags": []
+    "tags": [
+      "Vue"
+    ]
   },
   {
     "id": "6bd869ac-c84c-46c7-a391-b79566342f5f",
@@ -573,7 +577,9 @@
     "title": "Vant",
     "icon": "@/assets/images/icons/Vant.png",
     "description": "轻量可定制的移动端 Vue 组件库，提供 70+ 高质量组件，助力移动应用高效开发。",
-    "tags": []
+    "tags": [
+      "Vue"
+    ]
   },
   {
     "id": "4debe687-702f-454e-8328-1c4699aec615",
@@ -582,7 +588,9 @@
     "title": "Naive UI",
     "icon": "@/assets/images/icons/Naive UI.png",
     "description": "基于 Vue 3 的组件库，TypeScript 编写，主题可调，内置暗黑模式与丰富组件。",
-    "tags": []
+    "tags": [
+      "Vue"
+    ]
   },
   {
     "id": "dea2b926-ff1d-471c-829b-02b6aaf27d59",
@@ -591,7 +599,9 @@
     "title": "Ant Design Vue",
     "icon": "@/assets/images/icons/Ant Design Vue.ico",
     "description": "基于 Ant Design 设计规范与 Vue 的企业级组件库，提供丰富的高质量组件。",
-    "tags": []
+    "tags": [
+      "Vue"
+    ]
   },
   {
     "id": "8d8e2ea8-11c2-4f4c-b6da-b00f11f7ea7a",
@@ -645,7 +655,9 @@
     "title": "Vue",
     "icon": "@/assets/images/icons/Vue.svg",
     "description": "渐进式 JavaScript 前端框架，官方中文文档，提供指南、API 与示例。",
-    "tags": []
+    "tags": [
+      "Vue"
+    ]
   },
   {
     "id": "a2b8431d-6102-4da0-9c59-5e3258ae4512",
@@ -654,7 +666,9 @@
     "title": "Vue Router",
     "icon": "@/assets/images/icons/Vue Router.svg",
     "description": "Vue.js 官方路由器，支持嵌套路由、动态路由与导航守卫等核心能力。",
-    "tags": []
+    "tags": [
+      "Vue"
+    ]
   },
   {
     "id": "b864e0fd-8ede-4a0b-9fdd-95b771949716",
@@ -663,7 +677,9 @@
     "title": "Pinia",
     "icon": "@/assets/images/icons/Pinia.svg",
     "description": "Vue 官方推荐的状态管理库，提供类型安全、模块化与开发者工具支持。",
-    "tags": []
+    "tags": [
+      "Vue"
+    ]
   },
   {
     "id": "36d77c89-c816-4ad8-b74c-9ba9dbf4dec8",
@@ -672,7 +688,9 @@
     "title": "VueUse",
     "icon": "@/assets/images/icons/VueUse.png",
     "description": "基于 Vue 组合式 API 的实用工具函数集合，覆盖状态、DOM 与常用交互场景。",
-    "tags": []
+    "tags": [
+      "Vue"
+    ]
   },
   {
     "id": "2c60c335-6a62-4957-9039-f4e2300a6373",
@@ -690,7 +708,9 @@
     "title": "VitePress",
     "icon": "@/assets/images/icons/VitePress.svg",
     "description": "基于 Vite 与 Vue 的静态站点生成器，用 Markdown 快速建站。",
-    "tags": []
+    "tags": [
+      "Vue"
+    ]
   },
   {
     "id": "7d26ecd0-73eb-40ca-8bf8-bd1725c8d26d",
@@ -708,7 +728,9 @@
     "title": "uni-app",
     "icon": "@/assets/images/icons/uni-app.png",
     "description": "uni-app 官方 API 文档，覆盖网络、存储、媒体等常用跨端接口。",
-    "tags": []
+    "tags": [
+      "Vue"
+    ]
   },
   {
     "id": "860e04e0-959d-4330-b06c-6839a2b76dbe",
@@ -888,7 +910,10 @@
     "title": "红果短剧",
     "icon": "@/assets/images/icons/红果短剧.png",
     "description": "红果短剧官方电脑版，免费观看海量短剧，支持自动连播、收藏与历史记录。",
-    "tags": []
+    "tags": [
+      "电脑软件",
+      "装机必备"
+    ]
   },
   {
     "id": "8286dcb4-4dfc-4b53-a3db-ae3d9184a1f1",
@@ -897,7 +922,10 @@
     "title": "微信",
     "icon": "@/assets/images/icons/微信.png",
     "description": "腾讯官方即时通讯软件，支持聊天、语音视频通话与文件传输，电脑版官方下载。",
-    "tags": []
+    "tags": [
+      "电脑软件",
+      "装机必备"
+    ]
   },
   {
     "id": "bcdd73d6-9835-4c05-9f37-51594cd46873",
@@ -906,7 +934,10 @@
     "title": "微信防撤回",
     "icon": "assets/images/icons/微信防撤回.png",
     "description": "开源的微信、QQ、TIM 防撤回补丁工具，一键修改客户端拦截撤回消息。",
-    "tags": []
+    "tags": [
+      "电脑软件",
+      "装机必备"
+    ]
   },
   {
     "id": "7d7ce02a-fda9-42c6-9121-aae92b35d487",
@@ -933,7 +964,10 @@
     "title": "Clash Verge",
     "icon": "@/assets/images/icons/Clash Verge.ico",
     "description": "基于 Tauri 的跨平台代理客户端，界面简洁，支持多内核与规则配置。",
-    "tags": []
+    "tags": [
+      "电脑软件",
+      "装机必备"
+    ]
   },
   {
     "id": "e5496614-16ec-476a-bdd6-367d1e2558f6",
@@ -942,7 +976,10 @@
     "title": "爱思助手",
     "icon": "@/assets/images/icons/爱思助手.png",
     "description": "专业的苹果设备管理工具，支持一键刷机、数据备份还原、换机搬家与应用下载。",
-    "tags": []
+    "tags": [
+      "电脑软件",
+      "装机必备"
+    ]
   },
   {
     "id": "5a870dfe-b674-403e-8f53-970fe1543f28",
@@ -960,7 +997,10 @@
     "title": "PotPlayer",
     "icon": "@/assets/images/icons/PotPlayer.svg",
     "description": "PotPlayer 全能多媒体播放器，支持主流音视频格式与字幕播放。",
-    "tags": []
+    "tags": [
+      "电脑软件",
+      "装机必备"
+    ]
   },
   {
     "id": "c72c5d32-ff6a-4fca-abae-97a5dfbf9c4e",
@@ -987,7 +1027,10 @@
     "title": "百分浏览器",
     "icon": "@/assets/images/icons/百分浏览器.ico",
     "description": "Chrome 增强版浏览器，紧跟最新内核，主打快速简约，优化办公娱乐上网体验。",
-    "tags": []
+    "tags": [
+      "电脑软件",
+      "装机必备"
+    ]
   },
   {
     "id": "400724bb-a205-4eea-8c67-d80fd352e10f",
@@ -1095,7 +1138,9 @@
     "title": "极客软件库",
     "icon": "@/assets/images/icons/极客软件库.webp",
     "description": "汇聚优质软件、游戏与工具，安全检测保障下载，支持版本更新与断点续传。",
-    "tags": []
+    "tags": [
+      "安卓软件"
+    ]
   },
   {
     "id": "a86a4035-ef67-4f96-9d10-65cc4e4eb128",
@@ -1104,7 +1149,9 @@
     "title": "大肥精品软件",
     "icon": "assets/images/icons/大肥精品软件.png",
     "description": "大肥爱分享的精品软件合集，免费分享各类福利软件资源，每日持续更新。",
-    "tags": []
+    "tags": [
+      "安卓软件"
+    ]
   },
   {
     "id": "a76bca18-294c-4b3f-9386-eeb288fceb13",
@@ -1113,7 +1160,9 @@
     "title": "最先软件库",
     "icon": "assets/images/icons/最先软件库.png",
     "description": "永久免费分享的各类软件资源合集，更新频繁，部分资源可能失效，仅供学习交流请勿商用。",
-    "tags": []
+    "tags": [
+      "安卓软件"
+    ]
   },
   {
     "id": "1b94feac-3520-4f75-aea7-6fd5bf4a8c78",
@@ -1122,7 +1171,9 @@
     "title": "千城游戏合集",
     "icon": "@/assets/images/icons/千城游戏合集.ico",
     "description": "不定时更新各类好玩破解的安卓游戏资源，收录丰富，喜欢玩游戏的小伙伴不容错过。",
-    "tags": []
+    "tags": [
+      "安卓软件"
+    ]
   },
   {
     "id": "b420d9c3-ca0b-4ce3-b964-3150f681ecc1",
@@ -1131,7 +1182,9 @@
     "title": "FuckApp",
     "icon": "@/assets/images/icons/FuckApp.ico",
     "description": "破解类安卓应用合集，附安装指南：被拦截可断网安装，报毒为破解应用误报，仅供学习研究。",
-    "tags": []
+    "tags": [
+      "安卓软件"
+    ]
   },
   {
     "id": "196c03f6-540a-4924-82f2-80c4f9280d15",
@@ -1140,7 +1193,9 @@
     "title": "兜兜软件库",
     "icon": "@/assets/images/icons/兜兜软件库.ico",
     "description": "兜兜软件库合集，不定时更新各类福利软件，收录丰富，欢迎收藏备用。",
-    "tags": []
+    "tags": [
+      "安卓软件"
+    ]
   },
   {
     "id": "545ac7d6-6e1a-4fa4-9bfb-5f39c50dedaf",
@@ -1149,7 +1204,9 @@
     "title": "旧人软件阁",
     "icon": "assets/images/icons/旧人软件阁.png",
     "description": "旧人软件阁的软件合集，软件基于官方接口制作，若失效多为官方已修复所致。",
-    "tags": []
+    "tags": [
+      "安卓软件"
+    ]
   },
   {
     "id": "439ccd97-01ce-4d9e-94fc-baee3f4e74fd",
@@ -1158,7 +1215,9 @@
     "title": "欢子黑科技",
     "icon": "@/assets/images/icons/欢子黑科技.ico",
     "description": "佚名收集的各种破解软件资源。",
-    "tags": []
+    "tags": [
+      "安卓软件"
+    ]
   },
   {
     "id": "9c19205a-2702-4eee-b85b-390a68c81487",
@@ -1167,7 +1226,9 @@
     "title": "滚哥网盘资源",
     "icon": "@/assets/images/icons/滚哥网盘资源.ico",
     "description": "滚哥网盘资源合集，每日动态更新各类软件，失效多为版本更新，仅供测试请勿他用。",
-    "tags": []
+    "tags": [
+      "安卓软件"
+    ]
   },
   {
     "id": "d342c747-b30c-4e6d-a616-95b101a7384b",
@@ -1176,7 +1237,9 @@
     "title": "优质软件合集",
     "icon": "@/assets/images/icons/优质软件合集.ico",
     "description": "佚名收集的各种破解软件资源。",
-    "tags": []
+    "tags": [
+      "安卓软件"
+    ]
   },
   {
     "id": "9df7f792-33c2-479d-af39-1cb5196e77e5",
@@ -1185,7 +1248,9 @@
     "title": "未分类软件集",
     "icon": "@/assets/images/icons/未分类软件集.ico",
     "description": "佚名收集的各种破解软件资源。",
-    "tags": []
+    "tags": [
+      "安卓软件"
+    ]
   },
   {
     "id": "facc18f5-73be-418f-b7d4-0602611d10d9",
@@ -1194,7 +1259,9 @@
     "title": "精选软件推荐",
     "icon": "@/assets/images/icons/精选软件推荐.ico",
     "description": "人工精选的热门娱乐实用软件合集，每天更新，持续上新，欢迎收藏使用。",
-    "tags": []
+    "tags": [
+      "安卓软件"
+    ]
   },
   {
     "id": "ccd96377-2677-402e-a47f-eba02ed49133",
@@ -1203,7 +1270,9 @@
     "title": "乐分享软件",
     "icon": "@/assets/images/icons/乐分享软件.ico",
     "description": "佚名收集的各种破解软件资源。",
-    "tags": []
+    "tags": [
+      "安卓软件"
+    ]
   },
   {
     "id": "65bbcdbe-bd8b-46f2-8f4d-c810ab04e6a6",
@@ -1212,7 +1281,9 @@
     "title": "安卓破解软件",
     "icon": "@/assets/images/icons/安卓破解软件.ico",
     "description": "常用软件破解版合集，涵盖影视会员、音乐、下载工具等热门安卓应用的破解版本。",
-    "tags": []
+    "tags": [
+      "安卓软件"
+    ]
   },
   {
     "id": "26adb2d6-3add-47fd-9098-dba143c3a135",
@@ -1221,7 +1292,9 @@
     "title": "破解游戏合集",
     "icon": "@/assets/images/icons/破解游戏合集.ico",
     "description": "佚名收集的各种破解软件资源。",
-    "tags": []
+    "tags": [
+      "安卓软件"
+    ]
   },
   {
     "id": "7a145e6c-a69d-45bf-9939-231a7d30d769",
@@ -1230,7 +1303,9 @@
     "title": "允晨软件库",
     "icon": "@/assets/images/icons/允晨软件库.ico",
     "description": "佚名收集的各种破解软件资源。",
-    "tags": []
+    "tags": [
+      "安卓软件"
+    ]
   },
   {
     "id": "175b4a13-75b2-49a9-bbcb-0cc9ec564003",
@@ -1239,7 +1314,9 @@
     "title": "软件实验室",
     "icon": "@/assets/images/icons/软件实验室.ico",
     "description": "佚名收集的各种破解软件资源。",
-    "tags": []
+    "tags": [
+      "安卓软件"
+    ]
   },
   {
     "id": "f5e06025-6277-42d8-8980-d1f680ed72e9",
@@ -1248,7 +1325,9 @@
     "title": "清风软件集",
     "icon": "@/assets/images/icons/清风软件集.ico",
     "description": "清风软件集，全部软件免费使用，基于官方接口改写，若失效多为官方已修复。",
-    "tags": []
+    "tags": [
+      "安卓软件"
+    ]
   },
   {
     "id": "66db6b7c-badf-4a16-a177-a9e6de30f4d4",
@@ -1257,7 +1336,9 @@
     "title": "小说软件合集",
     "icon": "@/assets/images/icons/小说软件合集.ico",
     "description": "佚名收集的各种破解软件资源。",
-    "tags": []
+    "tags": [
+      "安卓软件"
+    ]
   },
   {
     "id": "3c6c55fd-6a1a-4516-8e4e-5785a5e83221",
@@ -1266,7 +1347,9 @@
     "title": "阿友软件合集",
     "icon": "@/assets/images/icons/阿友软件合集.ico",
     "description": "阿友软件合集，软件基于官方接口制作，全部免费使用，若失效多为官方已修复。",
-    "tags": []
+    "tags": [
+      "安卓软件"
+    ]
   },
   {
     "id": "4c24de5b-b925-47f6-833d-0aa4ed1553b3",
@@ -1275,7 +1358,9 @@
     "title": "小鹏软件合集",
     "icon": "@/assets/images/icons/小鹏软件合集.ico",
     "description": "小鹏团队出品的软件合集，不保证长久可用，失效即停更，仅供学习参考请勿非法使用。",
-    "tags": []
+    "tags": [
+      "安卓软件"
+    ]
   },
   {
     "id": "0d366de5-992e-4688-abf3-789ae8fff90e",
@@ -1284,7 +1369,9 @@
     "title": "星辰软件合集",
     "icon": "@/assets/images/icons/星辰软件合集.ico",
     "description": "星辰软件合集，收录好玩有趣的各类软件资源，持续更新，欢迎体验收藏。",
-    "tags": []
+    "tags": [
+      "安卓软件"
+    ]
   },
   {
     "id": "c1b297b8-5448-45e8-b3c4-b5cc66cc714f",
@@ -1293,7 +1380,9 @@
     "title": "新起点软件库",
     "icon": "@/assets/images/icons/新起点软件库.ico",
     "description": "良心出品的各类实用软件，多为活动或接口类应用，失效属正常情况望理解。",
-    "tags": []
+    "tags": [
+      "安卓软件"
+    ]
   },
   {
     "id": "cbf920c3-4c38-4525-b6b4-41ee57acc9c0",
@@ -1302,7 +1391,9 @@
     "title": "软件窝合集",
     "icon": "@/assets/images/icons/软件窝合集.ico",
     "description": "软件窝福利软件合集，不定时更新各类资源，内容源于互联网仅供学习参考。",
-    "tags": []
+    "tags": [
+      "安卓软件"
+    ]
   },
   {
     "id": "f685e719-1a5c-4e50-9607-a22f29d9a285",
@@ -1311,7 +1402,9 @@
     "title": "晨钟网络科技",
     "icon": "@/assets/images/icons/晨钟网络科技.png",
     "description": "专注开发小众实用的安卓与 Windows 软件，解决数码爱好者的使用痛点。",
-    "tags": []
+    "tags": [
+      "安卓软件"
+    ]
   },
   {
     "id": "b2e7c9a4-5d18-4f63-8e07-a9c4d1f63b85",
@@ -1329,28 +1422,6 @@
     "title": "双色球模拟器",
     "icon": "@/assets/images/icons/双色球.png",
     "description": "随机模拟双色球与大乐透号码，支持自定义组数与摇号动画，仅供娱乐。",
-    "tags": [
-      "自研"
-    ]
-  },
-  {
-    "id": "5e2f8a41-9c3b-4d7e-b1a6-8f0c2d4e6a9b",
-    "categoryId": "9ee39df2-1307-47a5-849a-0e8e9d552e4e",
-    "key": "OffWorkCountdown",
-    "title": "下班倒计时",
-    "icon": "@/assets/images/icons/下班倒计时.svg",
-    "description": "实时显示距离下班的剩余时间，支持自定义下班时间与本地记忆设置。",
-    "tags": [
-      "自研"
-    ]
-  },
-  {
-    "id": "9b2e4f7a-3c5d-48b1-a6e9-0f8d2c7b4e1a",
-    "categoryId": "9ee39df2-1307-47a5-849a-0e8e9d552e4e",
-    "key": "PaydayCountdown",
-    "title": "发薪日倒计时",
-    "icon": "@/assets/images/icons/发薪日倒计时.svg",
-    "description": "实时统计各候选发薪日的剩余天数，最近一项自动高亮，支持自定义发薪日。",
     "tags": [
       "自研"
     ]
@@ -1803,7 +1874,7 @@
   {
     "id": "09a8a4e1-5e27-4579-a6ab-d6910bd1265f",
     "categoryId": "8652c80f-1b7f-456a-86bf-b5224d8e22c7",
-    "key": "https://xxapi.cn/api-market",
+    "key": "https://xxapi.cn",
     "title": "API市场",
     "icon": "@/assets/images/icons/API市场.ico",
     "description": "免费 API 接口市场，提供各类实用接口服务，调用快速稳定。",
@@ -2107,15 +2178,6 @@
     "tags": []
   },
   {
-    "id": "ac671292-af8b-4ae2-ac80-0ec40ce00ff7",
-    "categoryId": "4449bddc-349b-4302-ab3a-bd076bd3fb8a",
-    "key": "https://www.51zxw.net",
-    "title": "我要自学网",
-    "icon": "@/assets/images/icons/我要自学网.ico",
-    "description": "涵盖办公、3D、平面、影视动画等软件领域的免费视频教程自学网站。",
-    "tags": []
-  },
-  {
     "id": "88202d53-580c-4571-9b9f-3a18185d34a4",
     "categoryId": "4449bddc-349b-4302-ab3a-bd076bd3fb8a",
     "key": "https://www.examcoo.com/index/ku",
@@ -2365,15 +2427,6 @@
     "title": "书格",
     "icon": "@/assets/images/icons/书格.png",
     "description": "开放免费的数字古籍图书馆，分享高清中国古典文化艺术影像，感受传统之美。",
-    "tags": []
-  },
-  {
-    "id": "d52dfcb5-8e13-40ae-9a2d-0c48f9643156",
-    "categoryId": "4449bddc-349b-4302-ab3a-bd076bd3fb8a",
-    "key": "https://www.mvyxws.cn",
-    "title": "医学微视",
-    "icon": "@/assets/images/icons/医学微视.ico",
-    "description": "中国医学科普微视频百科全书，以短视频讲解疾病防治与健康知识，通俗易懂。",
     "tags": []
   },
   {
@@ -2674,60 +2727,6 @@
     "tags": []
   },
   {
-    "id": "51b4cdd6-4b04-4643-a7dd-565ad550d58d",
-    "categoryId": "8a5151d2-c7bc-482b-9053-201354b97c61",
-    "key": "https://gwy.gkzhenti.cn",
-    "title": "公考真题库",
-    "icon": "@/assets/images/icons/公考真题库.ico",
-    "description": "收录公务员、事业单位等考试真题，支持行测申论试卷整套在线下载打印。",
-    "tags": []
-  },
-  {
-    "id": "6c05d258-294b-4c75-bddc-c3ece69c3c16",
-    "categoryId": "8a5151d2-c7bc-482b-9053-201354b97c61",
-    "key": "https://wenshu.court.gov.cn",
-    "title": "裁判文书网",
-    "icon": "@/assets/images/icons/裁判文书网.ico",
-    "description": "最高人民法院官方裁判文书公开平台，可在线检索查阅各类案件裁判文书。",
-    "tags": []
-  },
-  {
-    "id": "5ca8a039-8d9f-4f32-8e29-e19de7e705a8",
-    "categoryId": "8a5151d2-c7bc-482b-9053-201354b97c61",
-    "key": "http://www.wordlm.com",
-    "title": "Word联盟",
-    "icon": "@/assets/images/icons/Word联盟.jpg",
-    "description": "专业办公软件学习平台，提供Word图文视频教程与各版本下载等资讯。",
-    "tags": []
-  },
-  {
-    "id": "45d9daae-e488-48bf-b083-fb37da45dc6e",
-    "categoryId": "8a5151d2-c7bc-482b-9053-201354b97c61",
-    "key": "https://www.lanrenexcel.com",
-    "title": "懒人Excel",
-    "icon": "@/assets/images/icons/懒人Excel.png",
-    "description": "免费Excel教程站，涵盖函数公式、数据透视表、图表与VBA等实操技巧。",
-    "tags": []
-  },
-  {
-    "id": "786e5372-6b06-4bc3-acbe-d26321685661",
-    "categoryId": "8a5151d2-c7bc-482b-9053-201354b97c61",
-    "key": "https://docs.qq.com",
-    "title": "腾讯文档",
-    "icon": "@/assets/images/icons/腾讯文档.ico",
-    "description": "腾讯官方多人协作在线文档，实时编辑保存，支持设置好友访问与编辑权限。",
-    "tags": []
-  },
-  {
-    "id": "146219b8-e39f-417f-8675-c174e032e0f7",
-    "categoryId": "8a5151d2-c7bc-482b-9053-201354b97c61",
-    "key": "https://shimo.im",
-    "title": "石墨文档",
-    "icon": "@/assets/images/icons/石墨文档.ico",
-    "description": "新一代云办公平台，支持多人在线协同编辑文档、表格与幻灯片，跨终端保存。",
-    "tags": []
-  },
-  {
     "id": "d749a3a7-8739-4f7f-92af-15ac700e5e99",
     "categoryId": "8a5151d2-c7bc-482b-9053-201354b97c61",
     "key": "https://www.zhipin.com",
@@ -2755,15 +2754,6 @@
     "tags": []
   },
   {
-    "id": "a9e62eb8-d0f5-4164-a7df-5d13dca515c1",
-    "categoryId": "8a5151d2-c7bc-482b-9053-201354b97c61",
-    "key": "https://meeting.tencent.com/download",
-    "title": "腾讯会议",
-    "icon": "@/assets/images/icons/腾讯会议.png",
-    "description": "腾讯会议高清流畅、便捷易用、安全可靠的多人音视频会议软件，支持多端下载安装。",
-    "tags": []
-  },
-  {
     "id": "94de63a8-9ab6-4a98-ba28-4e5131c059a2",
     "categoryId": "8a5151d2-c7bc-482b-9053-201354b97c61",
     "key": "https://www.dingtalk.com/download",
@@ -2780,5 +2770,99 @@
     "icon": "@/assets/images/icons/企业微信.png",
     "description": "腾讯为企业打造的专业办公工具，与微信互通，内置 OA 应用助力企业高效管理。",
     "tags": []
+  },
+  {
+    "id": "a9e62eb8-d0f5-4164-a7df-5d13dca515c1",
+    "categoryId": "8a5151d2-c7bc-482b-9053-201354b97c61",
+    "key": "https://meeting.tencent.com/download",
+    "title": "腾讯会议",
+    "icon": "@/assets/images/icons/腾讯会议.png",
+    "description": "腾讯会议高清流畅、便捷易用、安全可靠的多人音视频会议软件，支持多端下载安装。",
+    "tags": []
+  },
+  {
+    "id": "786e5372-6b06-4bc3-acbe-d26321685661",
+    "categoryId": "8a5151d2-c7bc-482b-9053-201354b97c61",
+    "key": "https://docs.qq.com",
+    "title": "腾讯文档",
+    "icon": "@/assets/images/icons/腾讯文档.ico",
+    "description": "腾讯官方多人协作在线文档，实时编辑保存，支持设置好友访问与编辑权限。",
+    "tags": []
+  },
+  {
+    "id": "146219b8-e39f-417f-8675-c174e032e0f7",
+    "categoryId": "8a5151d2-c7bc-482b-9053-201354b97c61",
+    "key": "https://shimo.im",
+    "title": "石墨文档",
+    "icon": "@/assets/images/icons/石墨文档.ico",
+    "description": "新一代云办公平台，支持多人在线协同编辑文档、表格与幻灯片，跨终端保存。",
+    "tags": []
+  },
+  {
+    "id": "6c05d258-294b-4c75-bddc-c3ece69c3c16",
+    "categoryId": "8a5151d2-c7bc-482b-9053-201354b97c61",
+    "key": "https://wenshu.court.gov.cn",
+    "title": "裁判文书网",
+    "icon": "@/assets/images/icons/裁判文书网.ico",
+    "description": "最高人民法院官方裁判文书公开平台，可在线检索查阅各类案件裁判文书。",
+    "tags": []
+  },
+  {
+    "id": "5ca8a039-8d9f-4f32-8e29-e19de7e705a8",
+    "categoryId": "8a5151d2-c7bc-482b-9053-201354b97c61",
+    "key": "http://www.wordlm.com",
+    "title": "Word联盟",
+    "icon": "@/assets/images/icons/Word联盟.jpg",
+    "description": "专业办公软件学习平台，提供Word图文视频教程与各版本下载等资讯。",
+    "tags": []
+  },
+  {
+    "id": "ac671292-af8b-4ae2-ac80-0ec40ce00ff7",
+    "categoryId": "8a5151d2-c7bc-482b-9053-201354b97c61",
+    "key": "https://www.51zxw.net",
+    "title": "我要自学网",
+    "icon": "@/assets/images/icons/我要自学网.ico",
+    "description": "涵盖办公、3D、平面、影视动画等软件领域的免费视频教程自学网站。",
+    "tags": []
+  },
+  {
+    "id": "51b4cdd6-4b04-4643-a7dd-565ad550d58d",
+    "categoryId": "8a5151d2-c7bc-482b-9053-201354b97c61",
+    "key": "https://gwy.gkzhenti.cn",
+    "title": "公考真题库",
+    "icon": "@/assets/images/icons/公考真题库.ico",
+    "description": "收录公务员、事业单位等考试真题，支持行测申论试卷整套在线下载打印。",
+    "tags": []
+  },
+  {
+    "id": "d52dfcb5-8e13-40ae-9a2d-0c48f9643156",
+    "categoryId": "8a5151d2-c7bc-482b-9053-201354b97c61",
+    "key": "https://www.mvyxws.cn",
+    "title": "医学微视",
+    "icon": "@/assets/images/icons/医学微视.ico",
+    "description": "中国医学科普微视频百科全书，以短视频讲解疾病防治与健康知识，通俗易懂。",
+    "tags": []
+  },
+  {
+    "id": "5e2f8a41-9c3b-4d7e-b1a6-8f0c2d4e6a9b",
+    "categoryId": "8a5151d2-c7bc-482b-9053-201354b97c61",
+    "key": "OffWorkCountdown",
+    "title": "下班倒计时",
+    "icon": "@/assets/images/icons/下班倒计时.svg",
+    "description": "实时显示距离下班的剩余时间，支持自定义下班时间与本地记忆设置。",
+    "tags": [
+      "自研"
+    ]
+  },
+  {
+    "id": "9b2e4f7a-3c5d-48b1-a6e9-0f8d2c7b4e1a",
+    "categoryId": "8a5151d2-c7bc-482b-9053-201354b97c61",
+    "key": "PaydayCountdown",
+    "title": "发薪日倒计时",
+    "icon": "@/assets/images/icons/发薪日倒计时.svg",
+    "description": "实时统计各候选发薪日的剩余天数，最近一项自动高亮，支持自定义发薪日。",
+    "tags": [
+      "自研"
+    ]
   }
 ]

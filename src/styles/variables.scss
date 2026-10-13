@@ -39,7 +39,8 @@ html.dark {
   --el-sidebar-nested-bg-color: #0d0d0d;
   --el-sidebar-hover-text-color: var(--el-color-white);
   --el-sidebar-hover-bg-color: var(--el-overlay-color-lighter);
-  --el-sidebar-box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
+  /* 深色底上黑色投影不可见：用 1px 亮边勾出侧栏与页面的分界，再叠一层大半径深投影增厚 */
+  --el-sidebar-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.08), 4px 0 16px rgba(0, 0, 0, 0.6);
 
   --el-navbar-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 

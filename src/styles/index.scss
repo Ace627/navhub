@@ -10,10 +10,31 @@
 @import url('https://chinese-fonts-cdn.netlify.app/packages/qtbfsxt/dist/千图笔锋手写体/result.css');
 
 body {
+  position: relative;
+  z-index: 0;
   font-family: var(--el-font-family);
   background-color: var(--el-bg-color-page);
   background-image: var(--el-bg-img-texture);
   background-repeat: repeat;
+
+  /* 纹理图是深色噪点，只在浅色底上可见；深色模式用同一张图反色后叠加补回颗粒感。
+     body 自建层叠上下文，::before 以负 z-index 垫在背景色之上、内容之下 */
+  &::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: var(--el-bg-img-texture);
+    background-repeat: repeat;
+    opacity: 0;
+    filter: invert(1);
+    transition: opacity var(--el-theme-transition-duration);
+  }
+}
+
+html.dark body::before {
+  opacity: 0.4;
 }
 
 .app-content {
