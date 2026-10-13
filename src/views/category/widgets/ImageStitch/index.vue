@@ -424,6 +424,13 @@ async function handleExport() {
   overflow: auto;
 }
 
+/* 深色模式：硬编码浅玻璃底改为深色融入，避免暗色页面里主卡发白发灰 */
+html.dark {
+  .tool-container {
+    background: color-mix(in srgb, var(--el-bg-color) 55%, transparent);
+  }
+}
+
 /* 空态拖拽区：纵向撑满整卡，承担整卡引导 */
 .upload-empty {
   flex: 1;

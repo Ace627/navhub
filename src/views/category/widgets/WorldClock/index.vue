@@ -354,6 +354,14 @@ onBeforeUnmount(() => {
   }
 }
 
+/* 深色模式：硬编码浅玻璃底改为深色融入，避免暗色页面里卡片发白发灰 */
+html.dark {
+  .hero-card,
+  .city-card {
+    background: color-mix(in srgb, var(--el-bg-color) 55%, transparent);
+  }
+}
+
 /* 移动端：大卡与网格收窄，城市改两列排布 */
 html[data-device='mobile'] {
   .app-content {

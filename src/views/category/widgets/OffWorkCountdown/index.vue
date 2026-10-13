@@ -400,6 +400,13 @@ onBeforeUnmount(() => {
   opacity: 0;
 }
 
+/* 深色模式：硬编码浅玻璃底改为深色融入，避免暗色页面里主卡发白发灰 */
+html.dark {
+  .hero-card {
+    background: color-mix(in srgb, var(--el-bg-color) 55%, transparent);
+  }
+}
+
 /* 用户偏好减少动效时停用全部动画与过渡 */
 @media (prefers-reduced-motion: reduce) {
   .blob,
