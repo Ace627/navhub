@@ -13,8 +13,8 @@
       <Copyright />
     </div>
 
-    <!-- 移动端悬浮页面导航 -->
-    <FloatNav />
+    <!-- 底部标签栏（移动端） -->
+    <TabBar />
 
     <!-- 站点卡片长按操作面板（全局单例） -->
     <LinkActionSheet />
@@ -29,7 +29,7 @@ defineOptions({ name: 'Layout' })
 import Navbar from './components/Navbar/index.vue'
 import Sidebar from './components/Sidebar/index.vue'
 import AppMain from './components/AppMain/index.vue'
-import FloatNav from './components/FloatNav/index.vue'
+import TabBar from './components/TabBar/index.vue'
 import Copyright from './components/Copyright/index.vue'
 import LinkActionSheet from './components/LinkActionSheet/index.vue'
 import LinkContextMenu from './components/LinkContextMenu/index.vue'
@@ -50,6 +50,13 @@ const classes = computed(() => [{ 'hide-sidebar': appStore.isCollapse }, { 'open
 }
 html[data-device='mobile'] .app-container {
   --el-fixed-header-width: 100%;
+  /* 底部安全区：默认取系统上报值（iOS 手势条等） */
+  --el-safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* 全屏/沉浸模式的国产浏览器多不上报安全区（如小米浏览器），由 useResize 启发式判定后启用固定兜底 */
+html[data-device='mobile'][data-immersive='true'] .app-container {
+  --el-safe-bottom: max(env(safe-area-inset-bottom, 0px), 20px);
 }
 .hide-sidebar {
   --el-fixed-header-width: calc(100% - var(--el-sidebar-hide-width));
@@ -105,13 +112,22 @@ html:not([data-device='mobile']) .fixed-header {
 }
 
 html[data-device='mobile'] {
-  /* 移动端 侧边栏展开，隐藏顶部导航（FloatNav 已覆盖导航/搜索入口） */
+  /* 移动端 恢复顶部导航 + 底部 TabBar，主体区预留标签栏高度与底部安全区 */
   .main-container {
     margin-left: 0;
-    --el-navbar-height: 0px;
+    padding-bottom: calc(var(--el-tabbar-height) + var(--el-safe-bottom));
   }
-  .fixed-header {
-    display: none;
+
+  /* 顶栏/底栏不用纯白实底：半透明混合页面底色 + 背景模糊，透出纸纹融入页面 */
+  .app-container {
+    --el-navbar-bg-color: color-mix(in srgb, var(--el-bg-color) 55%, transparent);
+    --el-tabbar-bg-color: color-mix(in srgb, var(--el-bg-color) 55%, transparent);
+  }
+
+  .fixed-header,
+  .tab-bar {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
 }
 

@@ -15,6 +15,8 @@ export interface SystemSetting {
   fontFamily: string
   /** 路由转场动效 */
   transition: 'fade-transform' | 'el-fade-in-linear' | 'el-fade-in' | 'el-zoom-in-center' | 'el-zoom-in-top' | 'el-zoom-in-bottom'
+  /** 启动页：应用打开时默认展示的页面（移动端生效，与底部标签页一一对应） */
+  startupPage: 'home' | 'categories' | 'profile'
 }
 
 export const defaultSettings: SystemSetting = {
@@ -26,4 +28,5 @@ export const defaultSettings: SystemSetting = {
   showLogo: true,
   showHomeSearch: true,
   fontFamily: 'LXGW WenKai Screen',
+  startupPage: 'home',
 }

@@ -1,0 +1,49 @@
+html[data-device='mobile'] .el-dialog {
+  --el-border-radius-base: 8px;
+  --el-dialog-title-font-size: 20px;
+
+  width: calc(100% - 64px);
+
+  &__title {
+    font-weight: bold;
+    letter-spacing: 2px;
+  }
+
+  /* 弹窗选项行：图标 + 文案 + 右侧单选圆点，选中态整行高亮 */
+  .dialog-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+
+    .el-radio {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      height: auto;
+      margin-right: 0;
+      padding: 12px 14px;
+      font-weight: 400;
+      background-color: var(--el-fill-color-light);
+      border: 1px solid var(--el-border-color-lighter);
+      border-radius: 10px;
+      transition:
+        background-color var(--el-transition-duration-fast),
+        border-color var(--el-transition-duration-fast);
+
+      .el-radio__label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0;
+      }
+    }
+
+    .el-radio.is-checked {
+      background-color: var(--el-color-primary-light-9);
+      border-color: var(--el-color-primary-light-7);
+    }
+  }
+}

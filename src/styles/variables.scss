@@ -20,6 +20,11 @@ html {
   --el-navbar-bg-color: var(--el-bg-color);
   --el-navbar-box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 
+  /* 移动端底部标签栏（TabBar），高度为图标+文案的主体高度，安全区由使用方叠加 */
+  --el-tabbar-height: 56px;
+  --el-tabbar-bg-color: var(--el-bg-color);
+  --el-tabbar-box-shadow: 0 -1px 4px rgba(0, 21, 41, 0.08);
+
   /* 版权信息固定在底部，阴影投射方向取负，作用于上边框 */
   --el-copyright-height: 32px;
   --el-copyright-bg-color: transparent;
@@ -43,6 +48,8 @@ html.dark {
   --el-sidebar-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.08), 4px 0 16px rgba(0, 0, 0, 0.6);
 
   --el-navbar-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+
+  --el-tabbar-box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.4);
 
   --el-copyright-box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.4);
 }

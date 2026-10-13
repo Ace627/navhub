@@ -102,7 +102,7 @@ const props = defineProps({
   title: { type: [String, Array] as PropType<string | string[]>, default: '' },
   description: { type: String, default: '' },
   cancelText: { type: String, default: '' },
-  itemHeight: { type: [Number, String], default: 36 },
+  itemHeight: { type: [Number, String], default: 44 },
   closeable: { type: Boolean, default: true },
   closeIcon: { type: String, default: 'Close' },
   duration: { type: [Number, String], default: 0.3 },
@@ -308,6 +308,9 @@ function handleCancel() {
 .action-sheet__action-icon {
   flex-shrink: 0;
   color: var(--el-text-color-secondary);
+}
+.action-sheet__action-name {
+  font-size: 16px;
 }
 
 .action-sheet__action-subname {

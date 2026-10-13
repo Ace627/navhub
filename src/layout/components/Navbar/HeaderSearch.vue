@@ -82,9 +82,7 @@ interface SearchEntry extends LinkItem {
 const MAX_RESULTS = 20
 
 /** 全量搜索索引：按分类注册表聚合站点并附加分类信息，模块加载时构建一次（注册表在引导阶段已装配完成） */
-const SEARCH_INDEX: SearchEntry[] = getCategoryRegistry().flatMap((entry) =>
-  entry.data.map((item) => ({ ...item, categoryName: entry.title, categoryPath: `/${entry.path}` })),
-)
+const SEARCH_INDEX: SearchEntry[] = getCategoryRegistry().flatMap((entry) => entry.data.map((item) => ({ ...item, categoryName: entry.title, categoryPath: `/${entry.path}` })))
 
 /** 收集 src/assets/images/icons 下的本地图标，按文件名索引（key 为构建后资源地址） */
 const localIconMap: Record<string, string> = {}
@@ -102,7 +100,7 @@ const mobileInputRef = ref<HTMLInputElement>()
 const keyword = ref('')
 /** 桌面端输入框聚焦状态 */
 const inputFocused = ref(false)
-/** 移动端搜索面板可见性：与 FloatNav 共享的开关，见 useMobileSearch */
+/** 移动端搜索面板可见性：全局共享开关，见 useMobileSearch */
 const mobilePanelVisible = useMobileSearch()
 /** 键盘导航的当前选中下标 */
 const activeIndex = ref(0)
@@ -449,9 +447,6 @@ html[data-device='mobile'] {
     align-items: center;
     justify-content: center;
     height: 100%;
-    /* 抵消根节点 navbar-item 的内边距并自行补齐，使占位与悬停热区和 ThemeSwitch 一致 */
-    margin: 0 -8px;
-    padding: 0 8px;
     border: none;
     background: none;
     cursor: pointer;

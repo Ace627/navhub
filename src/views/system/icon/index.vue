@@ -90,7 +90,14 @@ getList()
     padding: 8px 0;
     border-right: 1px solid var(--el-border-color);
     border-bottom: 1px solid var(--el-border-color);
-    background-color: var(--el-bg-color);
+    /* 与设置页 .panel 一致的轻玻璃底，透出页面灰色纹理背景 */
+    background-color: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    html.dark & {
+      background-color: color-mix(in srgb, var(--el-bg-color) 55%, transparent);
+    }
 
     .label {
       font-size: 12px;

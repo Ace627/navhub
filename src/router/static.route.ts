@@ -2,6 +2,7 @@ import type { RouteRecordRaw } from 'vue-router'
 import Layout from '@/layout/index.vue'
 import { RouterConstant } from './router.constant'
 import { buildCategoryRoutes } from './category.registry'
+import { resolveStartupRedirect } from './router.helper'
 
 /**
  * 构建静态路由表
@@ -16,17 +17,32 @@ export function buildStaticRouteList(): RouteRecordRaw[] {
       name: RouterConstant.LAYOUT_NAME, // 布局路由配置 确保可以显示布局框架
       path: '',
       component: Layout,
-      redirect: RouterConstant.HOME_PAGE_URL,
+      // 启动页：移动端按用户配置的默认标签页落地，桌面端固定主页，解析逻辑见 router.helper
+      redirect: resolveStartupRedirect,
       children: [
         {
           name: RouterConstant.HOME_PAGE_NAME,
           path: 'dashboard',
           component: () => import('@/views/dashboard/index.vue'),
-          meta: { title: '最近使用', icon: 'Home', affix: true },
+          meta: { title: '首页', icon: 'Home', affix: true },
         },
 
         // 分类页路由：由分类注册表生成（detail 模式分类自动附带详情子路由），全部指向通用列表页/详情页
         ...buildCategoryRoutes(),
+
+        // 移动端专用页面：底部标签栏（TabBar）的「分类」「我的」落点，hidden 对桌面侧栏不可见
+        {
+          name: RouterConstant.MOBILE_CATEGORIES_NAME,
+          path: 'mobile/categories',
+          component: () => import('@/views/mobile/categories/index.vue'),
+          meta: { title: '分类', hidden: true },
+        },
+        {
+          name: RouterConstant.MOBILE_PROFILE_NAME,
+          path: 'mobile/profile',
+          component: () => import('@/views/mobile/profile/index.vue'),
+          meta: { title: '我的', hidden: true },
+        },
       ],
     },
 

@@ -571,72 +571,12 @@
     ]
   },
   {
-    "id": "6bd869ac-c84c-46c7-a391-b79566342f5f",
-    "categoryId": "5fa022af-8d61-4984-ac48-3ff62a3c9cc9",
-    "key": "https://vant.pro/vant",
-    "title": "Vant",
-    "icon": "@/assets/images/icons/Vant.png",
-    "description": "轻量可定制的移动端 Vue 组件库，提供 70+ 高质量组件，助力移动应用高效开发。",
-    "tags": [
-      "Vue"
-    ]
-  },
-  {
-    "id": "4debe687-702f-454e-8328-1c4699aec615",
-    "categoryId": "5fa022af-8d61-4984-ac48-3ff62a3c9cc9",
-    "key": "https://www.naiveui.com/zh-CN/os-theme",
-    "title": "Naive UI",
-    "icon": "@/assets/images/icons/Naive UI.png",
-    "description": "基于 Vue 3 的组件库，TypeScript 编写，主题可调，内置暗黑模式与丰富组件。",
-    "tags": [
-      "Vue"
-    ]
-  },
-  {
-    "id": "dea2b926-ff1d-471c-829b-02b6aaf27d59",
-    "categoryId": "5fa022af-8d61-4984-ac48-3ff62a3c9cc9",
-    "key": "https://antdv.com/components/overview-cn",
-    "title": "Ant Design Vue",
-    "icon": "@/assets/images/icons/Ant Design Vue.ico",
-    "description": "基于 Ant Design 设计规范与 Vue 的企业级组件库，提供丰富的高质量组件。",
-    "tags": [
-      "Vue"
-    ]
-  },
-  {
     "id": "8d8e2ea8-11c2-4f4c-b6da-b00f11f7ea7a",
     "categoryId": "5fa022af-8d61-4984-ac48-3ff62a3c9cc9",
     "key": "https://arco.design/vue/docs/start",
     "title": "Arco Design",
     "icon": "@/assets/images/icons/Arco Design.ico",
     "description": "字节跳动出品的企业级设计系统 Vue 版组件库，风格简洁，组件丰富，开箱即用。",
-    "tags": []
-  },
-  {
-    "id": "a6e45e51-451e-464d-a5d3-26c7b46a1780",
-    "categoryId": "5fa022af-8d61-4984-ac48-3ff62a3c9cc9",
-    "key": "https://tdesign.tencent.com/vue-next/overview",
-    "title": "TDesign",
-    "icon": "@/assets/images/icons/TDesign.png",
-    "description": "腾讯开源的企业级设计体系 Vue 3 组件库，组件丰富，配套设计指南与资源。",
-    "tags": []
-  },
-  {
-    "id": "cb131ca9-76df-4c6b-b012-8d41b0e51b60",
-    "categoryId": "5fa022af-8d61-4984-ac48-3ff62a3c9cc9",
-    "key": "https://vue-devui.github.io/quick-start",
-    "title": "DevUI",
-    "icon": "@/assets/images/icons/DevUI.svg",
-    "description": "华为开源的 Vue 3 组件库，基于 DevUI 设计体系，提供企业级中后台场景组件。",
-    "tags": []
-  },
-  {
-    "id": "a7fc078a-70e6-4999-9aaf-fb72136c7dfe",
-    "categoryId": "5fa022af-8d61-4984-ac48-3ff62a3c9cc9",
-    "key": "https://nutui.jd.com/h5/vue/4x",
-    "title": "NutUI",
-    "icon": "@/assets/images/icons/NutUI.png",
-    "description": "京东风格的轻量级移动端 Vue 组件库，支持 H5 与小程序多端开发，组件丰富。",
     "tags": []
   },
   {

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-center copyright">
+  <div v-if="!appStore.isMobile" class="flex-center copyright">
     <p class="hitokoto" @click="copyHitokoto">
       <span class="hitokoto-text">「{{ hitokotoInfo?.digest }}」</span>
       <span v-if="hitokotoInfo?.title || hitokotoInfo?.author" class="hitokoto-from"> —— {{ hitokotoInfo?.author }}「{{ hitokotoInfo?.title }}」 </span>
@@ -10,6 +10,8 @@
 <script setup lang="ts">
 defineOptions({ name: 'Copyright' })
 import { useHitokoto } from '@/hooks/useHitokoto'
+
+const appStore = useAppStore()
 
 /** 底部条展示随机名句，点击可复制 */
 const { hitokotoInfo, fetchHitokoto, copyHitokoto } = useHitokoto()

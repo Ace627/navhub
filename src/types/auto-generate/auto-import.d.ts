@@ -220,6 +220,7 @@ declare global {
   const useMediaQuery: typeof import('@vueuse/core').useMediaQuery
   const useMemoize: typeof import('@vueuse/core').useMemoize
   const useMemory: typeof import('@vueuse/core').useMemory
+  const useMobileCategoryView: typeof import('../../hooks/useMobileCategoryView').useMobileCategoryView
   const useMobileSearch: typeof import('../../hooks/useMobileSearch').useMobileSearch
   const useModel: typeof import('vue').useModel
   const useMounted: typeof import('@vueuse/core').useMounted

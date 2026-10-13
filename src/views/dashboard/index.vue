@@ -5,7 +5,7 @@
       <div class="search-box">
         <el-input v-model="keyword" class="search-input" size="large" clearable :placeholder="`在${activeEngine}搜索，输入关键词后回车`" @keyup.enter="handleSearch">
           <template #prefix>
-            <span v-if="appStore.isMobile" class="engine-trigger" role="button" aria-label="选择搜索引擎" @click="openEngineSheet">
+            <span v-if="appStore.isMobile" class="engine-trigger" role="button" aria-label="选择搜索引擎" @mousedown.prevent @click="openEngineSheet">
               <SvgIcon name="Search" :size="16" />
             </span>
             <span v-else class="engine-trigger engine-trigger-desktop" role="button" aria-label="选择搜索引擎" @click="toggleEngineDropdown">
@@ -138,9 +138,10 @@ const favoriteEntries = computed<SiteEntry[]>(() => [...favorites].flatMap((key)
 const CATEGORY_SHORTCUTS = getCategoryRegistry().map((entry) => ({ path: entry.path, title: entry.title, icon: entry.icon }))
 
 /**
- * 打开移动端搜索引擎选择弹层
+ * 打开移动端搜索引擎选择弹层：仅切换引擎用，主动让输入框失焦避免唤起软键盘
  */
 function openEngineSheet(): void {
+  ;(document.activeElement as HTMLElement | null)?.blur()
   engineSheetVisible.value = true
 }
 
@@ -375,9 +376,13 @@ function handleCategoryClick(path: string): void {
 }
 
 /**
- * 空状态引导点击：展开折叠的侧栏菜单
+ * 空状态引导点击：移动端跳转分类页，桌面端展开折叠的侧栏菜单
  */
 function handleExplore(): void {
+  if (appStore.isMobile) {
+    router.push(RouterConstant.MOBILE_CATEGORIES_URL)
+    return
+  }
   appStore.toggleSidebar()
 }
 
@@ -664,6 +669,11 @@ html[data-device='mobile'] {
   .category-grid {
     grid-template-columns: repeat(4, 1fr);
     gap: 8px;
+  }
+
+  /* 分类快捷入口：移动端由底部分类页承担导航，空状态不再展示 */
+  .category-grid {
+    display: none;
   }
 
   .category-item {

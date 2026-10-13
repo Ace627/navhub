@@ -1,3 +1,5 @@
+import { MOBILE_MAX_WIDTH } from '@/common'
+
 /** 根据浏览器宽度变化，变换 Layout 布局 */
 export function useResize() {
   const route = useRoute()
@@ -6,7 +8,21 @@ export function useResize() {
   /** 用于判断当前设备是否为移动端 */
   function _isMobile(): boolean {
     const rect = document.body.getBoundingClientRect()
-    return rect.width - 1 < 750
+    return rect.width - 1 < MOBILE_MAX_WIDTH
+  }
+
+  /**
+   * 判断浏览器是否处于全屏/沉浸模式（工具栏已隐藏）
+   *
+   * 部分国产浏览器（如小米浏览器）全屏时页面延伸到系统手势条下方，但不上报
+   * env(safe-area-inset-bottom)，只能启发式判定：移动端下视口高度逼近屏幕高度
+   * （差值 ≤ 48px，即仅剩系统状态栏）即视为全屏，由 CSS 据此启用安全区兜底
+   *
+   * @returns 全屏/沉浸模式时返回 true
+   */
+  function _isImmersive(): boolean {
+    if (window.innerWidth >= 750) return false
+    return window.screen.height - window.innerHeight <= 48
   }
 
   /**
@@ -17,6 +33,7 @@ export function useResize() {
     if (!force && document.hidden) return
     appStore.device = _isMobile() ? 'mobile' : 'desktop'
     document.documentElement.dataset['device'] = appStore.device
+    document.documentElement.dataset['immersive'] = String(appStore.isMobile && _isImmersive())
     if (appStore.isMobile) appStore.closeSidebar(true)
   }
 

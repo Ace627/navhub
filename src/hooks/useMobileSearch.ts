@@ -1,4 +1,4 @@
-/** 移动端搜索面板共享开关：供 FloatNav 触发、HeaderSearch 消费 */
+/** 移动端搜索面板共享开关：HeaderSearch 内部触发与面板展示共用 */
 const mobileSearchVisible = ref(false)
 
 /**
