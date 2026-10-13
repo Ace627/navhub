@@ -7,7 +7,7 @@
       </template>
     </el-page-header>
 
-    <!-- 条目主体：按路由参数异步装配对应自有条目组件 -->
+    <!-- 条目主体：按路由参数装配对应自有条目组件 -->
     <component :is="entryComponent" v-if="entryComponent" />
   </div>
 </template>
@@ -21,8 +21,8 @@ import { getCategoryRegistry } from '@/router/category.registry'
 const route = useRoute()
 const router = useRouter()
 
-/** 自有条目组件注册表：自动收集 widgets 下各条目目录的 index.vue（目录名须与注册表 key 一致） */
-const widgetModules = import.meta.glob('./widgets/*/index.vue')
+/** 自有条目组件注册表：自动收集 widgets 下各条目目录的 index.vue（目录名须与注册表 key 一致）；eager 装配进详情分包，避免运行时二次异步加载导致首进白屏 */
+const widgetModules = import.meta.glob<Component>('./widgets/*/index.vue', { eager: true, import: 'default' })
 
 /** 当前路由命中的分类注册表条目：按路由路径前缀匹配（非法 key 时也能定位分类以正确兜底） */
 const entry = computed(() => getCategoryRegistry().find((category) => route.path.startsWith(`/${category.path}/`)))
@@ -30,11 +30,8 @@ const entry = computed(() => getCategoryRegistry().find((category) => route.path
 /** 根据路由参数匹配到的分类条目 */
 const item = computed(() => entry.value?.data.find((entryItem) => entryItem.key === route.params.key))
 
-/** 当前条目对应的异步组件，路由参数未命中任何已登记组件时为 null */
-const entryComponent = computed(() => {
-  const loader = widgetModules[`./widgets/${route.params.key}/index.vue`]
-  return loader ? defineAsyncComponent(loader as () => Promise<Component>) : null
-})
+/** 当前条目对应的组件，路由参数未命中任何已登记组件时为 null */
+const entryComponent = computed(() => widgetModules[`./widgets/${route.params.key}/index.vue`] ?? null)
 
 /** 返回上一页：有站内历史时原路返回（如从最近使用进入可回到最近使用），无历史（直达/刷新）时回分类列表兜底 */
 function handleBack() {

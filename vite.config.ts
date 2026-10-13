@@ -28,6 +28,14 @@ export default defineConfig(({ mode }) => {
     server: {
       host: true,
       port: parseInt(runtimeConfig.VITE_SERVER_PORT),
+      /**
+       * 启动时预热小工具页：这些页面经 detail.vue 的 import.meta.glob 异步分包，
+       * 不预热的话首次进入要现场编译（含 Element Plus 组件依赖），出现明显白屏
+       * https://cn.vitejs.dev/config/server-options#server-warmup
+       */
+      warmup: {
+        clientFiles: ['src/views/category/detail.vue', 'src/views/category/widgets/*/index.vue'],
+      },
     },
 
     css: {
