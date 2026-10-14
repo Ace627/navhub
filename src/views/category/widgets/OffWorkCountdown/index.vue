@@ -36,9 +36,9 @@
       </section>
 
       <section class="setting-bar flex-center">
-        <el-time-picker v-model="workStartTime" format="HH:mm" value-format="HH:mm" placeholder="上班时间" :clearable="false" @change="workStartTimeChange" />
+        <el-time-picker v-model="workStartTime" format="HH:mm" value-format="HH:mm" placeholder="上班时间" :clearable="false" :editable="!appStore.isMobile" @change="workStartTimeChange" />
         <span class="setting-separator">→</span>
-        <el-time-picker v-model="offWorkTime" format="HH:mm" value-format="HH:mm" placeholder="下班时间" :clearable="false" @change="offWorkTimeChange" />
+        <el-time-picker v-model="offWorkTime" format="HH:mm" value-format="HH:mm" placeholder="下班时间" :clearable="false" :editable="!appStore.isMobile" @change="offWorkTimeChange" />
         <el-button class="ml-12px" @click="resetTimes">恢复默认</el-button>
       </section>
 
@@ -53,6 +53,8 @@
 defineOptions({ name: 'ToolOffWorkCountdown' })
 import dayjs, { type Dayjs } from 'dayjs'
 import { getOffWorkTime, removeOffWorkTime, setOffWorkTime, getWorkStartTime, removeWorkStartTime, setWorkStartTime } from '@/utils'
+
+const appStore = useAppStore()
 
 /** 默认上班时间（HH:mm，24 小时制） */
 const DEFAULT_WORK_START_TIME = '09:00'
@@ -528,11 +530,6 @@ html[data-device='mobile'] {
   .setting-bar {
     padding: 12px 10px;
     border-radius: 16px;
-
-    /* 内部输入框 pointer-events 置空：点击落在选择器外壳上照常弹出时间面板，但不聚焦输入框、不唤起软键盘 */
-    :deep(.el-input__inner) {
-      pointer-events: none;
-    }
   }
 }
 </style>
