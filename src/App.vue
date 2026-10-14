@@ -14,4 +14,5 @@ useResize()
 useDynamicTitle()
 useFontFamily()
 useVisitorStats()
+useHaptics()
 </script>

@@ -311,17 +311,6 @@ html.dark {
   perspective: 600px;
   font-size: var(--digit-font-size);
   font-family: -apple-system, 'SF Pro Display', 'Helvetica Neue', var(--el-font-family);
-  animation: glow-breathe 3s ease-in-out infinite;
-}
-
-@keyframes glow-breathe {
-  0%,
-  100% {
-    filter: drop-shadow(0 0 0 transparent);
-  }
-  50% {
-    filter: drop-shadow(0 10px 28px color-mix(in srgb, var(--ios-accent) 30%, transparent));
-  }
 }
 
 /* 固定宽度格子：翻牌动画期间不挤压相邻数字；裁剪翻转过程避免幽灵数字飘出 */
@@ -460,7 +449,6 @@ html.dark {
   .lock-screen,
   .widget-grid,
   .setting-bar,
-  .countdown-container,
   .colon,
   .status-text.shine {
     animation: none;
