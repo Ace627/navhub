@@ -27,20 +27,8 @@
       </div>
     </div>
 
-    <!-- 移动端搜索引擎选择弹层：底部弹出，选中引擎后自动收起 -->
-    <Teleport to="body">
-      <transition name="engine-sheet">
-        <div v-if="engineSheetVisible" class="engine-sheet-mask" @click="closeEngineSheet">
-          <div class="engine-sheet" @click.stop>
-            <p class="engine-sheet-title">选择搜索引擎</p>
-            <el-button v-for="engine in ENGINE_LIST" :key="engine.name" text class="engine-option engine-sheet-item" :class="{ 'is-active': engine.name === activeEngine }" @click="selectEngine(engine.name)"
-              >{{ engine.name }}搜索</el-button
-            >
-            <el-button class="engine-sheet-cancel" @click="closeEngineSheet">取消</el-button>
-          </div>
-        </div>
-      </transition>
-    </Teleport>
+    <!-- 移动端搜索引擎选择弹层：复用全局 ActionSheet，选中引擎后自动收起 -->
+    <ActionSheet v-model="engineSheetVisible" title="选择搜索引擎" :actions="engineActions" :lock-scroll="false" close-on-click-action @select="handleEngineSelect" />
 
     <!-- 卡片区：按收藏集合顺序排布收藏的站点条目；长按卡片可拖拽调整收藏顺序 -->
     <div class="site-section">
@@ -72,6 +60,7 @@ defineOptions({ name: RouterConstant.HOME_PAGE_NAME })
 import { RouterConstant } from '@/router/router.constant'
 import Sortable from 'sortablejs'
 import { isExternal } from '@/utils'
+import type { ActionSheetAction } from '@/components/ActionSheet/types'
 import { useAppStore } from '@/store/modules/app'
 import { useSettingStore } from '@/store/modules/setting'
 import { useSiteFavorites } from '@/hooks/useSiteFavorites'
@@ -103,6 +92,11 @@ const activeEngine = ref(ENGINE_LIST[0].name)
 
 /** 移动端搜索引擎选择弹层可见性 */
 const engineSheetVisible = ref(false)
+
+/** 移动端引擎面板选项：复用全局 ActionSheet，当前引擎以主色高亮 */
+const engineActions = computed<ActionSheetAction[]>(() =>
+  ENGINE_LIST.map((engine) => ({ name: `${engine.name}搜索`, color: engine.name === activeEngine.value ? 'var(--el-color-primary)' : undefined })),
+)
 
 /** 桌面端搜索引擎下拉可见性 */
 const engineDropdownVisible = ref(false)
@@ -146,10 +140,20 @@ function openEngineSheet(): void {
 }
 
 /**
- * 关闭移动端搜索引擎选择弹层：遮罩与取消按钮共用，引擎选择保持原状
+ * 关闭移动端搜索引擎选择弹层：引擎选择保持原状
  */
 function closeEngineSheet(): void {
   engineSheetVisible.value = false
+}
+
+/**
+ * ActionSheet 选项选中回调：按下标映射回引擎列表后切换
+ *
+ * @param _action 被点选项（名称已含「搜索」后缀，不直接使用）
+ * @param index 选项在引擎列表中的下标
+ */
+function handleEngineSelect(_action: ActionSheetAction, index: number): void {
+  selectEngine(ENGINE_LIST[index].name)
 }
 
 /**
@@ -684,63 +688,4 @@ html[data-device='mobile'] {
   }
 }
 
-/* 搜索引擎选择弹层：底部弹出，遮罩点击与取消按钮均关闭 */
-.engine-sheet-mask {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  background-color: rgba(0, 0, 0, 0.32);
-}
-
-.engine-sheet {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 16px 16px calc(16px + env(safe-area-inset-bottom));
-  background-color: var(--el-bg-color);
-  border-radius: 16px 16px 0 0;
-  box-shadow: var(--el-box-shadow-light);
-
-  /* 相邻按钮默认带 12px 左边距，会让选项行与取消按钮整体右移并溢出弹层，此处统一清零 */
-  .el-button {
-    margin-left: 0;
-  }
-}
-
-.engine-sheet-title {
-  margin: 0 0 8px;
-  text-align: center;
-  font-size: var(--el-font-size-base);
-  color: var(--el-text-color-primary);
-}
-
-/* 弹层选项行高比桌面下拉更宽松，触摸目标更大 */
-.engine-sheet-item {
-  padding: 12px 8px;
-}
-
-.engine-sheet-cancel {
-  width: 100%;
-  margin-top: 8px;
-}
-
-/* 遮罩淡入淡出，面板上滑/下滑 */
-.engine-sheet-enter-active,
-.engine-sheet-leave-active {
-  transition: opacity var(--el-transition-duration);
-
-  .engine-sheet {
-    transition: transform var(--el-transition-duration);
-  }
-}
-
-.engine-sheet-enter-from,
-.engine-sheet-leave-to {
-  opacity: 0;
-
-  .engine-sheet {
-    transform: translateY(100%);
-  }
-}
 </style>

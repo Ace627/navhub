@@ -6,7 +6,7 @@
         <div class="island">
           <span class="island-label">今日进度</span>
           <span class="island-bar"><i :style="{ width: `${progress}%` }" /></span>
-          <span class="island-pct">{{ progress }}%</span>
+          <span class="island-pct">{{ progress.toFixed(2) }}%</span>
         </div>
 
         <span class="lock-date">{{ dateText }}</span>
@@ -121,7 +121,7 @@ const statusText = computed(() => {
   return '距离下班还有'
 })
 
-/** 今日工作进度（上班到下班区间的百分比，区间外收敛到 0/100） */
+/** 今日工作进度（上班到下班区间的百分比，区间外收敛到 0/100，展示时保留两位小数） */
 const progress = computed(() => {
   if (isWeekend.value) return 0
   const nowValue = now.value.valueOf()
@@ -129,7 +129,7 @@ const progress = computed(() => {
   const endValue = offWorkTarget.value.valueOf()
   if (nowValue <= startValue) return 0
   if (nowValue >= endValue) return 100
-  return Math.round(((nowValue - startValue) / (endValue - startValue)) * 100)
+  return ((nowValue - startValue) / (endValue - startValue)) * 100
 })
 
 /** 计算 [start, end) 区间已过去的百分比（按毫秒占比取整） */

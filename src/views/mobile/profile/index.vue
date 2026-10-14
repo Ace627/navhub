@@ -145,11 +145,12 @@ function confirmStartupPage() {
 }
 
 .cell-desc {
-  overflow: hidden;
+  margin-top: 4px;
   font-size: 12px;
   color: var(--el-text-color-secondary);
   text-overflow: ellipsis;
   white-space: nowrap;
+  overflow: hidden;
 }
 
 .cell-arrow {
