@@ -365,7 +365,10 @@ function renderResult() {
     const crossOffset = alignment.value === 'center' ? Math.round((crossSize - drawCrossSize) / 2) : 0
     const x = isHorizontal ? mainOffset : crossOffset
     const y = isHorizontal ? crossOffset : mainOffset
-    context.drawImage(item.image, x, y, drawMainSize, drawCrossSize)
+    /* drawImage 参数是宽/高而非主轴/交叉轴，竖向拼时二者不可直接沿用 */
+    const drawWidth = isHorizontal ? drawMainSize : drawCrossSize
+    const drawHeight = isHorizontal ? drawCrossSize : drawMainSize
+    context.drawImage(item.image, x, y, drawWidth, drawHeight)
     mainOffset += drawMainSize + scaledGap
   }
 
