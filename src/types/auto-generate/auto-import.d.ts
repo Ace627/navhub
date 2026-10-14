@@ -200,6 +200,7 @@ declare global {
   const useFullscreen: typeof import('@vueuse/core').useFullscreen
   const useGamepad: typeof import('@vueuse/core').useGamepad
   const useGeolocation: typeof import('@vueuse/core').useGeolocation
+  const useHaptics: typeof import('../../hooks/useHaptics').useHaptics
   const useHitokoto: typeof import('../../hooks/useHitokoto').useHitokoto
   const useId: typeof import('vue').useId
   const useIdle: typeof import('@vueuse/core').useIdle
