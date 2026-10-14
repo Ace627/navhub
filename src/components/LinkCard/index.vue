@@ -318,7 +318,10 @@ html[data-device='mobile'] {
   .link-card {
     padding: 8px 4px;
     text-align: center;
+    /* 底色透明后模糊滤镜仍会生效，会留下一块模糊背景，须一并关闭 */
     background-color: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     border: none;
     box-shadow: none;
     user-select: none;
