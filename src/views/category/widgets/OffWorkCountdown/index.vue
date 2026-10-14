@@ -528,6 +528,11 @@ html[data-device='mobile'] {
   .setting-bar {
     padding: 12px 10px;
     border-radius: 16px;
+
+    /* 内部输入框 pointer-events 置空：点击落在选择器外壳上照常弹出时间面板，但不聚焦输入框、不唤起软键盘 */
+    :deep(.el-input__inner) {
+      pointer-events: none;
+    }
   }
 }
 </style>
