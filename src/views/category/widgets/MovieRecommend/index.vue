@@ -240,7 +240,9 @@ onMounted(fetchRandomMovie)
   display: flex;
   flex-direction: column;
   justify-content: center;
+  /* 100vh 在移动端取地址栏收起后的最大视口，会撑出一段可滚动余量，用 100dvh 按当前可见视口计算 */
   min-height: calc(100vh - var(--el-navbar-height) - var(--el-copyright-height) - 76px);
+  min-height: calc(100dvh - var(--el-navbar-height) - var(--el-copyright-height) - 76px);
 }
 
 /* 容器纵向撑满，卡片随之撑满可用高度，避免页面只剩一小块内容 */
@@ -515,6 +517,7 @@ html[data-device='mobile'] {
   .app-content {
     padding-bottom: 44px;
     min-height: calc(100vh - var(--el-navbar-height) - var(--el-copyright-height) - 64px);
+    min-height: calc(100dvh - var(--el-navbar-height) - var(--el-copyright-height) - 64px);
   }
 
   .movie-container {

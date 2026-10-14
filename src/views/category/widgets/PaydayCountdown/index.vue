@@ -133,7 +133,9 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  /* 100vh 在移动端取地址栏收起后的最大视口，会撑出一段可滚动余量，用 100dvh 按当前可见视口计算 */
   min-height: calc(100vh - var(--el-navbar-height) - var(--el-copyright-height) - 76px);
+  min-height: calc(100dvh - var(--el-navbar-height) - var(--el-copyright-height) - 76px);
 }
 
 .tool-container {

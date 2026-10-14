@@ -166,7 +166,9 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  /* 100vh 在移动端取地址栏收起后的最大视口，会撑出一段可滚动余量，用 100dvh 按当前可见视口计算 */
   min-height: calc(100vh - var(--el-navbar-height) - var(--el-copyright-height) - 76px);
+  min-height: calc(100dvh - var(--el-navbar-height) - var(--el-copyright-height) - 76px);
 }
 
 .tool-container {
@@ -241,6 +243,7 @@ html[data-device='mobile'] {
     padding: 8px;
     /* 移动端扣除项不同：无页头与版权栏，底部为 TabBar + 安全区，外壳内边距 12+12 */
     min-height: calc(100vh - var(--el-navbar-height) - var(--el-tabbar-height) - var(--el-safe-bottom, 0px) - 24px);
+    min-height: calc(100dvh - var(--el-navbar-height) - var(--el-tabbar-height) - var(--el-safe-bottom, 0px) - 24px);
   }
   .tool-container {
     width: 100%;
