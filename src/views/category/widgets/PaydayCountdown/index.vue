@@ -39,7 +39,7 @@ import type { Dayjs } from 'dayjs'
 import { getPayday, removePayday, setPayday } from '@/utils'
 
 /** 默认发薪日候选（每月几号） */
-const DEFAULT_PAYDAYS = [1, 5, 8, 10, 15, 20, 25]
+const DEFAULT_PAYDAYS = [1, 5, 8, 10, 15, 18, 20, 25]
 
 /** 自定义发薪日设置，null 表示未自定义（回退默认候选） */
 const customDay = ref<number | null>(getPayday())
