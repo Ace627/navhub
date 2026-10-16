@@ -20,8 +20,7 @@ export interface ActionSheetAction {
 
 /**
  * 触发关闭的来源，用于 beforeClose 回调区分
- * - cancel：点击取消按钮
- * - close：点击右上角关闭按钮
+ * - cancel：点击工具栏取消按钮
  * - overlay：点击遮罩层或按下 ESC（el-drawer 不区分二者，统一按遮罩处理）
  */
-export type ActionSheetCloseAction = 'cancel' | 'close' | 'overlay'
+export type ActionSheetCloseAction = 'cancel' | 'overlay'

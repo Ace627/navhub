@@ -16,6 +16,9 @@ const menuPoint = ref({ x: 0, y: 0 })
 /** 桌面端右键菜单项构建参数：由发起右键的卡片传入（如隐藏收藏项） */
 const menuOptions = ref<LinkMenuActionOptions>({})
 
+/** 移动端长按面板菜单项构建参数：由唤起长按的卡片传入（如隐藏收藏项） */
+const panelOptions = ref<LinkMenuActionOptions>({})
+
 /**
  * 站点条目操作共享状态：移动端长按面板与桌面端右键菜单共用同一份待操作条目，
  * 两者均为全局单例，卡片只负责写入待操作条目并选择唤起方式
@@ -27,9 +30,11 @@ export function useLinkActions() {
    * 打开条目操作面板（移动端长按）
    *
    * @param item 待操作的链接条目
+   * @param options 面板菜单项构建参数
    */
-  function openLinkActions(item: LinkItem): void {
+  function openLinkActions(item: LinkItem, options: LinkMenuActionOptions = {}): void {
     currentItem.value = item
+    panelOptions.value = options
     panelVisible.value = true
   }
 
@@ -66,5 +71,5 @@ export function useLinkActions() {
     menuVisible.value = false
   }
 
-  return { currentItem, panelVisible, menuVisible, menuPoint, menuOptions, openLinkActions, closeLinkActions, openLinkMenu, closeLinkMenu }
+  return { currentItem, panelVisible, menuVisible, menuPoint, menuOptions, panelOptions, openLinkActions, closeLinkActions, openLinkMenu, closeLinkMenu }
 }

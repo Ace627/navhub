@@ -104,9 +104,28 @@ function confirmStartupPage() {
 <style lang="scss" scoped>
 .profile-cells {
   overflow: hidden;
-  background-color: var(--el-bg-color);
-  border: 1px solid var(--el-border-color-light);
+  /* 轻玻璃底：与 LinkCard 卡片同款材质，透出页面纹理背景避免纯白割裂 */
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--el-border-color);
   border-radius: 12px;
+  /* 双层投影 + 顶部内高光，与 LinkCard 一致 */
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+/* 深色模式：玻璃底换深色融入，立体感由顶部高光 + 底部暗边 + 深投影构成，与 LinkCard 一致 */
+html.dark .profile-cells {
+  background-color: color-mix(in srgb, var(--el-bg-color) 55%, transparent);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.5),
+    0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
 .profile-cell {

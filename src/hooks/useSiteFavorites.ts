@@ -96,5 +96,22 @@ export function useSiteFavorites() {
     return true
   }
 
-  return { favorites, isFavorite, toggleFavorite, reorderFavorite, pruneFavorites }
+  /**
+   * 确保固定条目存在：收藏列表中缺失的固定条目按给定顺序补插到最前面，并同步写回本地缓存
+   *
+   * 首页固定区条目每次加载首页时兜底补回；已存在的条目（含用户拖拽后的顺序）保持原状不动。
+   *
+   * @param keys 固定条目的站点键数组，数组顺序即缺失条目补插时的先后顺序
+   */
+  function ensureAffixFavorites(keys: string[]): void {
+    if (!Array.isArray(keys) || !keys.length) return
+    const missing = keys.filter((key) => !favorites.has(key))
+    if (!missing.length) return
+    const next = [...missing, ...favorites]
+    favorites.clear()
+    for (const item of next) favorites.add(item)
+    persist()
+  }
+
+  return { favorites, isFavorite, toggleFavorite, reorderFavorite, pruneFavorites, ensureAffixFavorites }
 }

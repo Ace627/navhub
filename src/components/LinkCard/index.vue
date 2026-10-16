@@ -58,8 +58,8 @@ const ICON_LOAD_TIMEOUT = 5000
 /** 描述气泡的悬浮展示延迟（毫秒）：鼠标快速划过卡片时不弹出，避免遮挡相邻卡片 */
 const DESC_TOOLTIP_SHOW_DELAY = 720
 
-/** 移动端长按唤起操作面板：长按交互统一由 useLongPress 提供 */
-const longPress = useLongPress<void>(() => openLinkActions(props.item), {
+/** 移动端长按唤起操作面板：长按交互统一由 useLongPress 提供，菜单项构建参数随卡片属性透传 */
+const longPress = useLongPress<void>(() => openLinkActions(props.item, { hideFavorite: props.hideFavorite }), {
   disabled: () => props.longPressDisabled || !appStore.isMobile,
 })
 

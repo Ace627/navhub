@@ -12,6 +12,8 @@ export interface LinkItem {
   description: string
   /** 标签列表：卡片右上角展示的分类标记，可选（历史记录等非站点条目可能无此字段） */
   tags?: string[]
+  /** 是否固定在首页展示：'1' 固定，'0' 不固定，仅站点条目携带，默认 '0' */
+  affix?: string
 }
 
 /**

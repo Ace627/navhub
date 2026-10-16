@@ -1,5 +1,5 @@
 <template>
-  <el-drawer v-model="visible" class="datetime-picker" direction="btt" size="auto" :with-header="false" :append-to-body="true" :close-on-click-modal="true" @opened="syncColumns">
+  <el-drawer v-model="visible" class="datetime-picker" direction="btt" size="auto" :lock-scroll="false" :with-header="false" :append-to-body="true" :close-on-click-modal="true" @opened="syncColumns">
     <div class="picker-panel">
       <!-- 工具栏：取消 | 标题 | 完成，对齐 Wot UI DatetimePicker 弹层 -->
       <div class="picker-toolbar">
@@ -149,7 +149,7 @@ function handleConfirm() {
   align-items: center;
   justify-content: space-between;
   height: 56px;
-  padding: 0 8px;
+  padding: 0 32px;
 }
 
 .picker-title {

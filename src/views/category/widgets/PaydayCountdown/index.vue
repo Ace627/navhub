@@ -4,9 +4,23 @@
       <!-- 发薪日列表：元素直接浮在页面背景上，无卡片容器 -->
       <div class="hero-card">
         <div class="hero-body">
-          <!-- 列表展示：按剩余天数升序，左标题+左元信息，右侧大字倒数，最近一项高亮 -->
+          <!-- 置顶最近发薪日：单独一条激活态展示，与列表普通行区分 -->
           <div class="payday-list">
-            <div v-for="item in paydayList" :key="item.day" class="payday-item" :class="{ active: item.day === nextPayday.day }">
+            <div class="payday-item active">
+              <div class="payday-info">
+                <span class="payday-title">{{ nextPayday.day }} 号发薪日</span>
+                <span class="payday-meta">{{ nextPayday.dateText }} | {{ nextPayday.week }} | {{ nextPayday.lunar }}</span>
+              </div>
+              <div class="payday-count">
+                <span v-if="nextPayday.daysLeft === 0" class="days-today">今天</span>
+                <template v-else>
+                  <span class="days-num">{{ padDays(nextPayday.daysLeft) }}</span>
+                  <span class="days-unit">天</span>
+                </template>
+              </div>
+            </div>
+            <!-- 其余候选日：按每月几号升序，左标题+左元信息，右侧大字倒数 -->
+            <div v-for="item in restPaydays" :key="item.day" class="payday-item">
               <div class="payday-info">
                 <span class="payday-title">{{ item.day }} 号发薪日</span>
                 <span class="payday-meta">{{ item.dateText }} | {{ item.week }} | {{ item.lunar }}</span>
@@ -22,7 +36,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </template>
@@ -34,13 +47,16 @@ import type { Dayjs } from 'dayjs'
 import { SolarDay } from 'tyme4ts'
 
 /** 默认发薪日候选（每月几号） */
-const DEFAULT_PAYDAYS = [1, 5, 8, 10, 15, 18, 20, 25]
+const DEFAULT_PAYDAYS = [1, 5, 8, 10, 15, 18, 20, 25, 28]
 
-/** 当前时间，定时刷新驱动剩余天数重算 */
-const now = ref(dayjs())
+/** 每 30 秒自增的节拍：驱动剩余天数重算（内部 useIntervalFn 随组件卸载自动暂停） */
+const tick = useInterval(30000)
 
-/** 定时刷新句柄 */
-let timer: ReturnType<typeof setInterval> | undefined
+/** 当前时间：节拍自增触发重算，每次读取实时时刻 */
+const now = computed(() => {
+  tick.value
+  return dayjs()
+})
 
 /**
  * 计算指定日期的下一次出现时刻（当天零点）
@@ -66,7 +82,9 @@ function nextOccurrence(day: number, from: Dayjs): Dayjs {
  * @returns 农历月日串
  */
 function lunarText(date: Dayjs): string {
-  const lunar = SolarDay.fromYmd(date.year(), date.month() + 1, date.date()).getLunarDay().toString()
+  const lunar = SolarDay.fromYmd(date.year(), date.month() + 1, date.date())
+    .getLunarDay()
+    .toString()
   return lunar.replace(/^农历/, '').replace(/^[^年]+年/, '')
 }
 
@@ -80,7 +98,7 @@ function weekText(date: Dayjs): string {
   return `星期${SolarDay.fromYmd(date.year(), date.month() + 1, date.date()).getWeek()}`
 }
 
-/** 各候选发薪日的剩余天数（发薪日当天为 0），按剩余天数升序让最近的排最前 */
+/** 各候选发薪日的剩余天数（发薪日当天为 0），按每月几号升序展示 */
 const paydayList = computed(() =>
   DEFAULT_PAYDAYS.map((day) => {
     const target = nextOccurrence(day, now.value)
@@ -91,11 +109,14 @@ const paydayList = computed(() =>
       week: weekText(target),
       lunar: lunarText(target),
     }
-  }).sort((a, b) => a.daysLeft - b.daysLeft || a.day - b.day),
+  }).sort((a, b) => a.day - b.day),
 )
 
-/** 距今最近的发薪日候选 */
+/** 距今最近的发薪日候选：置顶激活态展示 */
 const nextPayday = computed(() => paydayList.value.reduce((min, item) => (item.daysLeft < min.daysLeft ? item : min)))
+
+/** 置顶行之外的其余候选日：把最近发薪日从列表中摘出，避免同一条信息重复出现两行 */
+const restPaydays = computed(() => paydayList.value.filter((item) => item.day !== nextPayday.value.day))
 
 /**
  * 剩余天数补零为双位展示
@@ -106,16 +127,6 @@ const nextPayday = computed(() => paydayList.value.reduce((min, item) => (item.d
 function padDays(days: number) {
   return days.toString().padStart(2, '0')
 }
-
-onMounted(() => {
-  timer = setInterval(() => {
-    now.value = dayjs()
-  }, 30000)
-})
-
-onBeforeUnmount(() => {
-  clearInterval(timer)
-})
 </script>
 
 <style lang="scss" scoped>
@@ -143,7 +154,7 @@ onBeforeUnmount(() => {
   justify-content: space-between;
   gap: 16px;
   padding: 16px 20px;
-  border-radius: 16px;
+  border-radius: 8px;
   background: #fff;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
@@ -226,7 +237,7 @@ html.dark {
   }
 }
 
-/* 移动端：缩小内边距与字号并占满宽度 */
+/* 移动端：缩小内边距与字号并占满宽度；8 张行卡较高，需压缩密度才能在真机可见视口内收住不滚动 */
 html[data-device='mobile'] {
   .app-content {
     padding: 8px;
@@ -235,10 +246,13 @@ html[data-device='mobile'] {
     width: 100%;
   }
   .hero-card {
-    padding: 8px 0;
+    padding: 4px 0;
+  }
+  .payday-list {
+    gap: 8px;
   }
   .payday-item {
-    padding: 13px 14px;
+    padding: 9px 14px;
   }
   .payday-title {
     font-size: 15px;

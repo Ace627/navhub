@@ -6,16 +6,43 @@
     <title>%VITE_APP_TITLE%</title>
     <!-- 引入应用图标 -->
     <link rel="icon" type="image/png" href="/favicon.png" />
-    <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
-
     <script>
       ;(() => {
         try {
           // 读取本地持久化的主题设置，供白屏阶段暗色适配
           const settingJson = localStorage.getItem('%VITE_STORAGE_PREFIX%systemSetting')
           if (settingJson && JSON.parse(settingJson).value?.theme === 'dark') document.documentElement.classList.add('dark')
-          // 接入网站统计
-          LA.init({ id: '3RO01mRk8aVlubuI', ck: '3RO01mRk8aVlubuI', autoTrack: true, hashMode: true })
+
+          // 接入网站统计：等路由就绪、页面标题定稿后再加载 SDK 并初始化，避免首报记录到默认标题；
+          // 标题始终为默认值（动态标题被关闭）时按 5 秒兜底放行，保证统计不丢；
+          // hashMode 须与路由模式一致，本项目为 history 模式，故为 false
+          const defaultTitle = '%VITE_APP_TITLE%'
+          let tries = 0
+          const timer = setInterval(() => {
+            // 标题已定稿（离开默认值）或轮询满 5 秒兜底，即认为就绪
+            const settled = document.title !== defaultTitle || ++tries >= 25
+            if (!settled) return
+            clearInterval(timer)
+            loadStatsSdk(3)
+          }, 200)
+
+          /**
+           * 动态加载统计 SDK 并初始化
+           * @param retries 剩余重试次数：加载失败（如被拦截扩展屏蔽）间隔 2 秒重试，用尽后安静放弃，不做无限重试
+           */
+          function loadStatsSdk(retries) {
+            if (typeof LA !== 'undefined') {
+              LA.init({ id: '3RO01mRk8aVlubuI', ck: '3RO01mRk8aVlubuI', autoTrack: true, hashMode: false })
+              return
+            }
+            if (retries <= 0) return
+            const sdk = document.createElement('script')
+            sdk.src = '//sdk.51.la/js-sdk-pro.min.js'
+            sdk.charset = 'UTF-8'
+            sdk.onload = () => LA.init({ id: '3RO01mRk8aVlubuI', ck: '3RO01mRk8aVlubuI', autoTrack: true, hashMode: false })
+            sdk.onerror = () => setTimeout(() => loadStatsSdk(retries - 1), 2000)
+            document.head.appendChild(sdk)
+          }
         } catch {}
       })()
     </script>

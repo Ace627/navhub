@@ -27,8 +27,8 @@
       </div>
     </div>
 
-    <!-- 移动端搜索引擎选择弹层：复用全局 ActionSheet，选中引擎后自动收起 -->
-    <ActionSheet v-model="engineSheetVisible" title="选择搜索引擎" :actions="engineActions" :lock-scroll="false" close-on-click-action @select="handleEngineSelect" />
+    <!-- 移动端搜索引擎选择弹层：复用全局 ActionSheet，确认模式——点选项高亮、点完成后提交并收起 -->
+    <ActionSheet v-model="engineSheetVisible" title="选择搜索引擎" :actions="engineActions" :active-index="activeEngineIndex" confirm-text="完成" :lock-scroll="false" @select="handleEngineSelect" />
 
     <!-- 卡片区：按收藏集合顺序排布收藏的站点条目；长按卡片可拖拽调整收藏顺序 -->
     <div class="site-section">
@@ -93,10 +93,11 @@ const activeEngine = ref(ENGINE_LIST[0].name)
 /** 移动端搜索引擎选择弹层可见性 */
 const engineSheetVisible = ref(false)
 
-/** 移动端引擎面板选项：复用全局 ActionSheet，当前引擎以主色高亮 */
-const engineActions = computed<ActionSheetAction[]>(() =>
-  ENGINE_LIST.map((engine) => ({ name: `${engine.name}搜索`, color: engine.name === activeEngine.value ? 'var(--el-color-primary)' : undefined })),
-)
+/** 移动端引擎面板选项：复用全局 ActionSheet，选中高亮由确认模式的 active-index 驱动 */
+const engineActions = computed<ActionSheetAction[]>(() => ENGINE_LIST.map((engine) => ({ name: `${engine.name}搜索` })))
+
+/** 当前引擎在引擎列表中的下标：作为确认模式面板的默认选中项 */
+const activeEngineIndex = computed(() => ENGINE_LIST.findIndex((engine) => engine.name === activeEngine.value))
 
 /** 桌面端搜索引擎下拉可见性 */
 const engineDropdownVisible = ref(false)
@@ -123,10 +124,18 @@ const SITE_INDEX = useSiteIndex()
 const { openLinkActions, closeLinkActions, closeLinkMenu } = useLinkActions()
 
 /** 收藏共享状态：首页收藏区随收藏变化实时联动，长按拖拽结束时按新位置写回收藏集合 */
-const { favorites, reorderFavorite, pruneFavorites } = useSiteFavorites()
+const { favorites, reorderFavorite, pruneFavorites, ensureAffixFavorites } = useSiteFavorites()
 
 /** 收藏站点条目列表：收藏集合顺序映射全站索引，剔除已下架条目 */
 const favoriteEntries = computed<SiteEntry[]>(() => [...favorites].flatMap((key) => (SITE_INDEX[key] ? [SITE_INDEX[key]] : [])))
+
+/** 首页固定条目的站点键列表：affix 为 1 的条目固定占据收藏区前缀，不可取消收藏 */
+const AFFIX_KEYS = Object.values(SITE_INDEX)
+  .filter((entry) => entry.item.affix === '1')
+  .map((entry) => entry.item.key)
+
+/** 固定条目数量：拖拽排序时用于把普通卡片与固定卡片的活动范围各自限制在收藏列表前缀内外 */
+const affixCount = computed(() => favoriteEntries.value.filter((entry) => entry.item.affix === '1').length)
 
 /** 空状态分类快捷入口：取注册表全部分类的标题、图标与路径，顺序与侧栏菜单一致 */
 const CATEGORY_SHORTCUTS = getCategoryRegistry().map((entry) => ({ path: entry.path, title: entry.title, icon: entry.icon }))
@@ -322,7 +331,12 @@ function handleDragEnd(event: Sortable.SortableEvent): void {
   // 目标位置以指针最终落点映射的槽位为准，Sortable 的 newIndex 在快速拖拽时会滞后于指针
   const grid = cardGridRef.value
   const dropSlot = grid && dragLastPoint ? resolveDropSlotIndex(grid, dragLastPoint) : null
-  const targetIndex = dropSlot ?? newIndex
+  let targetIndex = dropSlot ?? newIndex
+  // 固定条目不可移出前缀：普通卡片拖入固定区、固定卡片拖出固定区时钳制回各自范围，
+  // 保证「固定条目始终占据收藏列表前缀」的不变量，reorderFavorite 按显示下标换序才不会错位
+  const pinnedCount = affixCount.value
+  if (oldIndex < pinnedCount) targetIndex = Math.min(targetIndex, pinnedCount - 1)
+  else targetIndex = Math.max(targetIndex, pinnedCount)
   /** 是否需要拦截紧随的 click：换位、拖拽中位移过或唤起了操作面板 */
   let suppressClick = false
   if (targetIndex !== oldIndex) {
@@ -391,13 +405,15 @@ function handleExplore(): void {
 }
 
 /**
- * 刷新缓存一致性：以全站配置索引为合法键集合，裁剪收藏中条目被删除后残留的脏键
+ * 刷新缓存一致性：以全站配置索引为合法键集合，裁剪收藏中条目被删除后残留的脏键；
+ * 随后补回固定条目：affix 为 1 的固定收录条目若不在收藏列表中，按序补插到最前面
  *
  * 必须裁剪内存中的响应式集合而非仅修存储：幽灵键残留会让收藏顺序与展示卡片错位，
  * 拖拽排序等按下标换序的功能会错位换卡。
  */
 function refreshSiteCaches(): void {
   pruneFavorites(Object.keys(SITE_INDEX))
+  ensureAffixFavorites(AFFIX_KEYS)
 }
 
 onMounted(refreshSiteCaches)
@@ -542,6 +558,11 @@ html.dark .search-input:deep(.el-input__wrapper) {
   gap: 8px;
 }
 
+/* 固定展示区与收藏区之间留出间距 */
+.site-section + .site-section {
+  margin-top: 16px;
+}
+
 /* 拖拽排序中：网格整体呈抓取光标，明确告知正在拖拽 */
 .card-grid.is-drag-sorting {
   cursor: grabbing;
@@ -579,7 +600,7 @@ html.dark .search-input:deep(.el-input__wrapper) {
   align-items: center;
   gap: 16px;
   width: 960px;
-  margin: 0 auto;
+  margin: 8px auto 0;
   color: var(--el-text-color-secondary);
 
   .empty-icon {
@@ -687,5 +708,4 @@ html[data-device='mobile'] {
     font-size: 12px;
   }
 }
-
 </style>

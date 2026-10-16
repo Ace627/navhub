@@ -267,6 +267,7 @@ declare global {
   const useSessionStorage: typeof import('@vueuse/core').useSessionStorage
   const useSettingStore: typeof import('../../store/modules/setting').useSettingStore
   const useShare: typeof import('@vueuse/core').useShare
+  const useSiteAffixOrder: typeof import('../../hooks/useSiteAffixOrder').useSiteAffixOrder
   const useSiteFavorites: typeof import('../../hooks/useSiteFavorites').useSiteFavorites
   const useSiteIndex: typeof import('../../hooks/useSiteIndex').useSiteIndex
   const useSiteShare: typeof import('../../hooks/useSiteShare').useSiteShare

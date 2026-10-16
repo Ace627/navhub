@@ -36,6 +36,8 @@ export interface SiteItem {
   description: string
   /** 标签列表：卡片右上角展示的分类标记，默认空数组 */
   tags: string[]
+  /** 是否固定在首页展示：'1' 固定，'0' 不固定，默认 '0' */
+  affix: string
 }
 
 /** 站点列表查询参数：字段均可选，缺省表示不过滤 */
