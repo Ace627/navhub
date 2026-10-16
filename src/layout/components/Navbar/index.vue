@@ -106,6 +106,16 @@ function goSetting() {
   font-size: 18px;
   font-weight: 700;
   color: var(--el-text-color-primary);
+  @include mobile {
+    /* 水平居中：绝对定位脱离文档流，不受左右两侧箭头/图标占位影响 */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    &.after-back {
+      margin-left: 0;
+    }
+  }
 }
 
 /* 返回箭头之后的标题贴近箭头，间距对齐小程序顶栏 */

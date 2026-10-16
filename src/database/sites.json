@@ -2800,7 +2800,7 @@
     "key": "PaydayCountdown",
     "title": "发薪日倒计时",
     "icon": "@/assets/images/icons/发薪日倒计时.svg",
-    "description": "实时统计各候选发薪日的剩余天数，最近一项自动高亮，支持自定义发薪日。",
+    "description": "实时统计各候选发薪日的剩余天数，最近一项自动高亮。",
     "tags": [
       "自研"
     ]

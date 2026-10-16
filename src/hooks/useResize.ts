@@ -31,10 +31,16 @@ export function useResize() {
    */
   function _resizeHandler(force = false) {
     if (!force && document.hidden) return
+    const wasMobile = appStore.isMobile
     appStore.device = _isMobile() ? 'mobile' : 'desktop'
     document.documentElement.dataset['device'] = appStore.device
     document.documentElement.dataset['immersive'] = String(appStore.isMobile && _isImmersive())
-    if (appStore.isMobile) appStore.closeSidebar(true)
+    if (appStore.isMobile) {
+      appStore.closeSidebar(true)
+    } else if (wasMobile && appStore.isCollapse) {
+      // 从移动端切回桌面端时，恢复侧栏展开状态
+      appStore.openSidebar()
+    }
   }
 
   /** 用于处理右键菜单事件：移动端统一阻止浏览器原生菜单（长按/右键），桌面端保留默认行为 */
