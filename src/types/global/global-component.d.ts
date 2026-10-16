@@ -9,5 +9,6 @@ declare module 'vue' {
     ProTooltip: (typeof import('../components/ProTooltip/index.vue'))['default']
     LinkCard: (typeof import('../components/LinkCard/index.vue'))['default']
     ActionSheet: (typeof import('../components/ActionSheet/index.vue'))['default']
+    DatetimePicker: (typeof import('../components/DatetimePicker/index.vue'))['default']
   }
 }

@@ -38,8 +38,7 @@ export function useResize() {
     if (appStore.isMobile) {
       appStore.closeSidebar(true)
     } else if (wasMobile && appStore.isCollapse) {
-      // 从移动端切回桌面端时，恢复侧栏展开状态
-      appStore.openSidebar()
+      appStore.openSidebar() // 从移动端切回桌面端时，恢复侧栏展开状态
     }
   }
 

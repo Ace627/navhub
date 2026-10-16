@@ -1,5 +1,5 @@
 <template>
-  <div class="app-content">
+  <div class="app-content app-content--fill">
     <div class="tool-container">
       <!-- iOS 锁屏主视觉：灵动岛进度胶囊 + 日期 + 超大细体倒计时 -->
       <section class="lock-screen">
@@ -36,11 +36,21 @@
       </section>
 
       <section class="setting-bar flex-center">
-        <el-time-picker v-model="workStartTime" format="HH:mm" value-format="HH:mm" placeholder="上班时间" :clearable="false" :editable="!appStore.isMobile" @change="workStartTimeChange" />
-        <span class="setting-separator">→</span>
-        <el-time-picker v-model="offWorkTime" format="HH:mm" value-format="HH:mm" placeholder="下班时间" :clearable="false" :editable="!appStore.isMobile" @change="offWorkTimeChange" />
+        <template v-if="appStore.isMobile">
+          <el-input class="time-field" :model-value="workStartTime" readonly placeholder="上班时间" @click="openTimePicker('work')" />
+          <span class="setting-separator">→</span>
+          <el-input class="time-field" :model-value="offWorkTime" readonly placeholder="下班时间" @click="openTimePicker('off')" />
+        </template>
+        <template v-else>
+          <el-time-picker v-model="workStartTime" format="HH:mm" value-format="HH:mm" placeholder="上班时间" :clearable="false" @change="workStartTimeChange" />
+          <span class="setting-separator">→</span>
+          <el-time-picker v-model="offWorkTime" format="HH:mm" value-format="HH:mm" placeholder="下班时间" :clearable="false" @change="offWorkTimeChange" />
+        </template>
         <el-button class="ml-12px" @click="resetTimes">恢复默认</el-button>
       </section>
+
+      <!-- 移动端时间滚轮选择器：Wot UI DatetimePicker 风格的底部弹层 -->
+      <DatetimePicker v-model:show="pickerVisible" :title="pickerField === 'off' ? '下班时间' : '上班时间'" :model-value="pickerField === 'off' ? offWorkTime : workStartTime" @confirm="handlePickerConfirm" />
 
       <div class="flex-center mt-8px">
         <el-text type="info" size="small">上下班时间仅保存在本地浏览器，换设备后需重新设置</el-text>
@@ -184,6 +194,39 @@ function resetTimes() {
   offWorkTime.value = DEFAULT_OFF_WORK_TIME
 }
 
+/** 移动端滚轮选择器正在编辑的字段：work 上班 / off 下班，null 表示关闭 */
+const pickerField = ref<'work' | 'off' | null>(null)
+
+/** 滚轮选择器显隐：由编辑字段派生，关闭即清空字段 */
+const pickerVisible = computed({
+  get: () => pickerField.value !== null,
+  set: (value: boolean) => {
+    if (!value) pickerField.value = null
+  },
+})
+
+/**
+ * 打开移动端滚轮选择器
+ * @param field 本次要编辑的字段
+ */
+function openTimePicker(field: 'work' | 'off') {
+  pickerField.value = field
+}
+
+/**
+ * 滚轮选择器确认回调：写回对应字段并持久化
+ * @param value HH:mm 格式的时间
+ */
+function handlePickerConfirm(value: string) {
+  if (pickerField.value === 'work') {
+    workStartTime.value = value
+    setWorkStartTime(value)
+  } else {
+    offWorkTime.value = value
+    setOffWorkTime(value)
+  }
+}
+
 onMounted(() => {
   timer = setInterval(() => {
     now.value = dayjs()
@@ -202,13 +245,6 @@ onBeforeUnmount(() => {
   /* 桌面端对齐 iPadOS 锁屏：时钟更大更舒展 */
   --digit-font-size: 108px;
 
-  /* 内容不足一屏时整体垂直居中（min-height 百分比在 .app-main 内解析不到，按视口差值计算） */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  /* 100vh 在移动端取地址栏收起后的最大视口，会撑出一段可滚动余量，用 100dvh 按当前可见视口计算 */
-  min-height: calc(100vh - var(--el-navbar-height) - var(--el-copyright-height) - 76px);
-  min-height: calc(100dvh - var(--el-navbar-height) - var(--el-copyright-height) - 76px);
   padding: 0 16px;
 }
 
@@ -470,9 +506,6 @@ html.dark {
 html[data-device='mobile'] {
   .app-content {
     --digit-font-size: clamp(48px, 16vw, 64px);
-    /* 移动端同样垂直居中，扣除项按移动布局（TabBar + 安全区，无页头与版权栏）计算 */
-    min-height: calc(100vh - var(--el-navbar-height) - var(--el-tabbar-height) - var(--el-safe-bottom, 0px) - 24px);
-    min-height: calc(100dvh - var(--el-navbar-height) - var(--el-tabbar-height) - var(--el-safe-bottom, 0px) - 24px);
     padding: 0 16px;
   }
   .tool-container {
@@ -530,6 +563,11 @@ html[data-device='mobile'] {
   .setting-bar {
     padding: 12px 10px;
     border-radius: 16px;
+  }
+  /* 移动端时间字段：只读输入框均分剩余宽度 */
+  .time-field {
+    flex: 1;
+    min-width: 0;
   }
 }
 </style>

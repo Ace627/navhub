@@ -1,5 +1,5 @@
 <template>
-  <div class="app-content">
+  <div class="app-content app-content--fill">
     <div class="tool-container">
       <div class="tip-container flex-center flex-col">
         <template v-if="appStore.isDesktop">
@@ -161,14 +161,6 @@ onMounted(() => {
 .app-content {
   --ball-size: 72px;
   --ball-font-size: calc(var(--ball-size) / 2);
-
-  /* 内容不足一屏时整体垂直居中（min-height 百分比在 .app-main 内解析不到，按视口差值计算） */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  /* 100vh 在移动端取地址栏收起后的最大视口，会撑出一段可滚动余量，用 100dvh 按当前可见视口计算 */
-  min-height: calc(100vh - var(--el-navbar-height) - var(--el-copyright-height) - 76px);
-  min-height: calc(100dvh - var(--el-navbar-height) - var(--el-copyright-height) - 76px);
 }
 
 .tool-container {
@@ -241,9 +233,6 @@ html[data-device='mobile'] {
   .app-content {
     --ball-size: 36px;
     padding: 8px;
-    /* 移动端扣除项不同：无页头与版权栏，底部为 TabBar + 安全区，外壳内边距 12+12 */
-    min-height: calc(100vh - var(--el-navbar-height) - var(--el-tabbar-height) - var(--el-safe-bottom, 0px) - 24px);
-    min-height: calc(100dvh - var(--el-navbar-height) - var(--el-tabbar-height) - var(--el-safe-bottom, 0px) - 24px);
   }
   .tool-container {
     width: 100%;

@@ -1,5 +1,5 @@
 <template>
-  <div class="app-content">
+  <div class="app-content app-content--fill">
     <div class="movie-container">
       <div class="movie-tip flex-center">
         <SvgIcon name="Dice" :size="16" />
@@ -233,17 +233,6 @@ onMounted(fetchRandomMovie)
 </script>
 
 <style lang="scss" scoped>
-/* 内容不足一屏时整体垂直居中，消除页面下方的大片空白；内容超出时自动退化为正常滚动
-   扣除项：导航栏、底部版权条，以及分类详情页自身的容器内边距(上下各 16px)与页头(24 + 16)
-   不能用 min-height: 100%：外层滚动容器由 flex: 1 撑开，百分比高度解析不到，只能按视口算 */
-.app-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  /* 100vh 在移动端取地址栏收起后的最大视口，会撑出一段可滚动余量，用 100dvh 按当前可见视口计算 */
-  min-height: calc(100vh - var(--el-navbar-height) - var(--el-copyright-height) - 76px);
-  min-height: calc(100dvh - var(--el-navbar-height) - var(--el-copyright-height) - 76px);
-}
 
 /* 容器纵向撑满，卡片随之撑满可用高度，避免页面只剩一小块内容 */
 .movie-container {

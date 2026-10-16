@@ -48,3 +48,20 @@ html.dark body::before {
     padding: 12px;
   }
 }
+
+/* 工具页满屏容器修饰类：内容不足一屏时垂直居中，避免每页重复维护 min-height 扣除项
+   不能用 min-height: 100%：外层滚动容器由 flex: 1 撑开，百分比高度解析不到，只能按视口差值计算 */
+.app-content--fill {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* 100vh 在移动端取地址栏收起后的最大视口，会撑出一段可滚动余量，用 100dvh 按当前可见视口计算 */
+  min-height: calc(100vh - var(--el-navbar-height) - var(--el-copyright-height) - 76px);
+  min-height: calc(100dvh - var(--el-navbar-height) - var(--el-copyright-height) - 76px);
+
+  /* 移动端扣除项按移动布局（顶栏 + TabBar + 安全区）计算，沿用桌面扣除值会撑出可滚动余量 */
+  @include mobile {
+    min-height: calc(100vh - var(--el-navbar-height) - var(--el-tabbar-height) - var(--el-safe-bottom, 0px) - 24px);
+    min-height: calc(100dvh - var(--el-navbar-height) - var(--el-tabbar-height) - var(--el-safe-bottom, 0px) - 24px);
+  }
+}
