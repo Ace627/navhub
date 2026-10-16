@@ -844,6 +844,15 @@
     "tags": []
   },
   {
+    "id": "f3a8c1d2-64b7-4e29-8a53-9c0d7e4b12f6",
+    "categoryId": "5fa022af-8d61-4984-ac48-3ff62a3c9cc9",
+    "key": "https://pakeplus.com/zh/guide",
+    "title": "PakePlus",
+    "icon": "@/assets/images/icons/PakePlus.svg",
+    "description": "开源打包工具，可将任意网站打包为小于 5M 的跨平台桌面与手机应用，免装开发环境。",
+    "tags": []
+  },
+  {
     "id": "c677247e-01b0-4225-a80f-cb79820d92bb",
     "categoryId": "9492cfd4-724b-4828-b98e-2f25a6245261",
     "key": "https://github.com/waligoraamodio288-rgb/hongguo-desktop-releases",
