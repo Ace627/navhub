@@ -2813,5 +2813,14 @@
     "tags": [
       "自研"
     ]
+  },
+  {
+    "id": "a9d4e7b2-53c8-4f16-92ab-7d3e5c8f04b2",
+    "categoryId": "8a5151d2-c7bc-482b-9053-201354b97c61",
+    "key": "https://www.chsi.com.cn",
+    "title": "学信网",
+    "icon": "@/assets/images/icons/学信网.png",
+    "description": "教育部指定的学历查询与招生指定网站，提供学籍学历查询、研招报名与调剂等服务。",
+    "tags": []
   }
 ]
