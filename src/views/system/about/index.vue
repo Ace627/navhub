@@ -42,7 +42,7 @@ onMounted(fetchStats)
   grid-template-areas:
     'hero hero hero hero'
     'stats stats stats stats'
-    'chart chart visit visit'
+    'visit visit chart chart'
     'notice notice notice notice';
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
@@ -73,8 +73,8 @@ html[data-device='mobile'] {
     grid-template-areas:
       'hero'
       'stats'
-      'chart'
       'visit'
+      'chart'
       'notice';
     /* 用 minmax(0, 1fr) 允许列被压缩：1fr 的最小尺寸是内容宽度，图表 canvas 会把列撑破 */
     grid-template-columns: minmax(0, 1fr);
