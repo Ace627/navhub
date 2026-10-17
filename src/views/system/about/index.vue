@@ -2,8 +2,8 @@
   <div class="app-content about-grid">
     <AboutHero class="area-hero" />
     <AboutStats class="area-stats" :category-count="categoryStats.length" :site-count="siteCount" />
-    <AboutCategoryChart class="area-chart" :category-stats="categoryStats" :site-count="siteCount" />
     <AboutVisitorChart class="area-visit" />
+    <AboutCategoryChart class="area-chart" :category-stats="categoryStats" :site-count="siteCount" />
     <AboutNotice class="area-notice" />
   </div>
 </template>

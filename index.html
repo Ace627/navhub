@@ -6,6 +6,8 @@
     <title>%VITE_APP_TITLE%</title>
     <!-- 引入应用图标 -->
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <!-- 统计 SDK：保持静态同步标签，动态创建（缺 id 等属性）会让 SDK 内部读取配置时抛错 -->
+    <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
     <script>
       ;(() => {
         try {
@@ -13,7 +15,7 @@
           const settingJson = localStorage.getItem('%VITE_STORAGE_PREFIX%systemSetting')
           if (settingJson && JSON.parse(settingJson).value?.theme === 'dark') document.documentElement.classList.add('dark')
 
-          // 接入网站统计：等路由就绪、页面标题定稿后再加载 SDK 并初始化，避免首报记录到默认标题；
+          // 接入网站统计：等路由就绪、页面标题定稿后再初始化，避免首报记录到默认标题；
           // 标题始终为默认值（动态标题被关闭）时按 5 秒兜底放行，保证统计不丢；
           // hashMode 须与路由模式一致，本项目为 history 模式，故为 false
           const defaultTitle = '%VITE_APP_TITLE%'
@@ -23,34 +25,23 @@
             const settled = document.title !== defaultTitle || ++tries >= 25
             if (!settled) return
             clearInterval(timer)
-            loadStatsSdk(3)
+            initStats(3)
           }, 200)
-
-          /**
-           * 动态加载统计 SDK 并初始化
-           * @param retries 剩余重试次数：加载失败（如被拦截扩展屏蔽）间隔 2 秒重试，用尽后安静放弃，不做无限重试
-           */
-          function loadStatsSdk(retries) {
-            if (typeof LA !== 'undefined') {
-              initStats()
-              return
-            }
-            if (retries <= 0) return
-            const sdk = document.createElement('script')
-            sdk.src = '//sdk.51.la/js-sdk-pro.min.js'
-            sdk.charset = 'UTF-8'
-            sdk.onload = initStats
-            sdk.onerror = () => setTimeout(() => loadStatsSdk(retries - 1), 2000)
-            document.head.appendChild(sdk)
-          }
 
           /**
            * 初始化统计并加载访问数据挂件
            *
-           * 挂件脚本依赖 SDK 就绪才能注入数据容器（关于页访问图表的数据源），
-           * 必须在 LA.init 完成后再加载，否则容器永不出现、图表无数据
+           * 挂件脚本依赖 SDK 完成初始化才能注入数据容器（关于页访问图表的数据源），
+           * 必须在 LA.init 之后加载，否则容器永不出现、图表无数据；
+           * SDK 静态加载若被拦截扩展屏蔽导致 LA 未定义，间隔 2 秒重试，用尽后安静放弃
+           *
+           * @param retries 剩余重试次数
            */
-          function initStats() {
+          function initStats(retries) {
+            if (typeof LA === 'undefined') {
+              if (retries > 0) setTimeout(() => initStats(retries - 1), 2000)
+              return
+            }
             LA.init({ id: '3RO01mRk8aVlubuI', ck: '3RO01mRk8aVlubuI', autoTrack: true, hashMode: false })
             const widget = document.createElement('script')
             widget.id = 'LA-DATA-WIDGET'
