@@ -32,16 +32,32 @@
            */
           function loadStatsSdk(retries) {
             if (typeof LA !== 'undefined') {
-              LA.init({ id: '3RO01mRk8aVlubuI', ck: '3RO01mRk8aVlubuI', autoTrack: true, hashMode: false })
+              initStats()
               return
             }
             if (retries <= 0) return
             const sdk = document.createElement('script')
             sdk.src = '//sdk.51.la/js-sdk-pro.min.js'
             sdk.charset = 'UTF-8'
-            sdk.onload = () => LA.init({ id: '3RO01mRk8aVlubuI', ck: '3RO01mRk8aVlubuI', autoTrack: true, hashMode: false })
+            sdk.onload = initStats
             sdk.onerror = () => setTimeout(() => loadStatsSdk(retries - 1), 2000)
             document.head.appendChild(sdk)
+          }
+
+          /**
+           * 初始化统计并加载访问数据挂件
+           *
+           * 挂件脚本依赖 SDK 就绪才能注入数据容器（关于页访问图表的数据源），
+           * 必须在 LA.init 完成后再加载，否则容器永不出现、图表无数据
+           */
+          function initStats() {
+            LA.init({ id: '3RO01mRk8aVlubuI', ck: '3RO01mRk8aVlubuI', autoTrack: true, hashMode: false })
+            const widget = document.createElement('script')
+            widget.id = 'LA-DATA-WIDGET'
+            widget.crossOrigin = 'anonymous'
+            widget.charset = 'UTF-8'
+            widget.src = 'https://v6-widget.51.la/v6/3RO01mRk8aVlubuI/quote.js?theme=0&f=12&display=0,1,1,1,1,1,1,1'
+            document.body.appendChild(widget)
           }
         } catch {}
       })()
@@ -67,6 +83,5 @@
       </div>
     </div>
     <script type="module" src="/src/main.ts"></script>
-    <script id="LA-DATA-WIDGET" crossorigin="anonymous" charset="UTF-8" src="https://v6-widget.51.la/v6/3RO01mRk8aVlubuI/quote.js?theme=0&f=12&display=0,1,1,1,1,1,1,1"></script>
   </body>
 </html>
