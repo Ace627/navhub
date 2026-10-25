@@ -15,7 +15,8 @@
           const settingJson = localStorage.getItem('%VITE_STORAGE_PREFIX%systemSetting')
           if (settingJson && JSON.parse(settingJson).value?.theme === 'dark') document.documentElement.classList.add('dark')
           // 接入网站统计
-          LA.init({ id: '3RO01mRk8aVlubuI', ck: '3RO01mRk8aVlubuI', autoTrack: true, hashMode: false })
+          // hashMode 支持 Vue / React 等框架构建的单页面应用路由跳转感知功能
+          LA.init({ id: '3RO01mRk8aVlubuI', ck: '3RO01mRk8aVlubuI', autoTrack: true, hashMode: true })
         } catch {}
       })()
     </script>
