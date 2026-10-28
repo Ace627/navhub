@@ -2,10 +2,10 @@
   {
     "id": "ffb92d8a-5bfb-4f1f-a144-3425c8a12191",
     "categoryId": "0ff92260-b310-4228-bfc5-674dfe708272",
-    "key": "MovieRecommend",
-    "title": "随便看一部",
-    "icon": "@/assets/images/icons/随便看一部.ico",
-    "description": "不知道看什么就点我，从个人片单里随机抽一部，附评分类型，可跳转豆瓣详情页。",
+    "key": "SnowToolbox",
+    "title": "落雪工具箱",
+    "icon": "@/assets/images/icons/落雪工具箱.png",
+    "description": "推荐微信小程序：纯本地运行的工具合集，时间、图片、娱乐、生活四类小工具随开随用。",
     "tags": [],
     "affix": "0"
   },
